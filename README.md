@@ -107,7 +107,6 @@ The goal is simple: **spend less time planning and more time having fun.** 🎒
         </ul>
       </td>
     </tr>
-
     <tr>
       <td align="center"><strong>Week 2</strong></td>
       <td>
@@ -136,7 +135,6 @@ The goal is simple: **spend less time planning and more time having fun.** 🎒
         </ul>
       </td>
     </tr>
-
     <tr>
       <td align="center"><strong>Week 3</strong></td>
       <td>
@@ -160,7 +158,6 @@ The goal is simple: **spend less time planning and more time having fun.** 🎒
         </ul>
       </td>
     </tr>
-
     <tr>
       <td align="center"><strong>Week 4</strong></td>
       <td>
@@ -183,7 +180,6 @@ The goal is simple: **spend less time planning and more time having fun.** 🎒
         </ul>
       </td>
     </tr>
-
     <tr>
       <td align="center"><strong>Week 5</strong></td>
       <td>
@@ -208,7 +204,6 @@ The goal is simple: **spend less time planning and more time having fun.** 🎒
         </ul>
       </td>
     </tr>
-
     <tr>
       <td align="center"><strong>Week 6</strong></td>
       <td>
@@ -233,7 +228,6 @@ The goal is simple: **spend less time planning and more time having fun.** 🎒
         </ul>
       </td>
     </tr>
-
     <tr>
       <td align="center"><strong>Week 7</strong></td>
       <td>
@@ -246,7 +240,7 @@ The goal is simple: **spend less time planning and more time having fun.** 🎒
       </td>
       <td>
         <ul>
-          <li>Develop weighted transportation recommendation algorithm</li>
+          <li>Finish weighted transportation recommendation algorithm</li>
           <li>Optimize recommendation logic</li>
           <li>Improve API error handling</li>
         </ul>
@@ -258,20 +252,16 @@ The goal is simple: **spend less time planning and more time having fun.** 🎒
         </ul>
       </td>
     </tr>
-
     <tr>
       <td align="center"><strong>Week 8</strong></td>
       <td>
         <ul>
           <li>Finalize styling</li>
-          <li>Improve mobile responsiveness</li>
           <li>Prepare presentation slides</li>
         </ul>
       </td>
       <td>
         <ul>
-          <li>Optimize backend performance</li>
-          <li>Reduce duplicate API requests</li>
           <li>Complete testing</li>
           <li>Prepare demo</li>
         </ul>
@@ -279,57 +269,28 @@ The goal is simple: **spend less time planning and more time having fun.** 🎒
       <td>
         <ul>
           <li>Feature-complete application</li>
-          <li>Presentation draft completed</li>
+          <li>Presentation draft and demo completed</li>
         </ul>
       </td>
     </tr>
-
     <tr>
       <td align="center"><strong>Week 9</strong></td>
       <td>
         <ul>
           <li>Freeze UI changes</li>
-          <li>Prepare demonstration</li>
+          <li>Finish demo</li>
           <li>Rehearse presentation</li>
         </ul>
       </td>
       <td>
         <ul>
-          <li>Complete documentation</li>
-          <li>Final bug fixes</li>
-          <li>Performance testing</li>
-          <li>API optimization</li>
+          <li>Freeze development</li>
           <li>Memorize full presentation</li>
         </ul>
       </td>
       <td>
         <ul>
-          <li>Demo perfected</li>
-        </ul>
-      </td>
-    </tr>
-
-    <tr>
-      <td align="center"><strong>Week 10</strong></td>
-      <td>
-        <ul>
-          <li>Practice final presentation</li>
-          <li>Polish interface</li>
-          <li>Finalize demo</li>
-        </ul>
-      </td>
-      <td>
-        <ul>
-          <li>Final testing</li>
-          <li>Deployment if applicable</li>
-          <li>Prepare backup demo demonstration</li>
-        </ul>
-      </td>
-      <td>
-        <ul>
-          <li>Final presentation ready</li>
-          <li>Polished demo</li>
-          <li>Project submission complete</li>
+          <li>Demo and presentation perfected</li>
         </ul>
       </td>
     </tr>
