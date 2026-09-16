@@ -561,41 +561,6 @@ Transportation recommendations similarly consider:
 
 The exact weighting can be adjusted during development based on testing and user feedback.
 
-## Roadblocks & Possible Solutions 🚧
-
-- **Travel API rate limits**
-  - Use free developer tiers when possible.
-  - Cache repeated requests.
-  - Avoid unnecessary duplicate API calls.
-  - Use sample JSON/mock data during development and testing.
-
-- **Inaccurate transportation cost estimates**
-  - Transportation prices vary based on dates, availability, fuel prices, and demand.
-  - Display estimated ranges rather than exact prices.
-  - Clearly label transportation costs as estimates.
-
-- **Slow API responses**
-  - Execute independent API requests asynchronously and in parallel.
-  - Add loading states to the frontend.
-  - Cache frequently requested information.
-  - Reduce duplicate API calls.
-
-- **Poor destination recommendations**
-  - Avoid relying on a single questionnaire response.
-  - Combine multiple weighted preference categories.
-  - Test recommendations against different user profiles.
-  - Adjust scoring weights based on observed results.
-
-- **Missing attraction data**
-  - Combine multiple attraction sources.
-  - Provide nearby alternatives.
-  - Gracefully handle destinations with limited API information.
-
-- **External API failures**
-  - Implement backend error handling.
-  - Return fallback responses when possible.
-  - Keep external API keys on the backend rather than exposing them in the frontend.
-
 ## Potential Competition ⚔️
 
 ### Google Travel
