@@ -614,8 +614,8 @@ Expedia focuses primarily on travel bookings such as flights, hotels, and vacati
 
 ## Vo(you)ger Team 👥
 
+- Conrad Murrell
 - Kin Ma
-- Member 2
 - Member 3
 - Member 4
 - Project Manager
