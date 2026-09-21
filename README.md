@@ -614,14 +614,9 @@ Expedia focuses primarily on travel bookings such as flights, hotels, and vacati
 
 ## Vo(you)ger Team 👥
 
-<<<<<<< HEAD
-- Member 1
-- Member 2: Bhavya Sree Reddi
-=======
 - Conrad Murrell
 - Kin Ma
->>>>>>> aeb8a7b2b8066763a882b10a59fb784f37c202a2
-- Member 3
+- Member 3: Bhavya Sree Reddi
 - Member 4: Aarnavi
 - Project Manager
 - Industry Mentor
