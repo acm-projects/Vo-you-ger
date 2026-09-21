@@ -617,6 +617,6 @@ Expedia focuses primarily on travel bookings such as flights, hotels, and vacati
 - Member 1
 - Member 2
 - Member 3
-- Member 4
+- Member 4: Aarnavi
 - Project Manager
 - Industry Mentor
