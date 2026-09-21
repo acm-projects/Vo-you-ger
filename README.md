@@ -539,25 +539,25 @@ Vo(you)ger's recommendation system is designed to consider multiple factors inst
 
 A destination can be evaluated using factors such as:
 
-| Factor | Description |
-|---|---|
-| Budget | How well the destination fits the user's spending range |
-| Distance | How practical the destination is based on travel distance |
-| Transportation | Whether the destination supports the user's preferred travel method |
-| Activities | How closely available attractions match user interests |
-| Trip Duration | Whether the destination fits the available vacation length |
-| Travel Style | Adventure, relaxation, food, nature, city, family, solo, or group preferences |
+| Factor         | Description                                                                   |
+| -------------- | ----------------------------------------------------------------------------- |
+| Budget         | How well the destination fits the user's spending range                       |
+| Distance       | How practical the destination is based on travel distance                     |
+| Transportation | Whether the destination supports the user's preferred travel method           |
+| Activities     | How closely available attractions match user interests                        |
+| Trip Duration  | Whether the destination fits the available vacation length                    |
+| Travel Style   | Adventure, relaxation, food, nature, city, family, solo, or group preferences |
 
 Transportation recommendations similarly consider:
 
-| Factor | Description |
-|---|---|
-| Cost | Estimated transportation expense |
-| Travel Time | Expected duration of the trip |
-| Preference | User's preferred transportation method |
-| Transfers | Number of transfers required |
-| Convenience | Overall ease of the journey |
-| Distance | Total distance traveled |
+| Factor      | Description                            |
+| ----------- | -------------------------------------- |
+| Cost        | Estimated transportation expense       |
+| Travel Time | Expected duration of the trip          |
+| Preference  | User's preferred transportation method |
+| Transfers   | Number of transfers required           |
+| Convenience | Overall ease of the journey            |
+| Distance    | Total distance traveled                |
 
 The exact weighting can be adjusted during development based on testing and user feedback.
 
@@ -589,33 +589,33 @@ Expedia focuses primarily on travel bookings such as flights, hotels, and vacati
 
 ## Git Cheatsheet 📓
 
-| Command | What it does |
-|---|---|
-| `git init` | Initialize a new Git repository |
-| `git clone "rep-url"` | Clone an existing repository |
-| `git status` | Show the current state of the working directory |
-| `git add .` | Add all changes to staging |
-| `git add "file"` | Add a specific file to staging |
-| `git commit -m "Descriptive Message"` | Create a commit |
-| `git push` | Upload local commits to the remote repository |
-| `git pull` | Fetch and merge remote changes |
-| `git fetch` | Fetch remote changes without merging |
-| `git log` | View commit history |
-| `git branch` | List branches |
-| `git branch "branch-name"` | Create a new branch |
-| `git checkout "branch-name"` | Switch branches |
-| `git checkout -b "branch-name"` | Create and switch to a new branch |
-| `git merge "branch-name"` | Merge a branch into the current branch |
-| `git branch -d "branch-name"` | Delete a local branch |
-| `git push origin "branch-name"` | Push a specific branch |
-| `git pull origin "branch-name"` | Pull changes from a specific branch |
-| `git reset --hard HEAD` | Discard uncommitted changes |
-| `git revert <commit-hash>` | Create a new commit that reverses a previous commit |
+| Command                               | What it does                                        |
+| ------------------------------------- | --------------------------------------------------- |
+| `git init`                            | Initialize a new Git repository                     |
+| `git clone "rep-url"`                 | Clone an existing repository                        |
+| `git status`                          | Show the current state of the working directory     |
+| `git add .`                           | Add all changes to staging                          |
+| `git add "file"`                      | Add a specific file to staging                      |
+| `git commit -m "Descriptive Message"` | Create a commit                                     |
+| `git push`                            | Upload local commits to the remote repository       |
+| `git pull`                            | Fetch and merge remote changes                      |
+| `git fetch`                           | Fetch remote changes without merging                |
+| `git log`                             | View commit history                                 |
+| `git branch`                          | List branches                                       |
+| `git branch "branch-name"`            | Create a new branch                                 |
+| `git checkout "branch-name"`          | Switch branches                                     |
+| `git checkout -b "branch-name"`       | Create and switch to a new branch                   |
+| `git merge "branch-name"`             | Merge a branch into the current branch              |
+| `git branch -d "branch-name"`         | Delete a local branch                               |
+| `git push origin "branch-name"`       | Push a specific branch                              |
+| `git pull origin "branch-name"`       | Pull changes from a specific branch                 |
+| `git reset --hard HEAD`               | Discard uncommitted changes                         |
+| `git revert <commit-hash>`            | Create a new commit that reverses a previous commit |
 
 ## Vo(you)ger Team 👥
 
 - Conrad Murrell
-- Member 2
+- Kin Ma
 - Member 3
 - Member 4: Aarnavi
 - Project Manager
