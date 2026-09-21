@@ -614,7 +614,7 @@ Expedia focuses primarily on travel bookings such as flights, hotels, and vacati
 
 ## Vo(you)ger Team 👥
 
-- Member 1
+- Conrad Murrell
 - Member 2
 - Member 3
 - Member 4
