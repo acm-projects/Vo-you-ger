@@ -615,7 +615,7 @@ Expedia focuses primarily on travel bookings such as flights, hotels, and vacati
 ## Vo(you)ger Team 👥
 
 - Member 1
-- Member 2
+- Member 2: Bhavya Sree Reddi
 - Member 3
 - Member 4
 - Project Manager
