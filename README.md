@@ -614,9 +614,9 @@ Expedia focuses primarily on travel bookings such as flights, hotels, and vacati
 
 ## Vo(you)ger Team 👥
 
-- Conrad Murrell
-- Kin Ma
-- Member 3: Bhavya Sree Reddi
-- Member 4: Aarnavi
-- Project Manager
-- Industry Mentor
+- Member: Conrad
+- Member: Kin
+- Member: Bhavya
+- Member: Aarnavi
+- Project Manager: Harshitha
+- Industry Mentor: Clara
