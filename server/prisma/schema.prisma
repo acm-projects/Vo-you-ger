@@ -5,6 +5,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 // User table
@@ -16,7 +17,7 @@ model User {
   nationalities String[]
   email String @unique
   password String
-  firsTime Boolean @default(true)
+  firstTime Boolean @default(true)
 
   // "Backwards" relation to the UserQuizResponse table
   userQuizResponse UserQuizResponse?
@@ -40,7 +41,7 @@ model UserQuizResponse {
   bookedExperiences Json?
   startCity String?
   startCountry String?
-  prferredCountries String[] @default([])
+  preferredCountries String[] @default([])
   preferredMonths String[] @default([])
   preferredMinDuration Int?
   preferredMaxDuration Int?
