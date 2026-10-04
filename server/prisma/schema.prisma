@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// User table
+// Documentation: https://www.prisma.io/docs/orm/v7/prisma-schema/data-model/models
+model User {
+  id String @id @default(uuid())
+  fName String
+  lName String
+  nationalities String[]
+  email String @unique
+  password String
+  firsTime Boolean @default(true)
+
+  // "Backwards" relation to the UserQuizResponse table
+  userQuizResponse UserQuizResponse?
+  savedTrips SavedTrips[]
+
+  // Map to Postgres table to follow naming conventions
+  @@map("users")
+}
+
+// UserQuizResponse table
+// Documentation: https://www.prisma.io/docs/orm/v7/prisma-schema/data-model/relations
+model UserQuizResponse {
+  // ID, which is the foreign key from the User table
+  id String @id
+
+  // Fields filled if the user has something listed as not booked
+  bookedTransportation Json?
+  transportationPreferences String[] @default([])
+  bookedAccommodations Json?
+  accommodationPreferences String[] @default([])
+  bookedExperiences Json?
+  startCity String?
+  startCountry String?
+  prferredCountries String[] @default([])
+  preferredMonths String[] @default([])
+  preferredMinDuration Int?
+  preferredMaxDuration Int?
+  preferredTemperature String?
+  preferredWeather String?
+  visaWillingness Boolean?
+  riskTolerance Int?
+  resultCountry String?
+
+  // Fields filled for all users
+  travelAlterEgo String
+  viewsPhotos String
+  postPhotos String
+  sleepIn Boolean
+  famousLocation Boolean
+  seeItAll Boolean
+  peoplePerson Boolean
+  walkAmount String
+  numPeople Int
+  budget String
+  dietaryRestrictions String[]
+
+  // Relation to the Users table
+  user User @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  // Map to Postgres table to follow naming conventions
+  @@map("user_quiz_responses")
+}
+
+// SavedTrips table
+model SavedTrips {
+  // userId, which is the foreign key from the User table
+  userId String
+  tripId String @id @default(uuid())
+  title String
+  summary String
+  itinerary Json
+
+  // Relation to the Users table
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Map to Postgres table to follow naming conventions
+  @@map("saved_trips")
+}
