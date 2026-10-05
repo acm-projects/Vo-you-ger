@@ -27,3 +27,9 @@ dist-ssr
 # All .env files
 .env
 *.env
+# Environment variants; allow a placeholder example
+.env.*
+!.env.example
+
+# Generated Prisma client
+server/generated/
