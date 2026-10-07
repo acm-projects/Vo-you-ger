@@ -9,14 +9,23 @@ function App() {
   const [count, setCount] = useState(0);
   const [array, setArray] = useState([]);
 
-  const fetchAPI = async () => {
-    const response = await axios.get("http://localhost:8080/api");
-    setArray(response.data.fruits);
-    console.log(response.data.fruits);
-  };
-
   useEffect(() => {
-    fetchAPI();
+    const controller = new AbortController();
+
+    axios
+      .get("http://localhost:8080/api", {
+        signal: controller.signal,
+      })
+      .then((response) => {
+        setArray(response.data.fruits);
+      })
+      .catch((error) => {
+        if (!axios.isCancel(error)) {
+          console.error("Could not fetch fruits:", error);
+        }
+      });
+
+    return () => controller.abort();
   }, []);
 
   return (
@@ -35,7 +44,7 @@ function App() {
           {array.map((fruit, index) => (
             <div key={index}>
               <p>{fruit}</p>
-              <br></br>
+              <br />
             </div>
           ))}
         </div>
