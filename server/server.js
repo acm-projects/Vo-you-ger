@@ -19,9 +19,25 @@ app.use(cors(corsOptions));
 // Allow parsing incoming JSON request bodies
 app.use(express.json());
 
+// Import routes
+const authRoutes = require("./routes/authRoutes");
+
+// Health check endpoint
+app.get("/api/health", (req, res) => {
+  res.json({ status: "ok", timestamp: new Date().toISOString() });
+});
+
+// Mount authentication and user routes
+app.use("/api/auth", authRoutes);
+
+// Export app instance (useful for testing)
+module.exports = app;
+
 // Run app
 const PORT = process.env.PORT || 8080;
 
-app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
+  });
+}
