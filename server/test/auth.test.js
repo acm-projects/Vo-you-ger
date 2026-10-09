@@ -100,6 +100,25 @@ describe("Authentication & Core User Data", () => {
         return { Item: item ? { ...item } : undefined };
       }
 
+      if (cmdName === "QueryCommand") {
+        const items = [];
+        for (const [_, item] of inMemoryStore) {
+          if (
+            input.ExpressionAttributeValues &&
+            input.ExpressionAttributeValues[":email"]
+          ) {
+            if (
+              item.GSI1PK === input.ExpressionAttributeValues[":email"] &&
+              (!input.ExpressionAttributeValues[":sk"] ||
+                item.GSI1SK === input.ExpressionAttributeValues[":sk"])
+            ) {
+              items.push({ ...item });
+            }
+          }
+        }
+        return { Items: items };
+      }
+
       if (cmdName === "PutCommand") {
         const key = mockKey(input.TableName, input.Item.PK, input.Item.SK);
         inMemoryStore.set(key, { ...input.Item });
@@ -468,6 +487,26 @@ describe("Authentication & Core User Data", () => {
       assert.equal(res.body.user.fName, "Alicia");
       assert.equal(res.body.user.firstTime, false);
       assert.deepEqual(res.body.user.nationalities, ["Canada", "France"]);
+    });
+
+    it("should support embedded quizResponse in user profile", async () => {
+      const quizData = {
+        travelAlterEgo: "Explorer",
+        budget: "Moderate",
+        sleepIn: false,
+      };
+
+      const { req, res } = mockReqRes({
+        user: { userId: registeredUser.id, email: registeredUser.email },
+        body: {
+          quizResponse: quizData,
+        },
+      });
+
+      await updateMe(req, res);
+
+      assert.equal(res.statusCode, 200);
+      assert.deepEqual(res.body.user.quizResponse, quizData);
     });
   });
 });

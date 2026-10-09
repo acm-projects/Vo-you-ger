@@ -17,7 +17,7 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
  */
 async function register(req, res) {
   try {
-    const { fName, lName, email, password, nationalities } = req.body;
+    const { fName, lName, email, password, nationalities, quizResponse } = req.body;
 
     // Validate presence of required fields
     if (!fName || !lName || !email || !password) {
@@ -75,6 +75,7 @@ async function register(req, res) {
       email: trimmedEmail,
       passwordHash,
       nationalities: nationalities || [],
+      quizResponse: quizResponse || null,
     });
 
     const safeUser = sanitizeUser(newUser);
@@ -185,7 +186,7 @@ async function getMe(req, res) {
  */
 async function updateMe(req, res) {
   try {
-    const { fName, lName, nationalities, firstTime } = req.body;
+    const { fName, lName, nationalities, firstTime, quizResponse } = req.body;
     const updates = {};
 
     if (fName !== undefined) {
@@ -220,6 +221,10 @@ async function updateMe(req, res) {
 
     if (firstTime !== undefined) {
       updates.firstTime = Boolean(firstTime);
+    }
+
+    if (quizResponse !== undefined) {
+      updates.quizResponse = quizResponse;
     }
 
     const updatedUser = await updateUser(req.user.userId, updates);

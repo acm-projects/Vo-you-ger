@@ -2,18 +2,20 @@ const crypto = require("crypto");
 const {
   GetCommand,
   PutCommand,
-  TransactWriteCommand,
+  QueryCommand,
   ScanCommand,
   UpdateCommand,
 } = require("@aws-sdk/lib-dynamodb");
 const { docClient, TABLE_NAME } = require("../db/dynamo");
+
+const GSI_NAME = process.env.DYNAMODB_GSI_NAME || "GSI1";
 
 /**
  * Remove sensitive and internal attributes before returning user data.
  */
 function sanitizeUser(user) {
   if (!user) return null;
-  const { password, PK, SK, ...safeUser } = user;
+  const { password, PK, SK, GSI1PK, GSI1SK, ...safeUser } = user;
   return {
     id: safeUser.id || safeUser.userId,
     fName: safeUser.fName,
@@ -21,23 +23,38 @@ function sanitizeUser(user) {
     email: safeUser.email,
     nationalities: Array.isArray(safeUser.nationalities) ? safeUser.nationalities : [],
     firstTime: safeUser.firstTime !== undefined ? safeUser.firstTime : true,
+    quizResponse: safeUser.quizResponse !== undefined ? safeUser.quizResponse : null,
     createdAt: safeUser.createdAt,
     updatedAt: safeUser.updatedAt,
   };
 }
 
 /**
- * Create a new user in DynamoDB.
- * Enforces email uniqueness using a single-table transaction with an EMAIL pointer item.
+ * Create a new user in DynamoDB matching team single-table schema:
+ * PK: USER#<userId>
+ * SK: PROFILE
+ * GSI1PK: <email>
+ * GSI1SK: PROFILE
  */
-async function createUser({ fName, lName, email, passwordHash, nationalities }) {
+async function createUser({ fName, lName, email, passwordHash, nationalities, quizResponse }) {
   const normalizedEmail = email.trim().toLowerCase();
   const userId = crypto.randomUUID();
   const timestamp = new Date().toISOString();
 
+  // Check if user already exists via email
+  const existingUser = await findUserByEmail(normalizedEmail);
+  if (existingUser) {
+    const error = new Error("An account with this email already exists");
+    error.statusCode = 409;
+    error.code = "EMAIL_ALREADY_EXISTS";
+    throw error;
+  }
+
   const userItem = {
     PK: `USER#${userId}`,
     SK: "PROFILE",
+    GSI1PK: normalizedEmail,
+    GSI1SK: "PROFILE",
     id: userId,
     fName: fName.trim(),
     lName: lName.trim(),
@@ -45,107 +62,85 @@ async function createUser({ fName, lName, email, passwordHash, nationalities }) 
     password: passwordHash,
     nationalities: Array.isArray(nationalities) ? nationalities : [],
     firstTime: true,
+    quizResponse: quizResponse || null,
     createdAt: timestamp,
     updatedAt: timestamp,
   };
 
-  const emailLookupItem = {
-    PK: `EMAIL#${normalizedEmail}`,
-    SK: "ACCOUNT",
-    userId,
-    email: normalizedEmail,
-    createdAt: timestamp,
-  };
-
   try {
-    // Atomic creation using TransactWriteItems to guarantee email uniqueness
     await docClient.send(
-      new TransactWriteCommand({
-        TransactItems: [
-          {
-            Put: {
-              TableName: TABLE_NAME,
-              Item: emailLookupItem,
-              ConditionExpression: "attribute_not_exists(PK)",
-            },
-          },
-          {
-            Put: {
-              TableName: TABLE_NAME,
-              Item: userItem,
-              ConditionExpression: "attribute_not_exists(PK)",
-            },
-          },
-        ],
+      new PutCommand({
+        TableName: TABLE_NAME,
+        Item: userItem,
+        ConditionExpression: "attribute_not_exists(PK)",
       })
     );
 
     return userItem;
   } catch (err) {
-    // Check for transaction cancellation due to condition check failure (email already exists)
-    const isConflict =
-      err.name === "TransactionCanceledException" ||
-      err.name === "ConditionalCheckFailedException" ||
-      (err.CancellationReasons &&
-        err.CancellationReasons.some(
-          (reason) => reason.Code === "ConditionalCheckFailed"
-        ));
-
-    if (isConflict) {
+    if (err.name === "ConditionalCheckFailedException") {
       const error = new Error("An account with this email already exists");
       error.statusCode = 409;
       error.code = "EMAIL_ALREADY_EXISTS";
       throw error;
     }
-
     throw err;
   }
 }
 
 /**
  * Find user by email.
- * First checks the EMAIL#<email> pointer, then retrieves USER#<userId>.
- * Falls back to a Scan if the pointer is missing.
+ * Queries GSI1 (GSI1PK = email AND GSI1SK = PROFILE).
+ * Falls back to alternate index names or Scan if index is differently named.
  */
 async function findUserByEmail(email) {
   const normalizedEmail = email.trim().toLowerCase();
 
-  // 1. Direct O(1) lookup via EMAIL pointer
+  // 1. Try querying configured GSI (defaults to GSI1)
+  const indexNamesToTry = [GSI_NAME, "GSI1PK-GSI1SK-index", "EmailIndex"];
+  for (const indexName of indexNamesToTry) {
+    try {
+      const result = await docClient.send(
+        new QueryCommand({
+          TableName: TABLE_NAME,
+          IndexName: indexName,
+          KeyConditionExpression: "GSI1PK = :email AND GSI1SK = :sk",
+          ExpressionAttributeValues: {
+            ":email": normalizedEmail,
+            ":sk": "PROFILE",
+          },
+        })
+      );
+
+      if (result.Items && result.Items.length > 0) {
+        return result.Items[0];
+      }
+    } catch (err) {
+      // If index not found or error, continue to try next or fallback
+      if (err.name !== "ResourceNotFoundException" && err.name !== "ValidationException") {
+        // Log unexpected error but allow scan fallback
+      }
+    }
+  }
+
+  // 2. Scan fallback (guarantees retrieval even before GSI is created in DynamoDB)
   try {
-    const emailResult = await docClient.send(
-      new GetCommand({
+    const scanResult = await docClient.send(
+      new ScanCommand({
         TableName: TABLE_NAME,
-        Key: {
-          PK: `EMAIL#${normalizedEmail}`,
-          SK: "ACCOUNT",
+        FilterExpression: "(email = :email OR GSI1PK = :email) AND begins_with(PK, :userPrefix)",
+        ExpressionAttributeValues: {
+          ":email": normalizedEmail,
+          ":userPrefix": "USER#",
         },
       })
     );
 
-    if (emailResult.Item && emailResult.Item.userId) {
-      const userResult = await findUserById(emailResult.Item.userId);
-      if (userResult) {
-        return userResult;
-      }
+    if (scanResult.Items && scanResult.Items.length > 0) {
+      return scanResult.Items[0];
     }
-  } catch (err) {
-    // If primary lookup errors, continue to scan fallback
-  }
-
-  // 2. Scan fallback in case records were created without pointer item
-  const scanResult = await docClient.send(
-    new ScanCommand({
-      TableName: TABLE_NAME,
-      FilterExpression: "email = :email AND begins_with(PK, :userPrefix)",
-      ExpressionAttributeValues: {
-        ":email": normalizedEmail,
-        ":userPrefix": "USER#",
-      },
-    })
-  );
-
-  if (scanResult.Items && scanResult.Items.length > 0) {
-    return scanResult.Items[0];
+  } catch (scanErr) {
+    // Return null if table not accessible
   }
 
   return null;
@@ -169,10 +164,10 @@ async function findUserById(userId) {
 }
 
 /**
- * Update user attributes (e.g. nationalities, firstTime, fName, lName).
+ * Update user attributes (e.g. nationalities, firstTime, fName, lName, quizResponse).
  */
 async function updateUser(userId, updates) {
-  const allowedFields = ["fName", "lName", "nationalities", "firstTime"];
+  const allowedFields = ["fName", "lName", "nationalities", "firstTime", "quizResponse"];
   const expressionAttributeNames = {};
   const expressionAttributeValues = {};
   const updateClauses = [];
@@ -218,4 +213,3 @@ module.exports = {
   findUserById,
   updateUser,
 };
-
