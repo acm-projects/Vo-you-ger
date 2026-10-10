@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+
+/* Basic styles | color choices | Universal */
+:root {
+    --accent-color: #a1d0f1;
+    --base-color: white;
+    --text-color: black;
+    --input-color: #F3F0FF;
+}
+
+
+/*Boxing styles for all elements*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* style choices | default fonts */
+html {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 12pt;
+    color: var(--text-color);
+    text-align: center;
+}
+
+/* Fullscreen background | centered content */
+body {
+    min-height: 100vh;
+    background-image: url(pexels-adem-komurcu-2160553523-39803006.jpg);
+    background-size: cover;
+    background-position: center;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* White centered card box holding all form content */
+.wrapper {
+    background-color: var(--base-color);
+    height: auto;
+    width: min(500px, 90%);
+    padding: 40px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/*Heading one i.e. main heading */
+h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+/*Form layout*/
+form {
+    width: min(400px, 100%);
+    margin-top: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Flex wrapper placing input label and field side-by-side */
+form > div {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+}
+/*for the icons on the left side of the input fields*/
+form label {
+    flex-shrink: 0;
+    min-height: 50px;
+    height: auto;
+    width: 50px;
+    background-color: var(--accent-color);
+    fill: var(--base-color);
+    color: var(--base-color);
+    border-radius: 10px 0 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+/* Standard text inputs and dropdowns with right-side rounded corners */
+form input:not(.country-wrapper input), 
+form select:not(.country-wrapper select) {
+    flex-grow: 1;
+    min-width: 0;
+    width: 100%; 
+    height: 50px;
+    padding: 0 1em;
+    font: inherit;
+    border-radius: 0 10px 10px 0;
+    border: 2px solid var(--input-color);
+    border-left: none;
+    background-color: var(--input-color);
+    transition: 150ms ease;
+    appearance: none;
+}
+/* multi-select countries */
+.country-wrapper {
+    flex: 1;
+    min-width: 0;
+    min-height: 50px;
+    height: auto;
+    background-color: var(--input-color);
+    border: 2px solid var(--input-color);
+    border-left: none;
+    border-radius: 0 10px 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 6px 8px;
+    gap: 6px;
+    overflow: hidden;
+}
+
+/* Hides scrollbars in browser for the country wrapper */
+.country-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+/* Flex container holding selected country tag pills */
+#selected-countries-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    max-width: 100%;
+}
+
+/* Individual blue tag pill showing a selected country */
+.country-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background-color: var(--accent-color);
+    color: var(--base-color);
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+    height: 24px;
+    border: 1px solid #000000;
+}
+
+/* Close 'x' button inside country tags to remove them */
+.country-tag button {
+    background: transparent;
+    border: none;
+    color: var(--base-color);
+    font-size: 0.85rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    margin-left: 2px;
+    transform: translateY(-1px);
+}
+
+/* Transparent text typing area inside the country tag selector */
+#country-input {
+    order: -1 !important;
+    border: none !important;
+    background: transparent !important;
+    outline: none !important;
+    height: 38px !important;
+    padding: 0 !important;
+    font: inherit !important;
+    font-size: 0.85rem !important;
+    flex: 1 1 120px !important;
+    min-width: 80px !important;
+    max-width: 100% !important;
+    color: var(--text-color) !important;
+}
+
+/* Blue border highlight when hovering over input fields */
+form input:hover,
+form select:hover {
+    border-color: var(--accent-color);
+}
+
+/* Dark border highlight when clicking/typing inside input fields */
+form input:focus,
+form select:focus {
+    outline: none;
+    border-color: var(--text-color);
+}
+
+/*changes icon color when its selected*/
+div:has(input:focus) > label, 
+div:has(select:focus) > label,
+div:has(.country-wrapper:focus-within) > label {
+    background-color: var(--text-color);
+}
+
+/* Placeholder text color inside inputs */
+form input::placeholder {
+    color: var(--text-color);
+    opacity: 1;
+}
+
+/*button styling */
+form button {
+    margin-top: 10px;
+    border: none;
+    border-radius: 1000px;
+    padding: 0.85em 4em;
+    background-color: var(--accent-color);
+    color: var(--base-color);
+    font: inherit;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 150ms ease;
+}
+
+/*what happens when you hover over the button or click on it*/
+form button:hover,
+form button:focus {
+    outline: none;
+    background-color: var(--text-color);
+}
+
+/* Standard hyperlink color without default underline */
+a {
+    text-decoration: none;
+    color: var(--accent-color);
+}
+
+/* Adds underline back to hyperlinks on hover */
+a:hover {
+    text-decoration: underline;
+}
+
+/* Error message styling for invalid inputs */
+form div.incorrect > label {
+    background-color: red;
+}
+
+form div.incorrect input {
+    border-color: red;
+}
+
+form label span {
+    color: #1f1f1f;
+}
+
+#error-message {
+    color: red;
+}
+
+/*for the layout | what happens when the screen is small */
+@media (max-width: 600px) {
+    .wrapper {
+        width: 100%;
+        border-radius: 0;
+    }
+}
