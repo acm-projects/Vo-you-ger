@@ -4,24 +4,23 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --test test/**/*.test.js",
     "start": "node server",
-    "dev": "nodemon server"
+    "dev": "nodemon -e js,json,env server"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/adapter-pg": "^7.10.0",
-    "@prisma/client": "^7.10.0",
+    "@aws-sdk/client-dynamodb": "^3.1148.0",
+    "@aws-sdk/lib-dynamodb": "^3.1148.0",
+    "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
     "dotenv": "^18.0.5",
     "express": "^5.2.1",
-    "pg": "^8.23.1"
+    "jsonwebtoken": "^9.0.3"
   },
   "devDependencies": {
-    "@types/pg": "^8.23.1",
-    "nodemon": "^3.1.14",
-    "prisma": "^7.10.0"
+    "nodemon": "^3.1.14"
   }
 }
