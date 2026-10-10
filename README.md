@@ -614,9 +614,18 @@ Expedia focuses primarily on travel bookings such as flights, hotels, and vacati
 
 ## Vo(you)ger Team 👥
 
+<<<<<<< Updated upstream
 - Member: Conrad
 - Member: Kin
 - Member: Bhavya
 - Member: Aarnavi
 - Project Manager: Harshitha
 - Industry Mentor: Clara
+=======
+- Member 1
+- Member 2
+- Member 3
+- Member 4: Aarnavi
+- Project Manager
+- Industry Mentor
+>>>>>>> Stashed changes
