@@ -8,6 +8,9 @@ const country_input = document.getElementById('country-input');
 const countriesList = document.getElementById('countries-list');
 const selectedCountriesContainer = document.getElementById('selected-countries-container');
 
+// Keep this in sync with the password rule in server/controllers/authController.js
+const MIN_PASSWORD_LENGTH = 6;
+
 // list of all countries in dropdown
 const countries = [
   "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", 
@@ -33,7 +36,7 @@ const countries = [
   "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
 ];
 
-// Populate datalist dropdown
+// Populate datalist dropdown (signup page only)
 if (countriesList) {
   countries.forEach(country => {
     const option = document.createElement('option');
@@ -42,7 +45,7 @@ if (countriesList) {
   });
 }
 
-// Add country tag when selected from list or typed
+// Add country tag when selected from list or typed (signup page only)
 if (country_input && selectedCountriesContainer) {
   country_input.addEventListener('change', () => {
     const val = country_input.value.trim();
@@ -55,7 +58,7 @@ if (country_input && selectedCountriesContainer) {
 
 function addCountryTag(countryName) {
   // Prevent duplicates
-  const existingInputs = selectedCountriesContainer.querySelectorAll('.country-field');
+  const existingInputs = selectedCountriesContainer.querySelectorAll('input[name="countries[]"]');
   for (let input of existingInputs) {
     if (input.value === countryName) return;
   }
@@ -68,7 +71,6 @@ function addCountryTag(countryName) {
   hiddenInput.type = 'hidden';
   hiddenInput.name = 'countries[]';
   hiddenInput.value = countryName;
-  hiddenInput.className = 'country-field';
 
   const removeBtn = document.createElement('button');
   removeBtn.type = 'button';
@@ -80,27 +82,42 @@ function addCountryTag(countryName) {
   selectedCountriesContainer.appendChild(tag);
 }
 
+// Reset the error message and any red highlighting from a previous attempt
+function clearErrors() {
+  error_message.innerText = '';
+  document.querySelectorAll('.incorrect').forEach(el => el.classList.remove('incorrect'));
+}
+
 form.addEventListener('submit', (e) => {
+  // Always stop the browser's default submit. Without this, the browser would
+  // reload the page and put every field (including the password) in the URL.
+  e.preventDefault();
+  clearErrors();
+
   let errors = [];
 
   if (firstname_input) {
-    errors = getSignupFormErros(
+    errors = getSignupFormErrors(
       firstname_input.value,
       email_input.value,
       password_input.value,
       repeat_password_input.value
     );
   } else {
-    errors = getLoginFormErros(email_input.value, password_input.value);
+    errors = getLoginFormErrors(email_input.value, password_input.value);
   }
 
   if (errors.length > 0) {
-    e.preventDefault();
-    error_message.innerText = errors.join(". ");
+    error_message.innerText = errors.join('. ');
+    return;
   }
+
+  // TODO: send the data to the backend here, e.g. POST /api/auth/register or
+  // /api/auth/login, then save the returned token. Never log the password.
+  console.log('Form passed validation (backend not connected yet).');
 });
 
-function getSignupFormErros(firstname, email, password, repeat_password) {
+function getSignupFormErrors(firstname, email, password, repeat_password) {
   let errors = [];
 
   if (!firstname) {
@@ -114,8 +131,8 @@ function getSignupFormErros(firstname, email, password, repeat_password) {
   if (!password) {
     errors.push('Password is required');
     password_input.parentElement.classList.add('incorrect');
-  } else if (password.length < 8) {
-    errors.push('Password must be at least 8 characters long.');
+  } else if (password.length < MIN_PASSWORD_LENGTH) {
+    errors.push(`Password must be at least ${MIN_PASSWORD_LENGTH} characters long`);
     password_input.parentElement.classList.add('incorrect');
   }
   if (password !== repeat_password) {
@@ -124,31 +141,17 @@ function getSignupFormErros(firstname, email, password, repeat_password) {
     repeat_password_input.parentElement.classList.add('incorrect');
   }
 
-  const countryInputs = document.querySelectorAll('.country-field');
-  let hasValidCountry = false;
-
-  countryInputs.forEach(input => {
-    const val = input.value.trim();
-    if (val !== '') {
-      if (countries.includes(val)) {
-        hasValidCountry = true;
-      } else {
-        errors.push(`"${val}" is not a valid country`);
-      }
-    }
-  });
-
-  if (!hasValidCountry) {
+  // Only countries added as tags count (tags are only created for valid countries)
+  const selectedCountries = selectedCountriesContainer.querySelectorAll('input[name="countries[]"]');
+  if (selectedCountries.length === 0) {
     errors.push('At least one country of citizenship is required');
-    if (country_input) {
-      country_input.closest('form > div').classList.add('incorrect');
-    }
+    country_input.closest('form > div').classList.add('incorrect');
   }
 
   return errors;
 }
 
-function getLoginFormErros(email, password) {
+function getLoginFormErrors(email, password) {
   let errors = [];
   if (!email) {
     errors.push('Email is required');
