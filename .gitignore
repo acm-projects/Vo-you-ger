@@ -27,3 +27,5 @@ dist-ssr
 # All .env files
 .env
 *.env
+
+repomix-output.xml
