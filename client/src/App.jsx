@@ -1,22 +1,8 @@
 import "./App.css";
-
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import HowItWorks from "./components/HowItWorks";
-import AboutVoyager from "./components/AboutVoyager";
+import Recommendations from "./pages/Recommendations";
 
 function App() {
-  return (
-    <>
-      <Navbar />
-
-      <main>
-        <Hero />
-        <HowItWorks />
-        <AboutVoyager />
-      </main>
-    </>
-  );
+  return <Recommendations />;
 }
 
 export default App;
