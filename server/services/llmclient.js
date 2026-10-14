@@ -4,14 +4,18 @@ const { GoogleGenAI } = require("@google/genai");
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 // Models in priority order, best first. Set LLM_MODELS in .env to change this.
-const MODELS = (process.env.LLM_MODELS || "gemini-3.8-flash,gemini-3.5-flash-lite,gemini-2.5-flash")
+const MODELS = (
+  process.env.LLM_MODELS ||
+  "gemini-3.8-flash,gemini-3.7-flash,gemini-3.6-flash,gemini-3.5-flash,gemini-3.5-flash-lite,gemini-3.1-flash-lite"
+)
   .split(",")
   .map((name) => name.trim())
   .filter(Boolean);
 
 const RETRIES_PER_MODEL = 1; // extra attempts on the same model for 503/500
 const RETRY_DELAY_MS = 1000;
-const COOLDOWN_MS = 60 * 1000; // how long to skip a model after 503/429
+const COOLDOWN_MS = 60 * 1000; // how long to skip a model after 503/429/timeout
+const REQUEST_TIMEOUT_MS = 20 * 1000; // give up on a stalled request
 
 // model name -> timestamp when we may try it again (Infinity = never, e.g. 404)
 const unavailableUntil = new Map();
@@ -30,7 +34,7 @@ function sleep(ms) {
 
 /**
  * Call Gemini, falling back through MODELS until one works.
- * `config` is passed straight to the SDK (we'll use it for JSON schema output).
+ * `config` is passed straight to the SDK.
  * Returns { text, model } so callers know which model answered.
  */
 async function generateWithFallback(contents, config = {}) {
@@ -45,7 +49,14 @@ async function generateWithFallback(contents, config = {}) {
 
     for (let attempt = 0; attempt <= RETRIES_PER_MODEL; attempt++) {
       try {
-        const response = await ai.models.generateContent({ model, contents, config });
+        const response = await ai.models.generateContent({
+          model,
+          contents,
+          config: {
+            httpOptions: { timeout: REQUEST_TIMEOUT_MS },
+            ...config,
+          },
+        });
         unavailableUntil.delete(model);
         return { text: response.text, model };
       } catch (err) {
@@ -68,7 +79,7 @@ async function generateWithFallback(contents, config = {}) {
         } else {
           unavailableUntil.set(model, Date.now() + COOLDOWN_MS);
         }
-        errors.push(`${model}: ${status ?? "unknown error"}`);
+        errors.push(`${model}: ${status ?? "timeout/unknown error"}`);
         console.warn(`LLM model ${model} failed (${status ?? err.message}), trying next`);
         break;
       }
@@ -80,4 +91,44 @@ async function generateWithFallback(contents, config = {}) {
   throw error;
 }
 
-module.exports = { generateWithFallback, MODELS };
+/**
+ * Ask Gemini for JSON matching `jsonSchema`, then parse it and validate it
+ * with `zodSchema`. Returns { data, model }.
+ *
+ * - prompt:         the user-facing prompt text
+ * - systemPrompt:   optional instructions/rules for the model
+ * - jsonSchema:     JSON Schema sent to Gemini (tells it the shape)
+ * - zodSchema:      zod schema used to double-check the reply
+ */
+async function generateStructured({ prompt, systemPrompt, jsonSchema, zodSchema }) {
+  const config = {
+    responseMimeType: "application/json",
+    responseJsonSchema: jsonSchema,
+  };
+  if (systemPrompt) config.systemInstruction = systemPrompt;
+
+  const { text, model } = await generateWithFallback(prompt, config);
+
+  let parsed;
+  try {
+    parsed = JSON.parse(text);
+  } catch {
+    const error = new Error(`Model ${model} returned invalid JSON`);
+    error.statusCode = 502;
+    throw error;
+  }
+
+  const result = zodSchema.safeParse(parsed);
+  if (!result.success) {
+    const error = new Error(
+      `Model ${model} returned JSON that did not match the schema: ` +
+        result.error.issues.map((i) => `${i.path.join(".")}: ${i.message}`).join("; ")
+    );
+    error.statusCode = 502;
+    throw error;
+  }
+
+  return { data: result.data, model };
+}
+
+module.exports = { generateWithFallback, generateStructured, MODELS };
