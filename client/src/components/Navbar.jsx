@@ -6,11 +6,14 @@ function Navbar() {
       </a>
 
       <div className="navbar-links">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#how-it-works">How It Works</a>
+        <a href="/#home">Home</a>
+        <a href="/#about">About</a>
+        <a href="/#how-it-works">How It Works</a>
 
-        <a href="/signup" className="sign-in-button">
+        <a
+          href="/signUpAndLogin/login.html"
+          className="sign-in-button"
+        >
           Sign In
         </a>
       </div>

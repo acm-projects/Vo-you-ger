@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap");
 
-
-/* Global */
+/* =========================
+   GLOBAL
+========================= */
 
 * {
   box-sizing: border-box;
@@ -32,44 +33,35 @@ main {
   overflow: hidden;
 }
 
-
-/* Navbar*/
+/* =========================
+   NAVBAR
+========================= */
 
 .navbar {
   width: 100%;
   height: 64px;
-
   padding: 0 6%;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   background: #ebe7d8;
-
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-
   position: relative;
   z-index: 20;
 }
 
 .navbar-logo {
   font-family: "Playfair Display", Georgia, serif;
-
   font-size: 22px;
   font-weight: 600;
-
   letter-spacing: 0.5px;
-
   color: #111;
 }
 
 .navbar-links {
   display: flex;
   align-items: center;
-
   gap: 30px;
-
   font-size: 11px;
   font-weight: 500;
 }
@@ -84,13 +76,9 @@ main {
 
 .sign-in-button {
   padding: 8px 20px;
-
   border: 1px solid #92938e;
   border-radius: 25px;
-
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .sign-in-button:hover {
@@ -98,24 +86,18 @@ main {
   color: white;
 }
 
-
-/* Hero */
+/* =========================
+   HERO
+========================= */
 
 .hero-section {
   min-height: 500px;
-
   padding: 70px 7% 75px;
-
   display: grid;
-
   grid-template-columns: 1fr 0.9fr;
-
   align-items: center;
-
   gap: 40px;
-
   position: relative;
-
   background:
     radial-gradient(
       circle at 85% 20%,
@@ -127,69 +109,44 @@ main {
 
 .hero-content {
   max-width: 570px;
-
   position: relative;
   z-index: 5;
 }
 
 .hero-content h1 {
   margin: 0;
-
   font-family: "Playfair Display", Georgia, serif;
-
   font-size: 68px;
-
   font-weight: 500;
-
   line-height: 0.98;
-
   letter-spacing: -2px;
-
   color: #111;
 }
 
 .hero-content p {
   max-width: 450px;
-
   margin: 20px 0 25px;
-
   font-size: 15px;
-
   line-height: 1.55;
-
   color: #333;
 }
-
 
 /* Hero Button */
 
 .primary-button {
   display: inline-flex;
-
   align-items: center;
   justify-content: center;
-
   gap: 10px;
-
   padding: 12px 21px;
-
   border: none;
-
   border-radius: 24px;
-
   background: #2875ff;
-
   color: white;
-
   font-size: 11px;
-
   font-weight: 600;
-
-  box-shadow:
-    0 5px 14px rgba(40, 117, 255, 0.22);
-
+  box-shadow: 0 5px 14px rgba(40, 117, 255, 0.22);
   cursor: pointer;
-
   transition:
     transform 0.2s ease,
     background 0.2s ease,
@@ -198,386 +155,266 @@ main {
 
 .primary-button span {
   font-size: 15px;
-
   line-height: 1;
 }
 
 .primary-button:hover {
   transform: translateY(-2px);
-
   background: #1663ed;
-
-  box-shadow:
-    0 8px 18px rgba(40, 117, 255, 0.28);
+  box-shadow: 0 8px 18px rgba(40, 117, 255, 0.28);
 }
-
 
 /* Hero Photos */
 
 .hero-photos {
   width: 100%;
-
   height: 360px;
-
   position: relative;
 }
 
 .polaroid {
   position: absolute;
-
   width: 215px;
-
   padding: 7px 7px 28px;
-
   background: white;
-
   box-shadow:
     0 12px 25px rgba(0, 0, 0, 0.12),
     0 2px 5px rgba(0, 0, 0, 0.08);
-
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
 }
 
 .polaroid:hover {
-  transform:
-    rotate(0deg)
-    translateY(-6px) !important;
-
+  transform: rotate(0deg) translateY(-6px) !important;
   box-shadow:
     0 18px 30px rgba(0, 0, 0, 0.16),
     0 3px 7px rgba(0, 0, 0, 0.1);
-
   z-index: 10;
 }
 
 .photo-placeholder {
   width: 100%;
-
   height: 235px;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   background: #d9d4c6;
-
   color: #777;
-
   font-size: 11px;
-
   font-weight: 500;
-
   text-align: center;
 }
 
 .polaroid-back {
   top: 10px;
-
   left: 30%;
-
   transform: rotate(6deg);
 }
 
 .polaroid-front {
   top: 105px;
-
   left: 5%;
-
   transform: rotate(-7deg);
-
   z-index: 2;
 }
 
-/* How it Works */
+/* =========================
+   HOW IT WORKS
+========================= */
 
 .how-section {
   padding: 75px 7% 85px;
-
   background: #f7f3e9;
-
   border-top: 1px solid rgba(0, 0, 0, 0.03);
 }
 
 .section-heading {
   max-width: 600px;
-
   margin-bottom: 50px;
 }
 
 .section-heading h2 {
   margin: 0 0 14px;
-
   font-family: "Playfair Display", Georgia, serif;
-
   font-size: 55px;
-
   font-weight: 500;
-
   line-height: 1;
-
   letter-spacing: -1.5px;
-
   color: #111;
 }
 
 .section-heading p {
   max-width: 430px;
-
   margin: 0;
-
   color: #555;
-
   font-size: 13px;
-
   line-height: 1.6;
 }
-
 
 /* Steps */
 
 .steps {
   display: grid;
-
   grid-template-columns: repeat(3, 1fr);
-
   gap: 80px;
-
   position: relative;
 }
 
 .step {
   position: relative;
-
   min-height: 210px;
 }
 
 .step-number {
   width: 28px;
   height: 28px;
-
   margin-bottom: 15px;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   border-radius: 50%;
-
   background: #d7f3ff;
-
   color: #2875ff;
-
   font-size: 11px;
-
   font-weight: 600;
 }
-
 
 /* Temporary Icons */
 
 .step-icon {
   width: 60px;
   height: 60px;
-
   margin-bottom: 15px;
-
   display: flex;
-
   align-items: center;
   justify-content: flex-start;
-
   font-size: 42px;
-
   line-height: 1;
 }
-
 
 /* Steps Text */
 
 .step h3 {
   margin: 0 0 8px;
-
   color: #222;
-
   font-size: 13px;
-
   font-weight: 600;
 }
 
 .step p {
   max-width: 230px;
-
   margin: 0;
-
   color: #777;
-
   font-size: 10px;
-
   line-height: 1.6;
 }
 
-
-/* Arrows between the Steps */
+/* Arrows between Steps */
 
 .step-arrow {
   position: absolute;
-
   top: 65px;
-
   right: -52px;
-
   color: #b7b7b7;
-
   font-size: 22px;
-
   line-height: 1;
 }
 
-
-/* About */
+/* =========================
+   ABOUT
+========================= */
 
 .about-section {
   min-height: 540px;
-
   padding: 80px 7%;
-
   display: grid;
-
   grid-template-columns: 0.85fr 1.15fr;
-
   align-items: center;
-
   gap: 60px;
-
   background: #f7f3e9;
 }
 
 .about-image {
   min-height: 400px;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   position: relative;
 }
 
 .mountain-placeholder {
   width: 330px;
-
   height: 390px;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   background: #d9d4c6;
-
   color: #777;
-
   font-size: 12px;
-
   text-align: center;
-
   transform: rotate(-4deg);
-
-  box-shadow:
-    0 18px 35px rgba(0, 0, 0, 0.13);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.13);
 }
-
 
 /* About Text */
 
 .about-content h2 {
   margin: 0 0 18px;
-
   font-family: "Playfair Display", Georgia, serif;
-
   font-size: 58px;
-
   font-weight: 500;
-
   line-height: 0.98;
-
   letter-spacing: -1.5px;
-
   color: #111;
 }
 
 .about-content > p {
   max-width: 500px;
-
   margin: 0 0 32px;
-
   color: #333;
-
   font-size: 13px;
-
   line-height: 1.65;
 }
-
 
 /* Benefits */
 
 .benefits {
   display: grid;
-
   grid-template-columns: repeat(4, 1fr);
-
   gap: 18px;
 }
 
 .benefit {
   display: flex;
-
   flex-direction: column;
-
   align-items: flex-start;
-
   gap: 7px;
 }
 
 .benefit > span {
   width: 32px;
   height: 32px;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   color: #2875ff;
-
   font-size: 18px;
-
   font-weight: 700;
-
   line-height: 1;
 }
 
 .benefit strong {
   font-size: 10px;
-
   font-weight: 700;
-
   line-height: 1.35;
-
   color: #222;
 }
 
 .benefit small {
   color: #555;
-
   font-size: 10px;
-
   font-weight: 700;
-
   line-height: 1.4;
 }
 
@@ -752,6 +589,8 @@ main {
   font-size: 1.1rem;
 }
 
+/* Destination Preview */
+
 .destination-preview {
   position: fixed;
   z-index: 1000;
@@ -904,7 +743,7 @@ main {
   justify-content: center;
   align-items: center;
   padding: 20px 0;
-  max-width: 1240 px;
+  max-width: 1240px;
   margin: 0 auto;
 }
 
@@ -941,7 +780,7 @@ main {
   background: #e5e4da;
   border-radius: 16px;
   transform: rotate(2.5deg) translateY(-6px);
-  margin: 1px; 
+  margin: 1px;
 }
 
 .travel-postcard__photo img {
@@ -972,8 +811,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 24px 18px 20px 0;
-  padding-left: 16px;
+  padding: 24px 18px 20px 16px;
 }
 
 .postcard-stamp {
@@ -1005,7 +843,6 @@ main {
   font-size: 0.98rem;
   line-height: 1.8;
 }
-
 
 .postcard-divider {
   height: 1px;
@@ -1068,7 +905,9 @@ main {
   background: #2875ff;
 }
 
-/* Discover More hover interaction */
+/* =========================
+   DISCOVER MORE
+========================= */
 
 .discover-more-wrapper {
   position: relative;
@@ -1113,4 +952,29 @@ main {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+}
+
+/* =========================
+   TEMPORARY LOADING PREVIEW
+========================= */
+
+.loading-preview {
+  padding: 24px;
+  text-align: center;
+}
+
+.recommendations-preview__button {
+  border: none;
+  border-radius: 999px;
+  padding: 12px 22px;
+  background: #2875ff;
+  color: white;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.recommendations-preview__button:hover {
+  opacity: 0.88;
 }
