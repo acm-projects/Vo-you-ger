@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import HowItWorks from "./components/HowItWorks";
 import AboutVoyager from "./components/AboutVoyager";
+import loadingPage from "./client/loading/loadScript";
 
 function App() {
   return (
