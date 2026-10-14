@@ -1,9 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap");
 
 
-/* =========================
-   GLOBAL
-========================= */
+/* Global */
 
 * {
   box-sizing: border-box;
@@ -35,9 +33,7 @@ main {
 }
 
 
-/* =========================
-   NAVBAR
-========================= */
+/* Navbar*/
 
 .navbar {
   width: 100%;
@@ -103,9 +99,7 @@ main {
 }
 
 
-/* =========================
-   HERO
-========================= */
+/* Hero */
 
 .hero-section {
   min-height: 500px;
@@ -167,9 +161,7 @@ main {
 }
 
 
-/* =========================
-   HERO BUTTON
-========================= */
+/* Hero Button */
 
 .primary-button {
   display: inline-flex;
@@ -220,9 +212,7 @@ main {
 }
 
 
-/* =========================
-   HERO PHOTOS
-========================= */
+/* Hero Photos */
 
 .hero-photos {
   width: 100%;
@@ -301,9 +291,7 @@ main {
   z-index: 2;
 }
 
-/* =========================
-   HOW IT WORKS
-========================= */
+/* How it Works */
 
 .how-section {
   padding: 75px 7% 85px;
@@ -348,9 +336,7 @@ main {
 }
 
 
-/* =========================
-   STEPS
-========================= */
+/* Steps */
 
 .steps {
   display: grid;
@@ -391,9 +377,7 @@ main {
 }
 
 
-/* =========================
-   LARGE TEMPORARY ICONS
-========================= */
+/* Temporary Icons */
 
 .step-icon {
   width: 60px;
@@ -412,9 +396,7 @@ main {
 }
 
 
-/* =========================
-   STEP TEXT
-========================= */
+/* Steps Text */
 
 .step h3 {
   margin: 0 0 8px;
@@ -439,9 +421,7 @@ main {
 }
 
 
-/* =========================
-   ARROWS BETWEEN STEPS
-========================= */
+/* Arrows between the Steps */
 
 .step-arrow {
   position: absolute;
@@ -458,9 +438,7 @@ main {
 }
 
 
-/* =========================
-   ABOUT
-========================= */
+/* About */
 
 .about-section {
   min-height: 540px;
@@ -514,9 +492,7 @@ main {
 }
 
 
-/* =========================
-   ABOUT TEXT
-========================= */
+/* About Text */
 
 .about-content h2 {
   margin: 0 0 18px;
@@ -547,9 +523,7 @@ main {
 }
 
 
-/* =========================
-   BENEFITS
-========================= */
+/* Benefits */
 
 .benefits {
   display: grid;
