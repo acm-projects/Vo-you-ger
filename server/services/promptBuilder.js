@@ -1,4 +1,10 @@
 const BUDGET_RANK = { $: 1, $$: 2, $$$: 3 };
+
+/**
+ * Narrow the destination list using hard constraints from the quiz.
+ * Falls back to the full list if the filters leave fewer than 3 distinct
+ * countries, so the model can always return 3 results in 3 countries.
+ */
 function filterDestinations(destinations, quiz = {}) {
   const maxBudget = BUDGET_RANK[quiz.dailyBudget];
   const maxSafety =
@@ -10,18 +16,21 @@ function filterDestinations(destinations, quiz = {}) {
     return true;
   });
 
-  return filtered.length >= 5 ? filtered : destinations;
+  const distinctCountries = new Set(filtered.map((d) => d.country)).size;
+  return distinctCountries >= 3 ? filtered : destinations;
 }
 
 const SYSTEM_PROMPT = `You are a travel recommendation engine for an app called Vo(you)ger.
 Rules:
 - Recommend ONLY destinations from the provided candidate list.
 - Use each destination's exact "id" in destinationId.
-- Return up to 5 destinations, best match first.
+- Return EXACTLY 3 destinations, best match first.
+- The 3 destinations must be in 3 different countries. Never return two destinations from the same country.
 - Base matchScore (0-100) on how well the destination fits the traveler's quiz answers.
 - In each reason, refer to specific quiz answers (budget, trip length, personality, interests).
 - Respect hard constraints: budget, trip length, risk tolerance and dietary needs.
 - If the traveler listed countries of interest, favor those but do not ignore better matches.
+- Write in clean, correctly spaced sentences.
 - Do not invent facts. If unsure about something, leave it out.`;
 
 /**

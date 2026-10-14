@@ -66,9 +66,8 @@ const recommendationResultSchema = z.object({
     .describe("One or two sentences summarizing what the traveler is looking for"),
   recommendations: z
     .array(recommendationItemSchema)
-    .min(1)
-    .max(5)
-    .describe("Up to 5 destinations, best match first"),
+    .length(3)
+    .describe("Exactly 3 destinations in 3 different countries, best match first"),
 });
 
 // ---------- Schema to send to Gemini ----------
