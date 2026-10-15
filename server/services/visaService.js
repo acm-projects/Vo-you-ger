@@ -1,14 +1,16 @@
 /**
  * server/services/visaService.js
  *
- * Integrates with the TravelBuddy Visa API (https://travel-buddy.ai/api/) to determine
+ * Integrates with the TravelBuddy Visa API hosted on RapidAPI
+ * (https://visa-requirement.p.rapidapi.com/v2/visa/map) to determine
  * visa requirements based on the traveler's passport nationalities.
  *
  * Endpoint:
- *   POST https://travel-buddy.ai/api/v2/visa/map
+ *   POST https://visa-requirement.p.rapidapi.com/v2/visa/map
  *
  * Authentication:
  *   Uses a single environment variable: process.env.VISA_API_KEY
+ *   Passed in headers: X-RapidAPI-Key and X-RapidAPI-Host
  *
  * Request Body:
  *   { "passport": "US" } // 2-letter ISO country code
@@ -33,8 +35,8 @@
 
 const { toCountryCode } = require("../utils/countryCodes");
 
-// Direct API endpoint URL according to TravelBuddy documentation
-const VISA_API_URL = "https://travel-buddy.ai/api/v2/visa/map";
+// RapidAPI endpoint for TravelBuddy Visa Requirements API
+const VISA_API_URL = "https://visa-requirement.p.rapidapi.com/v2/visa/map";
 
 /**
  * Parses the raw API response from TravelBuddy's /v2/visa/map endpoint
@@ -88,8 +90,8 @@ async function fetchVisaFreeForPassport(passportCode) {
   };
 
   if (process.env.VISA_API_KEY) {
-    headers["x-api-key"] = process.env.VISA_API_KEY;
     headers["X-RapidAPI-Key"] = process.env.VISA_API_KEY;
+    headers["X-RapidAPI-Host"] = "visa-requirement.p.rapidapi.com";
   }
 
   // Prepare POST request with JSON body: { "passport": "XX" }
