@@ -2,7 +2,7 @@
 
 import axios from "axios";
 
-// Create an Axios instance with your backend's base URL
+// Create an Axios instance with backend base URL
 const API = axios.create({
   baseURL: "http://localhost:8080/api",
 });
@@ -21,5 +21,9 @@ API.interceptors.request.use((config) => {
 export const registerUser = (userData) => API.post("/auth/register", userData);
 export const loginUser = (credentials) => API.post("/auth/login", credentials);
 export const getCurrentUser = () => API.get("/auth/me");
+
+// Quiz endpoints
+export const saveQuizResponse = (quizData) => API.post("/quiz", quizData);
+export const getQuizResponse = () => API.get("/quiz");
 
 export default API;
