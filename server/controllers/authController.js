@@ -17,7 +17,8 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
  */
 async function register(req, res) {
   try {
-    const { fName, lName, email, password, nationalities, quizResponse } = req.body;
+    const { fName, lName, email, password, nationalities, quizResponse } =
+      req.body;
 
     // Validate presence of required fields
     if (!fName || !lName || !email || !password) {
@@ -248,4 +249,3 @@ module.exports = {
   getMe,
   updateMe,
 };
-
