@@ -85,7 +85,7 @@ Rules:
 - Base matchScore (0-100) on how well the destination fits the traveler's quiz answers.
 - In each reason, refer to specific quiz answers (budget, trip length, personality, interests).
 - Respect hard constraints: budget, trip length, risk tolerance and dietary needs.
-- If the traveler listed countries of interest, favor those but do not ignore better matches.
+- If the traveler listed countries of interest, strongly prioritize recommending destinations from those countries whenever they are present in the candidate list.
 - Write in clean, correctly spaced sentences.
 - Do not invent facts. If unsure about something, leave it out.`;
 
