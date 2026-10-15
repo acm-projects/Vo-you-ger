@@ -17,7 +17,7 @@ API.interceptors.request.use((config) => {
   return config;
 });
 
-// Centralized helper functions matching your backend routes
+// User endpoints
 export const registerUser = (userData) => API.post("/auth/register", userData);
 export const loginUser = (credentials) => API.post("/auth/login", credentials);
 export const getCurrentUser = () => API.get("/auth/me");
@@ -25,5 +25,10 @@ export const getCurrentUser = () => API.get("/auth/me");
 // Quiz endpoints
 export const saveQuizResponse = (quizData) => API.post("/quiz", quizData);
 export const getQuizResponse = () => API.get("/quiz");
+
+// Recommendation endpoints
+// If quizData is provided, sends it in request body; otherwise backend uses saved profile quizResponse
+export const getRecommendations = (quizData) =>
+  API.post("/recommendations", quizData ? { quiz: quizData } : {});
 
 export default API;
