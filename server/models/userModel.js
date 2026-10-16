@@ -21,9 +21,12 @@ function sanitizeUser(user) {
     fName: safeUser.fName,
     lName: safeUser.lName,
     email: safeUser.email,
-    nationalities: Array.isArray(safeUser.nationalities) ? safeUser.nationalities : [],
+    nationalities: Array.isArray(safeUser.nationalities)
+      ? safeUser.nationalities
+      : [],
     firstTime: safeUser.firstTime !== undefined ? safeUser.firstTime : true,
-    quizResponse: safeUser.quizResponse !== undefined ? safeUser.quizResponse : null,
+    quizResponse:
+      safeUser.quizResponse !== undefined ? safeUser.quizResponse : null,
     createdAt: safeUser.createdAt,
     updatedAt: safeUser.updatedAt,
   };
@@ -36,7 +39,14 @@ function sanitizeUser(user) {
  * GSI1PK: <email>
  * GSI1SK: PROFILE
  */
-async function createUser({ fName, lName, email, passwordHash, nationalities, quizResponse }) {
+async function createUser({
+  fName,
+  lName,
+  email,
+  passwordHash,
+  nationalities,
+  quizResponse,
+}) {
   const normalizedEmail = email.trim().toLowerCase();
   const userId = crypto.randomUUID();
   const timestamp = new Date().toISOString();
@@ -73,7 +83,7 @@ async function createUser({ fName, lName, email, passwordHash, nationalities, qu
         TableName: TABLE_NAME,
         Item: userItem,
         ConditionExpression: "attribute_not_exists(PK)",
-      })
+      }),
     );
 
     return userItem;
@@ -109,7 +119,7 @@ async function findUserByEmail(email) {
             ":email": normalizedEmail,
             ":sk": "PROFILE",
           },
-        })
+        }),
       );
 
       if (result.Items && result.Items.length > 0) {
@@ -117,7 +127,10 @@ async function findUserByEmail(email) {
       }
     } catch (err) {
       // If index not found or error, continue to try next or fallback
-      if (err.name !== "ResourceNotFoundException" && err.name !== "ValidationException") {
+      if (
+        err.name !== "ResourceNotFoundException" &&
+        err.name !== "ValidationException"
+      ) {
         // Log unexpected error but allow scan fallback
       }
     }
@@ -128,12 +141,13 @@ async function findUserByEmail(email) {
     const scanResult = await docClient.send(
       new ScanCommand({
         TableName: TABLE_NAME,
-        FilterExpression: "(email = :email OR GSI1PK = :email) AND begins_with(PK, :userPrefix)",
+        FilterExpression:
+          "(email = :email OR GSI1PK = :email) AND begins_with(PK, :userPrefix)",
         ExpressionAttributeValues: {
           ":email": normalizedEmail,
           ":userPrefix": "USER#",
         },
-      })
+      }),
     );
 
     if (scanResult.Items && scanResult.Items.length > 0) {
@@ -157,7 +171,7 @@ async function findUserById(userId) {
         PK: `USER#${userId}`,
         SK: "PROFILE",
       },
-    })
+    }),
   );
 
   return result.Item || null;
@@ -167,7 +181,13 @@ async function findUserById(userId) {
  * Update user attributes (e.g. nationalities, firstTime, fName, lName, quizResponse).
  */
 async function updateUser(userId, updates) {
-  const allowedFields = ["fName", "lName", "nationalities", "firstTime", "quizResponse"];
+  const allowedFields = [
+    "fName",
+    "lName",
+    "nationalities",
+    "firstTime",
+    "quizResponse",
+  ];
   const expressionAttributeNames = {};
   const expressionAttributeValues = {};
   const updateClauses = [];
@@ -200,7 +220,7 @@ async function updateUser(userId, updates) {
       ExpressionAttributeNames: expressionAttributeNames,
       ExpressionAttributeValues: expressionAttributeValues,
       ReturnValues: "ALL_NEW",
-    })
+    }),
   );
 
   return result.Attributes;

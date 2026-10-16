@@ -214,3 +214,65 @@ body {
     color: var(--text-white);
     border-style: solid;
 }
+
+.image-card {
+    background-color: var(--card-bg);
+    border: 2px solid var(--border-input);
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.image-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.image-card-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.image-card-caption {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.image-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+}
+
+.image-card.selected {
+    background-color: #5c4033; 
+    border-color: #5c4033;
+    color: white;
+}
+
+.image-card.selected .image-card-text,
+.image-card.selected .image-card-caption {
+    color: white;
+}
+
+#next-btn.recommendations-btn {
+    width: 320px;           
+    padding: 16px 24px;     
+    font-size: 16px;        
+    margin: 0 auto;         
+    float: none;            
+    display: block;         
+}
+
+.quiz-nav:has(.recommendations-btn) {
+    justify-content: center;
+}

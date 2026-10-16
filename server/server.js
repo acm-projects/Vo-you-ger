@@ -21,6 +21,7 @@ app.use(express.json());
 
 // Import routes
 const authRoutes = require("./routes/authRoutes");
+const recommendationRoutes = require("./routes/recommendationRoutes");
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {
@@ -29,6 +30,9 @@ app.get("/api/health", (req, res) => {
 
 // Mount authentication and user routes
 app.use("/api/auth", authRoutes);
+
+// Mount AI recommendation routes
+app.use("/api/recommendations", recommendationRoutes);
 
 // Export app instance (useful for testing)
 module.exports = app;

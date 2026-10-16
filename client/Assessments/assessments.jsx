@@ -1,3 +1,4 @@
+/*API for Q1 + Q2: */ 
 const questions = [
     {
         questions: "Where are you starting from?",
@@ -7,7 +8,7 @@ const questions = [
         ]
     },
     {
-        questions: "Do you have an idea of countries you would like to visit?",
+        questions: "What is one country you would like to visit: ",
         type: "text",
         answers: [
             { text: "Countries (or any)" }
@@ -31,7 +32,7 @@ const questions = [
         ]
     },
     {
-        questions: "What kind of weather combination floats your boat?",
+        questions: "What kind of weather do you prefer?",
         answers: [
             { text: "Warm" },
             { text: "Cool" },
@@ -42,7 +43,7 @@ const questions = [
         ]
     },
     {
-        questions: "What are your nationalities? Are you willing to get a visa?",
+        questions: "Are you willing to get a visa for traveling?",
         answers: [
             { text: "Yes" },
             { text: "No" },
@@ -58,7 +59,7 @@ const questions = [
         ]
     },
     {
-        questions: "How would you like to travel?",
+        questions: "What is your preferred mode of transportation?",
         answers: [
             { text: "Plane" },
             { text: "Car (road trip)" },
@@ -103,20 +104,6 @@ const questions = [
         ]
     },
     {
-        questions: "Would you rather... Enjoy the nightlife and sleep in or sleep early but catch the sunrise?",
-        answers: [
-            { text: "Enjoy the nightlife and sleep in" },
-            { text: "Sleep early but catch the sunrise" }
-        ]
-    },
-    {
-        questions: "Would you rather... Visit a famous location or discover a hidden gem",
-        answers: [
-            { text: "Visit a famous location" },
-            { text: "Discover a hidden gem" }
-        ]
-    },
-    {
         questions: "Would you rather... See it all or see it deeply?",
         answers: [
             { text: "See it all" },
@@ -124,11 +111,52 @@ const questions = [
         ]
     },
     {
-        questions: "Would you rather... Enjoy the bustle of the locals, or enjoy space to yourself?",
+        questions: "Would you rather... Enjoy the nightlife and sleep in or sleep early but catch the sunrise?",
+        type: "image-choice",
         answers: [
-            { text: "Enjoy the bustle of the locals" },
-            { text: "Enjoy space to yourself" }
-        ]
+        { 
+            text: "Enjoy the nightlife and sleep in", 
+            image: "sydney.jpg", 
+            caption: "Sydney Opera House" 
+        },
+        { 
+            text: "Sleep early but catch the sunrise", 
+            image: "barossa.jpg", 
+            caption: "Barossa Valley" 
+        }
+    ]
+    },
+    {
+        questions: "Would you rather... Visit a famous location or discover a hidden gem",
+        type: "image-choice",
+        answers: [
+        { 
+            text: "Visit a famous location", 
+            image: "rome.jpg", 
+            caption: "Rome, Italy" 
+        },
+        { 
+            text: "Discover a hidden gem", 
+            image: "Matera.jpg", 
+            caption: "Matera, Italy" 
+        }
+    ]
+    },
+    {
+        questions: "Would you rather... Enjoy the bustle of the locals, or enjoy space to yourself?",
+        type: "image-choice",
+        answers: [
+        { 
+            text: "Enjoy the bustle of the locals", 
+            image: "Shibuya.jpg", 
+            caption: "Shibuya Scramble Crossing" 
+        },
+        { 
+            text: "Enjoy space to yourself" , 
+            image: "Nachi.jpg", 
+            caption: "Nachi Waterfall" 
+        }
+    ]
     },
     {
         questions: "How much walking around would you like to do?",
@@ -180,6 +208,7 @@ function startQuiz() {
     currentQuestionIndex = 0;
     selectedAnswers = {};
     nextButton.innerHTML = "Next";
+    nextButton.classList.remove("recommendations-btn");
     showQuestion();
 }
 
@@ -305,6 +334,40 @@ function showQuestion() {
             nextButton.style.display = "block";
         });
 
+    } else if (currentQuestion.type === "image-choice") {
+        const container = document.createElement("div");
+        container.style.display = "grid";
+        container.style.gridTemplateColumns = "repeat(2, 1fr)";
+        container.style.gap = "20px";
+        container.style.marginTop = "20px";
+
+        currentQuestion.answers.forEach((answer, index) => {
+            const card = document.createElement("div");
+            card.classList.add("image-card");
+
+            if (selectedAnswers[currentQuestionIndex] === index) {
+                card.classList.add("selected");
+                nextButton.style.display = "block";
+            }
+
+            card.innerHTML = `
+                <img src="${answer.image}" alt="${answer.text}">
+                <div class="image-card-text">${answer.text}</div>
+                <div class="image-card-caption">${answer.caption}</div>
+            `;
+
+            card.addEventListener("click", () => {
+                Array.from(container.children).forEach(c => c.classList.remove("selected"));
+                card.classList.add("selected");
+                selectedAnswers[currentQuestionIndex] = index;
+                nextButton.style.display = "block";
+            });
+
+            container.appendChild(card);
+        });
+
+        answerButton.appendChild(container);
+        
     } else if (currentQuestion.type === "select") {
         // Multi-select month grid buttons
         const container = document.createElement("div");
@@ -492,6 +555,7 @@ function showScore() {
     questionElement.innerHTML = "Assessment Complete!";
     answerButton.innerHTML = "<p style='font-size: 16px; color: #001e4d; margin-top: 10px;'>Thank you for sharing your preferences! We are building your customized travel plan.</p>";
     nextButton.innerHTML = "See my Recommendations!";
+    nextButton.classList.add("recommendations-btn");
     nextButton.style.display = "block";
     nextButton.onclick = startQuiz;
 }
