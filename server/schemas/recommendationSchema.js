@@ -1,9 +1,18 @@
+/**
+ * server/schemas/recommendationSchema.js
+ *
+ * Defines Zod schemas for validating:
+ * 1. Incoming quiz answers (quizSchema)
+ * 2. Individual recommendation items (recommendationItemSchema)
+ * 3. Structured LLM recommendation results (recommendationResultSchema)
+ * 4. JSON schema converter for Gemini structured output generation
+ */
+
 const { z } = require("zod");
 
 // ---------- INPUT: what the frontend sends us ----------
-// Key names are NOT final. Everything is optional and looseObject lets
-// unknown fields through, so renaming or adding quiz fields won't break
-// the endpoint. Nationalities come from the user profile, not the quiz.
+// Key names are loose to prevent minor frontend variations from breaking the endpoint.
+// Nationalities come primarily from the user profile, but can also be passed via quiz.
 const quizSchema = z.looseObject({
   // Trip basics
   startingLocation: z.string().optional(),
@@ -14,6 +23,7 @@ const quizSchema = z.looseObject({
   temperaturePreferences: z.array(z.string()).optional(), // warm | cool | chilly
   weatherPreferences: z.array(z.string()).optional(), // sunny | overcast | rainy
   willingToGetVisa: z.boolean().optional(),
+  visaWillingness: z.boolean().optional(),
   riskTolerance: z.number().int().min(1).max(5).optional(), // 1 safer, 5 riskier
 
   // Logistics
@@ -35,8 +45,7 @@ const quizSchema = z.looseObject({
 });
 
 // ---------- OUTPUT: what we want back from the model ----------
-// .describe() text is sent to the model as part of the schema, so it
-// doubles as instructions for each field.
+// .describe() text is passed into the Gemini system prompt as field instructions.
 const recommendationItemSchema = z.object({
   destinationId: z
     .string()
@@ -46,6 +55,11 @@ const recommendationItemSchema = z.object({
     .enum(["country", "city", "place"])
     .describe("Whether this destination is a country, a city, or a specific place"),
   country: z.string().describe("The country this destination is in"),
+  countryCode: z
+    .string()
+    .length(2)
+    .optional()
+    .describe("The 2-letter capitalized ISO country code (e.g. 'FR', 'JP')"),
   matchScore: z
     .number()
     .min(0)
@@ -71,7 +85,7 @@ const recommendationResultSchema = z.object({
 });
 
 // ---------- Schema to send to Gemini ----------
-// Zod 4 converts itself to JSON Schema. Gemini doesn't want "$schema".
+// Zod 4 converts itself to JSON Schema. Gemini requires "$schema" to be omitted.
 function getResponseJsonSchema() {
   const jsonSchema = z.toJSONSchema(recommendationResultSchema);
   delete jsonSchema.$schema;

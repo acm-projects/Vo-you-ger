@@ -1,0 +1,256 @@
+/**
+ * server/utils/countryCodes.js
+ *
+ * Provides a canonical mapping between country names and ISO 3166-1 alpha-2
+ * two-letter capitalized country codes (e.g., "United States" -> "US", "France" -> "FR").
+ * This is used to normalize user citizenship nationalities before making visa eligibility calls.
+ */
+
+const COUNTRY_TO_CODE = {
+  Afghanistan: "AF",
+  Albania: "AL",
+  Algeria: "DZ",
+  Andorra: "AD",
+  Angola: "AO",
+  "Antigua and Barbuda": "AG",
+  Argentina: "AR",
+  Armenia: "AM",
+  Australia: "AU",
+  Austria: "AT",
+  Azerbaijan: "AZ",
+  Bahamas: "BS",
+  Bahrain: "BH",
+  Bangladesh: "BD",
+  Barbados: "BB",
+  Belarus: "BY",
+  Belgium: "BE",
+  Belize: "BZ",
+  Benin: "BJ",
+  Bhutan: "BT",
+  Bolivia: "BO",
+  "Bosnia and Herzegovina": "BA",
+  Botswana: "BW",
+  Brazil: "BR",
+  Brunei: "BN",
+  Bulgaria: "BG",
+  "Burkina Faso": "BF",
+  Burundi: "BI",
+  "Cabo Verde": "CV",
+  Cambodia: "KH",
+  Cameroon: "CM",
+  Canada: "CA",
+  "Central African Republic": "CF",
+  Chad: "TD",
+  Chile: "CL",
+  China: "CN",
+  Colombia: "CO",
+  Comoros: "KM",
+  Congo: "CG",
+  "Costa Rica": "CR",
+  Croatia: "HR",
+  Cuba: "CU",
+  Cyprus: "CY",
+  "Czech Republic": "CZ",
+  Czechia: "CZ",
+  Denmark: "DK",
+  Djibouti: "DJ",
+  Dominica: "DM",
+  "Dominican Republic": "DO",
+  Ecuador: "EC",
+  Egypt: "EG",
+  "El Salvador": "SV",
+  "Equatorial Guinea": "GQ",
+  Eritrea: "ER",
+  Estonia: "EE",
+  Eswatini: "SZ",
+  Ethiopia: "ET",
+  Fiji: "FJ",
+  Finland: "FI",
+  France: "FR",
+  Gabon: "GA",
+  Gambia: "GM",
+  Georgia: "GE",
+  Germany: "DE",
+  Ghana: "GH",
+  Greece: "GR",
+  Grenada: "GD",
+  Guatemala: "GT",
+  Guinea: "GN",
+  "Guinea-Bissau": "GW",
+  Guyana: "GY",
+  Haiti: "HT",
+  Honduras: "HN",
+  "Hong Kong": "HK",
+  Hungary: "HU",
+  Iceland: "IS",
+  India: "IN",
+  Indonesia: "ID",
+  Iran: "IR",
+  Iraq: "IQ",
+  Ireland: "IE",
+  Israel: "IL",
+  Italy: "IT",
+  Jamaica: "JM",
+  Japan: "JP",
+  Jordan: "JO",
+  Kazakhstan: "KZ",
+  Kenya: "KE",
+  Kiribati: "KI",
+  "North Korea": "KP",
+  "South Korea": "KR",
+  Kuwait: "KW",
+  Kyrgyzstan: "KG",
+  Laos: "LA",
+  Latvia: "LV",
+  Lebanon: "LB",
+  Lesotho: "LS",
+  Liberia: "LR",
+  Libya: "LY",
+  Liechtenstein: "LI",
+  Lithuania: "LT",
+  Luxembourg: "LU",
+  Madagascar: "MG",
+  Malawi: "MW",
+  Malaysia: "MY",
+  Maldives: "MV",
+  Mali: "ML",
+  Malta: "MT",
+  "Marshall Islands": "MH",
+  Mauritania: "MR",
+  Mauritius: "MU",
+  Mexico: "MX",
+  Micronesia: "FM",
+  Moldova: "MD",
+  Monaco: "MC",
+  Mongolia: "MN",
+  Montenegro: "ME",
+  Morocco: "MA",
+  Mozambique: "MZ",
+  Myanmar: "MM",
+  Namibia: "NA",
+  Nauru: "NR",
+  Nepal: "NP",
+  Netherlands: "NL",
+  "New Zealand": "NZ",
+  Nicaragua: "NI",
+  Niger: "NE",
+  Nigeria: "NG",
+  "North Macedonia": "MK",
+  Norway: "NO",
+  Oman: "OM",
+  Pakistan: "PK",
+  Palau: "PW",
+  Palestine: "PS",
+  Panama: "PA",
+  "Papua New Guinea": "PG",
+  Paraguay: "PY",
+  Peru: "PE",
+  Philippines: "PH",
+  Poland: "PL",
+  Portugal: "PT",
+  Qatar: "QA",
+  Romania: "RO",
+  Russia: "RU",
+  "Russian Federation": "RU",
+  Rwanda: "RW",
+  "Saint Kitts and Nevis": "KN",
+  "Saint Lucia": "LC",
+  "Saint Vincent and the Grenadines": "VC",
+  Samoa: "WS",
+  "San Marino": "SM",
+  "Sao Tome and Principe": "ST",
+  "Saudi Arabia": "SA",
+  Senegal: "SN",
+  Serbia: "RS",
+  Seychelles: "SC",
+  "Sierra Leone": "SL",
+  Singapore: "SG",
+  Slovakia: "SK",
+  Slovenia: "SI",
+  "Solomon Islands": "SB",
+  Somalia: "SO",
+  "South Africa": "ZA",
+  "South Sudan": "SS",
+  Spain: "ES",
+  "Sri Lanka": "LK",
+  Sudan: "SD",
+  Suriname: "SR",
+  Sweden: "SE",
+  Switzerland: "CH",
+  Syria: "SY",
+  Taiwan: "TW",
+  Tajikistan: "TJ",
+  Tanzania: "TZ",
+  Thailand: "TH",
+  "Timor-Leste": "TL",
+  Togo: "TG",
+  Tonga: "TO",
+  "Trinidad and Tobago": "TT",
+  Tunisia: "TN",
+  Turkey: "TR",
+  Türkiye: "TR",
+  Turkmenistan: "TM",
+  Tuvalu: "TV",
+  Uganda: "UG",
+  Ukraine: "UA",
+  "United Arab Emirates": "AE",
+  "United Kingdom": "GB",
+  "United States": "US",
+  "United States of America": "US",
+  USA: "US",
+  UK: "GB",
+  Uruguay: "UY",
+  Uzbekistan: "UZ",
+  Vanuatu: "VU",
+  "Vatican City": "VA",
+  Venezuela: "VE",
+  Vietnam: "VN",
+  "Viet Nam": "VN",
+  Yemen: "YE",
+  Zambia: "ZM",
+  Zimbabwe: "ZW",
+};
+
+// Set of all valid 2-letter uppercase ISO alpha-2 codes
+const VALID_ISO_CODES = new Set(Object.values(COUNTRY_TO_CODE));
+
+/**
+ * Converts a country name or code to a 2-letter capitalized ISO code.
+ * E.g., "United States" -> "US", "us" -> "US", "France" -> "FR", "GB" -> "GB".
+ *
+ * @param {string} input - Country name or country code
+ * @returns {string|null} - Capitalized 2-letter ISO code or null if invalid
+ */
+function toCountryCode(input) {
+  if (!input || typeof input !== "string") return null;
+
+  const trimmed = input.trim();
+  const upper = trimmed.toUpperCase();
+
+  // If already a valid 2-letter code, return it directly
+  if (trimmed.length === 2 && VALID_ISO_CODES.has(upper)) {
+    return upper;
+  }
+
+  // Exact match from lookup table
+  if (COUNTRY_TO_CODE[trimmed]) {
+    return COUNTRY_TO_CODE[trimmed];
+  }
+
+  // Case-insensitive lookup match
+  const lower = trimmed.toLowerCase();
+  for (const [name, code] of Object.entries(COUNTRY_TO_CODE)) {
+    if (name.toLowerCase() === lower) {
+      return code;
+    }
+  }
+
+  return null;
+}
+
+module.exports = {
+  COUNTRY_TO_CODE,
+  VALID_ISO_CODES,
+  toCountryCode,
+};
+

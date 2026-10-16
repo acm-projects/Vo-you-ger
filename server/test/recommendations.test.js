@@ -7,6 +7,7 @@ const assert = require("node:assert/strict");
 const llm = require("../services/llmclient");
 const userModel = require("../models/userModel");
 const tripModel = require("../models/tripModel");
+const visaService = require("../services/visaService");
 const {
   createRecommendations,
 } = require("../controllers/recommendationController");
@@ -488,6 +489,110 @@ describe("POST /api/recommendations", () => {
     await createRecommendations(req, res);
 
     assert.equal(res.statusCode, 502);
+    assert.equal(saved, null);
+  });
+
+  // ---------- Phase 1B Visa Integration Tests ----------
+
+  it("calls visa API and enforces green visa-free countries when willingToGetVisa is false", async () => {
+    let calledNationalities = null;
+
+    visaService.getVisaFreeCountries = async (nationalities) => {
+      calledNationalities = nationalities;
+      // Only Portugal, Japan, and Italy are visa-free in this mock
+      return new Set(["PT", "JP", "IT"]);
+    };
+
+    const { req, res } = mockReqRes({
+      body: {
+        quiz: {
+          willingToGetVisa: false,
+          dailyBudget: "$$$",
+        },
+      },
+    });
+
+    await createRecommendations(req, res);
+
+    assert.equal(res.statusCode, 201);
+    assert.deepEqual(calledNationalities, ["United States"]);
+
+    // Output recommendations must carry the 2-letter countryCode
+    assert.equal(res.body.trip.recommendations[0].countryCode, "PT");
+    assert.equal(res.body.trip.recommendations[1].countryCode, "JP");
+    assert.equal(res.body.trip.recommendations[2].countryCode, "IT");
+  });
+
+  it("rejects recommendations when AI suggests a destination in a country requiring a visa", async () => {
+    visaService.getVisaFreeCountries = async () => {
+      // Suppose only Portugal and Japan are visa-free, but Italy requires a visa
+      // And we include Spain as the third visa-free country
+      return new Set(["PT", "JP", "ES"]);
+    };
+
+    // The AI attempts to recommend Rome (Italy 'IT') which is NOT visa-free
+    llm.generateStructured = async () => makeValidAIResponse(); // has Rome (IT)
+
+    const { req, res } = mockReqRes({
+      body: {
+        quiz: {
+          willingToGetVisa: false,
+          dailyBudget: "$$$",
+        },
+      },
+    });
+
+    await createRecommendations(req, res);
+
+    // Because Rome (IT) was excluded from the candidate list, the AI recommendation is rejected
+    assert.equal(res.statusCode, 502);
+    assert.equal(saved, null);
+  });
+
+  it("does not call visa API when willingToGetVisa is true or omitted", async () => {
+    let visaApiCalled = false;
+
+    visaService.getVisaFreeCountries = async () => {
+      visaApiCalled = true;
+      return new Set();
+    };
+
+    const { req, res } = mockReqRes({
+      body: {
+        quiz: {
+          willingToGetVisa: true,
+          dailyBudget: "$$$",
+        },
+      },
+    });
+
+    await createRecommendations(req, res);
+
+    assert.equal(res.statusCode, 201);
+    assert.equal(visaApiCalled, false);
+  });
+
+  it("returns 503 when the visa API call fails and user opted for visa-free travel", async () => {
+    visaService.getVisaFreeCountries = async () => {
+      throw new Error("TravelBuddy Visa API connection timeout");
+    };
+
+    const { req, res } = mockReqRes({
+      body: {
+        quiz: {
+          willingToGetVisa: false,
+          dailyBudget: "$$$",
+        },
+      },
+    });
+
+    await createRecommendations(req, res);
+
+    assert.equal(res.statusCode, 503);
+    assert.match(
+      res.body.message,
+      /The visa verification service is temporarily unavailable/
+    );
     assert.equal(saved, null);
   });
 });
