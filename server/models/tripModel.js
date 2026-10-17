@@ -1,9 +1,14 @@
+
 const crypto = require("crypto");
+<<<<<<< HEAD
 const {
   PutCommand,
   GetCommand,
   UpdateCommand,
 } = require("@aws-sdk/lib-dynamodb");
+=======
+const { PutCommand, GetCommand } = require("@aws-sdk/lib-dynamodb");
+>>>>>>> origin/main
 const { docClient, TABLE_NAME } = require("../db/dynamo");
 
 /**
@@ -73,6 +78,7 @@ async function findTripById(userId, tripId) {
   return result.Item || null;
 }
 
+<<<<<<< HEAD
 /**
  * Updates an existing Trip with its generated day-by-day itinerary (Phase 3).
  *
@@ -119,3 +125,9 @@ module.exports = {
   findTripById,
   updateTripItinerary,
 };
+=======
+module.exports = {
+  createTrip,
+  findTripById,
+};
+>>>>>>> origin/main

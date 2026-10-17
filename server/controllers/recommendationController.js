@@ -1,34 +1,59 @@
+
 /**
  * server/controllers/recommendationController.js
  *
- * Implements Phase 1B: Personalized destination recommendations (3 locations in 3 countries).
+ * Phase 1B: Personalized destination recommendations.
  *
- * Workflow:
- * 1. Authenticate user and retrieve profile data (including citizenship nationalities).
- * 2. Validate travel quiz responses (either sent in request body or retrieved from profile).
- * 3. Visa Constraint Handling (Phase 1B):
- *    - If traveler answered "no" to visa willingness (willingToGetVisa === false or visaWillingness === false),
- *      we call the TravelBuddy Visa API (/v2/visa/map) to get all countries with "green" status (visa-free).
- *    - Destinations in destinations.json are filtered down to only those matching green country codes.
- * 4. Constraint & Preference Comparison:
- *    - Candidate destinations are compared against user budget, safety/risk tolerance, and travel preferences.
- * 5. Gemini Generation:
- *    - Prompt is generated containing only valid candidate destinations.
- *    - Gemini returns structured recommendations for exactly 3 destinations across 3 distinct countries.
- * 6. Validation & Persistence:
- *    - The response is rigorously verified against canonical database records (preventing hallucination).
- *    - Stored as a new Trip in DynamoDB and returned with HTTP 201.
+ * 1. Authenticate the user and retrieve their profile.
+ * 2. Validate travel assessment responses.
+ * 3. Apply visa requirements based on citizenship.
+ * 4. Filter and compare eligible destinations.
+ * 5. Generate three personalized destinations using Gemini.
+ * 6. Validate and save recommendations in DynamoDB.
+ *
+ * Phase 2A: Destination places and neighborhoods.
+ *
+ * 1. Validate the selected destination and trip ownership.
+ * 2. Generate personalized Google Places search queries.
+ * 3. Retrieve real attractions, food, and experiences.
+ * 4. Normalize and geographically group the results.
+ * 5. Rank neighborhoods based on nearby activities.
+ * 6. Return places and neighborhood recommendations.
  */
 
+const {
+  buildPlacesQueries,
+} = require("../services/placesQueryBuilder");
+
+const {
+  searchPlacesForQueries,
+} = require("../services/googlePlacesService");
+
+const {
+  normalizePlaces,
+} = require("../services/placeNormalizer");
+
+const {
+  groupPlacesByGeography,
+} = require("../services/placeGroupingService");
+
+const {
+  recommendNeighborhoods,
+} = require("../services/neighborhoodRecommendationService");
+
 const destinations = require("../data/destinations.json");
+
 const {
   quizSchema,
   recommendationResultSchema,
   getResponseJsonSchema,
 } = require("../schemas/recommendationSchema");
-const { buildPrompt } = require("../services/promptBuilder");
 
-// Imported as objects so unit tests can easily mock external services
+const {
+  buildPrompt,
+} = require("../services/promptBuilder");
+
+// Imported as objects so unit tests can mock external services.
 const llm = require("../services/llmclient");
 const userModel = require("../models/userModel");
 const tripModel = require("../models/tripModel");
@@ -37,24 +62,15 @@ const visaService = require("../services/visaService");
 /**
  * POST /api/recommendations
  *
- * Generates 3 initial destination recommendations tailored to user quiz responses.
- *
- * Request Header:
- *   Authorization: Bearer <token>
- *
- * Request Body (optional if saved quiz exists in user profile):
- *   {
- *     "quiz": { ... }
- *   }
+ * Generates three personalized destinations in
+ * three different countries.
  */
 async function createRecommendations(req, res) {
   try {
-    // -------------------------------------------------------------
-    // Step 1: Retrieve Authenticated User Profile
-    // -------------------------------------------------------------
-    // Nationalities (citizenship) stored in user profile are essential
-    // for determining visa-free travel eligibility under international laws.
-    const user = await userModel.findUserById(req.user.userId);
+    // Step 1: Retrieve the authenticated user.
+    const user = await userModel.findUserById(
+      req.user.userId
+    );
 
     if (!user) {
       return res.status(404).json({
@@ -63,10 +79,7 @@ async function createRecommendations(req, res) {
       });
     }
 
-    // -------------------------------------------------------------
-    // Step 2: Validate Travel Assessment Quiz Answers
-    // -------------------------------------------------------------
-    // Prefer quiz provided in request body; fallback to saved profile response.
+    // Step 2: Validate travel assessment responses.
     const rawQuiz = req.body?.quiz ?? user.quizResponse;
 
     if (
@@ -90,45 +103,44 @@ async function createRecommendations(req, res) {
         message:
           "Invalid quiz answers: " +
           parsedQuiz.error.issues
-            .map((issue) => `${issue.path.join(".")}: ${issue.message}`)
+            .map(
+              (issue) =>
+                `${issue.path.join(".")}: ${issue.message}`
+            )
             .join("; "),
       });
     }
 
     const quiz = parsedQuiz.data;
 
-    // -------------------------------------------------------------
-    // Step 3: Phase 1B Visa Verification via TravelBuddy API
-    // -------------------------------------------------------------
-    // Check if the user opted out of getting a visa.
-    // If willingToGetVisa is explicitly false (or visaWillingness === false),
-    // we query TravelBuddy POST /v2/visa/map for the user's passport nationality.
-    // Only countries with "green" (visa-free) status are eligible.
+    // Step 3: Check visa willingness.
     const notWillingToGetVisa =
-      quiz.willingToGetVisa === false || quiz.visaWillingness === false;
+      quiz.willingToGetVisa === false ||
+      quiz.visaWillingness === false;
 
     let visaFreeCountryCodes = null;
 
     if (notWillingToGetVisa) {
       const userNationalities =
-        Array.isArray(user.nationalities) && user.nationalities.length > 0
+        Array.isArray(user.nationalities) &&
+        user.nationalities.length > 0
           ? user.nationalities
           : Array.isArray(quiz.nationalities)
-          ? quiz.nationalities
-          : [];
+            ? quiz.nationalities
+            : [];
 
       if (userNationalities.length > 0) {
         try {
-          // Query the external Visa API to obtain the Set of green ISO country codes
-          visaFreeCountryCodes = await visaService.getVisaFreeCountries(
-            userNationalities
-          );
+          visaFreeCountryCodes =
+            await visaService.getVisaFreeCountries(
+              userNationalities
+            );
         } catch (visaErr) {
           console.error(
             "[recommendationController] Error querying Visa API:",
             visaErr.message
           );
-          // Return 503 Service Unavailable so we do not recommend visa-requiring places by accident
+
           return res.status(503).json({
             error: "Service Unavailable",
             message:
@@ -138,11 +150,7 @@ async function createRecommendations(req, res) {
       }
     }
 
-    // -------------------------------------------------------------
-    // Step 4: Construct Personalized Prompt & Filtered Candidates
-    // -------------------------------------------------------------
-    // Merges quiz preferences, user citizenship, and candidate destinations
-    // that satisfy the visa filter, budget limits, and risk tolerance.
+    // Step 4: Construct personalized destination prompt.
     const {
       systemPrompt,
       prompt,
@@ -154,9 +162,7 @@ async function createRecommendations(req, res) {
       visaFreeCountryCodes,
     });
 
-    // -------------------------------------------------------------
-    // Step 5: Generate Structured Recommendations Using Gemini
-    // -------------------------------------------------------------
+    // Step 5: Generate structured recommendations.
     const { data, model } = await llm.generateStructured({
       prompt,
       systemPrompt,
@@ -164,9 +170,7 @@ async function createRecommendations(req, res) {
       zodSchema: recommendationResultSchema,
     });
 
-    // -------------------------------------------------------------
-    // Step 6: Validate LLM Output & Protect Against AI Hallucinations
-    // -------------------------------------------------------------
+    // Step 6: Validate Gemini output.
     const parsedRecommendations =
       recommendationResultSchema.safeParse(data);
 
@@ -180,20 +184,28 @@ async function createRecommendations(req, res) {
 
     const generated = parsedRecommendations.data;
 
-    // Build a lookup map of permitted candidates from destinations.json
     const allowedIds = new Set(candidateIds);
+
     const candidateById = new Map(
       destinations
-        .filter((destination) => allowedIds.has(destination.id))
-        .map((destination) => [destination.id, destination])
+        .filter((destination) =>
+          allowedIds.has(destination.id)
+        )
+        .map((destination) => [
+          destination.id,
+          destination,
+        ])
     );
 
     const recommendations = generated.recommendations;
 
-    // Verify exactly 3 destinations are returned with unique IDs from candidate list
-    const uniqueIds = new Set(recommendations.map((r) => r.destinationId));
-    const allIdsValid = recommendations.every((r) =>
-      candidateById.has(r.destinationId)
+    // Ensure three valid, unique destinations.
+    const uniqueIds = new Set(
+      recommendations.map((r) => r.destinationId)
+    );
+
+    const allIdsValid = recommendations.every(
+      (r) => candidateById.has(r.destinationId)
     );
 
     if (
@@ -208,10 +220,11 @@ async function createRecommendations(req, res) {
       });
     }
 
-    // Rule: Must be located in 3 distinct countries
+    // Ensure the destinations are in different countries.
     const uniqueCountries = new Set(
       recommendations.map(
-        (r) => candidateById.get(r.destinationId).country
+        (r) =>
+          candidateById.get(r.destinationId).country
       )
     );
 
@@ -223,23 +236,24 @@ async function createRecommendations(req, res) {
       });
     }
 
-    // Merge validated canonical destination metadata (names, types, countryCode)
-    // with AI-generated personalized matchScores, reasons, and highlights
-    const validatedRecommendations = recommendations.map((r) => {
-      const destination = candidateById.get(r.destinationId);
+    // Merge validated canonical destination information
+    // with Gemini's personalized recommendations.
+    const validatedRecommendations =
+      recommendations.map((r) => {
+        const destination = candidateById.get(
+          r.destinationId
+        );
 
-      return {
-        ...r,
-        name: destination.name,
-        type: destination.type,
-        country: destination.country,
-        countryCode: destination.countryCode,
-      };
-    });
+        return {
+          ...r,
+          name: destination.name,
+          type: destination.type,
+          country: destination.country,
+          countryCode: destination.countryCode,
+        };
+      });
 
-    // -------------------------------------------------------------
-    // Step 7: Persist Trip Recommendations to DynamoDB
-    // -------------------------------------------------------------
+    // Step 7: Save recommendations to DynamoDB.
     const trip = await tripModel.createTrip(
       user.id || req.user.userId,
       {
@@ -251,7 +265,7 @@ async function createRecommendations(req, res) {
       }
     );
 
-    // Remove internal database partition keys before returning response
+    // Exclude internal DynamoDB keys.
     const { PK, SK, ...safeTrip } = trip;
 
     return res.status(201).json({
@@ -275,7 +289,10 @@ async function createRecommendations(req, res) {
       });
     }
 
-    console.error("[recommendationController] Error generating recommendations:", err);
+    console.error(
+      "[recommendationController] Error generating recommendations:",
+      err
+    );
 
     return res.status(500).json({
       error: "Internal Server Error",
@@ -285,4 +302,159 @@ async function createRecommendations(req, res) {
   }
 }
 
-module.exports = { createRecommendations };
+/**
+ * POST /api/recommendations/:tripId/places
+ *
+ * Retrieves attractions, restaurants, experiences,
+ * geographic groups, and recommended neighborhoods
+ * for a selected destination.
+ */
+async function getDestinationPlaces(req, res) {
+  try {
+    const userId = req.user.userId;
+    const tripId = req.params.tripId;
+    const { destinationId } = req.body || {};
+
+    // Step 1: Validate selected destination.
+    if (
+      typeof destinationId !== "string" ||
+      !destinationId.trim()
+    ) {
+      return res.status(400).json({
+        error: "Bad Request",
+        message: "destinationId is required",
+      });
+    }
+
+    // Step 2: Retrieve the authenticated user's trip.
+    const trip = await tripModel.findTripById(
+      userId,
+      tripId
+    );
+
+    if (!trip) {
+      return res.status(404).json({
+        error: "Not Found",
+        message: "Trip not found",
+      });
+    }
+
+    // Step 3: Validate destination against saved trip.
+    const destination = trip.recommendations?.find(
+      (item) => item.destinationId === destinationId
+    );
+
+    if (!destination) {
+      return res.status(400).json({
+        error: "Bad Request",
+        message:
+          "Destination is not one of the recommended destinations for this trip",
+      });
+    }
+
+    // Step 4: Retrieve the quiz snapshot.
+    const quiz = trip.quizSnapshot;
+
+    if (
+      !quiz ||
+      typeof quiz !== "object" ||
+      Array.isArray(quiz)
+    ) {
+      return res.status(400).json({
+        error: "Bad Request",
+        message: "This trip has no saved assessment",
+      });
+    }
+
+    // Step 5: Generate three personalized search queries.
+    const generated = await buildPlacesQueries({
+      destination,
+      quiz,
+    });
+
+    // Step 6: Search Google Places.
+    // Searches attractions, food, and experiences.
+    // Individual hotel searches are excluded.
+    const searchResults = await searchPlacesForQueries(
+      generated.queries,
+      destination
+    );
+
+    // Step 7: Normalize real places and remove duplicates.
+    const normalized = normalizePlaces(
+      searchResults.places
+    );
+
+    // Step 8: Organize activities into geographic groups.
+    const grouped = groupPlacesByGeography(
+      normalized,
+      {
+        radiusKm: 2.5,
+        transportModes: quiz.transportModes || [],
+      }
+    );
+
+    // Step 9: Recommend neighborhoods for accommodation.
+    // Ranking is based on nearby activities and
+    // straight-line geographic distances.
+    //
+    // Candidate names are derived from available
+    // neighborhood labels in Google Places data.
+    const recommendedNeighborhoods =
+      recommendNeighborhoods(normalized, {
+        limit: 3,
+        nearbyRadiusKm: 2.5,
+      });
+
+    // Step 10: Return places and neighborhood suggestions.
+    return res.status(200).json({
+      message:
+        "Destination places retrieved successfully",
+
+      tripId,
+
+      destination: {
+        destinationId: destination.destinationId,
+        name: destination.name,
+        country: destination.country,
+      },
+
+      generatedQueries: generated.queries,
+      generatedBy: generated.model,
+
+      groupedPlaces: grouped,
+
+      recommendedNeighborhoods,
+    });
+  } catch (error) {
+    console.error(
+      "[recommendationController] Places error:",
+      error
+    );
+
+    if (error.statusCode === 503) {
+      return res.status(503).json({
+        error: "Service Unavailable",
+        message:
+          "The AI service is temporarily unavailable",
+      });
+    }
+
+    if (error.statusCode === 502) {
+      return res.status(502).json({
+        error: "Bad Gateway",
+        message: "Gemini returned an invalid response",
+      });
+    }
+
+    return res.status(500).json({
+      error: "Internal Server Error",
+      message: "Unable to retrieve destination places",
+    });
+  }
+}
+
+module.exports = {
+  createRecommendations,
+  getDestinationPlaces,
+};
