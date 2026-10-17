@@ -34,64 +34,140 @@ const mockCandidatePlaces = [
     placeId: "tokyo-sensoji",
     name: "Senso-ji Temple",
     category: "temple",
+    neighborhood: "Asakusa",
+    lat: 35.7148,
+    lng: 139.7967,
     description: "Ancient Buddhist temple in Asakusa with iconic giant lantern.",
     estimatedCost: "Free",
     daysOpen: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-    openingHours: "06:00 - 17:00",
+    openingHours: [
+      "Monday: 6:00 AM – 5:00 PM",
+      "Tuesday: 6:00 AM – 5:00 PM",
+      "Wednesday: 6:00 AM – 5:00 PM",
+      "Thursday: 6:00 AM – 5:00 PM",
+      "Friday: 6:00 AM – 5:00 PM",
+      "Saturday: 6:00 AM – 5:00 PM",
+      "Sunday: 6:00 AM – 5:00 PM",
+    ],
   },
   {
     placeId: "tokyo-skytree",
     name: "Tokyo Skytree",
     category: "viewpoint",
+    neighborhood: "Oshiage",
+    lat: 35.71,
+    lng: 139.8107,
     description: "Towering observation deck with panoramic city views.",
     estimatedCost: "$20",
     daysOpen: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-    openingHours: "10:00 - 21:00",
+    openingHours: [
+      "Monday: 10:00 AM – 9:00 PM",
+      "Tuesday: 10:00 AM – 9:00 PM",
+      "Wednesday: 10:00 AM – 9:00 PM",
+      "Thursday: 10:00 AM – 9:00 PM",
+      "Friday: 10:00 AM – 9:00 PM",
+      "Saturday: 10:00 AM – 9:00 PM",
+      "Sunday: 10:00 AM – 9:00 PM",
+    ],
   },
   {
     placeId: "tokyo-shinjuku-gyoen",
     name: "Shinjuku Gyoen National Garden",
     category: "park",
+    neighborhood: "Shinjuku",
+    lat: 35.6852,
+    lng: 139.71,
     description: "Peaceful sprawling park with traditional Japanese landscape gardens.",
     estimatedCost: "$4",
     daysOpen: ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"], // Closed Mondays
-    openingHours: "09:00 - 16:30",
+    openingHours: [
+      "Tuesday: 9:00 AM – 4:30 PM",
+      "Wednesday: 9:00 AM – 4:30 PM",
+      "Thursday: 9:00 AM – 4:30 PM",
+      "Friday: 9:00 AM – 4:30 PM",
+      "Saturday: 9:00 AM – 4:30 PM",
+      "Sunday: 9:00 AM – 4:30 PM",
+    ],
   },
   {
     placeId: "tokyo-shibuya-sky",
     name: "Shibuya Sky",
     category: "viewpoint",
+    neighborhood: "Shibuya",
+    lat: 35.6585,
+    lng: 139.7023,
     description: "360-degree open-air rooftop observation deck over Shibuya crossing.",
     estimatedCost: "$18",
     daysOpen: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-    openingHours: "10:00 - 22:30",
+    openingHours: [
+      "Monday: 10:00 AM – 10:30 PM",
+      "Tuesday: 10:00 AM – 10:30 PM",
+      "Wednesday: 10:00 AM – 10:30 PM",
+      "Thursday: 10:00 AM – 10:30 PM",
+      "Friday: 10:00 AM – 10:30 PM",
+      "Saturday: 10:00 AM – 10:30 PM",
+      "Sunday: 10:00 AM – 10:30 PM",
+    ],
   },
   {
     placeId: "tokyo-omotesando-cafe",
     name: "Aoyama Flower Market Tea House",
     category: "cafe",
+    neighborhood: "Minato",
+    lat: 35.6653,
+    lng: 139.7123,
     description: "Lush botanical cafe serving organic herbal teas and seasonal sweets.",
     estimatedCost: "$15",
     daysOpen: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-    openingHours: "11:00 - 19:00",
+    openingHours: [
+      "Monday: 11:00 AM – 7:00 PM",
+      "Tuesday: 11:00 AM – 7:00 PM",
+      "Wednesday: 11:00 AM – 7:00 PM",
+      "Thursday: 11:00 AM – 7:00 PM",
+      "Friday: 11:00 AM – 7:00 PM",
+      "Saturday: 11:00 AM – 7:00 PM",
+      "Sunday: 11:00 AM – 7:00 PM",
+    ],
   },
   {
     placeId: "tokyo-ginza-six",
     name: "Ginza Six Rooftop & Dining",
     category: "shopping",
+    neighborhood: "Ginza",
+    lat: 35.6696,
+    lng: 139.764,
     description: "Architectural retail complex with rooftop terrace and gourmet dining.",
     estimatedCost: "$35",
     daysOpen: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-    openingHours: "11:00 - 23:00",
+    openingHours: [
+      "Monday: 11:00 AM – 11:00 PM",
+      "Tuesday: 11:00 AM – 11:00 PM",
+      "Wednesday: 11:00 AM – 11:00 PM",
+      "Thursday: 11:00 AM – 11:00 PM",
+      "Friday: 11:00 AM – 11:00 PM",
+      "Saturday: 11:00 AM – 11:00 PM",
+      "Sunday: 11:00 AM – 11:00 PM",
+    ],
   },
   {
     placeId: "tokyo-golden-gai",
     name: "Shinjuku Golden Gai",
     category: "nightlife",
+    neighborhood: "Shinjuku",
+    lat: 35.6942,
+    lng: 139.7047,
     description: "Historic maze of narrow alleyways packed with intimate micro-bars.",
     estimatedCost: "$20-30",
     daysOpen: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-    openingHours: "20:00 - 04:00",
+    openingHours: [
+      "Monday: 8:00 PM – 4:00 AM",
+      "Tuesday: 8:00 PM – 4:00 AM",
+      "Wednesday: 8:00 PM – 4:00 AM",
+      "Thursday: 8:00 PM – 4:00 AM",
+      "Friday: 8:00 PM – 4:00 AM",
+      "Saturday: 8:00 PM – 4:00 AM",
+      "Sunday: 8:00 PM – 4:00 AM",
+    ],
   },
 ];
 
@@ -520,6 +596,31 @@ describe("Phase 3: Itinerary Generation Suite", () => {
 
       await createItinerary(req, res);
       assert.equal(res.statusCode, 404);
+    });
+
+    it("successfully accepts Phase 2 groupedPlaces response format", async () => {
+      const { req, res } = mockReqRes({
+        body: {
+          destination: "Tokyo, Japan",
+          groupedPlaces: {
+            groups: [
+              {
+                groupId: "area-1",
+                places: mockCandidatePlaces.slice(0, 3),
+              },
+              {
+                groupId: "area-2",
+                places: mockCandidatePlaces.slice(3),
+              },
+            ],
+          },
+          numberOfDays: 2,
+        },
+      });
+
+      await createItinerary(req, res);
+      assert.equal(res.statusCode, 200);
+      assert.equal(res.body.itinerary.days.length, 2);
     });
   });
 });

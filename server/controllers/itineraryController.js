@@ -45,7 +45,14 @@ async function createItinerary(req, res) {
     }
 
     // 2. Validate candidate places from Phase 2
-    const candidatePlaces = req.body.candidatePlaces;
+    // Supports either flat candidatePlaces array or Phase 2 groupedPlaces response
+    let candidatePlaces = req.body.candidatePlaces;
+    if (!Array.isArray(candidatePlaces) && req.body.groupedPlaces?.groups) {
+      candidatePlaces = req.body.groupedPlaces.groups.flatMap(
+        (group) => group.places || []
+      );
+    }
+
     if (!Array.isArray(candidatePlaces) || candidatePlaces.length === 0) {
       return res.status(400).json({
         error: "Bad Request",

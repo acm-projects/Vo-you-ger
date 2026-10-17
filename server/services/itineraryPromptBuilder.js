@@ -203,20 +203,30 @@ function buildItineraryPrompt({
     candidatePlaces.map((p) => p.placeId).filter(Boolean)
   );
 
-  // Format candidate places with hours, meals, and days open if provided
-  const cleanCandidates = candidatePlaces.map((p) => ({
-    placeId: p.placeId,
-    name: p.name,
-    category: p.category || "attraction",
-    neighborhood: p.neighborhood || undefined,
-    description: p.description || "",
-    estimatedCost: p.estimatedCost || "Varies",
-    daysOpen: p.daysOpen || undefined,
-    openingHours: p.openingHours || undefined,
-    includesMeals: p.includesMeals || undefined,
-    dietaryOptions: p.dietaryOptions || undefined,
-    tags: p.tags || [],
-  }));
+  // Format candidate places with hours, meals, coordinates, and metadata
+  const cleanCandidates = candidatePlaces.map((p) => {
+    const openingHours = Array.isArray(p.openingHours)
+      ? p.openingHours.join("; ")
+      : undefined;
+
+    return {
+      placeId: p.placeId,
+      name: p.name,
+      category: p.category || "attraction",
+      neighborhood: p.neighborhood || undefined,
+      lat: Number.isFinite(p.lat) ? p.lat : undefined,
+      lng: Number.isFinite(p.lng) ? p.lng : undefined,
+      description: p.description || "",
+      estimatedCost:
+        p.estimatedCost || (p.priceLevel ? String(p.priceLevel) : "Varies"),
+      daysOpen: p.daysOpen || undefined,
+      openingHours,
+      rating: p.rating || undefined,
+      includesMeals: p.includesMeals || undefined,
+      dietaryOptions: p.dietaryOptions || undefined,
+      tags: p.tags || [],
+    };
+  });
 
   const scheduleListText = schedule
     .map((s) => `Day ${s.day}: ${s.dayOfWeek}, ${s.date}`)

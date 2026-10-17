@@ -142,18 +142,19 @@ const candidatePlaceSchema = z.object({
   category: z.string().optional(),
   description: z.string().optional(),
   estimatedCost: z.string().optional(),
-  address: z.string().optional(),
-  neighborhood: z.string().optional(),
-  location: z
-    .object({
-      lat: z.number(),
-      lng: z.number(),
-    })
-    .optional(),
+  address: z.string().nullable().optional(),
+  neighborhood: z.string().nullable().optional(),
+  areaType: z.string().nullable().optional(),
+  areaGranularity: z.string().nullable().optional(),
+  lat: z.number().nullable().optional(),
+  lng: z.number().nullable().optional(),
+  rating: z.number().nullable().optional(),
+  priceLevel: z.union([z.string(), z.number()]).nullable().optional(),
+  typicalTimeSpent: z.any().optional(),
   tags: z.array(z.string()).optional(),
   daysOpen: z.array(z.string()).optional(), // e.g. ["Mon", "Wed", "Thu", "Fri", "Sat", "Sun"]
-  openingHours: z.string().optional(), // e.g. "10:00 - 22:00, Closed Tuesdays"
-  includesMeals: z.array(z.string()).optional(), // e.g. ["breakfast", "dinner"] for onsens, ryokans, resorts
+  openingHours: z.array(z.string()).nullable().optional(), // weekday descriptions array from Google Places
+  includesMeals: z.array(z.string()).optional(), // e.g. ["breakfast", "dinner"]
   dietaryOptions: z.array(z.string()).optional(), // e.g. ["halal", "vegetarian", "vegan", "gluten-free"]
 });
 
