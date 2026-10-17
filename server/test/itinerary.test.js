@@ -101,6 +101,9 @@ function makeValidAIItinerary() {
     destination: "Tokyo, Japan",
     summary:
       "A balanced 2-day journey exploring historic temples, peaceful gardens, and futuristic observation decks matching your Explorer alter ego and moderate budget.",
+    recommendedStayArea: "Shinjuku / Shibuya",
+    stayAreaRationale:
+      "Staying in central Shinjuku keeps you within a short walk of morning parks and evening izakayas, while serving as Tokyo's primary transit hub.",
     days: [
       {
         day: 1,

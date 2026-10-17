@@ -119,6 +119,16 @@ const itineraryResultSchema = z.object({
     .describe(
       "A 2-3 sentence summary explaining how this itinerary fulfills the traveler's quiz preferences."
     ),
+  recommendedStayArea: z
+    .string()
+    .describe(
+      "A recommended neighborhood, district, or area to stay in based on the itinerary's geographic distribution and traveler style (e.g. 'George Town', 'Shinjuku'). Do NOT name specific hotels."
+    ),
+  stayAreaRationale: z
+    .string()
+    .describe(
+      "A brief 2-3 sentence rationale explaining why staying in this area minimizes travel time and complements their travel style."
+    ),
   days: z
     .array(itineraryDaySchema)
     .min(1)

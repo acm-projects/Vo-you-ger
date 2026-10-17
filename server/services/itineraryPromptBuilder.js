@@ -151,7 +151,13 @@ MEAL PLANNING, INCLUDED MEALS & DIETARY RESTRICTIONS:
 - Included Meals (Ryokans, Onsens, Resorts): If an accommodation specifies "includesMeals" (e.g. ["breakfast", "dinner"] in a Japanese onsen ryokan or resort):
   * Feature the on-site dining experience (e.g. multi-course seasonal Kaiseki dinner or traditional breakfast) in that meal slot.
   * Do NOT schedule a competing external restaurant for any meal that is already included on-site.
-- Strict Dietary Adherence: If the traveler has dietary restrictions (e.g. Halal, Vegetarian, Vegan, Gluten-Free), ensure all scheduled dining venues explicitly match their requirements (check "dietaryOptions").`;
+- Strict Dietary Adherence: If the traveler has dietary restrictions (e.g. Halal, Vegetarian, Vegan, Gluten-Free), ensure all scheduled dining venues explicitly match their requirements (check "dietaryOptions").
+
+RECOMMENDED BASE / STAY AREA:
+- Suggest a single recommended neighborhood, district, or area to stay in ("recommendedStayArea"), such as "George Town (UNESCO Heritage Core)" or "Shinjuku / Shibuya".
+- Base this on the geographic clustering of their scheduled activities, walking convenience, transit hubs, and traveler vibe (e.g. quiet vs lively nightlife).
+- Provide a clear, helpful 2-3 sentence explanation in "stayAreaRationale" explaining why this base minimizes commute times.
+- DO NOT name or suggest specific hotels, hostels, or individual accommodation properties. Recommend the area/neighborhood only.`;
 
 /**
  * Builds the user prompt text by combining destination details, user quiz answers,
@@ -238,6 +244,7 @@ REMINDERS:
 - seeAllOrDeeply preference: "${quiz.seeAllOrDeeply || "flexible"}" (if seeAll, provide 2 morning and 2 afternoon activities ONLY if enough distinct venues exist).
 - nightlifeOrSunrise preference: "${quiz.nightlifeOrSunrise || "balanced"}" (if nightlife, include the optional lateNight slot).
 - ZERO DUPLICATES: Every placeId must be unique across the entire trip. Never repeat a placeId.
+- Recommend a strategic neighborhood in "recommendedStayArea" and explain why in "stayAreaRationale" without naming specific hotels.
 - Every placeId MUST strictly match one of the candidate places listed above.`;
 
   return {
