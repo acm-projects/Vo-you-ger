@@ -53,6 +53,37 @@ const activitySlotSchema = z.object({
     .describe(
       "Specify if this activity is a meal: 'breakfast', 'lunch', 'dinner', 'late_night_eats', or omit if not a meal."
     ),
+  hoursToday: z
+    .string()
+    .nullable()
+    .optional()
+    .describe(
+      "Operating hours specifically for the scheduled day of the week (e.g. '9:00 AM – 5:00 PM', 'Open 24 hours', or null if unlisted)."
+    ),
+  openingHours: z
+    .array(z.string())
+    .nullable()
+    .optional()
+    .describe(
+      "Weekly opening hours descriptions (e.g. ['Monday: 9:00 AM – 5:00 PM', ...])."
+    ),
+  openDays: z
+    .array(z.string())
+    .nullable()
+    .optional()
+    .describe(
+      "Days of the week this venue is open (e.g. ['Mon', 'Tue', 'Wed', ...])."
+    ),
+  rating: z
+    .number()
+    .nullable()
+    .optional()
+    .describe("Google review rating (e.g. 4.6)."),
+  address: z
+    .string()
+    .nullable()
+    .optional()
+    .describe("Physical address of the venue."),
 });
 
 // ============================================================================

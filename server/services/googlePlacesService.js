@@ -9,6 +9,9 @@ const FIELD_MASK = [
   "places.formattedAddress",
   "places.location",
   "places.addressComponents",
+  "places.regularOpeningHours",
+  "places.rating",
+  "places.priceLevel",
 ].join(",");
 
 
@@ -55,7 +58,7 @@ async function searchPlaces(query, options = {}) {
   return data.places || [];
 }
 
-async function searchPlacesForQueries(queries, destination) {
+async function searchPlacesForQueries(queries, destination, options = {}) {
   for (const category of [
     "attractions",
     "food",
@@ -80,13 +83,14 @@ async function searchPlacesForQueries(queries, destination) {
     experiences: queries.experiences,
   };
 
+  const { pageSize = 10 } = options;
 
   // sequential requests are easier to debug and stay within usage limits.
   const results = {};
 
   for (const [category, query] of Object.entries(searchRequests)) {
     results[category] = await searchPlaces(query, {
-      pageSize: 5,
+      pageSize,
     });
   }
 
