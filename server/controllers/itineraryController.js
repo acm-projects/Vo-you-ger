@@ -76,7 +76,7 @@ async function createItinerary(req, res) {
     // 3. Resolve user profile and trip if tripId is provided
     let trip = null;
     if (tripId) {
-      trip = await tripModel.getTripById(userId, tripId);
+      trip = await tripModel.findTripById(userId, tripId);
       if (!trip) {
         return res.status(404).json({
           error: "Not Found",

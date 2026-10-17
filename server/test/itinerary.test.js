@@ -494,7 +494,7 @@ describe("Phase 3: Itinerary Generation Suite", () => {
         quizResponse: { travelAlterEgo: "Explorer" },
       });
 
-      tripModel.getTripById = async (userId, tripId) => ({
+      tripModel.findTripById = async (userId, tripId) => ({
         tripId,
         userId,
         title: "Initial Tokyo Trip",
@@ -584,7 +584,7 @@ describe("Phase 3: Itinerary Generation Suite", () => {
     });
 
     it("returns 404 when requested tripId does not exist", async () => {
-      tripModel.getTripById = async () => null;
+      tripModel.findTripById = async () => null;
 
       const { req, res } = mockReqRes({
         params: { tripId: "non-existent-trip" },

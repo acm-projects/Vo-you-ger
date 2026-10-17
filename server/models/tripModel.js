@@ -1,22 +1,3 @@
-/**
- * server/models/tripModel.js
- *
- * Data access model for trips and itineraries in DynamoDB single-table design.
- *
- * Schema:
- * - PK: USER#<userId>
- * - SK: TRIP#<tripId>
- * - tripId: string (e.g. t-<uuid>)
- * - userId: string
- * - title: string
- * - summary: string
- * - recommendations: array of initial 3 recommended destinations (Phase 1B)
- * - itinerary: null initially, updated with day-by-day activities in Phase 3
- * - quizSnapshot: snapshot of the quiz answers used to craft recommendations
- * - generatedBy: Gemini model version used
- * - createdAt, updatedAt: ISO 8601 timestamps
- */
-
 const crypto = require("crypto");
 const {
   PutCommand,
@@ -26,10 +7,16 @@ const {
 const { docClient, TABLE_NAME } = require("../db/dynamo");
 
 /**
- * Creates an initial Trip containing the 3 recommended destinations (Phase 1B).
- * Itinerary remains null until Phase 3 generation is invoked.
+ * Create a new trip and save it to DynamoDB.
+ *
+ * @param {string} userId
+ * @param {object} tripData
+ * @returns {Promise<object>}
  */
-async function createTrip(userId, { title, summary, recommendations, quiz, model }) {
+async function createTrip(
+  userId,
+  { title, summary, recommendations, quiz, model }
+) {
   const tripId = `t-${crypto.randomUUID()}`;
   const timestamp = new Date().toISOString();
 
@@ -60,13 +47,19 @@ async function createTrip(userId, { title, summary, recommendations, quiz, model
 }
 
 /**
- * Retrieves a single Trip by userId and tripId.
+ * Find an existing trip belonging to a specific user.
  *
- * @param {string} userId - ID of the authenticated user
- * @param {string} tripId - ID of the trip (e.g. "t-123")
- * @returns {Promise<object|null>} The trip item or null if not found
+ * Uses the DynamoDB primary key and sort key.
+ *
+ * @param {string} userId
+ * @param {string} tripId
+ * @returns {Promise<object|null>}
  */
-async function getTripById(userId, tripId) {
+async function findTripById(userId, tripId) {
+  if (!userId || !tripId) {
+    throw new Error("userId and tripId are required");
+  }
+
   const result = await docClient.send(
     new GetCommand({
       TableName: TABLE_NAME,
@@ -87,7 +80,7 @@ async function getTripById(userId, tripId) {
  * @param {string} tripId - ID of the trip
  * @param {object} itinerary - The structured itinerary object from Gemini
  * @param {string} [model] - Gemini model version used for generation
- * @returns {Promise<object>} The updated trip item
+ * @returns {Promise<object>} The updated trip attributes
  */
 async function updateTripItinerary(userId, tripId, itinerary, model = null) {
   const timestamp = new Date().toISOString();
@@ -123,6 +116,6 @@ async function updateTripItinerary(userId, tripId, itinerary, model = null) {
 
 module.exports = {
   createTrip,
-  getTripById,
+  findTripById,
   updateTripItinerary,
 };
