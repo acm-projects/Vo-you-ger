@@ -27,6 +27,8 @@ const {
 } = require("../services/itineraryPromptBuilder");
 const { generateItinerary } = require("../services/itineraryService");
 const { createItinerary } = require("../controllers/itineraryController");
+const placesQueryBuilder = require("../services/placesQueryBuilder");
+const googlePlacesService = require("../services/googlePlacesService");
 
 // Sample Phase 2 candidate places for Tokyo with opening hours
 const mockCandidatePlaces = [
@@ -537,6 +539,8 @@ describe("Phase 3: Itinerary Generation Suite", () => {
       assert.equal(res.body.itinerary.days[0].morning[0].placeId, "tokyo-sensoji");
       assert.equal(res.body.itinerary.days[0].date, "2026-10-24");
       assert.equal(res.body.itinerary.days[0].dayOfWeek, "Saturday");
+      assert.equal(res.body.itinerary.days[0].morning[0].hoursToday, "6:00 AM – 5:00 PM");
+      assert.ok(Array.isArray(res.body.itinerary.days[0].morning[0].openingHours));
     });
 
     it("updates DynamoDB trip when tripId is supplied", async () => {
@@ -621,6 +625,251 @@ describe("Phase 3: Itinerary Generation Suite", () => {
       await createItinerary(req, res);
       assert.equal(res.statusCode, 200);
       assert.equal(res.body.itinerary.days.length, 2);
+    });
+  });
+
+  describe("5. Phase 4 & Phase 5: End-to-End Orchestration & Travel Enrichment", () => {
+    beforeEach(() => {
+      userModel.findUserById = async () => ({
+        id: "u-test-traveler",
+        quizResponse: {
+          dailyBudget: "$$",
+          travelAlterEgo: "Explorer",
+          minNights: 2,
+          maxNights: 3,
+        },
+      });
+
+      tripModel.findTripById = async (userId, tripId) => ({
+        PK: `USER#${userId}`,
+        SK: `TRIP#${tripId}`,
+        tripId,
+        userId,
+        title: "Japan Highlights",
+        recommendations: [
+          {
+            destinationId: "tokyo-jp",
+            name: "Tokyo",
+            country: "Japan",
+            countryCode: "JP",
+          },
+          {
+            destinationId: "kyoto-jp",
+            name: "Kyoto",
+            country: "Japan",
+            countryCode: "JP",
+          },
+          {
+            destinationId: "lisbon-pt",
+            name: "Lisbon",
+            country: "Portugal",
+            countryCode: "PT",
+          },
+        ],
+        quizSnapshot: {
+          dailyBudget: "$$",
+          travelAlterEgo: "Explorer",
+          minNights: 2,
+          maxNights: 3,
+        },
+      });
+
+      tripModel.updateTripItinerary = async (userId, tripId, itinerary, model) => ({
+        PK: `USER#${userId}`,
+        SK: `TRIP#${tripId}`,
+        tripId,
+        userId,
+        itinerary,
+        model,
+        updatedAt: new Date().toISOString(),
+      });
+
+      placesQueryBuilder.buildPlacesQueries = async ({ destination }) => ({
+        model: "gemini-test",
+        queries: {
+          attractions: `${destination.name} historic temples and landmarks`,
+          food: `${destination.name} authentic ramen and local dining`,
+          experiences: `${destination.name} cultural activities and sunset views`,
+        },
+      });
+
+      googlePlacesService.searchPlacesForQueries = async () => ({
+        queries: {
+          attractions: "Tokyo historic temples",
+          food: "Tokyo authentic ramen",
+          experiences: "Tokyo cultural activities",
+        },
+        places: {
+          attractions: [
+            {
+              id: "tokyo-sensoji",
+              displayName: { text: "Senso-ji Temple" },
+              formattedAddress: "2-3-1 Asakusa, Taito, Tokyo",
+              location: { latitude: 35.7148, longitude: 139.7967 },
+              addressComponents: [{ types: ["neighborhood"], longText: "Asakusa" }],
+            },
+            {
+              id: "tokyo-skytree",
+              displayName: { text: "Tokyo Skytree" },
+              formattedAddress: "1-1-2 Oshiage, Sumida, Tokyo",
+              location: { latitude: 35.71, longitude: 139.8107 },
+              addressComponents: [{ types: ["neighborhood"], longText: "Oshiage" }],
+            },
+            {
+              id: "tokyo-shinjuku-gyoen",
+              displayName: { text: "Shinjuku Gyoen National Garden" },
+              formattedAddress: "11 Naitomachi, Shinjuku, Tokyo",
+              location: { latitude: 35.6852, longitude: 139.71 },
+              addressComponents: [{ types: ["neighborhood"], longText: "Shinjuku" }],
+            },
+          ],
+          food: [
+            {
+              id: "tokyo-ginza-six",
+              displayName: { text: "Ginza Six Rooftop & Dining" },
+              formattedAddress: "6-10-1 Ginza, Chuo, Tokyo",
+              location: { latitude: 35.6696, longitude: 139.764 },
+              addressComponents: [{ types: ["neighborhood"], longText: "Ginza" }],
+            },
+            {
+              id: "tokyo-omotesando-cafe",
+              displayName: { text: "Aoyama Flower Market Tea House" },
+              formattedAddress: "5-1-2 Minamiaoyama, Minato, Tokyo",
+              location: { latitude: 35.6652, longitude: 139.7123 },
+              addressComponents: [{ types: ["neighborhood"], longText: "Aoyama" }],
+            },
+          ],
+          experiences: [
+            {
+              id: "tokyo-golden-gai",
+              displayName: { text: "Shinjuku Golden Gai" },
+              formattedAddress: "1-1-6 Kabukicho, Shinjuku, Tokyo",
+              location: { latitude: 35.6942, longitude: 139.7047 },
+              addressComponents: [{ types: ["neighborhood"], longText: "Shinjuku" }],
+            },
+            {
+              id: "tokyo-shibuya-sky",
+              displayName: { text: "Shibuya Sky" },
+              formattedAddress: "2-24-12 Shibuya, Shibuya, Tokyo",
+              location: { latitude: 35.6585, longitude: 139.7023 },
+              addressComponents: [{ types: ["neighborhood"], longText: "Shibuya" }],
+            },
+          ],
+        },
+      });
+
+      llm.generateStructured = async () => ({
+        model: "gemini-2.5-flash",
+        data: makeValidAIItinerary(),
+      });
+    });
+
+    it("orchestrates full itinerary generation with tripId and destinationId (Phase 4)", async () => {
+      let savedUpdate = null;
+      tripModel.updateTripItinerary = async (userId, tripId, itinerary, model) => {
+        savedUpdate = { userId, tripId, itinerary, model };
+        return {
+          PK: `USER#${userId}`,
+          SK: `TRIP#${tripId}`,
+          tripId,
+          userId,
+          itinerary,
+          model,
+        };
+      };
+
+      const { req, res } = mockReqRes({
+        body: {
+          tripId: "t-orchestrated-101",
+          destinationId: "tokyo-jp",
+          startDate: "2026-10-24",
+        },
+      });
+
+      await createItinerary(req, res);
+
+      assert.equal(res.statusCode, 200);
+      assert.ok(res.body.itinerary);
+      assert.equal(res.body.itinerary.days.length, 2);
+      assert.equal(res.body.destination, "Tokyo, Japan");
+
+      // Verify DynamoDB persistence
+      assert.ok(savedUpdate);
+      assert.equal(savedUpdate.tripId, "t-orchestrated-101");
+      assert.equal(savedUpdate.userId, "u-101");
+      assert.equal(res.body.trip.tripId, "t-orchestrated-101");
+      assert.equal(res.body.trip.PK, undefined);
+
+      // Verify Phase 5 Extra Trip Details are attached to itinerary.practicalInfo only (clean root)
+      assert.equal(res.body.practicalInfo, undefined);
+      const practicalInfo = res.body.itinerary.practicalInfo;
+      assert.ok(practicalInfo);
+      assert.equal(practicalInfo.destinationId, "tokyo-jp");
+      assert.equal(practicalInfo.name, "Tokyo");
+      assert.equal(practicalInfo.country, "Japan");
+      assert.equal(practicalInfo.countryCode, "JP");
+      assert.equal(practicalInfo.budget, "$$");
+      assert.equal(practicalInfo.safety, 1);
+      assert.equal(practicalInfo.currency.code, "JPY");
+      assert.equal(practicalInfo.currency.symbol, "¥");
+      assert.ok(Array.isArray(practicalInfo.languages));
+      assert.match(practicalInfo.languages[0], /Japanese/);
+      assert.ok(Array.isArray(practicalInfo.paymentMethods.cardsAccepted));
+      assert.ok(practicalInfo.paymentMethods.cardsAccepted.includes("Visa"));
+      assert.ok(practicalInfo.paymentMethods.cardsAccepted.includes("JCB"));
+      assert.match(practicalInfo.paymentMethods.cashAdvice, /Cash remains important/);
+      assert.ok(Array.isArray(practicalInfo.culturalTips));
+      assert.ok(practicalInfo.culturalTips.some((tip) => tip.includes("NO TIPPING")));
+
+      // Verify practicalInfo is saved into DynamoDB with the itinerary
+      assert.deepEqual(savedUpdate.itinerary.practicalInfo, practicalInfo);
+    });
+
+    it("attaches Phase 5 extra trip details when candidatePlaces are directly provided with destinationId", async () => {
+      const { req, res } = mockReqRes({
+        body: {
+          destinationId: "tokyo-jp",
+          candidatePlaces: mockCandidatePlaces,
+          numberOfDays: 2,
+        },
+      });
+
+      await createItinerary(req, res);
+
+      assert.equal(res.statusCode, 200);
+      assert.ok(res.body.itinerary.practicalInfo);
+      assert.equal(res.body.itinerary.practicalInfo.destinationId, "tokyo-jp");
+      assert.equal(res.body.itinerary.practicalInfo.currency.code, "JPY");
+    });
+
+    it("returns 400 when destinationId cannot be resolved to any known destination", async () => {
+      const { req, res } = mockReqRes({
+        body: {
+          destinationId: "unknown-planet-xyz",
+          candidatePlaces: mockCandidatePlaces,
+        },
+      });
+
+      await createItinerary(req, res);
+
+      assert.equal(res.statusCode, 400);
+      assert.match(res.body.message, /Destination is required/);
+    });
+
+    it("returns 404 when tripId does not exist during orchestrated call", async () => {
+      tripModel.findTripById = async () => null;
+
+      const { req, res } = mockReqRes({
+        body: {
+          tripId: "t-missing",
+          destinationId: "tokyo-jp",
+        },
+      });
+
+      await createItinerary(req, res);
+
+      assert.equal(res.statusCode, 404);
+      assert.match(res.body.message, /was not found/);
     });
   });
 });

@@ -1,14 +1,9 @@
-
 const crypto = require("crypto");
-<<<<<<< HEAD
 const {
   PutCommand,
   GetCommand,
   UpdateCommand,
 } = require("@aws-sdk/lib-dynamodb");
-=======
-const { PutCommand, GetCommand } = require("@aws-sdk/lib-dynamodb");
->>>>>>> origin/main
 const { docClient, TABLE_NAME } = require("../db/dynamo");
 
 /**
@@ -20,7 +15,7 @@ const { docClient, TABLE_NAME } = require("../db/dynamo");
  */
 async function createTrip(
   userId,
-  { title, summary, recommendations, quiz, model }
+  { title, summary, recommendations, quiz, model },
 ) {
   const tripId = `t-${crypto.randomUUID()}`;
   const timestamp = new Date().toISOString();
@@ -45,7 +40,7 @@ async function createTrip(
       TableName: TABLE_NAME,
       Item: tripItem,
       ConditionExpression: "attribute_not_exists(PK)",
-    })
+    }),
   );
 
   return tripItem;
@@ -72,13 +67,12 @@ async function findTripById(userId, tripId) {
         PK: `USER#${userId}`,
         SK: `TRIP#${tripId}`,
       },
-    })
+    }),
   );
 
   return result.Item || null;
 }
 
-<<<<<<< HEAD
 /**
  * Updates an existing Trip with its generated day-by-day itinerary (Phase 3).
  *
@@ -114,7 +108,7 @@ async function updateTripItinerary(userId, tripId, itinerary, model = null) {
       UpdateExpression: updateExpression,
       ExpressionAttributeValues: expressionAttributeValues,
       ReturnValues: "ALL_NEW",
-    })
+    }),
   );
 
   return result.Attributes;
@@ -125,9 +119,3 @@ module.exports = {
   findTripById,
   updateTripItinerary,
 };
-=======
-module.exports = {
-  createTrip,
-  findTripById,
-};
->>>>>>> origin/main
