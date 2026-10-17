@@ -31,4 +31,13 @@ export const getQuizResponse = () => API.get("/quiz");
 export const getRecommendations = (quizData) =>
   API.post("/recommendations", quizData ? { quiz: quizData } : {});
 
+// Itinerary endpoints (Phase 3)
+export const generateItinerary = ({ tripId, destination, candidatePlaces, numberOfDays, quiz }) =>
+  API.post(tripId ? `/itinerary/${tripId}` : "/itinerary/generate", {
+    destination,
+    candidatePlaces,
+    numberOfDays,
+    quiz,
+  });
+
 export default API;

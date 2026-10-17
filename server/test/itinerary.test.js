@@ -1,0 +1,522 @@
+/**
+ * server/test/itinerary.test.js
+ *
+ * Test suite for Itinerary Generation (Phase 3).
+ * Verifies:
+ * 1. Schema validation (itinerarySchema.js) for multi-activity arrays, dates, days of week, and lateNight.
+ * 2. Prompt builder (itineraryPromptBuilder.js) computing calendar schedule and injecting constraints.
+ * 3. Anti-hallucination verification (itineraryService.js) rejecting invented venue IDs.
+ * 4. API endpoint (POST /api/itinerary/generate) and DynamoDB trip persistence.
+ */
+
+require("dotenv").config();
+const { describe, it, beforeEach } = require("node:test");
+const assert = require("node:assert/strict");
+
+const llm = require("../services/llmclient");
+const userModel = require("../models/userModel");
+const tripModel = require("../models/tripModel");
+const {
+  itineraryResultSchema,
+  getItineraryResponseJsonSchema,
+} = require("../schemas/itinerarySchema");
+const {
+  buildItineraryPrompt,
+  computeItinerarySchedule,
+  ITINERARY_SYSTEM_PROMPT,
+} = require("../services/itineraryPromptBuilder");
+const { generateItinerary } = require("../services/itineraryService");
+const { createItinerary } = require("../controllers/itineraryController");
+
+// Sample Phase 2 candidate places for Tokyo with opening hours
+const mockCandidatePlaces = [
+  {
+    placeId: "tokyo-sensoji",
+    name: "Senso-ji Temple",
+    category: "temple",
+    description: "Ancient Buddhist temple in Asakusa with iconic giant lantern.",
+    estimatedCost: "Free",
+    daysOpen: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    openingHours: "06:00 - 17:00",
+  },
+  {
+    placeId: "tokyo-skytree",
+    name: "Tokyo Skytree",
+    category: "viewpoint",
+    description: "Towering observation deck with panoramic city views.",
+    estimatedCost: "$20",
+    daysOpen: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    openingHours: "10:00 - 21:00",
+  },
+  {
+    placeId: "tokyo-shinjuku-gyoen",
+    name: "Shinjuku Gyoen National Garden",
+    category: "park",
+    description: "Peaceful sprawling park with traditional Japanese landscape gardens.",
+    estimatedCost: "$4",
+    daysOpen: ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"], // Closed Mondays
+    openingHours: "09:00 - 16:30",
+  },
+  {
+    placeId: "tokyo-shibuya-sky",
+    name: "Shibuya Sky",
+    category: "viewpoint",
+    description: "360-degree open-air rooftop observation deck over Shibuya crossing.",
+    estimatedCost: "$18",
+    daysOpen: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    openingHours: "10:00 - 22:30",
+  },
+  {
+    placeId: "tokyo-omotesando-cafe",
+    name: "Aoyama Flower Market Tea House",
+    category: "cafe",
+    description: "Lush botanical cafe serving organic herbal teas and seasonal sweets.",
+    estimatedCost: "$15",
+    daysOpen: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    openingHours: "11:00 - 19:00",
+  },
+  {
+    placeId: "tokyo-ginza-six",
+    name: "Ginza Six Rooftop & Dining",
+    category: "shopping",
+    description: "Architectural retail complex with rooftop terrace and gourmet dining.",
+    estimatedCost: "$35",
+    daysOpen: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    openingHours: "11:00 - 23:00",
+  },
+  {
+    placeId: "tokyo-golden-gai",
+    name: "Shinjuku Golden Gai",
+    category: "nightlife",
+    description: "Historic maze of narrow alleyways packed with intimate micro-bars.",
+    estimatedCost: "$20-30",
+    daysOpen: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    openingHours: "20:00 - 04:00",
+  },
+];
+
+function makeValidAIItinerary() {
+  return {
+    tripTitle: "Tokyo Cultural & Skyline Discovery",
+    destination: "Tokyo, Japan",
+    summary:
+      "A balanced 2-day journey exploring historic temples, peaceful gardens, and futuristic observation decks matching your Explorer alter ego and moderate budget.",
+    days: [
+      {
+        day: 1,
+        date: "2026-10-24",
+        dayOfWeek: "Saturday",
+        theme: "Historic Asakusa & Modern Heights",
+        morning: [
+          {
+            placeId: "tokyo-sensoji",
+            placeName: "Senso-ji Temple",
+            activityDescription:
+              "Wander through the Kaminarimon gate and explore Asakusa's oldest temple, absorbing the vibrant morning incense and historic atmosphere.",
+            estimatedCost: "Free",
+            travelTip:
+              "Arrive before 9:00 AM to enjoy the grounds before large tour groups arrive.",
+          },
+        ],
+        afternoon: [
+          {
+            placeId: "tokyo-skytree",
+            placeName: "Tokyo Skytree",
+            activityDescription:
+              "Ascend to the observation deck for panoramic views reaching Mount Fuji on clear autumn days.",
+            estimatedCost: "$20",
+            travelTip:
+              "Book sunset tickets online in advance to skip the ticketing line.",
+          },
+        ],
+        evening: [
+          {
+            placeId: "tokyo-ginza-six",
+            placeName: "Ginza Six Rooftop & Dining",
+            activityDescription:
+              "Unwind at the tranquil rooftop garden before enjoying a curated dinner with excellent vegetarian menu options.",
+            estimatedCost: "$35",
+            travelTip:
+              "The garden is free to access and offers a quiet oasis away from the bustling shopping floors.",
+          },
+        ],
+        lateNight: {
+          placeId: "tokyo-golden-gai",
+          placeName: "Shinjuku Golden Gai",
+          activityDescription:
+            "Conclude your Saturday evening exploring intimate micro-bars and savoring late-night conversation.",
+          estimatedCost: "$20",
+          travelTip:
+            "Many small bars have small seating charges (cover charge) noted at the entrance door.",
+        },
+      },
+      {
+        day: 2,
+        date: "2026-10-25",
+        dayOfWeek: "Sunday",
+        theme: "Tranquil Greenery & Vibrant Shibuya",
+        morning: [
+          {
+            placeId: "tokyo-shinjuku-gyoen",
+            placeName: "Shinjuku Gyoen National Garden",
+            activityDescription:
+              "Take a peaceful stroll through the expansive traditional gardens and greenhouses.",
+            estimatedCost: "$4",
+            travelTip:
+              "Alcohol is strictly prohibited inside, making it one of the most serene parks in Tokyo.",
+          },
+        ],
+        afternoon: [
+          {
+            placeId: "tokyo-omotesando-cafe",
+            placeName: "Aoyama Flower Market Tea House",
+            activityDescription:
+              "Recharge with floral herbal teas and light refreshments surrounded by fresh seasonal blooms.",
+            estimatedCost: "$15",
+            travelTip:
+              "Expect a short wait during peak afternoon hours, but the botanical interior is worth it.",
+          },
+        ],
+        evening: [
+          {
+            placeId: "tokyo-shibuya-sky",
+            placeName: "Shibuya Sky",
+            activityDescription:
+              "End your journey watching Shibuya Crossing light up from 229 meters in the open air.",
+            estimatedCost: "$18",
+            travelTip:
+              "Locker storage is mandatory for loose items like hats and tripods on the open roof.",
+          },
+        ],
+      },
+    ],
+  };
+}
+
+function mockReqRes(options = {}) {
+  const req = {
+    user: { userId: "u-101" },
+    body: {},
+    params: {},
+    ...options,
+  };
+
+  const res = {
+    statusCode: 200,
+    body: null,
+    status(code) {
+      this.statusCode = code;
+      return this;
+    },
+    json(data) {
+      this.body = data;
+      return this;
+    },
+  };
+
+  return { req, res };
+}
+
+describe("Phase 3: Itinerary Generation Suite", () => {
+  describe("1. Schema Validation (itinerarySchema.js)", () => {
+    it("validates a complete itinerary with multi-activity arrays, dates, and lateNight", () => {
+      const validData = makeValidAIItinerary();
+      const parsed = itineraryResultSchema.safeParse(validData);
+      assert.equal(parsed.success, true);
+      assert.equal(parsed.data.days.length, 2);
+      assert.equal(parsed.data.days[0].date, "2026-10-24");
+      assert.equal(parsed.data.days[0].dayOfWeek, "Saturday");
+      assert.equal(parsed.data.days[0].morning[0].placeId, "tokyo-sensoji");
+      assert.ok(parsed.data.days[0].lateNight);
+    });
+
+    it("rejects an itinerary missing an evening array slot", () => {
+      const invalidData = makeValidAIItinerary();
+      delete invalidData.days[0].evening;
+
+      const parsed = itineraryResultSchema.safeParse(invalidData);
+      assert.equal(parsed.success, false);
+    });
+
+    it("generates a clean JSON schema for Gemini with no $schema field", () => {
+      const jsonSchema = getItineraryResponseJsonSchema();
+      assert.equal(jsonSchema.$schema, undefined);
+      assert.equal(jsonSchema.type, "object");
+      assert.ok(jsonSchema.properties.days);
+    });
+  });
+
+  describe("2. Prompt & Calendar Schedule (itineraryPromptBuilder.js)", () => {
+    it("correctly computes sequential calendar dates and days of week", () => {
+      const schedule = computeItinerarySchedule("2026-10-24", 3);
+      assert.equal(schedule.length, 3);
+      assert.equal(schedule[0].date, "2026-10-24");
+      assert.equal(schedule[0].dayOfWeek, "Saturday");
+      assert.equal(schedule[1].date, "2026-10-25");
+      assert.equal(schedule[1].dayOfWeek, "Sunday");
+      assert.equal(schedule[2].date, "2026-10-26");
+      assert.equal(schedule[2].dayOfWeek, "Monday");
+    });
+
+    it("injects quiz preferences, candidate places, and operating hour constraints", () => {
+      const quiz = {
+        travelAlterEgo: "Explorer",
+        dailyBudget: "$$",
+        dietaryRestrictions: ["Vegetarian"],
+        minNights: 2,
+        seeAllOrDeeply: "seeAll",
+        nightlifeOrSunrise: "nightlife",
+      };
+
+      const { systemPrompt, prompt, candidatePlaceIds, schedule } =
+        buildItineraryPrompt({
+          destination: "Tokyo, Japan",
+          quiz,
+          candidatePlaces: mockCandidatePlaces,
+          numberOfDays: 2,
+          startDate: "2026-10-24",
+        });
+
+      // System prompt constraints
+      assert.ok(systemPrompt.includes("STRICT ZERO-HALLUCINATION RULES"));
+      assert.ok(systemPrompt.includes("CANDIDATE LIST ONLY"));
+      assert.ok(systemPrompt.includes("DAYS OF WEEK & OPERATING HOURS CONSTRAINTS"));
+      assert.ok(systemPrompt.includes("PACING, MULTI-ACTIVITY & NIGHTLIFE RULES"));
+
+      // User prompt injection
+      assert.ok(prompt.includes("Tokyo, Japan"));
+      assert.ok(prompt.includes("Day 1: Saturday, 2026-10-24"));
+      assert.ok(prompt.includes('"seeAllOrDeeply": "seeAll"'));
+      assert.ok(prompt.includes('"nightlifeOrSunrise": "nightlife"'));
+      assert.ok(prompt.includes("tokyo-sensoji"));
+
+      // Candidate place ID set
+      assert.equal(candidatePlaceIds.has("tokyo-sensoji"), true);
+      assert.equal(candidatePlaceIds.has("tokyo-golden-gai"), true);
+      assert.equal(schedule.length, 2);
+    });
+  });
+
+  describe("3. Service & Anti-Hallucination Verification (itineraryService.js)", () => {
+    beforeEach(() => {
+      llm.generateStructured = async () => ({
+        model: "fake-gemini-model",
+        data: makeValidAIItinerary(),
+      });
+    });
+
+    it("successfully generates and normalizes multi-activity days and lateNight slots", async () => {
+      const result = await generateItinerary({
+        destination: "Tokyo, Japan",
+        quiz: { dailyBudget: "$$", seeAllOrDeeply: "seeAll" },
+        candidatePlaces: mockCandidatePlaces,
+        numberOfDays: 2,
+        startDate: "2026-10-24",
+      });
+
+      assert.equal(result.model, "fake-gemini-model");
+      assert.equal(result.itinerary.days.length, 2);
+      assert.equal(result.itinerary.days[0].date, "2026-10-24");
+      assert.equal(result.itinerary.days[0].dayOfWeek, "Saturday");
+      assert.equal(
+        result.itinerary.days[0].morning[0].placeName,
+        "Senso-ji Temple"
+      );
+      assert.equal(
+        result.itinerary.days[0].lateNight.placeName,
+        "Shinjuku Golden Gai"
+      );
+    });
+
+    it("strictly rejects output if the model hallucinates a placeId in morning/afternoon", async () => {
+      const hallucinatedOutput = makeValidAIItinerary();
+      hallucinatedOutput.days[0].morning[0].placeId = "invented-eiffel-tower-tokyo";
+
+      llm.generateStructured = async () => ({
+        model: "fake-gemini-model",
+        data: hallucinatedOutput,
+      });
+
+      await assert.rejects(
+        async () => {
+          await generateItinerary({
+            destination: "Tokyo, Japan",
+            quiz: {},
+            candidatePlaces: mockCandidatePlaces,
+            numberOfDays: 2,
+          });
+        },
+        (err) => {
+          assert.equal(err.statusCode, 502);
+          assert.match(err.message, /AI hallucinated an unknown placeId/);
+          return true;
+        }
+      );
+    });
+
+    it("strictly rejects output if the model hallucinates a placeId in lateNight", async () => {
+      const hallucinatedOutput = makeValidAIItinerary();
+      hallucinatedOutput.days[0].lateNight = {
+        placeId: "invented-nightclub",
+        placeName: "Club Galaxy",
+        activityDescription: "Partying all night.",
+        estimatedCost: "$30",
+        travelTip: "Bring ID.",
+      };
+
+      llm.generateStructured = async () => ({
+        model: "fake-gemini-model",
+        data: hallucinatedOutput,
+      });
+
+      await assert.rejects(
+        async () => {
+          await generateItinerary({
+            destination: "Tokyo, Japan",
+            quiz: {},
+            candidatePlaces: mockCandidatePlaces,
+            numberOfDays: 2,
+          });
+        },
+        (err) => {
+          assert.equal(err.statusCode, 502);
+          assert.match(err.message, /AI hallucinated an unknown placeId/);
+          return true;
+        }
+      );
+    });
+
+    it("rejects generation when candidate places list is empty", async () => {
+      await assert.rejects(
+        async () => {
+          await generateItinerary({
+            destination: "Tokyo, Japan",
+            quiz: {},
+            candidatePlaces: [],
+          });
+        },
+        (err) => {
+          assert.equal(err.statusCode, 400);
+          assert.match(err.message, /candidate places list from Phase 2 is empty/);
+          return true;
+        }
+      );
+    });
+  });
+
+  describe("4. Controller & Persistence (POST /api/itinerary/generate)", () => {
+    let savedTripUpdate = null;
+
+    beforeEach(() => {
+      savedTripUpdate = null;
+
+      userModel.findUserById = async () => ({
+        id: "u-101",
+        quizResponse: { travelAlterEgo: "Explorer" },
+      });
+
+      tripModel.getTripById = async (userId, tripId) => ({
+        tripId,
+        userId,
+        title: "Initial Tokyo Trip",
+        itinerary: null,
+        quizSnapshot: { dailyBudget: "$$" },
+      });
+
+      tripModel.updateTripItinerary = async (userId, tripId, itinerary, model) => {
+        savedTripUpdate = { userId, tripId, itinerary, model };
+        return {
+          PK: `USER#${userId}`,
+          SK: `TRIP#${tripId}`,
+          tripId,
+          userId,
+          itinerary,
+          model,
+        };
+      };
+
+      llm.generateStructured = async () => ({
+        model: "gemini-test",
+        data: makeValidAIItinerary(),
+      });
+    });
+
+    it("generates an itinerary and returns 200 with complete days", async () => {
+      const { req, res } = mockReqRes({
+        body: {
+          destination: "Tokyo, Japan",
+          candidatePlaces: mockCandidatePlaces,
+          numberOfDays: 2,
+          startDate: "2026-10-24",
+        },
+      });
+
+      await createItinerary(req, res);
+
+      assert.equal(res.statusCode, 200);
+      assert.equal(res.body.itinerary.days.length, 2);
+      assert.equal(res.body.itinerary.days[0].morning[0].placeId, "tokyo-sensoji");
+      assert.equal(res.body.itinerary.days[0].date, "2026-10-24");
+      assert.equal(res.body.itinerary.days[0].dayOfWeek, "Saturday");
+    });
+
+    it("updates DynamoDB trip when tripId is supplied", async () => {
+      const { req, res } = mockReqRes({
+        params: { tripId: "t-999" },
+        body: {
+          destination: "Tokyo, Japan",
+          candidatePlaces: mockCandidatePlaces,
+          numberOfDays: 2,
+        },
+      });
+
+      await createItinerary(req, res);
+
+      assert.equal(res.statusCode, 200);
+      assert.ok(savedTripUpdate);
+      assert.equal(savedTripUpdate.tripId, "t-999");
+      assert.equal(savedTripUpdate.itinerary.days.length, 2);
+      assert.equal(res.body.trip.PK, undefined);
+    });
+
+    it("returns 400 when destination is omitted", async () => {
+      const { req, res } = mockReqRes({
+        body: {
+          candidatePlaces: mockCandidatePlaces,
+        },
+      });
+
+      await createItinerary(req, res);
+      assert.equal(res.statusCode, 400);
+      assert.match(res.body.message, /Destination is required/);
+    });
+
+    it("returns 400 when candidate places are missing or malformed", async () => {
+      const { req, res } = mockReqRes({
+        body: {
+          destination: "Tokyo, Japan",
+          candidatePlaces: [{ name: "Incomplete place without ID" }],
+        },
+      });
+
+      await createItinerary(req, res);
+      assert.equal(res.statusCode, 400);
+      assert.match(res.body.message, /must include at least 'placeId' and 'name'/);
+    });
+
+    it("returns 404 when requested tripId does not exist", async () => {
+      tripModel.getTripById = async () => null;
+
+      const { req, res } = mockReqRes({
+        params: { tripId: "non-existent-trip" },
+        body: {
+          destination: "Tokyo, Japan",
+          candidatePlaces: mockCandidatePlaces,
+        },
+      });
+
+      await createItinerary(req, res);
+      assert.equal(res.statusCode, 404);
+    });
+  });
+});
