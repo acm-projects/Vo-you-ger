@@ -59,14 +59,6 @@ const questions = [
         ]
     },
     {
-        questions: "What is your preferred mode of transportation?",
-        answers: [
-            { text: "Plane" },
-            { text: "Car (road trip)" },
-            { text: "Train" }
-        ]
-    },
-    {
         questions: "What kind of accommodation would you find yourself in?",
         answers: [
             { text: "All inclusive resort" },
