@@ -22,34 +22,170 @@
 const userModel = require("../models/userModel");
 const tripModel = require("../models/tripModel");
 const itineraryService = require("../services/itineraryService");
-const { candidatePlaceSchema } = require("../schemas/itinerarySchema");
+const placesQueryBuilder = require("../services/placesQueryBuilder");
+const googlePlacesService = require("../services/googlePlacesService");
+const placeNormalizer = require("../services/placeNormalizer");
+const placeGroupingService = require("../services/placeGroupingService");
+const destinations = require("../data/destinations.json");
 
 /**
  * POST /api/itinerary/generate
- * (also mounted as POST /api/trips/:tripId/itinerary)
+ * (also mounted as POST /api/itinerary/:tripId)
  *
- * Generates a structured day-by-day itinerary from Phase 2 candidate places.
+ * Orchestrates full itinerary generation:
+ * - Accepts { tripId, destinationId, startDate? } (single clean entry point from frontend)
+ *   OR direct { destination, candidatePlaces, tripId?, startDate? }.
+ * - When candidatePlaces are omitted, executes Phase 2 places discovery pipeline.
+ * - Generates grounded day-by-day itinerary via Phase 3 Gemini service.
+ * - Attaches Phase 5 non-AI curated travel metadata (languages, currency, payment methods, safety, culture).
+ * - Persists completed itinerary to DynamoDB via tripModel.updateTripItinerary.
  */
 async function createItinerary(req, res) {
   try {
     const userId = req.user.userId;
     const tripId = req.params.tripId || req.body.tripId;
+    const destinationId =
+      req.body.destinationId ||
+      req.body.destination?.id ||
+      req.body.destination?.destinationId;
 
-    // 1. Validate destination
-    const destination = req.body.destination;
+    // 1. Resolve trip if tripId is provided
+    let trip = null;
+    if (tripId) {
+      trip = await tripModel.findTripById(userId, tripId);
+      if (!trip) {
+        return res.status(404).json({
+          error: "Not Found",
+          message: `Trip with id "${tripId}" was not found.`,
+        });
+      }
+    }
+
+    // 2. Resolve destination object and metadata
+    let destination = req.body.destination;
+    let selectedRec = null;
+
+    if (trip?.recommendations && destinationId) {
+      selectedRec = trip.recommendations.find(
+        (r) => r.destinationId === destinationId || r.id === destinationId
+      );
+    }
+
+    // Look up canonical destination from destinations.json
+    let canonicalDest = null;
+    if (destinationId) {
+      canonicalDest = destinations.find(
+        (d) => d.id === destinationId || d.id === destinationId.toLowerCase()
+      );
+    }
+    if (
+      !canonicalDest &&
+      (selectedRec?.name || (typeof destination === "object" && destination?.name))
+    ) {
+      const destName = (selectedRec?.name || destination.name).toLowerCase();
+      canonicalDest = destinations.find(
+        (d) => d.name.toLowerCase() === destName
+      );
+    }
+    if (!canonicalDest && typeof destination === "string") {
+      const destName = destination.split(",")[0].trim().toLowerCase();
+      canonicalDest = destinations.find(
+        (d) => d.name.toLowerCase() === destName
+      );
+    }
+
+    // If destination was not explicitly passed, infer it from selectedRec or canonicalDest
+    if (!destination) {
+      if (selectedRec) {
+        destination = {
+          id: selectedRec.destinationId || selectedRec.id,
+          name: selectedRec.name,
+          country: selectedRec.country,
+        };
+      } else if (canonicalDest) {
+        destination = {
+          id: canonicalDest.id,
+          name: canonicalDest.name,
+          country: canonicalDest.country,
+        };
+      }
+    }
+
     if (!destination) {
       return res.status(400).json({
         error: "Bad Request",
-        message: "Destination is required (e.g. 'Tokyo, Japan' or { name, country }).",
+        message:
+          "Destination is required (provide destinationId or destination e.g. 'Tokyo, Japan').",
       });
     }
 
-    // 2. Validate candidate places from Phase 2
-    // Supports either flat candidatePlaces array or Phase 2 groupedPlaces response
+    // 3. Resolve Phase 5 Extra Trip Details (Languages, Budget, Currency, Payment Methods, Safety, Culture)
+    // Curated non-AI data directly from destinations.json
+    const practicalInfo = canonicalDest
+      ? {
+          destinationId: canonicalDest.id,
+          name: canonicalDest.name,
+          country: canonicalDest.country,
+          countryCode: canonicalDest.countryCode,
+          languages: canonicalDest.languages || [],
+          budget: canonicalDest.budget || null,
+          currency: canonicalDest.currency || null,
+          paymentMethods: canonicalDest.paymentMethods || null,
+          safety: canonicalDest.safety ?? null,
+          culturalTips: canonicalDest.culturalTips || [],
+        }
+      : null;
+
+    // 4. Resolve user profile and quiz assessment
+    const user = await userModel.findUserById(userId);
+    const quiz =
+      req.body.quiz ||
+      trip?.quizSnapshot ||
+      user?.quizResponse ||
+      {};
+
+    // 5. Resolve candidate places:
+    // Check if directly provided (candidatePlaces array or Phase 2 groupedPlaces)
     let candidatePlaces = req.body.candidatePlaces;
     if (!Array.isArray(candidatePlaces) && req.body.groupedPlaces?.groups) {
       candidatePlaces = req.body.groupedPlaces.groups.flatMap(
         (group) => group.places || []
+      );
+    }
+
+    // If candidate places were not provided, orchestrate Conrad's Phase 2 pipeline:
+    if (!Array.isArray(candidatePlaces) || candidatePlaces.length === 0) {
+      const destObj =
+        typeof destination === "object"
+          ? destination
+          : {
+              name: canonicalDest?.name || destination.split(",")[0].trim(),
+              country:
+                canonicalDest?.country ||
+                destination.split(",")[1]?.trim() ||
+                "",
+            };
+
+      // 5a. Build Google Places queries based on destination & quiz
+      const generated = await placesQueryBuilder.buildPlacesQueries({
+        destination: destObj,
+        quiz,
+      });
+
+      // 5b. Search real places via Google Places Text Search
+      const searchResults = await googlePlacesService.searchPlacesForQueries(
+        generated.queries,
+        destObj
+      );
+
+      // 5c. Normalize places
+      const normalized = placeNormalizer.normalizePlaces(
+        searchResults.places
+      );
+
+      // 5d. Flatten normalized places into candidate places array
+      candidatePlaces = ["attractions", "food", "experiences"].flatMap(
+        (category) => normalized[category] || []
       );
     }
 
@@ -73,30 +209,14 @@ async function createItinerary(req, res) {
       });
     }
 
-    // 3. Resolve user profile and trip if tripId is provided
-    let trip = null;
-    if (tripId) {
-      trip = await tripModel.findTripById(userId, tripId);
-      if (!trip) {
-        return res.status(404).json({
-          error: "Not Found",
-          message: `Trip with id "${tripId}" was not found.`,
-        });
-      }
-    }
+    // 6. Generate structured itinerary via Gemini (Phase 3)
+    const formattedDestination =
+      typeof destination === "string"
+        ? destination
+        : `${destination.name}, ${destination.country}`;
 
-    const user = await userModel.findUserById(userId);
-
-    // Prefer quiz provided in request body, then trip snapshot, then user profile
-    const quiz =
-      req.body.quiz ||
-      trip?.quizSnapshot ||
-      user?.quizResponse ||
-      {};
-
-    // 4. Generate structured itinerary via Gemini
     const { itinerary, model } = await itineraryService.generateItinerary({
-      destination,
+      destination: formattedDestination,
       quiz,
       candidatePlaces,
       numberOfDays: req.body.numberOfDays,
@@ -104,7 +224,12 @@ async function createItinerary(req, res) {
       context: req.body.context || {},
     });
 
-    // 5. If linked to an existing trip, persist itinerary to DynamoDB
+    // 7. Attach Phase 5 extra trip details to the itinerary
+    if (practicalInfo) {
+      itinerary.practicalInfo = practicalInfo;
+    }
+
+    // 8. If linked to an existing trip, persist itinerary to DynamoDB
     let updatedTrip = null;
     if (tripId) {
       const savedAttributes = await tripModel.updateTripItinerary(
@@ -119,7 +244,7 @@ async function createItinerary(req, res) {
 
     return res.status(200).json({
       message: "Itinerary generated successfully",
-      destination,
+      destination: formattedDestination,
       itinerary,
       model,
       trip: updatedTrip,
@@ -136,7 +261,8 @@ async function createItinerary(req, res) {
     if (err.statusCode === 502) {
       return res.status(502).json({
         error: "Bad Gateway",
-        message: err.message || "The AI returned an invalid itinerary response.",
+        message:
+          err.message || "The AI returned an invalid itinerary response.",
       });
     }
 

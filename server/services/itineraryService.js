@@ -78,6 +78,44 @@ async function generateItinerary({
   const days = data.days || [];
   const timeSlots = ["morning", "afternoon", "evening"];
 
+  function enrichActivity(activity, canonical, dayOfWeek) {
+    activity.placeName = canonical.name;
+
+    // Attach opening hours and calculate hoursToday for this specific day of the week
+    if (Array.isArray(canonical.openingHours) && canonical.openingHours.length > 0) {
+      activity.openingHours = canonical.openingHours;
+      if (dayOfWeek) {
+        const todayMatch = canonical.openingHours.find((line) =>
+          typeof line === "string" &&
+          line.toLowerCase().startsWith(dayOfWeek.toLowerCase())
+        );
+        if (todayMatch) {
+          const parts = todayMatch.split(/:\s+/);
+          activity.hoursToday = parts.slice(1).join(": ") || todayMatch;
+        } else {
+          activity.hoursToday = activity.hoursToday || null;
+        }
+      } else {
+        activity.hoursToday = activity.hoursToday || null;
+      }
+    } else {
+      activity.openingHours = activity.openingHours || null;
+      activity.hoursToday = activity.hoursToday || null;
+    }
+
+    if (Array.isArray(canonical.daysOpen) && canonical.daysOpen.length > 0) {
+      activity.openDays = canonical.daysOpen;
+    }
+
+    if (canonical.rating !== undefined && canonical.rating !== null) {
+      activity.rating = canonical.rating;
+    }
+
+    if (canonical.address) {
+      activity.address = canonical.address;
+    }
+  }
+
   for (const day of days) {
     for (const slot of timeSlots) {
       const activities = day[slot];
@@ -99,9 +137,9 @@ async function generateItinerary({
           throw error;
         }
 
-        // Overwrite placeName with canonical name from candidate list to prevent subtle naming hallucinations
+        // Overwrite placeName and enrich with canonical details (opening hours, hoursToday, rating, address)
         const canonical = placeById.get(activity.placeId);
-        activity.placeName = canonical.name;
+        enrichActivity(activity, canonical, day.dayOfWeek);
       }
     }
 
@@ -114,7 +152,8 @@ async function generateItinerary({
         error.statusCode = 502;
         throw error;
       }
-      day.lateNight.placeName = placeById.get(day.lateNight.placeId).name;
+      const canonical = placeById.get(day.lateNight.placeId);
+      enrichActivity(day.lateNight, canonical, day.dayOfWeek);
     }
   }
 
