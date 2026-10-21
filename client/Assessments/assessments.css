@@ -1,0 +1,278 @@
+:root {
+    /* Backgrounds & Surfaces */
+    --bg-paper: #f4f1ea;
+    --bg-dots: #e3decb; /* polka dots */
+    --card-bg: #fcfbfa;
+
+    /* Text Colors */
+    --text-main: #2c2825;
+    --text-muted: #7a7265;
+    --text-h1: #8c6d46;
+    --text-h2: #5c5244;
+    --text-white: #fff;
+
+    /* Primary Interactive Colors (Vintage Olive) */
+    --primary: #5c4033;
+    --primary-hover: #432e24;
+    --focus-ring: rgba(92, 64, 51, 0.2);
+
+    /* Borders & Hover States */
+    --border-app: #dcd6cc;
+    --border-light: #e3decb;
+    --border-input: #d5cebf;
+    --border-hover: #b5ab99;
+    --hover-bg: #f3efe6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('AssessmentBG.png'); /* Replace with your actual image file name */
+    background-size: cover;     /* Scales the image to cover the entire screen */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating like a tile */
+    background-attachment: fixed; /* Keeps the background stationary when scrolling */
+}
+
+.app {
+    background-color: var(--card-bg);
+    width: 90%;
+    max-width: 800px;
+    margin: 60px auto 0;
+    border-radius: 8px;
+    padding: 40px;
+    border: 1px solid var(--border-app);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.app h1 {
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: var(--text-h1);
+    font-weight: 600;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.quiz {
+    padding: 10px 0;
+}
+
+.quiz h2 {
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: var(--text-h2);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+#answer-buttons {
+    display: grid;
+    gap: 12px;
+}
+
+.btn {
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    font-weight: 500;
+    padding: 14px 20px;
+    width: 100%;
+    border: 1px solid var(--border-input);
+    text-align: left;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background: var(--hover-bg);
+    border-color: var(--border-hover);
+}
+
+.btn.selected {
+    background: var(--primary);
+    color: var(--text-white);
+    border-color: var(--primary);
+}
+
+#next-btn {
+    background: var(--primary);
+    color: var(--text-white);
+    font-weight: 600;
+    width: 140px;
+    border: 0;
+    padding: 12px 20px;
+    margin: 30px 0 0 auto;
+    border-radius: 6px;
+    cursor: pointer;
+    display: none;
+    text-align: center;
+    float: right;
+    transition: background 0.2s;
+}
+
+#next-btn:hover {
+    background: var(--primary-hover);
+}
+
+.text-input-field {
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    font-weight: 500;
+    padding: 14px 20px;
+    width: 100%;
+    border: 1px solid var(--border-input);
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.text-input-field:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px var(--focus-ring);
+}
+
+.quiz-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+#back-btn {
+    background: transparent;
+    color: var(--primary);
+    font-weight: 600;
+    width: 140px;
+    border: 1px solid var(--primary);
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: none;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+#back-btn:hover {
+    background: var(--hover-bg);
+}
+
+#next-btn {
+    background: var(--primary);
+    color: var(--text-white);
+    font-weight: 600;
+    width: 140px;
+    border: 0;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: none;
+    text-align: center;
+    transition: background 0.2s;
+    margin: 0;
+}
+
+#next-btn:hover {
+    background: var(--primary-hover);
+}
+
+/* Styling for the Not Sure option button */
+.not-sure-divider {
+    text-align: center;
+    margin: 15px 0 10px;
+    font-size: 13px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.not-sure-btn {
+    background-color: var(--card-bg);
+    color: var(--primary);
+    border: 1px dashed var(--primary);
+    font-weight: 600;
+}
+
+.not-sure-btn:hover {
+    background-color: var(--hover-bg);
+    border-style: solid;
+}
+
+.not-sure-btn.selected {
+    background-color: var(--primary);
+    color: var(--text-white);
+    border-style: solid;
+}
+
+.image-card {
+    background-color: var(--card-bg);
+    border: 2px solid var(--border-input);
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.image-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.image-card-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.image-card-caption {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.image-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+}
+
+.image-card.selected {
+    background-color: #5c4033; 
+    border-color: #5c4033;
+    color: white;
+}
+
+.image-card.selected .image-card-text,
+.image-card.selected .image-card-caption {
+    color: white;
+}
+
+#next-btn.recommendations-btn {
+    width: 320px;           
+    padding: 16px 24px;     
+    font-size: 16px;        
+    margin: 0 auto;         
+    float: none;            
+    display: block;         
+}
+
+.quiz-nav:has(.recommendations-btn) {
+    justify-content: center;
+}

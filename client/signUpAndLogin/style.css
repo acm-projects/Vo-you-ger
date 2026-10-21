@@ -2,10 +2,10 @@
 
 /* Basic styles | color choices | Universal */
 :root {
-    --accent-color: #a1d0f1;
-    --base-color: white;
-    --text-color: black;
-    --input-color: #F3F0FF;
+    --accent-color: #5c4033; /* Matches --primary */
+    --base-color: #d5cebf;   /* Matches --bg-paper */
+    --text-color: #2c2825;   /* Matches --text-main */
+    --input-color: #f3efe6;  /* Matches --hover-bg */
 }
 
 
@@ -18,7 +18,7 @@
 
 /* style choices | default fonts */
 html {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
     font-size: 12pt;
     color: var(--text-color);
     text-align: center;
@@ -27,7 +27,7 @@ html {
 /* Fullscreen background | centered content */
 body {
     min-height: 100vh;
-    background-image: url(pexels-adem-komurcu-2160553523-39803006.jpg);
+    background-image: url(pexels-adem-komurcu-2160553523-39803006.png);
     background-size: cover;
     background-position: center;
     overflow-x: hidden;
