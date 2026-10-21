@@ -1,0 +1,185 @@
+* {
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family: 'Courier New', Courier, monospace;
+    background: white;
+    min-height: 100vn;
+    display: flex;
+    justify-content: center;
+    padding: 4rem
+}
+
+.wrap{
+    width: 100%;
+    max-width: 490px;
+}
+
+ht{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 300;
+    font-size: 3rem;
+    color: black;
+    margin-bottom: 0.2rem;
+}
+
+h1 i{
+    font-size: italic;
+    color: red;
+}
+
+.sub{
+    font-size: 13px;
+    color: blue;
+    margin-bottom: 2rem;
+}
+
+.input-row{
+    display: flex;
+    gap:0.5rem;
+    background: purple;
+    border: 1px solid white;
+    border-radius: 12px;
+    padding: 0.6rem 0.6rem 0.6rem 1 rem;
+    margin-bottom: 1.5rem;
+}
+
+input{
+    flex:1;
+    border: none;
+    background: transparent;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+    color: black;
+    outline: none;
+}
+
+input::placeholder{
+    color: pink;
+    font-style: italic;
+}
+
+button.add{
+    background: red;
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+}
+
+button.add:hover{
+    background: brown;
+}
+
+button.add#active{
+    transform: scale(0.93);
+}
+
+ul{
+    list-style: none;
+    max-height: 340px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: white transparent;
+}
+
+ul::-webkit-scrollbar{
+    width: 4px;
+}
+
+ul::-webkit-scrollbar-thumb{
+    background: white;
+    border-radius: 99px;
+}
+
+li{
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid white;
+    animation: in .2s ease;
+}
+
+@keyframes in{
+    from{
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+}
+
+li input[type-checkbox]{
+    display:none;
+}
+
+.box{
+    width: 20px;
+    height: 20px;
+    border: 1.5px solid white;
+    border-radius: 6px;
+    flex-shrink: 0;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: all 0.2s;
+}
+
+li.done .box{
+    background: green;
+    border-color: aquamarine;
+}
+
+li.done .box::after{
+    content: '✓';
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+li.done span{
+    color: aqua;
+    text-decoration: line-through;
+}
+
+span.text{
+    flex: 1;
+    font-size: 15px;
+    color: pink;
+}
+
+button.del{
+    background: none;
+    border: none;
+    color: purple;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    padding: 2px 4px;
+    border-radius: 6px;
+    opacity: 0;
+    transition: opacity .15s, color .15s;
+}
+
+li:hover button.del{
+    opacity:1;
+}
+
+button.del:hover{
+    color: brown;
+}
+
+.empty{
+    text-align: center;
+    padding:3rem 0;
+    color: peachpuff;
+    font-style:italic;
+    display:none;
+}
