@@ -1,17 +1,16 @@
+
 const crypto = require("crypto");
 const {
   PutCommand,
   GetCommand,
   UpdateCommand,
+  QueryCommand,
 } = require("@aws-sdk/lib-dynamodb");
+
 const { docClient, TABLE_NAME } = require("../db/dynamo");
 
 /**
  * Create a new trip and save it to DynamoDB.
- *
- * @param {string} userId
- * @param {object} tripData
- * @returns {Promise<object>}
  */
 async function createTrip(
   userId,
@@ -29,6 +28,8 @@ async function createTrip(
     summary,
     recommendations,
     itinerary: null,
+    isSaved: false,
+    savedAt: null,
     quizSnapshot: quiz || null,
     generatedBy: model || null,
     createdAt: timestamp,
@@ -47,13 +48,7 @@ async function createTrip(
 }
 
 /**
- * Find an existing trip belonging to a specific user.
- *
- * Uses the DynamoDB primary key and sort key.
- *
- * @param {string} userId
- * @param {string} tripId
- * @returns {Promise<object|null>}
+ * Find a trip belonging to a specific user.
  */
 async function findTripById(userId, tripId) {
   if (!userId || !tripId) {
@@ -74,15 +69,18 @@ async function findTripById(userId, tripId) {
 }
 
 /**
- * Updates an existing Trip with its generated day-by-day itinerary (Phase 3).
- *
- * @param {string} userId - ID of the authenticated user
- * @param {string} tripId - ID of the trip
- * @param {object} itinerary - The structured itinerary object from Gemini
- * @param {string} [model] - Gemini model version used for generation
- * @returns {Promise<object>} The updated trip attributes
+ * Update a trip with its generated itinerary.
  */
-async function updateTripItinerary(userId, tripId, itinerary, model = null) {
+async function updateTripItinerary(
+  userId,
+  tripId,
+  itinerary,
+  model = null,
+) {
+  if (!userId || !tripId) {
+    throw new Error("userId and tripId are required");
+  }
+
   const timestamp = new Date().toISOString();
 
   const updateExpression = model
@@ -106,6 +104,8 @@ async function updateTripItinerary(userId, tripId, itinerary, model = null) {
         SK: `TRIP#${tripId}`,
       },
       UpdateExpression: updateExpression,
+      ConditionExpression:
+        "attribute_exists(PK) AND attribute_exists(SK)",
       ExpressionAttributeValues: expressionAttributeValues,
       ReturnValues: "ALL_NEW",
     }),
@@ -114,8 +114,177 @@ async function updateTripItinerary(userId, tripId, itinerary, model = null) {
   return result.Attributes;
 }
 
+/**
+ * Save a generated itinerary to the user's profile.
+ *
+ * Saving is idempotent: repeated saves preserve savedAt.
+ * The conditional update protects against concurrent saves.
+ */
+async function saveTrip(userId, tripId) {
+  if (!userId || !tripId) {
+    throw new Error("userId and tripId are required");
+  }
+
+  const existingTrip = await findTripById(userId, tripId);
+
+  if (!existingTrip) {
+    const error = new Error("Trip not found");
+    error.statusCode = 404;
+    throw error;
+  }
+
+  if (existingTrip.itinerary == null) {
+    const error = new Error(
+      "Generate an itinerary before saving this trip",
+    );
+    error.statusCode = 400;
+    throw error;
+  }
+
+  if (existingTrip.isSaved === true) {
+    return existingTrip;
+  }
+
+  const timestamp = new Date().toISOString();
+
+  try {
+    const result = await docClient.send(
+      new UpdateCommand({
+        TableName: TABLE_NAME,
+        Key: {
+          PK: `USER#${userId}`,
+          SK: `TRIP#${tripId}`,
+        },
+        UpdateExpression:
+          "SET isSaved = :saved, savedAt = :timestamp, updatedAt = :timestamp",
+        ConditionExpression:
+          "attribute_exists(PK) AND attribute_exists(SK) AND attribute_type(itinerary, :mapType) AND (attribute_not_exists(isSaved) OR isSaved = :unsaved)",
+        ExpressionAttributeValues: {
+          ":saved": true,
+          ":unsaved": false,
+          ":timestamp": timestamp,
+          ":mapType": "M",
+        },
+        ReturnValues: "ALL_NEW",
+      }),
+    );
+
+    return result.Attributes;
+  } catch (error) {
+    if (error.name !== "ConditionalCheckFailedException") {
+      throw error;
+    }
+
+    // Another request may have saved this trip first.
+    const latestTrip = await findTripById(userId, tripId);
+
+    if (latestTrip?.isSaved === true) {
+      return latestTrip;
+    }
+
+    if (!latestTrip) {
+      const notFoundError = new Error("Trip not found");
+      notFoundError.statusCode = 404;
+      throw notFoundError;
+    }
+
+    if (latestTrip.itinerary == null) {
+      const invalidTripError = new Error(
+        "Generate an itinerary before saving this trip",
+      );
+      invalidTripError.statusCode = 400;
+      throw invalidTripError;
+    }
+
+    // Preserve the original error if the condition failed
+    // for an unexpected reason.
+    throw error;
+  }
+}
+
+/**
+ * Remove a trip from the user's saved trips.
+ * The generated itinerary is preserved.
+ */
+async function unsaveTrip(userId, tripId) {
+  if (!userId || !tripId) {
+    throw new Error("userId and tripId are required");
+  }
+
+  const timestamp = new Date().toISOString();
+
+  const result = await docClient.send(
+    new UpdateCommand({
+      TableName: TABLE_NAME,
+      Key: {
+        PK: `USER#${userId}`,
+        SK: `TRIP#${tripId}`,
+      },
+      UpdateExpression:
+        "SET isSaved = :unsaved, savedAt = :null, updatedAt = :timestamp",
+      ConditionExpression:
+        "attribute_exists(PK) AND attribute_exists(SK)",
+      ExpressionAttributeValues: {
+        ":unsaved": false,
+        ":null": null,
+        ":timestamp": timestamp,
+      },
+      ReturnValues: "ALL_NEW",
+    }),
+  );
+
+  return result.Attributes;
+}
+
+/**
+ * Retrieve all saved trips belonging to a user.
+ *
+ * Queries only that user's TRIP records.
+ * Handles DynamoDB pagination.
+ */
+async function getSavedTrips(userId) {
+  if (!userId) {
+    throw new Error("userId is required");
+  }
+
+  const savedTrips = [];
+  let lastEvaluatedKey;
+
+  do {
+    const result = await docClient.send(
+      new QueryCommand({
+        TableName: TABLE_NAME,
+        KeyConditionExpression:
+          "PK = :pk AND begins_with(SK, :sk)",
+        ExpressionAttributeValues: {
+          ":pk": `USER#${userId}`,
+          ":sk": "TRIP#",
+        },
+        ExclusiveStartKey: lastEvaluatedKey,
+      }),
+    );
+
+    savedTrips.push(
+      ...(result.Items || []).filter(
+        (trip) => trip.isSaved === true,
+      ),
+    );
+
+    lastEvaluatedKey = result.LastEvaluatedKey;
+  } while (lastEvaluatedKey);
+
+  return savedTrips.sort(
+    (a, b) =>
+      new Date(b.savedAt || b.createdAt || 0) -
+      new Date(a.savedAt || a.createdAt || 0),
+  );
+}
+
 module.exports = {
   createTrip,
   findTripById,
   updateTripItinerary,
+  saveTrip,
+  unsaveTrip,
+  getSavedTrips,
 };
