@@ -24,6 +24,7 @@ const authRoutes = require("./routes/authRoutes");
 const recommendationRoutes = require("./routes/recommendationRoutes");
 const quizRoutes = require("./routes/quizRoutes");
 const itineraryRoutes = require("./routes/itineraryRoutes");
+const tripRoutes = require("./routes/tripRoutes");
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {
@@ -41,6 +42,8 @@ app.use("/api/recommendations", recommendationRoutes);
 
 // Mount AI itinerary routes (Phase 3)
 app.use("/api/itinerary", itineraryRoutes);
+// Mount Saved Trips routes
+app.use("/api/trips", tripRoutes);
 
 // Export app instance (useful for testing)
 module.exports = app;
