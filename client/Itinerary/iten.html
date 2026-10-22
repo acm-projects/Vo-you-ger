@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Itinerary</title>
+    <link rel="stylesheet" href="iten.css">
+    <script src="iten.jsx" defer></script>
+</head>
+<body>
+
+    <header class="map-banner">
+        <img src="MapScroll.png" alt="Map" class="map-image">
+    </header>
+
+    <main>
+        <h1 class="page-title">Japan 2028</h1> <!-- Dynamic title -->
+
+        <div class="content-container">
+            <!-- Itinerary Column -->
+            <section class="itinerary">
+                <h2>Itinerary:</h2>
+
+                <div class="day-section">
+                    <button class="day-dropdown" aria-expanded="true">
+                        <span class="arrow">⌄</span>
+                        <span>Thursday, September 14th</span>
+                    </button>
+
+                    <div class="day-content">
+                        <div class="spots-list"></div>
+
+                        <button class="add-spot-toggle">+ Add a spot</button>
+
+                        <form class="spot-form" hidden>
+                            <h3>Add a spot</h3>
+
+                            <div class="time-fields">
+                                <label>
+                                    Time start
+                                    <input type="time" name="startTime" required>
+                                </label>
+
+                                <label>
+                                    Time end
+                                    <input type="time" name="endTime" required>
+                                </label>
+                            </div>
+
+                            <label class="location-label">
+                                Search location
+                                <input
+                                    type="text"
+                                    name="location"
+                                    placeholder="Where are you going?"
+                                    required
+                                >
+                            </label>
+
+                            <div class="form-actions">
+                                <button type="submit" class="save-spot">
+                                    Add to itinerary
+                                </button>
+                                <button type="button" class="cancel-spot">
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="day-section">
+                    <button class="day-dropdown" aria-expanded="false">
+                        <span class="arrow">⌄</span>
+                        <span>Friday, September 15th</span>
+                    </button>
+
+                    <div class="day-content" hidden>
+                        <div class="spots-list"></div>
+                        <button class="add-spot-toggle">+ Add a spot</button>
+
+                        <form class="spot-form" hidden>
+                            <h3>Add a spot</h3>
+                            <div class="time-fields">
+                                <label>Time start
+                                    <input type="time" name="startTime" required>
+                                </label>
+                                <label>Time end
+                                    <input type="time" name="endTime" required>
+                                </label>
+                            </div>
+                            <label class="location-label">Search location
+                                <input type="text" name="location"
+                                    placeholder="Where are you going?" required>
+                            </label>
+                            <div class="form-actions">
+                                <button type="submit" class="save-spot">Add to itinerary</button>
+                                <button type="button" class="cancel-spot">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="day-section">
+                    <button class="day-dropdown" aria-expanded="false">
+                        <span class="arrow">⌄</span>
+                        <span>Saturday, September 16th</span>
+                    </button>
+
+                    <div class="day-content" hidden>
+                        <div class="spots-list"></div>
+                        <button class="add-spot-toggle">+ Add a spot</button>
+
+                        <form class="spot-form" hidden>
+                            <h3>Add a spot</h3>
+                            <div class="time-fields">
+                                <label>Time start
+                                    <input type="time" name="startTime" required>
+                                </label>
+                                <label>Time end
+                                    <input type="time" name="endTime" required>
+                                </label>
+                            </div>
+                            <label class="location-label">Search location
+                                <input type="text" name="location"
+                                    placeholder="Where are you going?" required>
+                            </label>
+                            <div class="form-actions">
+                                <button type="submit" class="save-spot">Add to itinerary</button>
+                                <button type="button" class="cancel-spot">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- To-Do Sidebar Section -->
+            <aside class="right-sidebar">
+                <section class="todo-section">
+                    <h2>Travel <i>Tasks</i></h2>
+                    <p class="sub" id="todo-sub">
+                        Start adding your tasks:
+                    </p>
+
+                    <div class="todo-input-row">
+                        <input type="text" id="todo-input" placeholder="Add a task..." maxlength="100">
+                        <button class="todo-add" id="todo-add-btn">+</button>
+                    </div>
+
+                    <ul id="todo-list"></ul>
+
+                    <p class="todo-empty" id="todo-empty">
+                        Nothing here
+                    </p>
+                </section>
+                <section class="recommended-section">
+                    <h2 class="recommended-heading">
+                        <span class="recommended-arrow">v</span>
+                        Recommended Places
+                    </h2>
+
+                    <div class="recommended-list">
+
+                        <div class="recommended-place">
+                            <img src="Nara.jpg" alt="Nara">
+                            <span>Nara Bowing Deers</span>
+                            <button type="button" class="recommended-add">+</button>
+                        </div>
+
+                        <div class="recommended-place">
+                            <img src="KuromonMarket.jpg" alt="Kuromon">
+                            <span>Kuromon Food Market</span>
+                            <button type="button" class="recommended-add">+</button>
+                        </div>
+
+                        <div class="recommended-place">
+                            <img src="MountFuji.jpg" alt="Fuji">
+                            <span>Mount Fuji</span>
+                            <button type="button" class="recommended-add">+</button>
+                        </div>
+
+                        <div class="recommended-place">
+                            <img src="kyoto.jpg" alt="kyoto">
+                            <span>Temples in Kyoto</span>
+                            <button type="button" class="recommended-add">+</button>
+                        </div>
+
+                    </div>
+                </section>
+
+            </aside>
+        </div>
+        
+    </main>
+</body>
+</html>

@@ -5,12 +5,55 @@
     "type": "city",
     "country": "Portugal",
     "countryCode": "PT",
-    "tags": ["food", "history", "city", "famous", "nightlife"],
+    "tags": [
+      "food",
+      "history",
+      "city",
+      "famous",
+      "nightlife"
+    ],
     "budget": "$$",
-    "bestMonths": ["Mar", "Apr", "May", "Sep", "Oct"],
+    "bestMonths": [
+      "Mar",
+      "Apr",
+      "May",
+      "Sep",
+      "Oct"
+    ],
     "climate": "mild",
     "safety": 1,
-    "description": "Hilly coastal capital with tiled streets, custard tarts, fado music and easy day trips to Sintra and the beach."
+    "description": "Hilly coastal capital with tiled streets, custard tarts, fado music and easy day trips to Sintra and the beach.",
+    "languages": [
+      "Portuguese (official)",
+      "English (widely spoken in Lisbon, Porto, and Algarve)"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "Euro",
+      "symbol": "€"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (almost universally rejected)",
+        "American Express (limited to high-end venues)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "MB Way (locals)"
+      ],
+      "cashAdvice": "Contactless card payments are standard, but carry small cash in Euros for historic trams (like Tram 28), small pastelarias (custard tart shops), and taxis."
+    },
+    "culturalTips": [
+      "Appetizers brought to your table (bread, olives, cheese) are NOT free; you only pay if you eat them, or you can politely decline them.",
+      "Tipping is not standard: leaving 5-10% in sit-down restaurants for good service is appreciated, but large American tips are not expected.",
+      "Dinner starts around 8:00 PM or later; arriving at 6:00 PM will find empty restaurants.",
+      "Portuguese are proud of their distinct identity: never speak Spanish assuming it is interchangeable with Portuguese."
+    ]
   },
   {
     "id": "porto-pt",
@@ -18,12 +61,53 @@
     "type": "city",
     "country": "Portugal",
     "countryCode": "PT",
-    "tags": ["food", "history", "relaxation", "hidden-gem"],
+    "tags": [
+      "food",
+      "history",
+      "relaxation",
+      "hidden-gem"
+    ],
     "budget": "$$",
-    "bestMonths": ["May", "Jun", "Sep", "Oct"],
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Sep",
+      "Oct"
+    ],
     "climate": "mild",
     "safety": 1,
-    "description": "Riverside city known for port wine cellars, azulejo-covered churches and a compact walkable center."
+    "description": "Riverside city known for port wine cellars, azulejo-covered churches and a compact walkable center.",
+    "languages": [
+      "Portuguese (official)",
+      "English (widely spoken in Lisbon, Porto, and Algarve)"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "Euro",
+      "symbol": "€"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (almost universally rejected)",
+        "American Express (limited to high-end venues)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "MB Way (locals)"
+      ],
+      "cashAdvice": "Contactless card payments are standard, but carry small cash in Euros for historic trams (like Tram 28), small pastelarias (custard tart shops), and taxis."
+    },
+    "culturalTips": [
+      "Appetizers brought to your table (bread, olives, cheese) are NOT free; you only pay if you eat them, or you can politely decline them.",
+      "Tipping is not standard: leaving 5-10% in sit-down restaurants for good service is appreciated, but large American tips are not expected.",
+      "Dinner starts around 8:00 PM or later; arriving at 6:00 PM will find empty restaurants.",
+      "Portuguese are proud of their distinct identity: never speak Spanish assuming it is interchangeable with Portuguese."
+    ]
   },
   {
     "id": "barcelona-es",
@@ -31,12 +115,58 @@
     "type": "city",
     "country": "Spain",
     "countryCode": "ES",
-    "tags": ["food", "architecture", "beach", "nightlife", "art", "famous"],
+    "tags": [
+      "food",
+      "architecture",
+      "beach",
+      "nightlife",
+      "art",
+      "famous"
+    ],
     "budget": "$$",
-    "bestMonths": ["May", "Jun", "Sep", "Oct"],
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Sep",
+      "Oct"
+    ],
     "climate": "warm",
     "safety": 2,
-    "description": "Gaudi architecture, tapas bars and city beaches. Watch for pickpockets in crowded areas."
+    "description": "Gaudi architecture, tapas bars and city beaches. Watch for pickpockets in crowded areas.",
+    "languages": [
+      "Spanish (Castilian official)",
+      "Catalan (in Barcelona)",
+      "Basque",
+      "Galician",
+      "English (widely in tourism)"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "Euro",
+      "symbol": "€"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (accepted at department stores/hotels)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Bizum (locals)"
+      ],
+      "cashAdvice": "Contactless card and phone payments are universal for almost all amounts. Keep €10-20 cash for small rural bars, churro stalls, or public restrooms."
+    },
+    "culturalTips": [
+      "Daily schedule is shifted 2-3 hours later than in the U.S.: lunch is 1:30-3:30 PM, and dinner is rarely before 8:30 or 9:00 PM.",
+      "Tipping: Leaving 5-10% in sit-down restaurants or leaving small change at tapas bars is generous; American-style 20% tips are not expected.",
+      "Watch out for pickpocketing in crowded areas (especially Barcelona's Las Ramblas, metro, and busy plazas).",
+      "Tapas are traditionally social finger foods eaten standing up at the bar counter with a small beer ('caña') or wine."
+    ]
   },
   {
     "id": "madrid-es",
@@ -44,12 +174,57 @@
     "type": "city",
     "country": "Spain",
     "countryCode": "ES",
-    "tags": ["art", "food", "nightlife", "city", "culture"],
+    "tags": [
+      "art",
+      "food",
+      "nightlife",
+      "city",
+      "culture"
+    ],
     "budget": "$$",
-    "bestMonths": ["Apr", "May", "Oct", "Nov"],
+    "bestMonths": [
+      "Apr",
+      "May",
+      "Oct",
+      "Nov"
+    ],
     "climate": "hot-dry",
     "safety": 1,
-    "description": "World-class art museums, late dinners and lively plazas."
+    "description": "World-class art museums, late dinners and lively plazas.",
+    "languages": [
+      "Spanish (Castilian official)",
+      "Catalan (in Barcelona)",
+      "Basque",
+      "Galician",
+      "English (widely in tourism)"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "Euro",
+      "symbol": "€"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (accepted at department stores/hotels)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Bizum (locals)"
+      ],
+      "cashAdvice": "Contactless card and phone payments are universal for almost all amounts. Keep €10-20 cash for small rural bars, churro stalls, or public restrooms."
+    },
+    "culturalTips": [
+      "Daily schedule is shifted 2-3 hours later than in the U.S.: lunch is 1:30-3:30 PM, and dinner is rarely before 8:30 or 9:00 PM.",
+      "Tipping: Leaving 5-10% in sit-down restaurants or leaving small change at tapas bars is generous; American-style 20% tips are not expected.",
+      "Watch out for pickpocketing in crowded areas (especially Barcelona's Las Ramblas, metro, and busy plazas).",
+      "Tapas are traditionally social finger foods eaten standing up at the bar counter with a small beer ('caña') or wine."
+    ]
   },
   {
     "id": "paris-fr",
@@ -57,12 +232,54 @@
     "type": "city",
     "country": "France",
     "countryCode": "FR",
-    "tags": ["art", "food", "architecture", "famous", "shopping"],
+    "tags": [
+      "art",
+      "food",
+      "architecture",
+      "famous",
+      "shopping"
+    ],
     "budget": "$$$",
-    "bestMonths": ["Apr", "May", "Jun", "Sep", "Oct"],
+    "bestMonths": [
+      "Apr",
+      "May",
+      "Jun",
+      "Sep",
+      "Oct"
+    ],
     "climate": "mild",
     "safety": 2,
-    "description": "Museums, cafes, bakeries and iconic landmarks, best explored on foot."
+    "description": "Museums, cafes, bakeries and iconic landmarks, best explored on foot.",
+    "languages": [
+      "French (official)",
+      "English (widely understood in Paris and major tourist hubs)"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "Euro",
+      "symbol": "€"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (moderate in luxury)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "Nearly cashless. Contactless cards and Apple Pay work in almost all boulangeries and cafes for even a €1.30 croissant."
+    },
+    "culturalTips": [
+      "Always say 'Bonjour' (or 'Bonsoir') immediately upon entering any shop or cafe before saying anything else; omitting this is considered rude.",
+      "The bill already includes a 15% service charge by law ('service compris'); leaving an extra €1-3 in cash for good service is customary.",
+      "Dining is an unhurried social ritual; waitstaff will not bring the bill until you explicitly ask for it ('L'addition, s'il vous plaît').",
+      "Speak at a lower volume in restaurants and metro trains compared to typical U.S. outdoor voices."
+    ]
   },
   {
     "id": "rome-it",
@@ -70,12 +287,54 @@
     "type": "city",
     "country": "Italy",
     "countryCode": "IT",
-    "tags": ["history", "food", "architecture", "famous", "culture"],
+    "tags": [
+      "history",
+      "food",
+      "architecture",
+      "famous",
+      "culture"
+    ],
     "budget": "$$",
-    "bestMonths": ["Apr", "May", "Sep", "Oct"],
+    "bestMonths": [
+      "Apr",
+      "May",
+      "Sep",
+      "Oct"
+    ],
     "climate": "warm",
     "safety": 2,
-    "description": "Ancient ruins, Renaissance churches and classic pasta, with history on nearly every block."
+    "description": "Ancient ruins, Renaissance churches and classic pasta, with history on nearly every block.",
+    "languages": [
+      "Italian (official)",
+      "English (understood in major tourist centers, less so in countryside)"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "Euro",
+      "symbol": "€"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (moderate in luxury)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Satispay"
+      ],
+      "cashAdvice": "Contactless card payments are widely accepted, but small cash in Euros is useful for espresso at coffee bars, gelato, and city hotel tourist taxes ('tassa di soggiorno')."
+    },
+    "culturalTips": [
+      "Coffee etiquette: Cappuccino and milky coffees are considered breakfast drinks—ordering a cappuccino after 11:00 AM or with a heavy meal looks strange to locals (order an 'espresso' or 'caffè' instead).",
+      "The 'coperto' on restaurant bills is a legal bread and cover charge per person; American-style 20% tips are not expected (leaving €1-2 in coins is generous).",
+      "Strict dress codes apply in Catholic basilicas (St. Peter's, Duomo): shoulders and knees MUST be covered for both men and women.",
+      "Validate train and bus tickets in yellow/green stamping machines before boarding to avoid steep on-the-spot fines."
+    ]
   },
   {
     "id": "florence-it",
@@ -83,12 +342,54 @@
     "type": "city",
     "country": "Italy",
     "countryCode": "IT",
-    "tags": ["art", "history", "food", "culture", "walkable"],
+    "tags": [
+      "art",
+      "history",
+      "food",
+      "culture",
+      "walkable"
+    ],
     "budget": "$$",
-    "bestMonths": ["Apr", "May", "Sep", "Oct"],
+    "bestMonths": [
+      "Apr",
+      "May",
+      "Sep",
+      "Oct"
+    ],
     "climate": "warm",
     "safety": 1,
-    "description": "Renaissance art capital with a compact center and Tuscan wine country nearby."
+    "description": "Renaissance art capital with a compact center and Tuscan wine country nearby.",
+    "languages": [
+      "Italian (official)",
+      "English (understood in major tourist centers, less so in countryside)"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "Euro",
+      "symbol": "€"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (moderate in luxury)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Satispay"
+      ],
+      "cashAdvice": "Contactless card payments are widely accepted, but small cash in Euros is useful for espresso at coffee bars, gelato, and city hotel tourist taxes ('tassa di soggiorno')."
+    },
+    "culturalTips": [
+      "Coffee etiquette: Cappuccino and milky coffees are considered breakfast drinks—ordering a cappuccino after 11:00 AM or with a heavy meal looks strange to locals (order an 'espresso' or 'caffè' instead).",
+      "The 'coperto' on restaurant bills is a legal bread and cover charge per person; American-style 20% tips are not expected (leaving €1-2 in coins is generous).",
+      "Strict dress codes apply in Catholic basilicas (St. Peter's, Duomo): shoulders and knees MUST be covered for both men and women.",
+      "Validate train and bus tickets in yellow/green stamping machines before boarding to avoid steep on-the-spot fines."
+    ]
   },
   {
     "id": "amalfi-coast-it",
@@ -96,12 +397,53 @@
     "type": "place",
     "country": "Italy",
     "countryCode": "IT",
-    "tags": ["beach", "relaxation", "food", "scenic", "famous"],
+    "tags": [
+      "beach",
+      "relaxation",
+      "food",
+      "scenic",
+      "famous"
+    ],
     "budget": "$$$",
-    "bestMonths": ["May", "Jun", "Sep"],
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Sep"
+    ],
     "climate": "warm",
     "safety": 1,
-    "description": "Cliffside villages, lemon groves and Mediterranean views. Steep stairs and winding roads."
+    "description": "Cliffside villages, lemon groves and Mediterranean views. Steep stairs and winding roads.",
+    "languages": [
+      "Italian (official)",
+      "English (understood in major tourist centers, less so in countryside)"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "Euro",
+      "symbol": "€"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (moderate in luxury)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Satispay"
+      ],
+      "cashAdvice": "Contactless card payments are widely accepted, but small cash in Euros is useful for espresso at coffee bars, gelato, and city hotel tourist taxes ('tassa di soggiorno')."
+    },
+    "culturalTips": [
+      "Coffee etiquette: Cappuccino and milky coffees are considered breakfast drinks—ordering a cappuccino after 11:00 AM or with a heavy meal looks strange to locals (order an 'espresso' or 'caffè' instead).",
+      "The 'coperto' on restaurant bills is a legal bread and cover charge per person; American-style 20% tips are not expected (leaving €1-2 in coins is generous).",
+      "Strict dress codes apply in Catholic basilicas (St. Peter's, Duomo): shoulders and knees MUST be covered for both men and women.",
+      "Validate train and bus tickets in yellow/green stamping machines before boarding to avoid steep on-the-spot fines."
+    ]
   },
   {
     "id": "london-uk",
@@ -109,12 +451,54 @@
     "type": "city",
     "country": "United Kingdom",
     "countryCode": "GB",
-    "tags": ["history", "museums", "nightlife", "city", "famous", "shopping"],
+    "tags": [
+      "history",
+      "museums",
+      "nightlife",
+      "city",
+      "famous",
+      "shopping"
+    ],
     "budget": "$$$",
-    "bestMonths": ["May", "Jun", "Sep"],
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Sep"
+    ],
     "climate": "cool",
     "safety": 2,
-    "description": "Free major museums, markets, theater and pubs across a huge variety of neighborhoods."
+    "description": "Free major museums, markets, theater and pubs across a huge variety of neighborhoods.",
+    "languages": [
+      "English (official)",
+      "Welsh",
+      "Scottish Gaelic"
+    ],
+    "currency": {
+      "code": "GBP",
+      "name": "British Pound Sterling",
+      "symbol": "£"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (very rare acceptance)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "Virtually 100% cashless. Contactless cards and phones are used everywhere, including London buses, Tube gates, street performers, and pubs."
+    },
+    "culturalTips": [
+      "In traditional pubs, there is no table service: order food and drinks directly at the bar counter and pay on the spot.",
+      "Always stand on the RIGHT on London Underground escalators to allow people to walk on the left.",
+      "Queuing is a deeply ingrained cultural value; never cut in line.",
+      "A 12.5% discretionary service charge is frequently added to restaurant bills; check your receipt before tipping additionally."
+    ]
   },
   {
     "id": "edinburgh-uk",
@@ -122,12 +506,53 @@
     "type": "city",
     "country": "United Kingdom",
     "countryCode": "GB",
-    "tags": ["history", "hiking", "culture", "hidden-gem"],
+    "tags": [
+      "history",
+      "hiking",
+      "culture",
+      "hidden-gem"
+    ],
     "budget": "$$",
-    "bestMonths": ["May", "Jun", "Aug", "Sep"],
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Aug",
+      "Sep"
+    ],
     "climate": "cool",
     "safety": 1,
-    "description": "Medieval old town, a castle on a volcanic rock and easy access to Highland day trips."
+    "description": "Medieval old town, a castle on a volcanic rock and easy access to Highland day trips.",
+    "languages": [
+      "English (official)",
+      "Welsh",
+      "Scottish Gaelic"
+    ],
+    "currency": {
+      "code": "GBP",
+      "name": "British Pound Sterling",
+      "symbol": "£"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (very rare acceptance)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "Virtually 100% cashless. Contactless cards and phones are used everywhere, including London buses, Tube gates, street performers, and pubs."
+    },
+    "culturalTips": [
+      "In traditional pubs, there is no table service: order food and drinks directly at the bar counter and pay on the spot.",
+      "Always stand on the RIGHT on London Underground escalators to allow people to walk on the left.",
+      "Queuing is a deeply ingrained cultural value; never cut in line.",
+      "A 12.5% discretionary service charge is frequently added to restaurant bills; check your receipt before tipping additionally."
+    ]
   },
   {
     "id": "dublin-ie",
@@ -135,12 +560,51 @@
     "type": "city",
     "country": "Ireland",
     "countryCode": "IE",
-    "tags": ["nightlife", "history", "culture", "food"],
+    "tags": [
+      "nightlife",
+      "history",
+      "culture",
+      "food"
+    ],
     "budget": "$$",
-    "bestMonths": ["May", "Jun", "Sep"],
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Sep"
+    ],
     "climate": "cool",
     "safety": 1,
-    "description": "Pubs with live music, literary history and quick trips to coastal cliffs."
+    "description": "Pubs with live music, literary history and quick trips to coastal cliffs.",
+    "languages": [
+      "English (official & primary)",
+      "Irish / Gaeilge (official national language)"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "Euro",
+      "symbol": "€"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (limited acceptance)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "Nearly cashless. Contactless cards and smartphones are accepted everywhere from rural pubs to city buses."
+    },
+    "culturalTips": [
+      "In pubs, buying drinks operates on the 'round system': if someone buys you a pint, you are expected to buy the next round when your group is ready.",
+      "Tipping: 10-12% in sit-down restaurants with table service is standard; tipping bartenders at pub counters is not customary.",
+      "Friendly banter ('the craic') and storytelling are central to Irish social life.",
+      "Always thank the bus driver when stepping off public buses ('Thanks!')."
+    ]
   },
   {
     "id": "amsterdam-nl",
@@ -148,12 +612,53 @@
     "type": "city",
     "country": "Netherlands",
     "countryCode": "NL",
-    "tags": ["art", "city", "nightlife", "cycling", "museums"],
+    "tags": [
+      "art",
+      "city",
+      "nightlife",
+      "cycling",
+      "museums"
+    ],
     "budget": "$$$",
-    "bestMonths": ["Apr", "May", "Sep"],
+    "bestMonths": [
+      "Apr",
+      "May",
+      "Sep"
+    ],
     "climate": "cool",
     "safety": 1,
-    "description": "Canals, bike-friendly streets and major museums."
+    "description": "Canals, bike-friendly streets and major museums.",
+    "languages": [
+      "Dutch (official)",
+      "English (fluently spoken by ~95% of the population)"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "Euro",
+      "symbol": "€"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (almost universally rejected)",
+        "American Express (very limited)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "iDEAL (online)"
+      ],
+      "cashAdvice": "Heavily cashless country ('PIN only'). Many Dutch supermarkets (like Albert Heijn) and cafes do NOT accept cash at all."
+    },
+    "culturalTips": [
+      "Tipping: Service is included; rounding up to the nearest euro or leaving 5-10% for good dinner service is customary, but large tips are not expected.",
+      "Watch out for bike paths (red asphalt painted with bike symbols)—cyclists have right of way and will ring bells loudly if you step into their lane.",
+      "Direct communication: Dutch people are famously egalitarian, candid, and direct; do not interpret straightforwardness as rudeness.",
+      "'Coffeeshops' sell cannabis; regular cafes that serve coffee and pastries are called 'Koffiehuis' or 'Café'."
+    ]
   },
   {
     "id": "copenhagen-dk",
@@ -161,12 +666,53 @@
     "type": "city",
     "country": "Denmark",
     "countryCode": "DK",
-    "tags": ["food", "design", "cycling", "relaxation"],
+    "tags": [
+      "food",
+      "design",
+      "cycling",
+      "relaxation"
+    ],
     "budget": "$$$",
-    "bestMonths": ["May", "Jun", "Jul", "Aug"],
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Jul",
+      "Aug"
+    ],
     "climate": "cool",
     "safety": 1,
-    "description": "Design-forward city with great food, harbor swimming in summer and bikes everywhere."
+    "description": "Design-forward city with great food, harbor swimming in summer and bikes everywhere.",
+    "languages": [
+      "Danish (official)",
+      "English (fluently spoken by nearly 90% of the population)"
+    ],
+    "currency": {
+      "code": "DKK",
+      "name": "Danish Krone",
+      "symbol": "kr"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (moderate)"
+      ],
+      "popularEWallets": [
+        "MobilePay (locals)",
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "Practically 100% cashless. Cash is actively discouraged in many cafes, bars, and public transport systems."
+    },
+    "culturalTips": [
+      "Tipping is NOT customary; service charges, fair living wages, and high taxes are all included in menu prices.",
+      "Respect dedicated bicycle lanes—never stand or walk in bike lanes, as cyclists commute at high speeds and have the right of way.",
+      "'Hygge' (coziness and contentment) values warm candlelight, relaxed conversation, and informal social warmth.",
+      "Punctuality is essential for both social and business appointments."
+    ]
   },
   {
     "id": "berlin-de",
@@ -174,12 +720,52 @@
     "type": "city",
     "country": "Germany",
     "countryCode": "DE",
-    "tags": ["history", "nightlife", "art", "hidden-gem", "culture"],
+    "tags": [
+      "history",
+      "nightlife",
+      "art",
+      "hidden-gem",
+      "culture"
+    ],
     "budget": "$$",
-    "bestMonths": ["May", "Jun", "Sep"],
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Sep"
+    ],
     "climate": "cool",
     "safety": 1,
-    "description": "Cold War history, street art, museums and famously late nightlife."
+    "description": "Cold War history, street art, museums and famously late nightlife.",
+    "languages": [
+      "German (official)",
+      "English (widely spoken, especially among younger Germans & in cities)"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "Euro",
+      "symbol": "€"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (large chains/hotels only)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "Cash is culturally favored. Many bakeries, beer gardens, kiosks (Spätis), and small restaurants are strictly CASH ONLY ('Nur Bares'). Keep €30-50 in cash on you."
+    },
+    "culturalTips": [
+      "Tipping: Tell the server the total amount including a 5-10% tip when handing over cash or card ('Stimmt so' means keep the change).",
+      "Do NOT jaywalk when the pedestrian light is red, especially in front of children—locals will openly call you out.",
+      "Bottled beers and sodas have a refundable deposit ('Pfand'); return the empty bottle to the supermarket reverse vending machine for your coins back.",
+      "Direct, candid communication is normal and considered respectful honesty, not rudeness."
+    ]
   },
   {
     "id": "prague-cz",
@@ -187,12 +773,52 @@
     "type": "city",
     "country": "Czech Republic",
     "countryCode": "CZ",
-    "tags": ["history", "architecture", "nightlife", "budget-friendly"],
+    "tags": [
+      "history",
+      "architecture",
+      "nightlife",
+      "budget-friendly"
+    ],
     "budget": "$",
-    "bestMonths": ["Apr", "May", "Sep", "Oct"],
+    "bestMonths": [
+      "Apr",
+      "May",
+      "Sep",
+      "Oct"
+    ],
     "climate": "cool",
     "safety": 1,
-    "description": "Fairy-tale old town, castle views and inexpensive beer and food."
+    "description": "Fairy-tale old town, castle views and inexpensive beer and food.",
+    "languages": [
+      "Czech (official)",
+      "English (widely spoken in Prague and tourist spots)"
+    ],
+    "currency": {
+      "code": "CZK",
+      "name": "Czech Koruna",
+      "symbol": "Kč"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (limited)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "Card acceptance is very high in Prague, but traditional pubs ('hospoda') and smaller towns still prefer or require cash."
+    },
+    "culturalTips": [
+      "In pubs, servers will keep bringing fresh beers as soon as your glass is empty until you place a beer coaster on top of your glass.",
+      "Tipping in restaurants: Round up or add 10% directly when the bill is presented; do not leave coins on the table.",
+      "Always remove your shoes when entering a Czech private home.",
+      "Avoid changing money at street kiosks in Prague with zero-commission signs (often massive hidden margins); use bank ATMs instead."
+    ]
   },
   {
     "id": "vienna-at",
@@ -200,12 +826,54 @@
     "type": "city",
     "country": "Austria",
     "countryCode": "AT",
-    "tags": ["art", "culture", "food", "relaxation", "architecture"],
+    "tags": [
+      "art",
+      "culture",
+      "food",
+      "relaxation",
+      "architecture"
+    ],
     "budget": "$$",
-    "bestMonths": ["Apr", "May", "Sep", "Dec"],
+    "bestMonths": [
+      "Apr",
+      "May",
+      "Sep",
+      "Dec"
+    ],
     "climate": "cool",
     "safety": 1,
-    "description": "Imperial palaces, classical music, coffee houses and Christmas markets."
+    "description": "Imperial palaces, classical music, coffee houses and Christmas markets.",
+    "languages": [
+      "German (official)",
+      "Austro-Bavarian dialect",
+      "English (widely spoken in cities)"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "Euro",
+      "symbol": "€"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (accepted mainly in luxury venues)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "Cash is strongly preferred in traditional coffeehouses, Heuriger taverns, and bakeries. Always carry €20-50 in cash."
+    },
+    "culturalTips": [
+      "Tipping in restaurants: Round up the bill or add 5-10% directly when paying the server (do not leave coins on the table).",
+      "Traditional Viennese coffeehouse culture encourages lingering for hours with a newspaper without being rushed.",
+      "Sundays are quiet days ('Ruhetag'); nearly all supermarkets, shops, and pharmacies are closed.",
+      "Punctuality and formal titles (Herr/Frau) are valued in professional and service interactions."
+    ]
   },
   {
     "id": "budapest-hu",
@@ -213,12 +881,53 @@
     "type": "city",
     "country": "Hungary",
     "countryCode": "HU",
-    "tags": ["spa", "nightlife", "history", "budget-friendly", "architecture"],
+    "tags": [
+      "spa",
+      "nightlife",
+      "history",
+      "budget-friendly",
+      "architecture"
+    ],
     "budget": "$",
-    "bestMonths": ["Apr", "May", "Sep", "Oct"],
+    "bestMonths": [
+      "Apr",
+      "May",
+      "Sep",
+      "Oct"
+    ],
     "climate": "cool",
     "safety": 1,
-    "description": "Thermal baths, ruin bars and grand riverside architecture at a low price."
+    "description": "Thermal baths, ruin bars and grand riverside architecture at a low price.",
+    "languages": [
+      "Hungarian (Magyar official)",
+      "English (spoken in central Budapest and hotels)"
+    ],
+    "currency": {
+      "code": "HUF",
+      "name": "Hungarian Forint",
+      "symbol": "Ft"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (limited)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "Cards and phone taps are standard across Budapest. Small cash in Forints is useful for thermal bath lockers and market hall vendors."
+    },
+    "culturalTips": [
+      "Tradition states Hungarians do not clink beer glasses when toasting (historically related to the 1848 revolution defeat), though it is relaxing among youth.",
+      "Check the restaurant receipt for 'szervizdíj' (service charge, usually 10-15%); if included, no additional tip is needed.",
+      "Thermal baths (Széchenyi, Gellért) require swimming caps in lap pools and flip-flops on wet tiles.",
+      "Validate transit tickets before boarding the Budapest metro; ticket inspectors check frequently and issue instant fines."
+    ]
   },
   {
     "id": "athens-gr",
@@ -226,12 +935,51 @@
     "type": "city",
     "country": "Greece",
     "countryCode": "GR",
-    "tags": ["history", "food", "famous", "culture"],
+    "tags": [
+      "history",
+      "food",
+      "famous",
+      "culture"
+    ],
     "budget": "$$",
-    "bestMonths": ["Apr", "May", "Oct"],
+    "bestMonths": [
+      "Apr",
+      "May",
+      "Oct"
+    ],
     "climate": "hot-dry",
     "safety": 2,
-    "description": "The Acropolis, lively food scene and ancient sites close to modern neighborhoods."
+    "description": "The Acropolis, lively food scene and ancient sites close to modern neighborhoods.",
+    "languages": [
+      "Greek (official)",
+      "English (very widely spoken across islands and hospitality)"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "Euro",
+      "symbol": "€"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (limited)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "Card machines are legally required in Greece, but smaller island tavernas, beach sunbed rentals, and ferries strongly appreciate or request cash."
+    },
+    "culturalTips": [
+      "Tipping: Leaving 5-10% in cash for taverna waitstaff is customary and greatly appreciated.",
+      "Do NOT flush toilet paper down the toilet in Greece (including Greek islands)—plumbing pipes are narrow; use the provided lidded wastebin.",
+      "Meals are relaxed and late: lunch is 2:00-4:00 PM, dinner is 9:00 PM or later.",
+      "The open palm gesture facing someone ('moutza') with fingers spread is an offensive insult in Greek culture."
+    ]
   },
   {
     "id": "santorini-gr",
@@ -239,12 +987,53 @@
     "type": "place",
     "country": "Greece",
     "countryCode": "GR",
-    "tags": ["beach", "relaxation", "scenic", "famous", "romance"],
+    "tags": [
+      "beach",
+      "relaxation",
+      "scenic",
+      "famous",
+      "romance"
+    ],
     "budget": "$$$",
-    "bestMonths": ["May", "Jun", "Sep", "Oct"],
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Sep",
+      "Oct"
+    ],
     "climate": "warm",
     "safety": 1,
-    "description": "Clifftop villages with sunset views over a volcanic caldera. Very crowded in peak summer."
+    "description": "Clifftop villages with sunset views over a volcanic caldera. Very crowded in peak summer.",
+    "languages": [
+      "Greek (official)",
+      "English (very widely spoken across islands and hospitality)"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "Euro",
+      "symbol": "€"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (limited)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "Card machines are legally required in Greece, but smaller island tavernas, beach sunbed rentals, and ferries strongly appreciate or request cash."
+    },
+    "culturalTips": [
+      "Tipping: Leaving 5-10% in cash for taverna waitstaff is customary and greatly appreciated.",
+      "Do NOT flush toilet paper down the toilet in Greece (including Greek islands)—plumbing pipes are narrow; use the provided lidded wastebin.",
+      "Meals are relaxed and late: lunch is 2:00-4:00 PM, dinner is 9:00 PM or later.",
+      "The open palm gesture facing someone ('moutza') with fingers spread is an offensive insult in Greek culture."
+    ]
   },
   {
     "id": "dubrovnik-hr",
@@ -252,12 +1041,52 @@
     "type": "city",
     "country": "Croatia",
     "countryCode": "HR",
-    "tags": ["history", "beach", "scenic", "famous"],
+    "tags": [
+      "history",
+      "beach",
+      "scenic",
+      "famous"
+    ],
     "budget": "$$",
-    "bestMonths": ["May", "Jun", "Sep"],
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Sep"
+    ],
     "climate": "warm",
     "safety": 1,
-    "description": "Walled medieval city on the Adriatic with island day trips."
+    "description": "Walled medieval city on the Adriatic with island day trips.",
+    "languages": [
+      "Croatian (official)",
+      "English (widely spoken along the Adriatic coast & Zagreb)"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "Euro (adopted Jan 2023)",
+      "symbol": "€"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (limited)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Keks Pay"
+      ],
+      "cashAdvice": "Cards are widely accepted, but cash in Euros is needed for island water taxis, beach rentals, small bakeries, and farmers markets."
+    },
+    "culturalTips": [
+      "Croatia's coffee culture ('idemo na kavu') is about leisurely sitting for hours in outdoor cafes talking with friends.",
+      "Tipping: 10% in restaurants for good service is standard, usually given in cash.",
+      "Modest dress is required when entering historic churches and cathedrals (cover shoulders and knees).",
+      "Tap water is remarkably clean and delicious throughout Croatia."
+    ]
   },
   {
     "id": "croatia",
@@ -265,12 +1094,53 @@
     "type": "country",
     "country": "Croatia",
     "countryCode": "HR",
-    "tags": ["beach", "history", "road-trip", "scenic", "relaxation"],
+    "tags": [
+      "beach",
+      "history",
+      "road-trip",
+      "scenic",
+      "relaxation"
+    ],
     "budget": "$$",
-    "bestMonths": ["May", "Jun", "Sep"],
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Sep"
+    ],
     "climate": "warm",
     "safety": 1,
-    "description": "Adriatic islands, national parks with waterfalls and walled coastal towns."
+    "description": "Adriatic islands, national parks with waterfalls and walled coastal towns.",
+    "languages": [
+      "Croatian (official)",
+      "English (widely spoken along the Adriatic coast & Zagreb)"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "Euro (adopted Jan 2023)",
+      "symbol": "€"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (limited)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Keks Pay"
+      ],
+      "cashAdvice": "Cards are widely accepted, but cash in Euros is needed for island water taxis, beach rentals, small bakeries, and farmers markets."
+    },
+    "culturalTips": [
+      "Croatia's coffee culture ('idemo na kavu') is about leisurely sitting for hours in outdoor cafes talking with friends.",
+      "Tipping: 10% in restaurants for good service is standard, usually given in cash.",
+      "Modest dress is required when entering historic churches and cathedrals (cover shoulders and knees).",
+      "Tap water is remarkably clean and delicious throughout Croatia."
+    ]
   },
   {
     "id": "istanbul-tr",
@@ -278,12 +1148,53 @@
     "type": "city",
     "country": "Turkey",
     "countryCode": "TR",
-    "tags": ["history", "food", "shopping", "culture", "famous"],
+    "tags": [
+      "history",
+      "food",
+      "shopping",
+      "culture",
+      "famous"
+    ],
     "budget": "$",
-    "bestMonths": ["Apr", "May", "Sep", "Oct"],
+    "bestMonths": [
+      "Apr",
+      "May",
+      "Sep",
+      "Oct"
+    ],
     "climate": "mild",
     "safety": 3,
-    "description": "Mosques, bazaars and ferry rides across two continents."
+    "description": "Mosques, bazaars and ferry rides across two continents.",
+    "languages": [
+      "Turkish (official)",
+      "English (spoken in Istanbul tourist zones and coastal resorts)"
+    ],
+    "currency": {
+      "code": "TRY",
+      "name": "Turkish Lira",
+      "symbol": "₺"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (accepted via Troy network)",
+        "American Express (moderate)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "Credit card and contactless acceptance is high across Istanbul and tourist cities. Keep Turkish Lira notes for yellow taxis, street simit carts, and tips."
+    },
+    "culturalTips": [
+      "Tipping: Leaving 10% in sit-down restaurants is customary and appreciated; round up taxi fares to the nearest convenient note.",
+      "Remove your shoes before entering any mosque (shoes are carried in plastic bags provided at the door); women must cover their hair with a scarf.",
+      "Turkish hospitality: Accepting offered small tulip glasses of black tea ('çay') or Turkish coffee is polite and builds warm rapport with merchants.",
+      "Pick up an Istanbulkart for public transit (metro, ferries, trams) right outside the airport or stations."
+    ]
   },
   {
     "id": "reykjavik-is",
@@ -291,12 +1202,52 @@
     "type": "city",
     "country": "Iceland",
     "countryCode": "IS",
-    "tags": ["nature", "adventure", "spa", "scenic"],
+    "tags": [
+      "nature",
+      "adventure",
+      "spa",
+      "scenic"
+    ],
     "budget": "$$$",
-    "bestMonths": ["Jun", "Jul", "Aug", "Sep"],
+    "bestMonths": [
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep"
+    ],
     "climate": "cold",
     "safety": 1,
-    "description": "Small capital and base for geothermal pools, waterfalls and northern lights trips."
+    "description": "Small capital and base for geothermal pools, waterfalls and northern lights trips.",
+    "languages": [
+      "Icelandic (official)",
+      "English (spoken fluently by virtually the entire population)"
+    ],
+    "currency": {
+      "code": "ISK",
+      "name": "Icelandic Króna",
+      "symbol": "kr"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (limited)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "100% cashless country. You will literally never need physical currency in Iceland; cards and phone taps are accepted everywhere, even pay-toilets in national parks."
+    },
+    "culturalTips": [
+      "Tipping is NOT part of Icelandic culture and is never expected (all service charges, living wages, and taxes are built in).",
+      "Thermal pool shower etiquette is strictly enforced: you must shower naked with soap in gender-segregated showers BEFORE putting on your swimsuit and entering geothermal pools.",
+      "Never drive off-road: Arctic tundra takes decades to recover from tire tracks, and off-road driving carries severe legal fines.",
+      "Tap water everywhere in Iceland is pure untreated glacial spring water—never buy bottled water."
+    ]
   },
   {
     "id": "iceland",
@@ -304,12 +1255,53 @@
     "type": "country",
     "country": "Iceland",
     "countryCode": "IS",
-    "tags": ["nature", "road-trip", "adventure", "scenic", "spa"],
+    "tags": [
+      "nature",
+      "road-trip",
+      "adventure",
+      "scenic",
+      "spa"
+    ],
     "budget": "$$$",
-    "bestMonths": ["Jun", "Jul", "Aug", "Sep"],
+    "bestMonths": [
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep"
+    ],
     "climate": "cold",
     "safety": 1,
-    "description": "Glaciers, volcanoes and hot springs, best explored by driving the Ring Road."
+    "description": "Glaciers, volcanoes and hot springs, best explored by driving the Ring Road.",
+    "languages": [
+      "Icelandic (official)",
+      "English (spoken fluently by virtually the entire population)"
+    ],
+    "currency": {
+      "code": "ISK",
+      "name": "Icelandic Króna",
+      "symbol": "kr"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (limited)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "100% cashless country. You will literally never need physical currency in Iceland; cards and phone taps are accepted everywhere, even pay-toilets in national parks."
+    },
+    "culturalTips": [
+      "Tipping is NOT part of Icelandic culture and is never expected (all service charges, living wages, and taxes are built in).",
+      "Thermal pool shower etiquette is strictly enforced: you must shower naked with soap in gender-segregated showers BEFORE putting on your swimsuit and entering geothermal pools.",
+      "Never drive off-road: Arctic tundra takes decades to recover from tire tracks, and off-road driving carries severe legal fines.",
+      "Tap water everywhere in Iceland is pure untreated glacial spring water—never buy bottled water."
+    ]
   },
   {
     "id": "swiss-alps-ch",
@@ -317,12 +1309,59 @@
     "type": "place",
     "country": "Switzerland",
     "countryCode": "CH",
-    "tags": ["hiking", "mountains", "scenic", "adventure", "relaxation"],
+    "tags": [
+      "hiking",
+      "mountains",
+      "scenic",
+      "adventure",
+      "relaxation"
+    ],
     "budget": "$$$",
-    "bestMonths": ["Jun", "Jul", "Aug", "Sep", "Dec", "Jan"],
+    "bestMonths": [
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Dec",
+      "Jan"
+    ],
     "climate": "cool",
     "safety": 1,
-    "description": "Lake towns beneath huge peaks with trains, hiking and skiing."
+    "description": "Lake towns beneath huge peaks with trains, hiking and skiing.",
+    "languages": [
+      "German (62%)",
+      "French (23%)",
+      "Italian (8%)",
+      "Romansh (0.5%)",
+      "English (widely spoken)"
+    ],
+    "currency": {
+      "code": "CHF",
+      "name": "Swiss Franc",
+      "symbol": "CHF"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)"
+      ],
+      "popularEWallets": [
+        "TWINT (local app)",
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "Card acceptance is widespread, but small Swiss Franc notes/coins are useful for mountain cable cars, honesty farm stands, and public restrooms."
+    },
+    "culturalTips": [
+      "Tipping is included by Swiss law; rounding up to the nearest franc or adding 5% for exceptional service is normal.",
+      "Quiet hours ('Ruhezeit') from 10:00 PM to 7:00 AM and all day Sunday are taken very seriously.",
+      "Public transport runs with absolute clockwork precision; trains leave the exact second scheduled.",
+      "Tap water from public fountains is pristine and safe to drink unless marked 'Kein Trinkwasser'."
+    ]
   },
   {
     "id": "marrakech-ma",
@@ -330,12 +1369,54 @@
     "type": "city",
     "country": "Morocco",
     "countryCode": "MA",
-    "tags": ["culture", "food", "shopping", "hidden-gem", "history"],
+    "tags": [
+      "culture",
+      "food",
+      "shopping",
+      "hidden-gem",
+      "history"
+    ],
     "budget": "$",
-    "bestMonths": ["Mar", "Apr", "Oct", "Nov"],
+    "bestMonths": [
+      "Mar",
+      "Apr",
+      "Oct",
+      "Nov"
+    ],
     "climate": "hot-dry",
     "safety": 3,
-    "description": "Souks, riads and spice-filled food stalls, with desert and mountain trips nearby."
+    "description": "Souks, riads and spice-filled food stalls, with desert and mountain trips nearby.",
+    "languages": [
+      "Arabic (official Moroccan Darija)",
+      "Berber / Tamazight (official)",
+      "French (widely used in commerce)",
+      "English (in tourism)"
+    ],
+    "currency": {
+      "code": "MAD",
+      "name": "Moroccan Dirham",
+      "symbol": "DH"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (luxury riads only)"
+      ],
+      "popularEWallets": [
+        "Cash remains primary"
+      ],
+      "cashAdvice": "Morocco is heavily cash-based. Credit cards work in upscale restaurants and riads, but souks, taxis, street food, and tips strictly require physical Dirhams."
+    },
+    "culturalTips": [
+      "Haggling is an expected, social sport in the medinas—negotiate with polite smiles and tea.",
+      "Dress conservatively in public and medina streets (cover shoulders, cleavage, and knees).",
+      "Always ask permission and agree on a small tip before taking photos of people or snake charmers in Jemaa el-Fnaa.",
+      "Tipping 10% in restaurants and giving small coins to bathroom attendants or luggage porters is customary."
+    ]
   },
   {
     "id": "cairo-eg",
@@ -343,12 +1424,52 @@
     "type": "city",
     "country": "Egypt",
     "countryCode": "EG",
-    "tags": ["history", "culture", "famous", "adventure"],
+    "tags": [
+      "history",
+      "culture",
+      "famous",
+      "adventure"
+    ],
     "budget": "$",
-    "bestMonths": ["Oct", "Nov", "Feb", "Mar"],
+    "bestMonths": [
+      "Oct",
+      "Nov",
+      "Feb",
+      "Mar"
+    ],
     "climate": "hot-dry",
     "safety": 3,
-    "description": "The pyramids of Giza and a massive museum scene in a busy, intense city."
+    "description": "The pyramids of Giza and a massive museum scene in a busy, intense city.",
+    "languages": [
+      "Arabic (official Egyptian dialect)",
+      "English (widely understood in tourism)"
+    ],
+    "currency": {
+      "code": "EGP",
+      "name": "Egyptian Pound",
+      "symbol": "E£"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (major hotels only)"
+      ],
+      "popularEWallets": [
+        "Vodafone Cash / InstaPay (locals)",
+        "Apple Pay (limited)"
+      ],
+      "cashAdvice": "Cash is essential. Credit cards work at major archaeological sites and hotels, but taxis, felucca rides, tips, and bazaars require Egyptian pounds in small bills."
+    },
+    "culturalTips": [
+      "'Baksheesh' (tipping/gratuity) is an integral cultural expectation for almost every small service (restroom attendants, drivers, luggage, temple guardians).",
+      "Dress conservatively: cover shoulders, chest, and knees when walking around public streets and mosques.",
+      "Always use your right hand when shaking hands, eating, or giving money.",
+      "Lively haggling is customary in markets (souks)—start by offering roughly half the initial asking price with good humor."
+    ]
   },
   {
     "id": "cape-town-za",
@@ -356,12 +1477,55 @@
     "type": "city",
     "country": "South Africa",
     "countryCode": "ZA",
-    "tags": ["nature", "food", "wine", "hiking", "beach", "scenic"],
+    "tags": [
+      "nature",
+      "food",
+      "wine",
+      "hiking",
+      "beach",
+      "scenic"
+    ],
     "budget": "$$",
-    "bestMonths": ["Nov", "Dec", "Jan", "Feb", "Mar"],
+    "bestMonths": [
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar"
+    ],
     "climate": "warm",
     "safety": 3,
-    "description": "Table Mountain, penguins, vineyards and coastal drives. Use standard city safety precautions."
+    "description": "Table Mountain, penguins, vineyards and coastal drives. Use standard city safety precautions.",
+    "languages": [
+      "11 official languages including English, Zulu, Xhosa, and Afrikaans"
+    ],
+    "currency": {
+      "code": "ZAR",
+      "name": "South African Rand",
+      "symbol": "R"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (moderate in luxury)"
+      ],
+      "popularEWallets": [
+        "SnapScan / Zapper (local QR apps)",
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "Card and phone tap acceptance is exceptionally high across South Africa. Keep small Rand notes for informal car guards ('parking attendants') and petrol station attendants."
+    },
+    "culturalTips": [
+      "Tipping: 10-15% in sit-down restaurants is customary and expected. Tipping R5-10 to informal parking attendants and petrol station attendants who pump fuel is standard.",
+      "Be security-conscious: do not leave bags or phones visible on car seats ('smash-and-grab' prevention), and avoid walking alone after dark in city centers.",
+      "'Now' means eventually; 'Just now' means in a little while; 'Now now' means immediately.",
+      "Tap water in urban South Africa (Cape Town, Johannesburg, Durban) is among the cleanest and safest to drink in the world."
+    ]
   },
   {
     "id": "serengeti-tz",
@@ -369,12 +1533,53 @@
     "type": "place",
     "country": "Tanzania",
     "countryCode": "TZ",
-    "tags": ["wildlife", "adventure", "nature", "scenic", "bucket-list"],
+    "tags": [
+      "wildlife",
+      "adventure",
+      "nature",
+      "scenic",
+      "bucket-list"
+    ],
     "budget": "$$$",
-    "bestMonths": ["Jun", "Jul", "Aug", "Sep", "Oct"],
+    "bestMonths": [
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct"
+    ],
     "climate": "warm",
     "safety": 2,
-    "description": "Safari plains famous for the wildebeest migration."
+    "description": "Safari plains famous for the wildebeest migration.",
+    "languages": [
+      "Swahili (official)",
+      "English (official, widely used in higher education & safari tourism)"
+    ],
+    "currency": {
+      "code": "TZS",
+      "name": "Tanzanian Shilling",
+      "symbol": "TSh"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (luxury safari lodges only)"
+      ],
+      "popularEWallets": [
+        "M-Pesa / Tigo Pesa (locals)"
+      ],
+      "cashAdvice": "U.S. Dollars (crisp, post-2013 bills) are accepted for safari park fees, international hotels, and hot air balloon rides. Tanzanian Shillings in cash are needed for local markets, food, and tipping."
+    },
+    "culturalTips": [
+      "Tipping on safari is customary: budget $15-20/day for your driver-guide and $10-15/day for camp staff.",
+      "In Zanzibar (predominantly Muslim), dress modestly outside beach resorts—cover shoulders and knees in Stone Town and villages.",
+      "Always greet people with warmth ('Jambo' or 'Habari') before asking questions or starting transactions.",
+      "Single-use plastic bags are strictly prohibited by Tanzanian environmental law."
+    ]
   },
   {
     "id": "petra-jo",
@@ -382,12 +1587,53 @@
     "type": "place",
     "country": "Jordan",
     "countryCode": "JO",
-    "tags": ["history", "hiking", "adventure", "bucket-list"],
+    "tags": [
+      "history",
+      "hiking",
+      "adventure",
+      "bucket-list"
+    ],
     "budget": "$$",
-    "bestMonths": ["Mar", "Apr", "May", "Oct", "Nov"],
+    "bestMonths": [
+      "Mar",
+      "Apr",
+      "May",
+      "Oct",
+      "Nov"
+    ],
     "climate": "hot-dry",
     "safety": 2,
-    "description": "Rock-carved ancient city reached on foot, with desert landscapes at Wadi Rum nearby."
+    "description": "Rock-carved ancient city reached on foot, with desert landscapes at Wadi Rum nearby.",
+    "languages": [
+      "Arabic (official)",
+      "English (widely spoken in tourist destinations like Petra, Amman, Wadi Rum)"
+    ],
+    "currency": {
+      "code": "JOD",
+      "name": "Jordanian Dinar",
+      "symbol": "JD"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (luxury hotels only)"
+      ],
+      "popularEWallets": [
+        "CliQ / JoMoPay (local bank app)",
+        "Apple Pay (limited)"
+      ],
+      "cashAdvice": "Cash in JOD is required for Bedouin camps in Wadi Rum, camel/donkey handlers in Petra, taxis, and small souvenir stands. Cards work in upscale Amman restaurants and hotels."
+    },
+    "culturalTips": [
+      "Hospitality is an ancient Bedouin point of pride: accepting offered cardamom tea or Arabic coffee is polite (wiggle your small cup side-to-side when finished to signal you're done).",
+      "Dress modestly in towns, holy sites, and religious areas (cover shoulders, chest, and knees).",
+      "Tipping ('baksheesh') of 10% is customary for drivers, guides, and restaurant staff.",
+      "Always use your right hand when eating, greeting, and exchanging money."
+    ]
   },
   {
     "id": "dubai-ae",
@@ -395,12 +1641,55 @@
     "type": "city",
     "country": "United Arab Emirates",
     "countryCode": "AE",
-    "tags": ["shopping", "city", "luxury", "architecture", "famous"],
+    "tags": [
+      "shopping",
+      "city",
+      "luxury",
+      "architecture",
+      "famous"
+    ],
     "budget": "$$$",
-    "bestMonths": ["Nov", "Dec", "Jan", "Feb", "Mar"],
+    "bestMonths": [
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar"
+    ],
     "climate": "hot-dry",
     "safety": 1,
-    "description": "Skyscrapers, malls, desert tours and beaches. Very hot in summer."
+    "description": "Skyscrapers, malls, desert tours and beaches. Very hot in summer.",
+    "languages": [
+      "Arabic (official)",
+      "English (universal in commerce & tourism)"
+    ],
+    "currency": {
+      "code": "AED",
+      "name": "UAE Dirham",
+      "symbol": "د.إ"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (limited acceptance)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Samsung Pay"
+      ],
+      "cashAdvice": "Almost entirely cashless. Cards and phone taps work everywhere from taxis to malls; cash is only needed for small souk stalls and tips."
+    },
+    "culturalTips": [
+      "Dress modestly in public places (shoulders and knees covered outside beach resorts).",
+      "Public displays of affection beyond holding hands are culturally frowned upon and can lead to fines.",
+      "Tipping 10-15% in restaurants is standard and appreciated for hospitality staff.",
+      "During Ramadan, eating, drinking, or chewing gum in public during daylight hours is restricted."
+    ]
   },
   {
     "id": "tokyo-jp",
@@ -408,12 +1697,57 @@
     "type": "city",
     "country": "Japan",
     "countryCode": "JP",
-    "tags": ["food", "city", "culture", "shopping", "nightlife", "famous"],
+    "tags": [
+      "food",
+      "city",
+      "culture",
+      "shopping",
+      "nightlife",
+      "famous"
+    ],
     "budget": "$$",
-    "bestMonths": ["Mar", "Apr", "Oct", "Nov"],
+    "bestMonths": [
+      "Mar",
+      "Apr",
+      "Oct",
+      "Nov"
+    ],
     "climate": "mild",
     "safety": 1,
-    "description": "Giant, safe, efficient city with extraordinary food at every price point."
+    "description": "Giant, safe, efficient city with extraordinary food at every price point.",
+    "languages": [
+      "Japanese (official)",
+      "English (basic signage in major train stations, limited spoken fluency outside hotels)"
+    ],
+    "currency": {
+      "code": "JPY",
+      "name": "Japanese Yen",
+      "symbol": "¥"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "JCB",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (accepted where JCB is accepted via network partnership)"
+      ],
+      "popularEWallets": [
+        "IC Transit Cards (Suica, Pasmo, Icoca)",
+        "PayPay",
+        "Apple Pay"
+      ],
+      "cashAdvice": "Cash remains important! While digital pay has expanded rapidly, ramen ticket vending machines, historic temples/shrines, coin lockers, and small izakayas are still CASH ONLY.",
+      "transitTip": "Suica / Pasmo IC Card: Add a digital Suica or Pasmo to your Apple Wallet / Google Wallet before landing to tap seamlessly across all Tokyo trains, subways, and convenience stores."
+    },
+    "culturalTips": [
+      "NO TIPPING under any circumstances—tipping in Japan is considered confusing, awkward, or even rude; great service is standard.",
+      "Eat or drink on the spot; walking while eating or drinking street food is considered bad manners.",
+      "Keep public voice levels very low on subway and commuter trains; phone calls on trains are strictly forbidden.",
+      "Public trash cans are almost nonexistent in cities: be prepared to carry your trash in your bag until you return to your hotel or find a convenience store bin."
+    ]
   },
   {
     "id": "kyoto-jp",
@@ -421,12 +1755,56 @@
     "type": "city",
     "country": "Japan",
     "countryCode": "JP",
-    "tags": ["history", "culture", "food", "relaxation", "scenic"],
+    "tags": [
+      "history",
+      "culture",
+      "food",
+      "relaxation",
+      "scenic"
+    ],
     "budget": "$$",
-    "bestMonths": ["Mar", "Apr", "Oct", "Nov"],
+    "bestMonths": [
+      "Mar",
+      "Apr",
+      "Oct",
+      "Nov"
+    ],
     "climate": "mild",
     "safety": 1,
-    "description": "Temples, gardens, tea houses and traditional cuisine. Very busy during cherry blossom and fall foliage."
+    "description": "Temples, gardens, tea houses and traditional cuisine. Very busy during cherry blossom and fall foliage.",
+    "languages": [
+      "Japanese (official)",
+      "English (basic signage in major train stations, limited spoken fluency outside hotels)"
+    ],
+    "currency": {
+      "code": "JPY",
+      "name": "Japanese Yen",
+      "symbol": "¥"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "JCB",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (accepted where JCB is accepted via network partnership)"
+      ],
+      "popularEWallets": [
+        "IC Transit Cards (Suica, Pasmo, Icoca)",
+        "PayPay",
+        "Apple Pay"
+      ],
+      "cashAdvice": "Cash remains important! While digital pay has expanded rapidly, ramen ticket vending machines, historic temples/shrines, coin lockers, and small izakayas are still CASH ONLY.",
+      "transitTip": "Icoca / Suica IC Card: Kyoto city buses and subways accept IC cards (Suica/Pasmo/Icoca). Note that Kyoto city buses have a flat fare paid upon exiting."
+    },
+    "culturalTips": [
+      "NO TIPPING under any circumstances—tipping in Japan is considered confusing, awkward, or even rude; great service is standard.",
+      "Eat or drink on the spot; walking while eating or drinking street food is considered bad manners.",
+      "Keep public voice levels very low on subway and commuter trains; phone calls on trains are strictly forbidden.",
+      "Public trash cans are almost nonexistent in cities: be prepared to carry your trash in your bag until you return to your hotel or find a convenience store bin."
+    ]
   },
   {
     "id": "osaka-jp",
@@ -434,12 +1812,54 @@
     "type": "city",
     "country": "Japan",
     "countryCode": "JP",
-    "tags": ["food", "nightlife", "city", "budget-friendly"],
+    "tags": [
+      "food",
+      "nightlife",
+      "city",
+      "budget-friendly"
+    ],
     "budget": "$$",
-    "bestMonths": ["Mar", "Apr", "Oct", "Nov"],
+    "bestMonths": [
+      "Mar",
+      "Apr",
+      "Oct",
+      "Nov"
+    ],
     "climate": "mild",
     "safety": 1,
-    "description": "Japan's street food capital with a friendly, lively atmosphere."
+    "description": "Japan's street food capital with a friendly, lively atmosphere.",
+    "languages": [
+      "Japanese (official)",
+      "English (basic signage in major train stations, limited spoken fluency outside hotels)"
+    ],
+    "currency": {
+      "code": "JPY",
+      "name": "Japanese Yen",
+      "symbol": "¥"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "JCB",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (accepted where JCB is accepted via network partnership)"
+      ],
+      "popularEWallets": [
+        "IC Transit Cards (Suica, Pasmo, Icoca)",
+        "PayPay",
+        "Apple Pay"
+      ],
+      "cashAdvice": "Cash remains important! While digital pay has expanded rapidly, ramen ticket vending machines, historic temples/shrines, coin lockers, and small izakayas are still CASH ONLY."
+    },
+    "culturalTips": [
+      "NO TIPPING under any circumstances—tipping in Japan is considered confusing, awkward, or even rude; great service is standard.",
+      "Eat or drink on the spot; walking while eating or drinking street food is considered bad manners.",
+      "Keep public voice levels very low on subway and commuter trains; phone calls on trains are strictly forbidden.",
+      "Public trash cans are almost nonexistent in cities: be prepared to carry your trash in your bag until you return to your hotel or find a convenience store bin."
+    ]
   },
   {
     "id": "seoul-kr",
@@ -447,12 +1867,55 @@
     "type": "city",
     "country": "South Korea",
     "countryCode": "KR",
-    "tags": ["food", "nightlife", "shopping", "city", "culture"],
+    "tags": [
+      "food",
+      "nightlife",
+      "shopping",
+      "city",
+      "culture"
+    ],
     "budget": "$$",
-    "bestMonths": ["Apr", "May", "Sep", "Oct"],
+    "bestMonths": [
+      "Apr",
+      "May",
+      "Sep",
+      "Oct"
+    ],
     "climate": "mild",
     "safety": 1,
-    "description": "Palaces, markets, Korean barbecue and late-night energy."
+    "description": "Palaces, markets, Korean barbecue and late-night energy.",
+    "languages": [
+      "Korean (official Hangul)",
+      "English (subway signage in English, varying spoken fluency)"
+    ],
+    "currency": {
+      "code": "KRW",
+      "name": "South Korean Won",
+      "symbol": "₩"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (accepted via BC Card network)",
+        "American Express (moderate)"
+      ],
+      "popularEWallets": [
+        "T-Money Transit Card (essential)",
+        "KakaoPay / Naver Pay (locals)",
+        "Apple Pay (expanding)"
+      ],
+      "cashAdvice": "Virtually 100% card-friendly. However, you MUST buy and reload a physical T-Money transit card with CASH at convenience stores or subway kiosks.",
+      "transitTip": "T-Money Card: Buy a T-Money card at any convenience store and reload with CASH to tap on subways, buses, and taxis."
+    },
+    "culturalTips": [
+      "NO TIPPING in South Korea—service charges are included, and tips are not expected.",
+      "Use two hands (or place your left hand supporting your right forearm) when handing or receiving drinks, money, or business cards to show respect.",
+      "Pour drinks for your companions, never for yourself; let others refill your cup when empty.",
+      "Download Naver Map or KakaoMap: Google Maps does not provide walking/driving directions in South Korea due to national security data laws."
+    ]
   },
   {
     "id": "taipei-tw",
@@ -460,12 +1923,57 @@
     "type": "city",
     "country": "Taiwan",
     "countryCode": "TW",
-    "tags": ["food", "hidden-gem", "city", "culture", "budget-friendly"],
+    "tags": [
+      "food",
+      "hidden-gem",
+      "city",
+      "culture",
+      "budget-friendly"
+    ],
     "budget": "$",
-    "bestMonths": ["Oct", "Nov", "Dec", "Mar", "Apr"],
+    "bestMonths": [
+      "Oct",
+      "Nov",
+      "Dec",
+      "Mar",
+      "Apr"
+    ],
     "climate": "warm",
     "safety": 1,
-    "description": "Night markets, hot springs and mountain trails within the metro area."
+    "description": "Night markets, hot springs and mountain trails within the metro area.",
+    "languages": [
+      "Mandarin Chinese (official)",
+      "Taiwanese Hokkien",
+      "English (bilingual signage in transport & cities)"
+    ],
+    "currency": {
+      "code": "TWD",
+      "name": "New Taiwan Dollar",
+      "symbol": "NT$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "JCB"
+      ],
+      "cardsLimited": [
+        "Discover (accepted via UnionPay)",
+        "American Express (department stores only)"
+      ],
+      "popularEWallets": [
+        "EasyCard / iPASS (essential transit & convenience store card)",
+        "LINE Pay",
+        "Apple Pay"
+      ],
+      "cashAdvice": "Cash is essential for famous night markets, street food stalls, and traditional breakfast spots. An EasyCard is vital for all subways, buses, YouBikes, and convenience stores."
+    },
+    "culturalTips": [
+      "NO TIPPING in Taiwan—restaurant bills include a 10% service charge where applicable; tips are not expected.",
+      "Eating, drinking (even water), and chewing gum are strictly prohibited inside MRT subway stations and trains, carrying instant NT$1,500 fines.",
+      "Stand on the right on MRT escalators to allow people in a rush to pass on the left.",
+      "Never stick chopsticks vertically into a bowl of rice (it resembles incense sticks burned for the deceased at funerals)."
+    ]
   },
   {
     "id": "hong-kong-hk",
@@ -473,12 +1981,57 @@
     "type": "city",
     "country": "Hong Kong",
     "countryCode": "HK",
-    "tags": ["food", "city", "shopping", "hiking", "nightlife"],
+    "tags": [
+      "food",
+      "city",
+      "shopping",
+      "hiking",
+      "nightlife"
+    ],
     "budget": "$$",
-    "bestMonths": ["Oct", "Nov", "Dec", "Mar"],
+    "bestMonths": [
+      "Oct",
+      "Nov",
+      "Dec",
+      "Mar"
+    ],
     "climate": "warm",
     "safety": 1,
-    "description": "Skyline views, dim sum and surprisingly good hiking right outside the city."
+    "description": "Skyline views, dim sum and surprisingly good hiking right outside the city.",
+    "languages": [
+      "Cantonese (official)",
+      "English (official, widely spoken in business & transport)",
+      "Mandarin"
+    ],
+    "currency": {
+      "code": "HKD",
+      "name": "Hong Kong Dollar",
+      "symbol": "HK$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (accepted via UnionPay network)"
+      ],
+      "popularEWallets": [
+        "Octopus Card (universal transit & retail)",
+        "AlipayHK",
+        "WeChat Pay HK",
+        "Apple Pay"
+      ],
+      "cashAdvice": "Octopus card and credit cards dominate, but traditional dim sum tea houses (cha chaan tengs) and red taxis frequently remain CASH ONLY.",
+      "transitTip": "Octopus Card: Pick up an Octopus card at the airport MTR desk or add digital Octopus to Apple Wallet—essential for MTR, Star Ferry, and convenience stores."
+    },
+    "culturalTips": [
+      "Pick up an Octopus card at the airport immediately: it pays for MTR subways, ferries, convenience stores, and vending machines.",
+      "At traditional Cantonese dim sum tables, tap two fingers on the table when someone pours your tea as a silent gesture of gratitude.",
+      "A 10% service charge is usually added to restaurant bills; rounding up small change is customary.",
+      "Hong Kong moves fast: walk briskly and avoid stopping suddenly in the middle of busy pedestrian walkways or MTR tunnels."
+    ]
   },
   {
     "id": "bangkok-th",
@@ -486,12 +2039,54 @@
     "type": "city",
     "country": "Thailand",
     "countryCode": "TH",
-    "tags": ["food", "nightlife", "shopping", "budget-friendly", "culture"],
+    "tags": [
+      "food",
+      "nightlife",
+      "shopping",
+      "budget-friendly",
+      "culture"
+    ],
     "budget": "$",
-    "bestMonths": ["Nov", "Dec", "Jan", "Feb"],
+    "bestMonths": [
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb"
+    ],
     "climate": "tropical",
     "safety": 2,
-    "description": "Street food, temples and rooftop bars in a hot, chaotic and affordable city."
+    "description": "Street food, temples and rooftop bars in a hot, chaotic and affordable city.",
+    "languages": [
+      "Thai (official)",
+      "English (widely understood in Bangkok, Chiang Mai, Phuket, and tourist islands)"
+    ],
+    "currency": {
+      "code": "THB",
+      "name": "Thai Baht",
+      "symbol": "฿"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (major hotels only)"
+      ],
+      "popularEWallets": [
+        "PromptPay (local QR)",
+        "TrueMoney",
+        "Apple Pay (very limited)"
+      ],
+      "cashAdvice": "Cash is king in Thailand! While hotels, shopping malls, and upscale dining take credit cards, all street food stalls, tuk-tuks, night markets, and massage parlors require physical Baht."
+    },
+    "culturalTips": [
+      "The 'Wai' greeting: Place your palms together at your chest and bow your head slightly to greet or thank people.",
+      "Deep reverence for the Royal Family: Defaming or disrespecting the King or monarchy ('lèse-majesté') is a severe crime punishable by imprisonment.",
+      "Remove shoes before stepping into temples, traditional shops, and private homes.",
+      "Never touch anyone on top of their head, and never point the soles of your feet at any person, Buddha statue, or royal portrait."
+    ]
   },
   {
     "id": "chiang-mai-th",
@@ -499,12 +2094,54 @@
     "type": "city",
     "country": "Thailand",
     "countryCode": "TH",
-    "tags": ["culture", "relaxation", "hiking", "budget-friendly", "wildlife"],
+    "tags": [
+      "culture",
+      "relaxation",
+      "hiking",
+      "budget-friendly",
+      "wildlife"
+    ],
     "budget": "$",
-    "bestMonths": ["Nov", "Dec", "Jan", "Feb"],
+    "bestMonths": [
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb"
+    ],
     "climate": "tropical",
     "safety": 1,
-    "description": "Mountain-side old city with temples, cooking classes and ethical elephant sanctuaries."
+    "description": "Mountain-side old city with temples, cooking classes and ethical elephant sanctuaries.",
+    "languages": [
+      "Thai (official)",
+      "English (widely understood in Bangkok, Chiang Mai, Phuket, and tourist islands)"
+    ],
+    "currency": {
+      "code": "THB",
+      "name": "Thai Baht",
+      "symbol": "฿"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (major hotels only)"
+      ],
+      "popularEWallets": [
+        "PromptPay (local QR)",
+        "TrueMoney",
+        "Apple Pay (very limited)"
+      ],
+      "cashAdvice": "Cash is king in Thailand! While hotels, shopping malls, and upscale dining take credit cards, all street food stalls, tuk-tuks, night markets, and massage parlors require physical Baht."
+    },
+    "culturalTips": [
+      "The 'Wai' greeting: Place your palms together at your chest and bow your head slightly to greet or thank people.",
+      "Deep reverence for the Royal Family: Defaming or disrespecting the King or monarchy ('lèse-majesté') is a severe crime punishable by imprisonment.",
+      "Remove shoes before stepping into temples, traditional shops, and private homes.",
+      "Never touch anyone on top of their head, and never point the soles of your feet at any person, Buddha statue, or royal portrait."
+    ]
   },
   {
     "id": "hanoi-vn",
@@ -512,12 +2149,52 @@
     "type": "city",
     "country": "Vietnam",
     "countryCode": "VN",
-    "tags": ["food", "history", "budget-friendly", "culture"],
+    "tags": [
+      "food",
+      "history",
+      "budget-friendly",
+      "culture"
+    ],
     "budget": "$",
-    "bestMonths": ["Oct", "Nov", "Mar", "Apr"],
+    "bestMonths": [
+      "Oct",
+      "Nov",
+      "Mar",
+      "Apr"
+    ],
     "climate": "warm",
     "safety": 1,
-    "description": "Old Quarter street food, egg coffee and day trips to Ha Long Bay."
+    "description": "Old Quarter street food, egg coffee and day trips to Ha Long Bay.",
+    "languages": [
+      "Vietnamese (official)",
+      "English (widely understood in Hanoi, HCMC, Hoi An, and tourism)"
+    ],
+    "currency": {
+      "code": "VND",
+      "name": "Vietnamese Dong",
+      "symbol": "₫"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (major international hotels only)"
+      ],
+      "popularEWallets": [
+        "MoMo / ZaloPay (locals)",
+        "GrabPay (for tourists)"
+      ],
+      "cashAdvice": "Cash is king in Vietnam! While hotels and modern restaurants take cards, street food stalls, markets, coffee shops, and cyclo rides are strictly CASH ONLY. Be careful with Dong notes: 20,000 and 500,000 look similar in color."
+    },
+    "culturalTips": [
+      "Crossing the street in Hanoi or Ho Chi Minh City: Walk at a slow, steady, predictable pace—do not run or stop suddenly; motorbike traffic will flow around you like water.",
+      "Tipping is not traditionally expected, though 5-10% in tourist restaurants or rounding up taxi fares is appreciated.",
+      "Always remove your shoes before entering private homes and certain pagoda temples.",
+      "Never point your chopsticks directly at another person or stick them upright in a bowl of rice."
+    ]
   },
   {
     "id": "ho-chi-minh-vn",
@@ -525,12 +2202,53 @@
     "type": "city",
     "country": "Vietnam",
     "countryCode": "VN",
-    "tags": ["food", "history", "nightlife", "budget-friendly", "city"],
+    "tags": [
+      "food",
+      "history",
+      "nightlife",
+      "budget-friendly",
+      "city"
+    ],
     "budget": "$",
-    "bestMonths": ["Dec", "Jan", "Feb", "Mar"],
+    "bestMonths": [
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar"
+    ],
     "climate": "tropical",
     "safety": 2,
-    "description": "Fast-moving southern city with war history, markets and Mekong Delta tours."
+    "description": "Fast-moving southern city with war history, markets and Mekong Delta tours.",
+    "languages": [
+      "Vietnamese (official)",
+      "English (widely understood in Hanoi, HCMC, Hoi An, and tourism)"
+    ],
+    "currency": {
+      "code": "VND",
+      "name": "Vietnamese Dong",
+      "symbol": "₫"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (major international hotels only)"
+      ],
+      "popularEWallets": [
+        "MoMo / ZaloPay (locals)",
+        "GrabPay (for tourists)"
+      ],
+      "cashAdvice": "Cash is king in Vietnam! While hotels and modern restaurants take cards, street food stalls, markets, coffee shops, and cyclo rides are strictly CASH ONLY. Be careful with Dong notes: 20,000 and 500,000 look similar in color."
+    },
+    "culturalTips": [
+      "Crossing the street in Hanoi or Ho Chi Minh City: Walk at a slow, steady, predictable pace—do not run or stop suddenly; motorbike traffic will flow around you like water.",
+      "Tipping is not traditionally expected, though 5-10% in tourist restaurants or rounding up taxi fares is appreciated.",
+      "Always remove your shoes before entering private homes and certain pagoda temples.",
+      "Never point your chopsticks directly at another person or stick them upright in a bowl of rice."
+    ]
   },
   {
     "id": "singapore-sg",
@@ -538,12 +2256,58 @@
     "type": "city",
     "country": "Singapore",
     "countryCode": "SG",
-    "tags": ["food", "city", "family", "architecture", "shopping"],
+    "tags": [
+      "food",
+      "city",
+      "family",
+      "architecture",
+      "shopping"
+    ],
     "budget": "$$$",
-    "bestMonths": ["Feb", "Mar", "Apr", "Jul"],
+    "bestMonths": [
+      "Feb",
+      "Mar",
+      "Apr",
+      "Jul"
+    ],
     "climate": "tropical",
     "safety": 1,
-    "description": "Clean, safe city-state with hawker food, gardens and strict public rules."
+    "description": "Clean, safe city-state with hawker food, gardens and strict public rules.",
+    "languages": [
+      "English (official & main working language)",
+      "Mandarin",
+      "Malay (national language)",
+      "Tamil"
+    ],
+    "currency": {
+      "code": "SGD",
+      "name": "Singapore Dollar",
+      "symbol": "S$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (limited acceptance)"
+      ],
+      "popularEWallets": [
+        "GrabPay",
+        "PayNow (locals)",
+        "Apple Pay",
+        "EZ-Link / Contactless card"
+      ],
+      "cashAdvice": "Heavily card/phone-friendly. You can tap any Visa/Mastercard directly on MRT subway and bus turnstiles. Cash is only needed for certain traditional hawker stalls.",
+      "transitTip": "Contactless / SimplyGo: Simply tap your contactless foreign credit card or phone directly on MRT subway and bus readers (no transit card purchase needed)."
+    },
+    "culturalTips": [
+      "Tipping is NOT customary in Singapore; bills already include a 10% service charge and 9% Goods and Services Tax (GST).",
+      "'Choping' seats: In hawker centres, packets of tissue paper, umbrellas, or water bottles left on empty tables mean the seat is reserved—do not sit there.",
+      "Strict civic laws: Chewing gum is banned from import/sale, littering and jaywalking carry heavy fines, and smoking is prohibited in almost all public areas.",
+      "Return your food trays at hawker centres and food courts; clearing your own tray is legally required."
+    ]
   },
   {
     "id": "bali-id",
@@ -551,12 +2315,55 @@
     "type": "place",
     "country": "Indonesia",
     "countryCode": "ID",
-    "tags": ["beach", "relaxation", "spa", "nature", "budget-friendly"],
+    "tags": [
+      "beach",
+      "relaxation",
+      "spa",
+      "nature",
+      "budget-friendly"
+    ],
     "budget": "$",
-    "bestMonths": ["Apr", "May", "Jun", "Sep"],
+    "bestMonths": [
+      "Apr",
+      "May",
+      "Jun",
+      "Sep"
+    ],
     "climate": "tropical",
     "safety": 2,
-    "description": "Rice terraces, surf beaches, temples and wellness retreats."
+    "description": "Rice terraces, surf beaches, temples and wellness retreats.",
+    "languages": [
+      "Indonesian (Bahasa Indonesia official)",
+      "Balinese (in Bali)",
+      "English (widely in Bali & tourist spots)"
+    ],
+    "currency": {
+      "code": "IDR",
+      "name": "Indonesian Rupiah",
+      "symbol": "Rp"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (major resorts only)"
+      ],
+      "popularEWallets": [
+        "GoPay",
+        "OVO",
+        "QRIS (universal QR code, requires local app)"
+      ],
+      "cashAdvice": "Cash is essential for street warungs, local drivers, market purchases, and temple entrance donations. Always carry 50,000 and 100,000 IDR notes."
+    },
+    "culturalTips": [
+      "Watch your step on footpaths in Bali: small woven palm leaf offerings ('canang sari') are laid out on sidewalks daily—never step on them.",
+      "Always use your right hand when giving or receiving objects or food.",
+      "A sarong and sash are required for both men and women when entering Balinese Hindu temples (usually rentable at the entrance).",
+      "Do not touch anyone's head (including children), as the head is considered the sacred seat of the soul."
+    ]
   },
   {
     "id": "maldives-mv",
@@ -564,12 +2371,54 @@
     "type": "country",
     "country": "Maldives",
     "countryCode": "MV",
-    "tags": ["beach", "relaxation", "luxury", "romance", "diving"],
+    "tags": [
+      "beach",
+      "relaxation",
+      "luxury",
+      "romance",
+      "diving"
+    ],
     "budget": "$$$",
-    "bestMonths": ["Dec", "Jan", "Feb", "Mar", "Apr"],
+    "bestMonths": [
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr"
+    ],
     "climate": "tropical",
     "safety": 1,
-    "description": "Overwater bungalows, lagoons and some of the best snorkeling and diving."
+    "description": "Overwater bungalows, lagoons and some of the best snorkeling and diving.",
+    "languages": [
+      "Dhivehi (official)",
+      "English (universal across tourist resorts)"
+    ],
+    "currency": {
+      "code": "MVR",
+      "name": "Maldivian Rufiyaa",
+      "symbol": "Rf"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (limited)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "Resorts operate entirely on credit card accounts settled at checkout. U.S. dollars are universally accepted on local inhabited islands."
+    },
+    "culturalTips": [
+      "The Maldives is an Islamic nation: alcohol and pork are strictly restricted to private resort islands and banned on local inhabited islands.",
+      "Bikinis and swimwear are only allowed on private resort beaches or designated 'bikini beaches' on local islands.",
+      "A 10% service charge and 16% tourism goods tax (TGST) are added to all resort invoices; extra tips for personal island butlers and room attendants ($5-10/day) are standard.",
+      "Environmental care: Touching, stepping on, or collecting coral is strictly prohibited."
+    ]
   },
   {
     "id": "kathmandu-np",
@@ -577,12 +2426,53 @@
     "type": "city",
     "country": "Nepal",
     "countryCode": "NP",
-    "tags": ["adventure", "hiking", "culture", "mountains", "budget-friendly"],
+    "tags": [
+      "adventure",
+      "hiking",
+      "culture",
+      "mountains",
+      "budget-friendly"
+    ],
     "budget": "$",
-    "bestMonths": ["Mar", "Apr", "Oct", "Nov"],
+    "bestMonths": [
+      "Mar",
+      "Apr",
+      "Oct",
+      "Nov"
+    ],
     "climate": "mild",
     "safety": 3,
-    "description": "Gateway to Himalayan treks, with ancient temples and crowded old squares."
+    "description": "Gateway to Himalayan treks, with ancient temples and crowded old squares.",
+    "languages": [
+      "Nepali (official)",
+      "English (widely spoken in trekking agencies, Kathmandu, & Pokhara)"
+    ],
+    "currency": {
+      "code": "NPR",
+      "name": "Nepalese Rupee",
+      "symbol": "रू"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (luxury hotels only)"
+      ],
+      "popularEWallets": [
+        "eSewa / Khalti (locals)",
+        "Cash is primary for travelers"
+      ],
+      "cashAdvice": "Cash is essential. Credit cards work at Kathmandu and Pokhara hotels/agencies, but mountain teahouses and trekking trails accept ONLY physical Rupee cash notes."
+    },
+    "culturalTips": [
+      "Greeting: Place palms together at chest level and say 'Namaste' with a slight bow.",
+      "Always walk clockwise around Buddhist stupas, chortens, and mani prayer stone walls.",
+      "Never point the soles of your feet at people, religious icons, or sacred shrines.",
+      "Tipping trekking guides and porters is standard and an essential part of their income (budget roughly 10-15% of the trek cost)."
+    ]
   },
   {
     "id": "jaipur-in",
@@ -590,12 +2480,55 @@
     "type": "city",
     "country": "India",
     "countryCode": "IN",
-    "tags": ["history", "culture", "food", "shopping", "architecture"],
+    "tags": [
+      "history",
+      "culture",
+      "food",
+      "shopping",
+      "architecture"
+    ],
     "budget": "$",
-    "bestMonths": ["Oct", "Nov", "Dec", "Jan", "Feb"],
+    "bestMonths": [
+      "Oct",
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb"
+    ],
     "climate": "hot-dry",
     "safety": 3,
-    "description": "The Pink City, with forts, palaces and bazaars full of textiles and jewelry."
+    "description": "The Pink City, with forts, palaces and bazaars full of textiles and jewelry.",
+    "languages": [
+      "Hindi (official)",
+      "English (associate official, widely used in business/higher education)",
+      "22 recognized languages"
+    ],
+    "currency": {
+      "code": "INR",
+      "name": "Indian Rupee",
+      "symbol": "₹"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (accepted via RuPay partnership)",
+        "American Express (limited)"
+      ],
+      "popularEWallets": [
+        "UPI / PhonePe / Google Pay (universal for locals, now expanding for tourists)",
+        "Paytm"
+      ],
+      "cashAdvice": "Carry cash in ₹100, ₹200, and ₹500 denominations for auto-rickshaws, chai stalls, street food, and tips. High-end restaurants and malls take cards seamlessly."
+    },
+    "culturalTips": [
+      "Always remove footwear before entering temples, mosques, gurdwaras, and private homes.",
+      "Eat and handle food, money, and sacred items exclusively with your right hand.",
+      "Dress conservatively, keeping shoulders and knees covered, particularly at religious and heritage monuments.",
+      "The Indian head wobble can mean yes, agreement, acknowledgment, or 'I understand' depending on context."
+    ]
   },
   {
     "id": "sydney-au",
@@ -603,12 +2536,55 @@
     "type": "city",
     "country": "Australia",
     "countryCode": "AU",
-    "tags": ["beach", "city", "food", "famous", "nature"],
+    "tags": [
+      "beach",
+      "city",
+      "food",
+      "famous",
+      "nature"
+    ],
     "budget": "$$$",
-    "bestMonths": ["Oct", "Nov", "Dec", "Feb", "Mar"],
+    "bestMonths": [
+      "Oct",
+      "Nov",
+      "Dec",
+      "Feb",
+      "Mar"
+    ],
     "climate": "warm",
     "safety": 1,
-    "description": "Harbor, opera house, surf beaches and coastal walks."
+    "description": "Harbor, opera house, surf beaches and coastal walks.",
+    "languages": [
+      "English (de facto official)",
+      "Indigenous Australian languages"
+    ],
+    "currency": {
+      "code": "AUD",
+      "name": "Australian Dollar",
+      "symbol": "A$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted outside major hotels)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Beem"
+      ],
+      "cashAdvice": "Virtually cashless. Tap-to-pay on phones or cards is used for everything including coffees, public transport, and markets."
+    },
+    "culturalTips": [
+      "Tipping is NOT customary or expected in Australia; hospitality workers are paid a high minimum wage.",
+      "Prices displayed always include the 10% Goods and Services Tax (GST)—no surprise taxes at the register.",
+      "Pedestrian crossing laws (jaywalking) are strictly enforced in city centers.",
+      "Casual, egalitarian social interactions: servers and shopkeepers are greeted with friendly informality ('G'day', 'How ya going?')."
+    ]
   },
   {
     "id": "new-zealand",
@@ -616,12 +2592,55 @@
     "type": "country",
     "country": "New Zealand",
     "countryCode": "NZ",
-    "tags": ["nature", "adventure", "hiking", "road-trip", "scenic"],
+    "tags": [
+      "nature",
+      "adventure",
+      "hiking",
+      "road-trip",
+      "scenic"
+    ],
     "budget": "$$$",
-    "bestMonths": ["Dec", "Jan", "Feb", "Mar"],
+    "bestMonths": [
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar"
+    ],
     "climate": "mild",
     "safety": 1,
-    "description": "Fjords, volcanoes, glaciers and adventure sports across two islands."
+    "description": "Fjords, volcanoes, glaciers and adventure sports across two islands.",
+    "languages": [
+      "English (official & primary)",
+      "Māori (official)",
+      "NZ Sign Language"
+    ],
+    "currency": {
+      "code": "NZD",
+      "name": "New Zealand Dollar",
+      "symbol": "NZ$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "EFTPOS (local debit)"
+      ],
+      "cashAdvice": "Nearly 100% cashless. Contactless cards and smartphones are used for virtually all transactions."
+    },
+    "culturalTips": [
+      "Tipping is NOT customary or expected in New Zealand; staff receive fair minimum wages.",
+      "Prices displayed always include the 15% Goods and Services Tax (GST).",
+      "Māori cultural protocol: Remove shoes when entering a Marae (meeting grounds), and never sit on tables or pillows meant for heads.",
+      "Strict biosecurity laws: Declare all outdoor hiking gear, boots, and organic food at airport customs—failure to declare brings instant $400 fines."
+    ]
   },
   {
     "id": "maui-us",
@@ -629,12 +2648,52 @@
     "type": "place",
     "country": "United States",
     "countryCode": "US",
-    "tags": ["beach", "relaxation", "nature", "scenic", "romance"],
+    "tags": [
+      "beach",
+      "relaxation",
+      "nature",
+      "scenic",
+      "romance"
+    ],
     "budget": "$$$",
-    "bestMonths": ["Apr", "May", "Sep", "Oct"],
+    "bestMonths": [
+      "Apr",
+      "May",
+      "Sep",
+      "Oct"
+    ],
     "climate": "tropical",
     "safety": 1,
-    "description": "Beaches, whale watching in winter, volcano sunrises and the Road to Hana."
+    "description": "Beaches, whale watching in winter, volcano sunrises and the Road to Hana.",
+    "languages": [
+      "English (de facto)",
+      "Spanish (widely spoken)"
+    ],
+    "currency": {
+      "code": "USD",
+      "name": "U.S. Dollar",
+      "symbol": "$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express",
+        "Discover"
+      ],
+      "cardsLimited": [],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Venmo"
+      ],
+      "cashAdvice": "Nearly cashless. Cards and smartphone contactless payments are accepted virtually everywhere."
+    },
+    "culturalTips": [
+      "Tipping is standard: 18-22% in sit-down restaurants, $1-2 per drink at bars, and 15-20% for rideshares/taxis.",
+      "Listed retail and menu prices do not include state/local sales tax (typically added at the register).",
+      "Pedestrian jaywalking is ticketed in certain cities; cross at marked intersections."
+    ]
   },
   {
     "id": "new-york-us",
@@ -642,12 +2701,55 @@
     "type": "city",
     "country": "United States",
     "countryCode": "US",
-    "tags": ["city", "food", "museums", "nightlife", "famous", "shopping"],
+    "tags": [
+      "city",
+      "food",
+      "museums",
+      "nightlife",
+      "famous",
+      "shopping"
+    ],
     "budget": "$$$",
-    "bestMonths": ["Apr", "May", "Sep", "Oct", "Dec"],
+    "bestMonths": [
+      "Apr",
+      "May",
+      "Sep",
+      "Oct",
+      "Dec"
+    ],
     "climate": "mild",
     "safety": 2,
-    "description": "Broadway, museums, parks and every cuisine imaginable. Subway access and lots of walking."
+    "description": "Broadway, museums, parks and every cuisine imaginable. Subway access and lots of walking.",
+    "languages": [
+      "English (de facto)",
+      "Spanish (widely spoken)"
+    ],
+    "currency": {
+      "code": "USD",
+      "name": "U.S. Dollar",
+      "symbol": "$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express",
+        "Discover"
+      ],
+      "cardsLimited": [],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Venmo"
+      ],
+      "cashAdvice": "Nearly cashless. Cards and smartphone contactless payments are accepted virtually everywhere.",
+      "transitTip": "OMNY Contactless: Tap your contactless credit card or phone directly at any subway turnstile or bus reader (OMNY) with weekly fare capping."
+    },
+    "culturalTips": [
+      "Tipping is standard: 18-22% in sit-down restaurants, $1-2 per drink at bars, and 15-20% for rideshares/taxis.",
+      "Listed retail and menu prices do not include state/local sales tax (typically added at the register).",
+      "Pedestrian jaywalking is ticketed in certain cities; cross at marked intersections."
+    ]
   },
   {
     "id": "new-orleans-us",
@@ -655,12 +2757,53 @@
     "type": "city",
     "country": "United States",
     "countryCode": "US",
-    "tags": ["food", "nightlife", "culture", "history", "music"],
+    "tags": [
+      "food",
+      "nightlife",
+      "culture",
+      "history",
+      "music"
+    ],
     "budget": "$$",
-    "bestMonths": ["Feb", "Mar", "Apr", "Oct", "Nov"],
+    "bestMonths": [
+      "Feb",
+      "Mar",
+      "Apr",
+      "Oct",
+      "Nov"
+    ],
     "climate": "warm",
     "safety": 3,
-    "description": "Live jazz, Creole and Cajun cooking, festivals and historic neighborhoods."
+    "description": "Live jazz, Creole and Cajun cooking, festivals and historic neighborhoods.",
+    "languages": [
+      "English (de facto)",
+      "Spanish (widely spoken)"
+    ],
+    "currency": {
+      "code": "USD",
+      "name": "U.S. Dollar",
+      "symbol": "$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express",
+        "Discover"
+      ],
+      "cardsLimited": [],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Venmo"
+      ],
+      "cashAdvice": "Nearly cashless. Cards and smartphone contactless payments are accepted virtually everywhere."
+    },
+    "culturalTips": [
+      "Tipping is standard: 18-22% in sit-down restaurants, $1-2 per drink at bars, and 15-20% for rideshares/taxis.",
+      "Listed retail and menu prices do not include state/local sales tax (typically added at the register).",
+      "Pedestrian jaywalking is ticketed in certain cities; cross at marked intersections."
+    ]
   },
   {
     "id": "san-francisco-us",
@@ -668,12 +2811,51 @@
     "type": "city",
     "country": "United States",
     "countryCode": "US",
-    "tags": ["food", "scenic", "city", "hiking", "culture"],
+    "tags": [
+      "food",
+      "scenic",
+      "city",
+      "hiking",
+      "culture"
+    ],
     "budget": "$$$",
-    "bestMonths": ["Sep", "Oct", "May"],
+    "bestMonths": [
+      "Sep",
+      "Oct",
+      "May"
+    ],
     "climate": "mild",
     "safety": 2,
-    "description": "Bridges, hills, great restaurants and quick trips to wine country and redwoods."
+    "description": "Bridges, hills, great restaurants and quick trips to wine country and redwoods.",
+    "languages": [
+      "English (de facto)",
+      "Spanish (widely spoken)"
+    ],
+    "currency": {
+      "code": "USD",
+      "name": "U.S. Dollar",
+      "symbol": "$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express",
+        "Discover"
+      ],
+      "cardsLimited": [],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Venmo"
+      ],
+      "cashAdvice": "Nearly cashless. Cards and smartphone contactless payments are accepted virtually everywhere."
+    },
+    "culturalTips": [
+      "Tipping is standard: 18-22% in sit-down restaurants, $1-2 per drink at bars, and 15-20% for rideshares/taxis.",
+      "Listed retail and menu prices do not include state/local sales tax (typically added at the register).",
+      "Pedestrian jaywalking is ticketed in certain cities; cross at marked intersections."
+    ]
   },
   {
     "id": "austin-us",
@@ -681,12 +2863,52 @@
     "type": "city",
     "country": "United States",
     "countryCode": "US",
-    "tags": ["food", "music", "nightlife", "relaxation", "road-trip"],
+    "tags": [
+      "food",
+      "music",
+      "nightlife",
+      "relaxation",
+      "road-trip"
+    ],
     "budget": "$$",
-    "bestMonths": ["Mar", "Apr", "Oct", "Nov"],
+    "bestMonths": [
+      "Mar",
+      "Apr",
+      "Oct",
+      "Nov"
+    ],
     "climate": "hot-dry",
     "safety": 1,
-    "description": "Live music, barbecue, Hill Country day trips and swimming holes."
+    "description": "Live music, barbecue, Hill Country day trips and swimming holes.",
+    "languages": [
+      "English (de facto)",
+      "Spanish (widely spoken)"
+    ],
+    "currency": {
+      "code": "USD",
+      "name": "U.S. Dollar",
+      "symbol": "$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express",
+        "Discover"
+      ],
+      "cardsLimited": [],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Venmo"
+      ],
+      "cashAdvice": "Nearly cashless. Cards and smartphone contactless payments are accepted virtually everywhere."
+    },
+    "culturalTips": [
+      "Tipping is standard: 18-22% in sit-down restaurants, $1-2 per drink at bars, and 15-20% for rideshares/taxis.",
+      "Listed retail and menu prices do not include state/local sales tax (typically added at the register).",
+      "Pedestrian jaywalking is ticketed in certain cities; cross at marked intersections."
+    ]
   },
   {
     "id": "yellowstone-us",
@@ -694,12 +2916,52 @@
     "type": "place",
     "country": "United States",
     "countryCode": "US",
-    "tags": ["nature", "wildlife", "hiking", "road-trip", "scenic", "family"],
+    "tags": [
+      "nature",
+      "wildlife",
+      "hiking",
+      "road-trip",
+      "scenic",
+      "family"
+    ],
     "budget": "$$",
-    "bestMonths": ["May", "Jun", "Sep"],
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Sep"
+    ],
     "climate": "cool",
     "safety": 2,
-    "description": "Geysers, hot springs and wildlife viewing. Needs a car and advance lodging booking."
+    "description": "Geysers, hot springs and wildlife viewing. Needs a car and advance lodging booking.",
+    "languages": [
+      "English (de facto)",
+      "Spanish (widely spoken)"
+    ],
+    "currency": {
+      "code": "USD",
+      "name": "U.S. Dollar",
+      "symbol": "$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express",
+        "Discover"
+      ],
+      "cardsLimited": [],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Venmo"
+      ],
+      "cashAdvice": "Nearly cashless. Cards and smartphone contactless payments are accepted virtually everywhere."
+    },
+    "culturalTips": [
+      "Tipping is standard: 18-22% in sit-down restaurants, $1-2 per drink at bars, and 15-20% for rideshares/taxis.",
+      "Listed retail and menu prices do not include state/local sales tax (typically added at the register).",
+      "Pedestrian jaywalking is ticketed in certain cities; cross at marked intersections."
+    ]
   },
   {
     "id": "grand-canyon-us",
@@ -707,12 +2969,54 @@
     "type": "place",
     "country": "United States",
     "countryCode": "US",
-    "tags": ["nature", "hiking", "road-trip", "scenic", "famous", "family"],
+    "tags": [
+      "nature",
+      "hiking",
+      "road-trip",
+      "scenic",
+      "famous",
+      "family"
+    ],
     "budget": "$$",
-    "bestMonths": ["Mar", "Apr", "May", "Sep", "Oct"],
+    "bestMonths": [
+      "Mar",
+      "Apr",
+      "May",
+      "Sep",
+      "Oct"
+    ],
     "climate": "hot-dry",
     "safety": 2,
-    "description": "Rim viewpoints and multi-day hikes. Summer heat at the bottom is dangerous."
+    "description": "Rim viewpoints and multi-day hikes. Summer heat at the bottom is dangerous.",
+    "languages": [
+      "English (de facto)",
+      "Spanish (widely spoken)"
+    ],
+    "currency": {
+      "code": "USD",
+      "name": "U.S. Dollar",
+      "symbol": "$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express",
+        "Discover"
+      ],
+      "cardsLimited": [],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Venmo"
+      ],
+      "cashAdvice": "Nearly cashless. Cards and smartphone contactless payments are accepted virtually everywhere."
+    },
+    "culturalTips": [
+      "Tipping is standard: 18-22% in sit-down restaurants, $1-2 per drink at bars, and 15-20% for rideshares/taxis.",
+      "Listed retail and menu prices do not include state/local sales tax (typically added at the register).",
+      "Pedestrian jaywalking is ticketed in certain cities; cross at marked intersections."
+    ]
   },
   {
     "id": "vancouver-ca",
@@ -720,12 +3024,54 @@
     "type": "city",
     "country": "Canada",
     "countryCode": "CA",
-    "tags": ["nature", "food", "city", "hiking", "scenic"],
+    "tags": [
+      "nature",
+      "food",
+      "city",
+      "hiking",
+      "scenic"
+    ],
     "budget": "$$$",
-    "bestMonths": ["Jun", "Jul", "Aug", "Sep"],
+    "bestMonths": [
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep"
+    ],
     "climate": "mild",
     "safety": 1,
-    "description": "Mountains and ocean next to a diverse, walkable city."
+    "description": "Mountains and ocean next to a diverse, walkable city.",
+    "languages": [
+      "English (official)",
+      "French (official, dominant in Quebec)"
+    ],
+    "currency": {
+      "code": "CAD",
+      "name": "Canadian Dollar",
+      "symbol": "CA$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (moderate acceptance)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Interac Flash"
+      ],
+      "cashAdvice": "Nearly cashless society. Tap-to-pay cards and smartphones are accepted everywhere."
+    },
+    "culturalTips": [
+      "Tipping is customary and identical to the U.S. (15-20% in restaurants and bars).",
+      "Sales taxes (GST/PST/HST, between 5% and 15%) are added at the register on top of listed prices.",
+      "In Quebec, addressing people first in French ('Bonjour') before asking if they speak English is basic courtesy.",
+      "Shoes are strictly removed upon entering residential homes."
+    ]
   },
   {
     "id": "banff-ca",
@@ -733,12 +3079,56 @@
     "type": "place",
     "country": "Canada",
     "countryCode": "CA",
-    "tags": ["hiking", "mountains", "nature", "scenic", "wildlife", "family"],
+    "tags": [
+      "hiking",
+      "mountains",
+      "nature",
+      "scenic",
+      "wildlife",
+      "family"
+    ],
     "budget": "$$$",
-    "bestMonths": ["Jun", "Jul", "Aug", "Sep", "Jan"],
+    "bestMonths": [
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Jan"
+    ],
     "climate": "cold",
     "safety": 1,
-    "description": "Turquoise lakes and Rocky Mountain peaks, with hiking in summer and skiing in winter."
+    "description": "Turquoise lakes and Rocky Mountain peaks, with hiking in summer and skiing in winter.",
+    "languages": [
+      "English (official)",
+      "French (official, dominant in Quebec)"
+    ],
+    "currency": {
+      "code": "CAD",
+      "name": "Canadian Dollar",
+      "symbol": "CA$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (moderate acceptance)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Interac Flash"
+      ],
+      "cashAdvice": "Nearly cashless society. Tap-to-pay cards and smartphones are accepted everywhere."
+    },
+    "culturalTips": [
+      "Tipping is customary and identical to the U.S. (15-20% in restaurants and bars).",
+      "Sales taxes (GST/PST/HST, between 5% and 15%) are added at the register on top of listed prices.",
+      "In Quebec, addressing people first in French ('Bonjour') before asking if they speak English is basic courtesy.",
+      "Shoes are strictly removed upon entering residential homes."
+    ]
   },
   {
     "id": "montreal-ca",
@@ -746,12 +3136,54 @@
     "type": "city",
     "country": "Canada",
     "countryCode": "CA",
-    "tags": ["food", "nightlife", "culture", "festivals", "art"],
+    "tags": [
+      "food",
+      "nightlife",
+      "culture",
+      "festivals",
+      "art"
+    ],
     "budget": "$$",
-    "bestMonths": ["Jun", "Jul", "Aug", "Sep"],
+    "bestMonths": [
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep"
+    ],
     "climate": "cold",
     "safety": 1,
-    "description": "French-speaking city with festivals, bagels, cafes and a strong arts scene."
+    "description": "French-speaking city with festivals, bagels, cafes and a strong arts scene.",
+    "languages": [
+      "English (official)",
+      "French (official, dominant in Quebec)"
+    ],
+    "currency": {
+      "code": "CAD",
+      "name": "Canadian Dollar",
+      "symbol": "CA$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (moderate acceptance)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Interac Flash"
+      ],
+      "cashAdvice": "Nearly cashless society. Tap-to-pay cards and smartphones are accepted everywhere."
+    },
+    "culturalTips": [
+      "Tipping is customary and identical to the U.S. (15-20% in restaurants and bars).",
+      "Sales taxes (GST/PST/HST, between 5% and 15%) are added at the register on top of listed prices.",
+      "In Quebec, addressing people first in French ('Bonjour') before asking if they speak English is basic courtesy.",
+      "Shoes are strictly removed upon entering residential homes."
+    ]
   },
   {
     "id": "mexico-city-mx",
@@ -759,12 +3191,54 @@
     "type": "city",
     "country": "Mexico",
     "countryCode": "MX",
-    "tags": ["food", "art", "history", "culture", "museums"],
+    "tags": [
+      "food",
+      "art",
+      "history",
+      "culture",
+      "museums"
+    ],
     "budget": "$",
-    "bestMonths": ["Mar", "Apr", "Oct", "Nov"],
+    "bestMonths": [
+      "Mar",
+      "Apr",
+      "Oct",
+      "Nov"
+    ],
     "climate": "mild",
     "safety": 3,
-    "description": "Museums, street tacos and Aztec history. High altitude, and it takes a day to adjust."
+    "description": "Museums, street tacos and Aztec history. High altitude, and it takes a day to adjust.",
+    "languages": [
+      "Spanish (official national language)",
+      "Indigenous languages (Nahuatl, Maya)",
+      "English (widely in resort areas)"
+    ],
+    "currency": {
+      "code": "MXN",
+      "name": "Mexican Peso",
+      "symbol": "Mex$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (limited outside resort hotels)"
+      ],
+      "popularEWallets": [
+        "Apple Pay (growing in CDMX & Monterrey)",
+        "Mercado Pago"
+      ],
+      "cashAdvice": "Cards work in hotels, supermarkets, and formal restaurants. Cash in Pesos is essential for taco stands, beach vendors, cantinas, tipping, and toll roads."
+    },
+    "culturalTips": [
+      "Tipping ('la propina') is customary and expected: 10-15% in casual eateries, 15-20% in upscale restaurants, and 20-50 pesos for baggage/valet.",
+      "Do NOT drink tap water in Mexico—always drink bottled or filtered water ('agua purificada').",
+      "Polite interactions matter: always greet shopkeepers and servers with 'Buenos días' or 'Buenas tardes'.",
+      "Mexican time can be relaxed for social gatherings, but business meetings are punctual."
+    ]
   },
   {
     "id": "oaxaca-mx",
@@ -772,12 +3246,54 @@
     "type": "city",
     "country": "Mexico",
     "countryCode": "MX",
-    "tags": ["food", "culture", "hidden-gem", "art", "budget-friendly"],
+    "tags": [
+      "food",
+      "culture",
+      "hidden-gem",
+      "art",
+      "budget-friendly"
+    ],
     "budget": "$",
-    "bestMonths": ["Oct", "Nov", "Feb", "Mar"],
+    "bestMonths": [
+      "Oct",
+      "Nov",
+      "Feb",
+      "Mar"
+    ],
     "climate": "warm",
     "safety": 2,
-    "description": "Mole, mezcal and Indigenous crafts, with Day of the Dead celebrations in fall."
+    "description": "Mole, mezcal and Indigenous crafts, with Day of the Dead celebrations in fall.",
+    "languages": [
+      "Spanish (official national language)",
+      "Indigenous languages (Nahuatl, Maya)",
+      "English (widely in resort areas)"
+    ],
+    "currency": {
+      "code": "MXN",
+      "name": "Mexican Peso",
+      "symbol": "Mex$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (limited outside resort hotels)"
+      ],
+      "popularEWallets": [
+        "Apple Pay (growing in CDMX & Monterrey)",
+        "Mercado Pago"
+      ],
+      "cashAdvice": "Cards work in hotels, supermarkets, and formal restaurants. Cash in Pesos is essential for taco stands, beach vendors, cantinas, tipping, and toll roads."
+    },
+    "culturalTips": [
+      "Tipping ('la propina') is customary and expected: 10-15% in casual eateries, 15-20% in upscale restaurants, and 20-50 pesos for baggage/valet.",
+      "Do NOT drink tap water in Mexico—always drink bottled or filtered water ('agua purificada').",
+      "Polite interactions matter: always greet shopkeepers and servers with 'Buenos días' or 'Buenas tardes'.",
+      "Mexican time can be relaxed for social gatherings, but business meetings are punctual."
+    ]
   },
   {
     "id": "costa-rica",
@@ -785,12 +3301,55 @@
     "type": "country",
     "country": "Costa Rica",
     "countryCode": "CR",
-    "tags": ["nature", "wildlife", "adventure", "beach", "hiking", "family"],
+    "tags": [
+      "nature",
+      "wildlife",
+      "adventure",
+      "beach",
+      "hiking",
+      "family"
+    ],
     "budget": "$$",
-    "bestMonths": ["Dec", "Jan", "Feb", "Mar", "Apr"],
+    "bestMonths": [
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr"
+    ],
     "climate": "tropical",
     "safety": 2,
-    "description": "Rainforests, volcanoes, surf beaches and ziplining."
+    "description": "Rainforests, volcanoes, surf beaches and ziplining.",
+    "languages": [
+      "Spanish (official)",
+      "English (widely understood in tourist & eco-lodge areas)"
+    ],
+    "currency": {
+      "code": "CRC",
+      "name": "Costa Rican Colón",
+      "symbol": "₡"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (moderate)"
+      ],
+      "popularEWallets": [
+        "SINPE Móvil (locals)",
+        "Apple Pay (growing)"
+      ],
+      "cashAdvice": "U.S. dollars and colones are both widely accepted. Cards work in most hotels and tour agencies, but cash in small bills is needed for rural fruit stands, sodas (local diners), and park tips."
+    },
+    "culturalTips": [
+      "Restaurant bills legally include a 10% service charge and 13% sales tax; extra tipping (5-10%) is only for exceptional service.",
+      "'Pura Vida' (pure life) is used as hello, goodbye, thank you, and no worries—embrace the relaxed pacing.",
+      "Driving directions are given by landmarks rather than street names or house numbers.",
+      "Tap water is safe in almost all municipal areas of Costa Rica, a rarity in Central America."
+    ]
   },
   {
     "id": "cartagena-co",
@@ -798,12 +3357,53 @@
     "type": "city",
     "country": "Colombia",
     "countryCode": "CO",
-    "tags": ["beach", "history", "nightlife", "romance", "architecture"],
+    "tags": [
+      "beach",
+      "history",
+      "nightlife",
+      "romance",
+      "architecture"
+    ],
     "budget": "$$",
-    "bestMonths": ["Dec", "Jan", "Feb", "Mar"],
+    "bestMonths": [
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar"
+    ],
     "climate": "tropical",
     "safety": 3,
-    "description": "Colorful walled colonial city on the Caribbean coast with island day trips."
+    "description": "Colorful walled colonial city on the Caribbean coast with island day trips.",
+    "languages": [
+      "Spanish (official)",
+      "English (limited in hospitality, rare outside tourist zones)"
+    ],
+    "currency": {
+      "code": "COP",
+      "name": "Colombian Peso",
+      "symbol": "COL$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (limited to high-end venues)"
+      ],
+      "popularEWallets": [
+        "Nequi / DaviPlata (locals)",
+        "Apple Pay (limited)"
+      ],
+      "cashAdvice": "Cash is essential for street food, traditional markets, taxis, and small towns. In malls and fine restaurants, Visa/Mastercard work fine."
+    },
+    "culturalTips": [
+      "A 10% voluntary service tip ('propina voluntaria') is usually printed on restaurant bills; confirm when asked.",
+      "Colombians are exceptionally polite; always use 'por favor' and 'gracias', and avoid rushing social pleasantries.",
+      "Avoid discussing or glorifying drug cartel figures (e.g. Pablo Escobar), which is deeply offensive to locals.",
+      "The phrase 'No dar papaya' (don't give papaya) is a local idiom meaning don't put temptation in front of opportunists (keep valuables discreet)."
+    ]
   },
   {
     "id": "cusco-pe",
@@ -811,12 +3411,55 @@
     "type": "place",
     "country": "Peru",
     "countryCode": "PE",
-    "tags": ["history", "hiking", "adventure", "bucket-list", "mountains"],
+    "tags": [
+      "history",
+      "hiking",
+      "adventure",
+      "bucket-list",
+      "mountains"
+    ],
     "budget": "$",
-    "bestMonths": ["May", "Jun", "Jul", "Aug", "Sep"],
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep"
+    ],
     "climate": "cool",
     "safety": 2,
-    "description": "Former Inca capital and gateway to Machu Picchu. High altitude, and permits are needed for the Inca Trail."
+    "description": "Former Inca capital and gateway to Machu Picchu. High altitude, and permits are needed for the Inca Trail.",
+    "languages": [
+      "Spanish (official)",
+      "Quechua & Aymara (co-official)",
+      "English (in Cusco, Lima, & tourism)"
+    ],
+    "currency": {
+      "code": "PEN",
+      "name": "Peruvian Sol",
+      "symbol": "S/."
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (limited to luxury venues)"
+      ],
+      "popularEWallets": [
+        "Yape / Plin (locals)",
+        "Apple Pay (limited)"
+      ],
+      "cashAdvice": "Cash is essential for artisan markets, Sacred Valley ruins, taxis, street food, and tips. Carry small, crisp Soles bills; merchants scrutinize bills for small tears."
+    },
+    "culturalTips": [
+      "A 10% tip in sit-down restaurants is customary and appreciated; street eateries do not expect tips.",
+      "Acclimatize to altitude: Rest, drink coca tea ('mate de coca'), and avoid heavy meals or alcohol during your first 24 hours in Cusco (11,150 ft).",
+      "Ask permission before taking photos of Quechua women in traditional dress with alpacas (a small tip of S/ 2-5 is expected).",
+      "Do not drink unfiltered tap water in Peru."
+    ]
   },
   {
     "id": "buenos-aires-ar",
@@ -824,12 +3467,53 @@
     "type": "city",
     "country": "Argentina",
     "countryCode": "AR",
-    "tags": ["food", "nightlife", "culture", "art", "budget-friendly"],
+    "tags": [
+      "food",
+      "nightlife",
+      "culture",
+      "art",
+      "budget-friendly"
+    ],
     "budget": "$",
-    "bestMonths": ["Mar", "Apr", "Oct", "Nov"],
+    "bestMonths": [
+      "Mar",
+      "Apr",
+      "Oct",
+      "Nov"
+    ],
     "climate": "mild",
     "safety": 3,
-    "description": "Steak, tango, bookstores and late-night dinners."
+    "description": "Steak, tango, bookstores and late-night dinners.",
+    "languages": [
+      "Spanish (official Rioplatense dialect)",
+      "English (limited outside tourist hotels)"
+    ],
+    "currency": {
+      "code": "ARS",
+      "name": "Argentine Peso",
+      "symbol": "$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (moderate acceptance)"
+      ],
+      "popularEWallets": [
+        "Mercado Pago (locals)",
+        "Apple Pay (growing)"
+      ],
+      "cashAdvice": "Cash is highly favored due to local inflation dynamics. Credit card transactions for foreigners benefit from the MEP dollar rate, but keep cash on hand for small cafes, taxis, and tips."
+    },
+    "culturalTips": [
+      "Dinner starts very late—locals rarely sit down before 9:30 or 10:00 PM.",
+      "A 10% cash tip ('propina') in restaurants is customary for good service.",
+      "Greeting with a single cheek kiss is the standard social greeting among locals.",
+      "Mate tea is a sacred social ritual; never stir the metal straw (bombilla) when offered mate."
+    ]
   },
   {
     "id": "patagonia-ar-cl",
@@ -837,12 +3521,54 @@
     "type": "place",
     "country": "Argentina / Chile",
     "countryCode": "AR",
-    "tags": ["hiking", "adventure", "nature", "scenic", "bucket-list"],
+    "tags": [
+      "hiking",
+      "adventure",
+      "nature",
+      "scenic",
+      "bucket-list"
+    ],
     "budget": "$$",
-    "bestMonths": ["Nov", "Dec", "Jan", "Feb", "Mar"],
+    "bestMonths": [
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar"
+    ],
     "climate": "cold",
     "safety": 2,
-    "description": "Jagged peaks, glaciers and multi-day treks such as Torres del Paine. Weather changes fast."
+    "description": "Jagged peaks, glaciers and multi-day treks such as Torres del Paine. Weather changes fast.",
+    "languages": [
+      "Spanish (official Rioplatense dialect)",
+      "English (limited outside tourist hotels)"
+    ],
+    "currency": {
+      "code": "ARS",
+      "name": "Argentine Peso",
+      "symbol": "$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (moderate acceptance)"
+      ],
+      "popularEWallets": [
+        "Mercado Pago (locals)",
+        "Apple Pay (growing)"
+      ],
+      "cashAdvice": "Cash is highly favored due to local inflation dynamics. Credit card transactions for foreigners benefit from the MEP dollar rate, but keep cash on hand for small cafes, taxis, and tips."
+    },
+    "culturalTips": [
+      "Dinner starts very late—locals rarely sit down before 9:30 or 10:00 PM.",
+      "A 10% cash tip ('propina') in restaurants is customary for good service.",
+      "Greeting with a single cheek kiss is the standard social greeting among locals.",
+      "Mate tea is a sacred social ritual; never stir the metal straw (bombilla) when offered mate."
+    ]
   },
   {
     "id": "rio-de-janeiro-br",
@@ -850,12 +3576,53 @@
     "type": "city",
     "country": "Brazil",
     "countryCode": "BR",
-    "tags": ["beach", "nightlife", "scenic", "adventure", "music"],
+    "tags": [
+      "beach",
+      "nightlife",
+      "scenic",
+      "adventure",
+      "music"
+    ],
     "budget": "$$",
-    "bestMonths": ["Apr", "May", "Sep", "Oct"],
+    "bestMonths": [
+      "Apr",
+      "May",
+      "Sep",
+      "Oct"
+    ],
     "climate": "tropical",
     "safety": 4,
-    "description": "Beaches below dramatic peaks, samba and hikes with big views. Be careful with valuables and nighttime areas."
+    "description": "Beaches below dramatic peaks, samba and hikes with big views. Be careful with valuables and nighttime areas.",
+    "languages": [
+      "Portuguese (official)",
+      "English (limited in hospitality, rare elsewhere)"
+    ],
+    "currency": {
+      "code": "BRL",
+      "name": "Brazilian Real",
+      "symbol": "R$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (limited acceptance)"
+      ],
+      "popularEWallets": [
+        "Pix (instant local QR bank transfer - requires local CPF)",
+        "Apple Pay"
+      ],
+      "cashAdvice": "Cards and contactless phone payments are accepted almost everywhere (even beach caipirinha vendors have wireless card machines), but carry small bills for street vendors."
+    },
+    "culturalTips": [
+      "A 10% service charge ('serviço') is almost always included on restaurant bills; extra tipping is optional.",
+      "Brazilians stand close and touch arms/shoulders during warm conversations; personal space is smaller than in the U.S.",
+      "Keep high-value jewelry and smartphones out of sight in public streets to avoid opportunistic theft.",
+      "The OK hand sign (thumb and index finger circle) is considered an offensive and vulgar gesture in Brazil."
+    ]
   },
   {
     "id": "galapagos-ec",
@@ -863,12 +3630,55 @@
     "type": "place",
     "country": "Ecuador",
     "countryCode": "EC",
-    "tags": ["wildlife", "nature", "adventure", "diving", "bucket-list"],
+    "tags": [
+      "wildlife",
+      "nature",
+      "adventure",
+      "diving",
+      "bucket-list"
+    ],
     "budget": "$$$",
-    "bestMonths": ["Jun", "Jul", "Aug", "Sep", "Dec"],
+    "bestMonths": [
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Dec"
+    ],
     "climate": "warm",
     "safety": 1,
-    "description": "Unique wildlife you can see up close on boat-based or island-hopping trips."
+    "description": "Unique wildlife you can see up close on boat-based or island-hopping trips.",
+    "languages": [
+      "Spanish (official)",
+      "Kichwa & Shuar (recognized regional)",
+      "English (in Galápagos & tourism)"
+    ],
+    "currency": {
+      "code": "USD",
+      "name": "U.S. Dollar (official currency since 2000)",
+      "symbol": "$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (limited)"
+      ],
+      "popularEWallets": [
+        "Deuna (local)",
+        "Apple Pay (very limited)"
+      ],
+      "cashAdvice": "U.S. Dollar is the national currency! However, small clean bills ($1, $5, $10, $20) and dollar coins are vital; merchants routinely reject $50 and $100 bills or torn notes."
+    },
+    "culturalTips": [
+      "A 10% service tip is standard in tourist and upscale restaurants; street sodas do not expect tips.",
+      "Bargaining is expected at indigenous craft markets (like Otavalo), but keep negotiations friendly and respectful.",
+      "In the Galápagos, strict wildlife protection laws prohibit touching or approaching within 2 meters (6 feet) of any animal.",
+      "Greetings start with a polite 'Buenos días' or handshake before asking questions."
+    ]
   },
   {
     "id": "kuala-lumpur-my",
@@ -885,10 +3695,50 @@
       "budget-friendly"
     ],
     "budget": "$",
-    "bestMonths": ["May", "Jun", "Jul", "Dec", "Jan"],
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Jul",
+      "Dec",
+      "Jan"
+    ],
     "climate": "tropical",
     "safety": 2,
-    "description": "Petronas Twin Towers, bustling street food stalls in Jalan Alor, and multicultural neighborhoods."
+    "description": "Petronas Twin Towers, bustling street food stalls in Jalan Alor, and multicultural neighborhoods.",
+    "languages": [
+      "Malay (Bahasa Melayu official)",
+      "English (widely spoken in commerce & cities)",
+      "Mandarin",
+      "Tamil"
+    ],
+    "currency": {
+      "code": "MYR",
+      "name": "Malaysian Ringgit",
+      "symbol": "RM"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (limited to high-end malls & luxury hotels)"
+      ],
+      "popularEWallets": [
+        "Touch 'n Go eWallet",
+        "GrabPay",
+        "DuitNow QR"
+      ],
+      "cashAdvice": "Cash is essential for hawker centres, night markets, food stalls, and public buses. Shopping malls, supermarkets, and restaurants take Visa/Mastercard without issue.",
+      "transitTip": "Touch 'n Go Card / eWallet: Touch 'n Go cards or token coins are used on the LRT/MRT rail system. Grab app is the most reliable way to get around."
+    },
+    "culturalTips": [
+      "No tipping is customary or expected; a 10% service charge and 6% sales tax are built into restaurant bills.",
+      "Remove your shoes before entering homes, mosques, and certain Buddhist or Hindu temples.",
+      "Always use your right hand when giving or receiving food, money, or objects (the left hand is traditionally personal/unclean).",
+      "Dress respectfully with shoulders and knees covered when visiting religious heritage sites."
+    ]
   },
   {
     "id": "penang-my",
@@ -896,12 +3746,57 @@
     "type": "city",
     "country": "Malaysia",
     "countryCode": "MY",
-    "tags": ["food", "culture", "history", "art", "budget-friendly"],
+    "tags": [
+      "food",
+      "culture",
+      "history",
+      "art",
+      "budget-friendly"
+    ],
     "budget": "$",
-    "bestMonths": ["Nov", "Dec", "Jan", "Feb"],
+    "bestMonths": [
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb"
+    ],
     "climate": "tropical",
     "safety": 1,
-    "description": "UNESCO-listed colonial town famous for world-class street food, street art, and heritage shophouses."
+    "description": "UNESCO-listed colonial town famous for world-class street food, street art, and heritage shophouses.",
+    "languages": [
+      "Malay (Bahasa Melayu official)",
+      "English (widely spoken in commerce & cities)",
+      "Mandarin",
+      "Tamil"
+    ],
+    "currency": {
+      "code": "MYR",
+      "name": "Malaysian Ringgit",
+      "symbol": "RM"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (limited to high-end malls & luxury hotels)"
+      ],
+      "popularEWallets": [
+        "Touch 'n Go eWallet",
+        "GrabPay",
+        "DuitNow QR"
+      ],
+      "cashAdvice": "Cash is essential for hawker centres, night markets, food stalls, and public buses. Shopping malls, supermarkets, and restaurants take Visa/Mastercard without issue.",
+      "transitTip": "Touch 'n Go eWallet / Cash: Penang's famous street hawkers and night markets (Chulia St, Gurney Drive) strictly require cash. Grab rideshare is the easiest way to travel between George Town and beaches."
+    },
+    "culturalTips": [
+      "No tipping is customary or expected; a 10% service charge and 6% sales tax are built into restaurant bills.",
+      "Remove your shoes before entering homes, mosques, and certain Buddhist or Hindu temples.",
+      "Always use your right hand when giving or receiving food, money, or objects (the left hand is traditionally personal/unclean).",
+      "Dress respectfully with shoulders and knees covered when visiting religious heritage sites."
+    ]
   },
   {
     "id": "phuket-th",
@@ -909,12 +3804,55 @@
     "type": "place",
     "country": "Thailand",
     "countryCode": "TH",
-    "tags": ["beach", "nightlife", "relaxation", "water-sports", "food"],
+    "tags": [
+      "beach",
+      "nightlife",
+      "relaxation",
+      "water-sports",
+      "food"
+    ],
     "budget": "$$",
-    "bestMonths": ["Nov", "Dec", "Jan", "Feb", "Mar"],
+    "bestMonths": [
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar"
+    ],
     "climate": "tropical",
     "safety": 2,
-    "description": "Thailand's largest island featuring tropical beaches, viewpoints, vibrant night markets, and island boat tours."
+    "description": "Thailand's largest island featuring tropical beaches, viewpoints, vibrant night markets, and island boat tours.",
+    "languages": [
+      "Thai (official)",
+      "English (widely understood in Bangkok, Chiang Mai, Phuket, and tourist islands)"
+    ],
+    "currency": {
+      "code": "THB",
+      "name": "Thai Baht",
+      "symbol": "฿"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (major hotels only)"
+      ],
+      "popularEWallets": [
+        "PromptPay (local QR)",
+        "TrueMoney",
+        "Apple Pay (very limited)"
+      ],
+      "cashAdvice": "Cash is king in Thailand! While hotels, shopping malls, and upscale dining take credit cards, all street food stalls, tuk-tuks, night markets, and massage parlors require physical Baht."
+    },
+    "culturalTips": [
+      "The 'Wai' greeting: Place your palms together at your chest and bow your head slightly to greet or thank people.",
+      "Deep reverence for the Royal Family: Defaming or disrespecting the King or monarchy ('lèse-majesté') is a severe crime punishable by imprisonment.",
+      "Remove shoes before stepping into temples, traditional shops, and private homes.",
+      "Never touch anyone on top of their head, and never point the soles of your feet at any person, Buddha statue, or royal portrait."
+    ]
   },
   {
     "id": "krabi-th",
@@ -922,12 +3860,55 @@
     "type": "place",
     "country": "Thailand",
     "countryCode": "TH",
-    "tags": ["beach", "nature", "adventure", "scenic", "relaxation"],
+    "tags": [
+      "beach",
+      "nature",
+      "adventure",
+      "scenic",
+      "relaxation"
+    ],
     "budget": "$",
-    "bestMonths": ["Nov", "Dec", "Jan", "Feb", "Mar"],
+    "bestMonths": [
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar"
+    ],
     "climate": "tropical",
     "safety": 1,
-    "description": "Limestone karst cliffs, emerald waters, rock climbing in Railay, and tranquil island hopping."
+    "description": "Limestone karst cliffs, emerald waters, rock climbing in Railay, and tranquil island hopping.",
+    "languages": [
+      "Thai (official)",
+      "English (widely understood in Bangkok, Chiang Mai, Phuket, and tourist islands)"
+    ],
+    "currency": {
+      "code": "THB",
+      "name": "Thai Baht",
+      "symbol": "฿"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (major hotels only)"
+      ],
+      "popularEWallets": [
+        "PromptPay (local QR)",
+        "TrueMoney",
+        "Apple Pay (very limited)"
+      ],
+      "cashAdvice": "Cash is king in Thailand! While hotels, shopping malls, and upscale dining take credit cards, all street food stalls, tuk-tuks, night markets, and massage parlors require physical Baht."
+    },
+    "culturalTips": [
+      "The 'Wai' greeting: Place your palms together at your chest and bow your head slightly to greet or thank people.",
+      "Deep reverence for the Royal Family: Defaming or disrespecting the King or monarchy ('lèse-majesté') is a severe crime punishable by imprisonment.",
+      "Remove shoes before stepping into temples, traditional shops, and private homes.",
+      "Never touch anyone on top of their head, and never point the soles of your feet at any person, Buddha statue, or royal portrait."
+    ]
   },
   {
     "id": "goa-in",
@@ -935,12 +3916,54 @@
     "type": "place",
     "country": "India",
     "countryCode": "IN",
-    "tags": ["beach", "relaxation", "nightlife", "culture", "seafood"],
+    "tags": [
+      "beach",
+      "relaxation",
+      "nightlife",
+      "culture",
+      "seafood"
+    ],
     "budget": "$",
-    "bestMonths": ["Nov", "Dec", "Jan", "Feb"],
+    "bestMonths": [
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb"
+    ],
     "climate": "warm",
     "safety": 2,
-    "description": "Coastal escape known for Portuguese-influenced architecture, sandy beaches, yoga retreats, and beach shacks."
+    "description": "Coastal escape known for Portuguese-influenced architecture, sandy beaches, yoga retreats, and beach shacks.",
+    "languages": [
+      "Hindi (official)",
+      "English (associate official, widely used in business/higher education)",
+      "22 recognized languages"
+    ],
+    "currency": {
+      "code": "INR",
+      "name": "Indian Rupee",
+      "symbol": "₹"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (accepted via RuPay partnership)",
+        "American Express (limited)"
+      ],
+      "popularEWallets": [
+        "UPI / PhonePe / Google Pay (universal for locals, now expanding for tourists)",
+        "Paytm"
+      ],
+      "cashAdvice": "Carry cash in ₹100, ₹200, and ₹500 denominations for auto-rickshaws, chai stalls, street food, and tips. High-end restaurants and malls take cards seamlessly."
+    },
+    "culturalTips": [
+      "Always remove footwear before entering temples, mosques, gurdwaras, and private homes.",
+      "Eat and handle food, money, and sacred items exclusively with your right hand.",
+      "Dress conservatively, keeping shoulders and knees covered, particularly at religious and heritage monuments.",
+      "The Indian head wobble can mean yes, agreement, acknowledgment, or 'I understand' depending on context."
+    ]
   },
   {
     "id": "kerala-in",
@@ -948,12 +3971,56 @@
     "type": "place",
     "country": "India",
     "countryCode": "IN",
-    "tags": ["nature", "relaxation", "culture", "food", "scenic"],
+    "tags": [
+      "nature",
+      "relaxation",
+      "culture",
+      "food",
+      "scenic"
+    ],
     "budget": "$",
-    "bestMonths": ["Sep", "Oct", "Nov", "Dec", "Jan", "Feb"],
+    "bestMonths": [
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb"
+    ],
     "climate": "tropical",
     "safety": 1,
-    "description": "Tranquil palm-fringed backwaters with houseboat cruises, spice plantations, and historic port lanes."
+    "description": "Tranquil palm-fringed backwaters with houseboat cruises, spice plantations, and historic port lanes.",
+    "languages": [
+      "Hindi (official)",
+      "English (associate official, widely used in business/higher education)",
+      "22 recognized languages"
+    ],
+    "currency": {
+      "code": "INR",
+      "name": "Indian Rupee",
+      "symbol": "₹"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (accepted via RuPay partnership)",
+        "American Express (limited)"
+      ],
+      "popularEWallets": [
+        "UPI / PhonePe / Google Pay (universal for locals, now expanding for tourists)",
+        "Paytm"
+      ],
+      "cashAdvice": "Carry cash in ₹100, ₹200, and ₹500 denominations for auto-rickshaws, chai stalls, street food, and tips. High-end restaurants and malls take cards seamlessly."
+    },
+    "culturalTips": [
+      "Always remove footwear before entering temples, mosques, gurdwaras, and private homes.",
+      "Eat and handle food, money, and sacred items exclusively with your right hand.",
+      "Dress conservatively, keeping shoulders and knees covered, particularly at religious and heritage monuments.",
+      "The Indian head wobble can mean yes, agreement, acknowledgment, or 'I understand' depending on context."
+    ]
   },
   {
     "id": "mumbai-in",
@@ -961,12 +4028,54 @@
     "type": "city",
     "country": "India",
     "countryCode": "IN",
-    "tags": ["city", "food", "nightlife", "culture", "history"],
+    "tags": [
+      "city",
+      "food",
+      "nightlife",
+      "culture",
+      "history"
+    ],
     "budget": "$$",
-    "bestMonths": ["Nov", "Dec", "Jan", "Feb"],
+    "bestMonths": [
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb"
+    ],
     "climate": "tropical",
     "safety": 2,
-    "description": "India's financial and film capital, packed with colonial architecture, bustling markets, street food, and Marine Drive sunsets."
+    "description": "India's financial and film capital, packed with colonial architecture, bustling markets, street food, and Marine Drive sunsets.",
+    "languages": [
+      "Hindi (official)",
+      "English (associate official, widely used in business/higher education)",
+      "22 recognized languages"
+    ],
+    "currency": {
+      "code": "INR",
+      "name": "Indian Rupee",
+      "symbol": "₹"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (accepted via RuPay partnership)",
+        "American Express (limited)"
+      ],
+      "popularEWallets": [
+        "UPI / PhonePe / Google Pay (universal for locals, now expanding for tourists)",
+        "Paytm"
+      ],
+      "cashAdvice": "Carry cash in ₹100, ₹200, and ₹500 denominations for auto-rickshaws, chai stalls, street food, and tips. High-end restaurants and malls take cards seamlessly."
+    },
+    "culturalTips": [
+      "Always remove footwear before entering temples, mosques, gurdwaras, and private homes.",
+      "Eat and handle food, money, and sacred items exclusively with your right hand.",
+      "Dress conservatively, keeping shoulders and knees covered, particularly at religious and heritage monuments.",
+      "The Indian head wobble can mean yes, agreement, acknowledgment, or 'I understand' depending on context."
+    ]
   },
   {
     "id": "bengaluru-in",
@@ -974,12 +4083,55 @@
     "type": "city",
     "country": "India",
     "countryCode": "IN",
-    "tags": ["city", "craft-beer", "parks", "food", "culture"],
+    "tags": [
+      "city",
+      "craft-beer",
+      "parks",
+      "food",
+      "culture"
+    ],
     "budget": "$",
-    "bestMonths": ["Oct", "Nov", "Dec", "Jan", "Feb"],
+    "bestMonths": [
+      "Oct",
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb"
+    ],
     "climate": "mild",
     "safety": 2,
-    "description": "India's garden city and tech hub with leafy parks, thriving craft microbreweries, and a rich South Indian culinary scene."
+    "description": "India's garden city and tech hub with leafy parks, thriving craft microbreweries, and a rich South Indian culinary scene.",
+    "languages": [
+      "Hindi (official)",
+      "English (associate official, widely used in business/higher education)",
+      "22 recognized languages"
+    ],
+    "currency": {
+      "code": "INR",
+      "name": "Indian Rupee",
+      "symbol": "₹"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (accepted via RuPay partnership)",
+        "American Express (limited)"
+      ],
+      "popularEWallets": [
+        "UPI / PhonePe / Google Pay (universal for locals, now expanding for tourists)",
+        "Paytm"
+      ],
+      "cashAdvice": "Carry cash in ₹100, ₹200, and ₹500 denominations for auto-rickshaws, chai stalls, street food, and tips. High-end restaurants and malls take cards seamlessly."
+    },
+    "culturalTips": [
+      "Always remove footwear before entering temples, mosques, gurdwaras, and private homes.",
+      "Eat and handle food, money, and sacred items exclusively with your right hand.",
+      "Dress conservatively, keeping shoulders and knees covered, particularly at religious and heritage monuments.",
+      "The Indian head wobble can mean yes, agreement, acknowledgment, or 'I understand' depending on context."
+    ]
   },
   {
     "id": "melbourne-au",
@@ -987,12 +4139,56 @@
     "type": "city",
     "country": "Australia",
     "countryCode": "AU",
-    "tags": ["coffee", "art", "food", "city", "culture", "music"],
+    "tags": [
+      "coffee",
+      "art",
+      "food",
+      "city",
+      "culture",
+      "music"
+    ],
     "budget": "$$$",
-    "bestMonths": ["Oct", "Nov", "Dec", "Feb", "Mar"],
+    "bestMonths": [
+      "Oct",
+      "Nov",
+      "Dec",
+      "Feb",
+      "Mar"
+    ],
     "climate": "mild",
     "safety": 1,
-    "description": "Australia's cultural capital celebrated for hidden laneway cafes, live music, world-class dining, and street art."
+    "description": "Australia's cultural capital celebrated for hidden laneway cafes, live music, world-class dining, and street art.",
+    "languages": [
+      "English (de facto official)",
+      "Indigenous Australian languages"
+    ],
+    "currency": {
+      "code": "AUD",
+      "name": "Australian Dollar",
+      "symbol": "A$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted outside major hotels)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Beem"
+      ],
+      "cashAdvice": "Virtually cashless. Tap-to-pay on phones or cards is used for everything including coffees, public transport, and markets."
+    },
+    "culturalTips": [
+      "Tipping is NOT customary or expected in Australia; hospitality workers are paid a high minimum wage.",
+      "Prices displayed always include the 10% Goods and Services Tax (GST)—no surprise taxes at the register.",
+      "Pedestrian crossing laws (jaywalking) are strictly enforced in city centers.",
+      "Casual, egalitarian social interactions: servers and shopkeepers are greeted with friendly informality ('G'day', 'How ya going?')."
+    ]
   },
   {
     "id": "cairns-au",
@@ -1000,12 +4196,55 @@
     "type": "place",
     "country": "Australia",
     "countryCode": "AU",
-    "tags": ["nature", "adventure", "diving", "wildlife", "bucket-list"],
+    "tags": [
+      "nature",
+      "adventure",
+      "diving",
+      "wildlife",
+      "bucket-list"
+    ],
     "budget": "$$$",
-    "bestMonths": ["Jun", "Jul", "Aug", "Sep", "Oct"],
+    "bestMonths": [
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct"
+    ],
     "climate": "tropical",
     "safety": 1,
-    "description": "Tropical gateway to snorkeling the Great Barrier Reef and exploring the ancient Daintree Rainforest."
+    "description": "Tropical gateway to snorkeling the Great Barrier Reef and exploring the ancient Daintree Rainforest.",
+    "languages": [
+      "English (de facto official)",
+      "Indigenous Australian languages"
+    ],
+    "currency": {
+      "code": "AUD",
+      "name": "Australian Dollar",
+      "symbol": "A$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted outside major hotels)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Beem"
+      ],
+      "cashAdvice": "Virtually cashless. Tap-to-pay on phones or cards is used for everything including coffees, public transport, and markets."
+    },
+    "culturalTips": [
+      "Tipping is NOT customary or expected in Australia; hospitality workers are paid a high minimum wage.",
+      "Prices displayed always include the 10% Goods and Services Tax (GST)—no surprise taxes at the register.",
+      "Pedestrian crossing laws (jaywalking) are strictly enforced in city centers.",
+      "Casual, egalitarian social interactions: servers and shopkeepers are greeted with friendly informality ('G'day', 'How ya going?')."
+    ]
   },
   {
     "id": "brisbane-au",
@@ -1013,12 +4252,56 @@
     "type": "city",
     "country": "Australia",
     "countryCode": "AU",
-    "tags": ["city", "sunshine", "nature", "relaxation", "food"],
+    "tags": [
+      "city",
+      "sunshine",
+      "nature",
+      "relaxation",
+      "food"
+    ],
     "budget": "$$",
-    "bestMonths": ["Apr", "May", "Jun", "Jul", "Aug", "Sep"],
+    "bestMonths": [
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep"
+    ],
     "climate": "warm",
     "safety": 1,
-    "description": "Subtropical riverside city with vibrant outdoor dining, South Bank city beach, and nearby Gold Coast beaches."
+    "description": "Subtropical riverside city with vibrant outdoor dining, South Bank city beach, and nearby Gold Coast beaches.",
+    "languages": [
+      "English (de facto official)",
+      "Indigenous Australian languages"
+    ],
+    "currency": {
+      "code": "AUD",
+      "name": "Australian Dollar",
+      "symbol": "A$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted outside major hotels)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Beem"
+      ],
+      "cashAdvice": "Virtually cashless. Tap-to-pay on phones or cards is used for everything including coffees, public transport, and markets."
+    },
+    "culturalTips": [
+      "Tipping is NOT customary or expected in Australia; hospitality workers are paid a high minimum wage.",
+      "Prices displayed always include the 10% Goods and Services Tax (GST)—no surprise taxes at the register.",
+      "Pedestrian crossing laws (jaywalking) are strictly enforced in city centers.",
+      "Casual, egalitarian social interactions: servers and shopkeepers are greeted with friendly informality ('G'day', 'How ya going?')."
+    ]
   },
   {
     "id": "perth-au",
@@ -1026,12 +4309,55 @@
     "type": "city",
     "country": "Australia",
     "countryCode": "AU",
-    "tags": ["beach", "wine", "nature", "relaxation", "sunshine"],
+    "tags": [
+      "beach",
+      "wine",
+      "nature",
+      "relaxation",
+      "sunshine"
+    ],
     "budget": "$$$",
-    "bestMonths": ["Sep", "Oct", "Nov", "Mar", "Apr"],
+    "bestMonths": [
+      "Sep",
+      "Oct",
+      "Nov",
+      "Mar",
+      "Apr"
+    ],
     "climate": "warm",
     "safety": 1,
-    "description": "Sunny Western Australian capital with pristine Indian Ocean beaches, Kings Park, and easy trips to Rottnest Island quokkas."
+    "description": "Sunny Western Australian capital with pristine Indian Ocean beaches, Kings Park, and easy trips to Rottnest Island quokkas.",
+    "languages": [
+      "English (de facto official)",
+      "Indigenous Australian languages"
+    ],
+    "currency": {
+      "code": "AUD",
+      "name": "Australian Dollar",
+      "symbol": "A$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted outside major hotels)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Beem"
+      ],
+      "cashAdvice": "Virtually cashless. Tap-to-pay on phones or cards is used for everything including coffees, public transport, and markets."
+    },
+    "culturalTips": [
+      "Tipping is NOT customary or expected in Australia; hospitality workers are paid a high minimum wage.",
+      "Prices displayed always include the 10% Goods and Services Tax (GST)—no surprise taxes at the register.",
+      "Pedestrian crossing laws (jaywalking) are strictly enforced in city centers.",
+      "Casual, egalitarian social interactions: servers and shopkeepers are greeted with friendly informality ('G'day', 'How ya going?')."
+    ]
   },
   {
     "id": "zanzibar-tz",
@@ -1039,12 +4365,54 @@
     "type": "place",
     "country": "Tanzania",
     "countryCode": "TZ",
-    "tags": ["beach", "history", "culture", "relaxation", "diving"],
+    "tags": [
+      "beach",
+      "history",
+      "culture",
+      "relaxation",
+      "diving"
+    ],
     "budget": "$$",
-    "bestMonths": ["Jun", "Jul", "Aug", "Sep", "Jan", "Feb"],
+    "bestMonths": [
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Jan",
+      "Feb"
+    ],
     "climate": "tropical",
     "safety": 2,
-    "description": "Spice island with turquoise waters, coral reefs, and the labyrinthine coral-stone alleys of Stone Town."
+    "description": "Spice island with turquoise waters, coral reefs, and the labyrinthine coral-stone alleys of Stone Town.",
+    "languages": [
+      "Swahili (official)",
+      "English (official, widely used in higher education & safari tourism)"
+    ],
+    "currency": {
+      "code": "TZS",
+      "name": "Tanzanian Shilling",
+      "symbol": "TSh"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (luxury safari lodges only)"
+      ],
+      "popularEWallets": [
+        "M-Pesa / Tigo Pesa (locals)"
+      ],
+      "cashAdvice": "U.S. Dollars (crisp, post-2013 bills) are accepted for safari park fees, international hotels, and hot air balloon rides. Tanzanian Shillings in cash are needed for local markets, food, and tipping."
+    },
+    "culturalTips": [
+      "Tipping on safari is customary: budget $15-20/day for your driver-guide and $10-15/day for camp staff.",
+      "In Zanzibar (predominantly Muslim), dress modestly outside beach resorts—cover shoulders and knees in Stone Town and villages.",
+      "Always greet people with warmth ('Jambo' or 'Habari') before asking questions or starting transactions.",
+      "Single-use plastic bags are strictly prohibited by Tanzanian environmental law."
+    ]
   },
   {
     "id": "victoria-falls-zw",
@@ -1052,12 +4420,53 @@
     "type": "place",
     "country": "Zimbabwe",
     "countryCode": "ZW",
-    "tags": ["nature", "adventure", "scenic", "bucket-list", "wildlife"],
+    "tags": [
+      "nature",
+      "adventure",
+      "scenic",
+      "bucket-list",
+      "wildlife"
+    ],
     "budget": "$$",
-    "bestMonths": ["May", "Jun", "Jul", "Aug"],
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Jul",
+      "Aug"
+    ],
     "climate": "warm",
     "safety": 2,
-    "description": "The Smoke that Thunders, one of the world's largest waterfalls, offering helicopter flights, gorge walks, and Zambezi river safaris."
+    "description": "The Smoke that Thunders, one of the world's largest waterfalls, offering helicopter flights, gorge walks, and Zambezi river safaris.",
+    "languages": [
+      "English (official)",
+      "Shona",
+      "Ndebele"
+    ],
+    "currency": {
+      "code": "USD",
+      "name": "U.S. Dollar (primary currency for tourism alongside ZiG)",
+      "symbol": "$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (luxury safari lodges only)"
+      ],
+      "popularEWallets": [
+        "EcoCash (locals)"
+      ],
+      "cashAdvice": "U.S. Dollars in cash are the primary currency used by foreign tourists in Victoria Falls and safari lodges. Bring clean, post-2013 U.S. Dollar notes in small denominations ($1, $5, $10, $20) as change is often given in small local notes."
+    },
+    "culturalTips": [
+      "Tipping: Tipping safari guides ($10-15/day), transfer drivers, and restaurant staff (10%) is customary and deeply appreciated.",
+      "Bargaining is expected at open-air craft curio markets in Victoria Falls (wooden carvings, Shona stone sculptures).",
+      "Dress respectfully when visiting local villages; avoid military or camouflage-patterned clothing, which is illegal for civilians in Zimbabwe.",
+      "Zimbabweans are known for exceptional warmth and politeness—greetings always precede any business transaction."
+    ]
   },
   {
     "id": "nairobi-ke",
@@ -1065,12 +4474,53 @@
     "type": "city",
     "country": "Kenya",
     "countryCode": "KE",
-    "tags": ["wildlife", "culture", "city", "nature"],
+    "tags": [
+      "wildlife",
+      "culture",
+      "city",
+      "nature"
+    ],
     "budget": "$$",
-    "bestMonths": ["Jan", "Feb", "Jun", "Jul", "Aug", "Sep"],
+    "bestMonths": [
+      "Jan",
+      "Feb",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep"
+    ],
     "climate": "mild",
     "safety": 3,
-    "description": "Vibrant African capital where wild lions and giraffes roam in a national park against a modern city skyline backdrop."
+    "description": "Vibrant African capital where wild lions and giraffes roam in a national park against a modern city skyline backdrop.",
+    "languages": [
+      "Swahili (official)",
+      "English (official, widely spoken in government & tourism)"
+    ],
+    "currency": {
+      "code": "KES",
+      "name": "Kenyan Shilling",
+      "symbol": "KSh"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (safari lodges only)"
+      ],
+      "popularEWallets": [
+        "M-Pesa (the world-famous mobile money service used everywhere in Kenya)"
+      ],
+      "cashAdvice": "M-Pesa and cash are kings. Cards work at luxury safari lodges and Nairobi malls, but tipping safari drivers/spotters and buying village crafts requires Kenyan Shillings or clean U.S. Dollar bills (post-2013 series)."
+    },
+    "culturalTips": [
+      "Tipping safari driver-guides ($10-20/day per party) and camp staff is customary and constitutes a vital part of their livelihood.",
+      "Single-use plastic bags are strictly illegal in Kenya—carrying them into the country can result in heavy fines.",
+      "Always ask permission before taking photographs of local Maasai or Samburu community members.",
+      "Greetings ('Jambo', 'Habari') and inquiries about well-being are essential before diving into business or directions."
+    ]
   },
   {
     "id": "maasai-mara-ke",
@@ -1078,12 +4528,52 @@
     "type": "place",
     "country": "Kenya",
     "countryCode": "KE",
-    "tags": ["wildlife", "safari", "nature", "adventure", "bucket-list"],
+    "tags": [
+      "wildlife",
+      "safari",
+      "nature",
+      "adventure",
+      "bucket-list"
+    ],
     "budget": "$$$",
-    "bestMonths": ["Jul", "Aug", "Sep", "Oct"],
+    "bestMonths": [
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct"
+    ],
     "climate": "mild",
     "safety": 1,
-    "description": "World-renowned wildlife reserve famous for the Great Migration, big cats, and expansive savannah horizons."
+    "description": "World-renowned wildlife reserve famous for the Great Migration, big cats, and expansive savannah horizons.",
+    "languages": [
+      "Swahili (official)",
+      "English (official, widely spoken in government & tourism)"
+    ],
+    "currency": {
+      "code": "KES",
+      "name": "Kenyan Shilling",
+      "symbol": "KSh"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (safari lodges only)"
+      ],
+      "popularEWallets": [
+        "M-Pesa (the world-famous mobile money service used everywhere in Kenya)"
+      ],
+      "cashAdvice": "M-Pesa and cash are kings. Cards work at luxury safari lodges and Nairobi malls, but tipping safari drivers/spotters and buying village crafts requires Kenyan Shillings or clean U.S. Dollar bills (post-2013 series)."
+    },
+    "culturalTips": [
+      "Tipping safari driver-guides ($10-20/day per party) and camp staff is customary and constitutes a vital part of their livelihood.",
+      "Single-use plastic bags are strictly illegal in Kenya—carrying them into the country can result in heavy fines.",
+      "Always ask permission before taking photographs of local Maasai or Samburu community members.",
+      "Greetings ('Jambo', 'Habari') and inquiries about well-being are essential before diving into business or directions."
+    ]
   },
   {
     "id": "kigali-rw",
@@ -1091,12 +4581,56 @@
     "type": "city",
     "country": "Rwanda",
     "countryCode": "RW",
-    "tags": ["culture", "history", "clean", "hidden-gem", "art"],
+    "tags": [
+      "culture",
+      "history",
+      "clean",
+      "hidden-gem",
+      "art"
+    ],
     "budget": "$",
-    "bestMonths": ["Jun", "Jul", "Aug", "Sep", "Dec", "Jan"],
+    "bestMonths": [
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Dec",
+      "Jan"
+    ],
     "climate": "mild",
     "safety": 1,
-    "description": "Incredibly clean, peaceful hilly capital with a moving memorial museum, vibrant craft centers, and specialty coffee."
+    "description": "Incredibly clean, peaceful hilly capital with a moving memorial museum, vibrant craft centers, and specialty coffee.",
+    "languages": [
+      "Kinyarwanda (official)",
+      "French (official)",
+      "English (official, language of instruction)",
+      "Swahili"
+    ],
+    "currency": {
+      "code": "RWF",
+      "name": "Rwandan Franc",
+      "symbol": "FRw"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (luxury safari lodges only)"
+      ],
+      "popularEWallets": [
+        "MTN Mobile Money / Airtel Money (ubiquitous)"
+      ],
+      "cashAdvice": "Kigali hotels and restaurants accept Visa/Mastercard. Cash in Rwandan Francs or post-2013 crisp U.S. Dollars is required for gorilla trekking porter tips and craft markets."
+    },
+    "culturalTips": [
+      "Rwanda is exceptionally clean and orderly: plastic bags are completely banned, and littering is strictly penalized.",
+      "'Umuganda': On the last Saturday of every month, all citizens participate in nationwide community service from 8:00 to 11:00 AM (businesses are closed).",
+      "Tipping gorilla tracking guides ($15-20) and porters ($15-20) is customary and supports local conservation.",
+      "Avoid casually bringing up ethnic divisions or the 1994 genocide in casual conversation; refer to national unity as Rwandans."
+    ]
   },
   {
     "id": "chefchaouen-ma",
@@ -1104,12 +4638,55 @@
     "type": "city",
     "country": "Morocco",
     "countryCode": "MA",
-    "tags": ["photography", "culture", "scenic", "hiking", "hidden-gem"],
+    "tags": [
+      "photography",
+      "culture",
+      "scenic",
+      "hiking",
+      "hidden-gem"
+    ],
     "budget": "$",
-    "bestMonths": ["Apr", "May", "Sep", "Oct", "Nov"],
+    "bestMonths": [
+      "Apr",
+      "May",
+      "Sep",
+      "Oct",
+      "Nov"
+    ],
     "climate": "mild",
     "safety": 1,
-    "description": "The famous Blue Pearl of Morocco, set against the Rif Mountains with blue-washed houses and artisan souks."
+    "description": "The famous Blue Pearl of Morocco, set against the Rif Mountains with blue-washed houses and artisan souks.",
+    "languages": [
+      "Arabic (official Moroccan Darija)",
+      "Berber / Tamazight (official)",
+      "French (widely used in commerce)",
+      "English (in tourism)"
+    ],
+    "currency": {
+      "code": "MAD",
+      "name": "Moroccan Dirham",
+      "symbol": "DH"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (luxury riads only)"
+      ],
+      "popularEWallets": [
+        "Cash remains primary"
+      ],
+      "cashAdvice": "Morocco is heavily cash-based. Credit cards work in upscale restaurants and riads, but souks, taxis, street food, and tips strictly require physical Dirhams."
+    },
+    "culturalTips": [
+      "Haggling is an expected, social sport in the medinas—negotiate with polite smiles and tea.",
+      "Dress conservatively in public and medina streets (cover shoulders, cleavage, and knees).",
+      "Always ask permission and agree on a small tip before taking photos of people or snake charmers in Jemaa el-Fnaa.",
+      "Tipping 10% in restaurants and giving small coins to bathroom attendants or luggage porters is customary."
+    ]
   },
   {
     "id": "johannesburg-za",
@@ -1117,12 +4694,54 @@
     "type": "city",
     "country": "South Africa",
     "countryCode": "ZA",
-    "tags": ["history", "art", "culture", "nightlife", "city"],
+    "tags": [
+      "history",
+      "art",
+      "culture",
+      "nightlife",
+      "city"
+    ],
     "budget": "$",
-    "bestMonths": ["Mar", "Apr", "May", "Sep", "Oct"],
+    "bestMonths": [
+      "Mar",
+      "Apr",
+      "May",
+      "Sep",
+      "Oct"
+    ],
     "climate": "mild",
     "safety": 3,
-    "description": "Energetic economic hub with profound Apartheid history, vibrant Maboneng arts district, and dynamic dining."
+    "description": "Energetic economic hub with profound Apartheid history, vibrant Maboneng arts district, and dynamic dining.",
+    "languages": [
+      "11 official languages including English, Zulu, Xhosa, and Afrikaans"
+    ],
+    "currency": {
+      "code": "ZAR",
+      "name": "South African Rand",
+      "symbol": "R"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (moderate in luxury)"
+      ],
+      "popularEWallets": [
+        "SnapScan / Zapper (local QR apps)",
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "Card and phone tap acceptance is exceptionally high across South Africa. Keep small Rand notes for informal car guards ('parking attendants') and petrol station attendants."
+    },
+    "culturalTips": [
+      "Tipping: 10-15% in sit-down restaurants is customary and expected. Tipping R5-10 to informal parking attendants and petrol station attendants who pump fuel is standard.",
+      "Be security-conscious: do not leave bags or phones visible on car seats ('smash-and-grab' prevention), and avoid walking alone after dark in city centers.",
+      "'Now' means eventually; 'Just now' means in a little while; 'Now now' means immediately.",
+      "Tap water in urban South Africa (Cape Town, Johannesburg, Durban) is among the cleanest and safest to drink in the world."
+    ]
   },
   {
     "id": "sossusvlei-na",
@@ -1139,10 +4758,48 @@
       "bucket-list"
     ],
     "budget": "$$$",
-    "bestMonths": ["May", "Jun", "Jul", "Aug", "Sep", "Oct"],
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct"
+    ],
     "climate": "hot-dry",
     "safety": 1,
-    "description": "Towering red sand dunes, surreal dead camelthorn trees in Deadvlei, and unmatched stargazing under clear desert skies."
+    "description": "Towering red sand dunes, surreal dead camelthorn trees in Deadvlei, and unmatched stargazing under clear desert skies.",
+    "languages": [
+      "English (official)",
+      "Oshiwambo",
+      "Afrikaans",
+      "German (widely understood)"
+    ],
+    "currency": {
+      "code": "NAD",
+      "name": "Namibian Dollar (pegged 1:1 to South African Rand)",
+      "symbol": "N$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (limited)"
+      ],
+      "popularEWallets": [
+        "Cash & cards dominate"
+      ],
+      "cashAdvice": "South African Rand (ZAR) notes are accepted interchangeably with Namibian Dollars everywhere. Carry cash for remote desert fuel stations and national park entry gates."
+    },
+    "culturalTips": [
+      "Tipping: 10-15% in restaurants and small tips (N$10-20) for parking attendants and fuel station attendants are standard.",
+      "Gravel road driving: Never exceed 80 km/h on unpaved gravel roads; rollover accidents are the primary danger for foreign tourists.",
+      "Water is precious in this desert country—use water sparingly in lodges and campsites.",
+      "Shake hands warmly and exchange pleasantries before asking for directions or services."
+    ]
   },
   {
     "id": "luxor-eg",
@@ -1150,12 +4807,55 @@
     "type": "city",
     "country": "Egypt",
     "countryCode": "EG",
-    "tags": ["history", "ancient", "architecture", "bucket-list", "culture"],
+    "tags": [
+      "history",
+      "ancient",
+      "architecture",
+      "bucket-list",
+      "culture"
+    ],
     "budget": "$",
-    "bestMonths": ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar"],
+    "bestMonths": [
+      "Oct",
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar"
+    ],
     "climate": "hot-dry",
     "safety": 2,
-    "description": "The world's greatest open-air museum, home to the Valley of the Kings, Karnak Temple, and hot air balloon rides over the Nile."
+    "description": "The world's greatest open-air museum, home to the Valley of the Kings, Karnak Temple, and hot air balloon rides over the Nile.",
+    "languages": [
+      "Arabic (official Egyptian dialect)",
+      "English (widely understood in tourism)"
+    ],
+    "currency": {
+      "code": "EGP",
+      "name": "Egyptian Pound",
+      "symbol": "E£"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (major hotels only)"
+      ],
+      "popularEWallets": [
+        "Vodafone Cash / InstaPay (locals)",
+        "Apple Pay (limited)"
+      ],
+      "cashAdvice": "Cash is essential. Credit cards work at major archaeological sites and hotels, but taxis, felucca rides, tips, and bazaars require Egyptian pounds in small bills."
+    },
+    "culturalTips": [
+      "'Baksheesh' (tipping/gratuity) is an integral cultural expectation for almost every small service (restroom attendants, drivers, luggage, temple guardians).",
+      "Dress conservatively: cover shoulders, chest, and knees when walking around public streets and mosques.",
+      "Always use your right hand when shaking hands, eating, or giving money.",
+      "Lively haggling is customary in markets (souks)—start by offering roughly half the initial asking price with good humor."
+    ]
   },
   {
     "id": "kruger-za",
@@ -1163,12 +4863,54 @@
     "type": "place",
     "country": "South Africa",
     "countryCode": "ZA",
-    "tags": ["wildlife", "safari", "nature", "adventure", "bucket-list"],
+    "tags": [
+      "wildlife",
+      "safari",
+      "nature",
+      "adventure",
+      "bucket-list"
+    ],
     "budget": "$$",
-    "bestMonths": ["May", "Jun", "Jul", "Aug", "Sep"],
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep"
+    ],
     "climate": "mild",
     "safety": 1,
-    "description": "Massive African wilderness sanctuary offering self-drive and guided safari encounters with the Big Five."
+    "description": "Massive African wilderness sanctuary offering self-drive and guided safari encounters with the Big Five.",
+    "languages": [
+      "11 official languages including English, Zulu, Xhosa, and Afrikaans"
+    ],
+    "currency": {
+      "code": "ZAR",
+      "name": "South African Rand",
+      "symbol": "R"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (moderate in luxury)"
+      ],
+      "popularEWallets": [
+        "SnapScan / Zapper (local QR apps)",
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "Card and phone tap acceptance is exceptionally high across South Africa. Keep small Rand notes for informal car guards ('parking attendants') and petrol station attendants."
+    },
+    "culturalTips": [
+      "Tipping: 10-15% in sit-down restaurants is customary and expected. Tipping R5-10 to informal parking attendants and petrol station attendants who pump fuel is standard.",
+      "Be security-conscious: do not leave bags or phones visible on car seats ('smash-and-grab' prevention), and avoid walking alone after dark in city centers.",
+      "'Now' means eventually; 'Just now' means in a little while; 'Now now' means immediately.",
+      "Tap water in urban South Africa (Cape Town, Johannesburg, Durban) is among the cleanest and safest to drink in the world."
+    ]
   },
   {
     "id": "medellin-co",
@@ -1184,10 +4926,46 @@
       "budget-friendly"
     ],
     "budget": "$",
-    "bestMonths": ["Dec", "Jan", "Feb", "Jul", "Aug"],
+    "bestMonths": [
+      "Dec",
+      "Jan",
+      "Feb",
+      "Jul",
+      "Aug"
+    ],
     "climate": "mild",
     "safety": 2,
-    "description": "The City of Eternal Spring nestled in an Andean valley, with metrocable gondolas, Comuna 13 murals, and lively cafes."
+    "description": "The City of Eternal Spring nestled in an Andean valley, with metrocable gondolas, Comuna 13 murals, and lively cafes.",
+    "languages": [
+      "Spanish (official)",
+      "English (limited in hospitality, rare outside tourist zones)"
+    ],
+    "currency": {
+      "code": "COP",
+      "name": "Colombian Peso",
+      "symbol": "COL$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (limited to high-end venues)"
+      ],
+      "popularEWallets": [
+        "Nequi / DaviPlata (locals)",
+        "Apple Pay (limited)"
+      ],
+      "cashAdvice": "Cash is essential for street food, traditional markets, taxis, and small towns. In malls and fine restaurants, Visa/Mastercard work fine."
+    },
+    "culturalTips": [
+      "A 10% voluntary service tip ('propina voluntaria') is usually printed on restaurant bills; confirm when asked.",
+      "Colombians are exceptionally polite; always use 'por favor' and 'gracias', and avoid rushing social pleasantries.",
+      "Avoid discussing or glorifying drug cartel figures (e.g. Pablo Escobar), which is deeply offensive to locals.",
+      "The phrase 'No dar papaya' (don't give papaya) is a local idiom meaning don't put temptation in front of opportunists (keep valuables discreet)."
+    ]
   },
   {
     "id": "bogota-co",
@@ -1195,12 +4973,54 @@
     "type": "city",
     "country": "Colombia",
     "countryCode": "CO",
-    "tags": ["culture", "museums", "art", "food", "city"],
+    "tags": [
+      "culture",
+      "museums",
+      "art",
+      "food",
+      "city"
+    ],
     "budget": "$",
-    "bestMonths": ["Dec", "Jan", "Feb", "Jun", "Jul"],
+    "bestMonths": [
+      "Dec",
+      "Jan",
+      "Feb",
+      "Jun",
+      "Jul"
+    ],
     "climate": "cool",
     "safety": 3,
-    "description": "High-altitude capital famous for the world-renowned Gold Museum, historic La Candelaria streets, and Monserrate views."
+    "description": "High-altitude capital famous for the world-renowned Gold Museum, historic La Candelaria streets, and Monserrate views.",
+    "languages": [
+      "Spanish (official)",
+      "English (limited in hospitality, rare outside tourist zones)"
+    ],
+    "currency": {
+      "code": "COP",
+      "name": "Colombian Peso",
+      "symbol": "COL$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (limited to high-end venues)"
+      ],
+      "popularEWallets": [
+        "Nequi / DaviPlata (locals)",
+        "Apple Pay (limited)"
+      ],
+      "cashAdvice": "Cash is essential for street food, traditional markets, taxis, and small towns. In malls and fine restaurants, Visa/Mastercard work fine."
+    },
+    "culturalTips": [
+      "A 10% voluntary service tip ('propina voluntaria') is usually printed on restaurant bills; confirm when asked.",
+      "Colombians are exceptionally polite; always use 'por favor' and 'gracias', and avoid rushing social pleasantries.",
+      "Avoid discussing or glorifying drug cartel figures (e.g. Pablo Escobar), which is deeply offensive to locals.",
+      "The phrase 'No dar papaya' (don't give papaya) is a local idiom meaning don't put temptation in front of opportunists (keep valuables discreet)."
+    ]
   },
   {
     "id": "santiago-cl",
@@ -1208,12 +5028,54 @@
     "type": "city",
     "country": "Chile",
     "countryCode": "CL",
-    "tags": ["wine", "mountains", "city", "culture", "food"],
+    "tags": [
+      "wine",
+      "mountains",
+      "city",
+      "culture",
+      "food"
+    ],
     "budget": "$$",
-    "bestMonths": ["Oct", "Nov", "Dec", "Mar", "Apr"],
+    "bestMonths": [
+      "Oct",
+      "Nov",
+      "Dec",
+      "Mar",
+      "Apr"
+    ],
     "climate": "mild",
     "safety": 2,
-    "description": "Chilean capital framed by the snow-capped Andes, with historic plazas, bohemian Bellavista, and nearby Maipo wine valleys."
+    "description": "Chilean capital framed by the snow-capped Andes, with historic plazas, bohemian Bellavista, and nearby Maipo wine valleys.",
+    "languages": [
+      "Spanish (official Chilean dialect)",
+      "English (in major hotels & adventure agencies)"
+    ],
+    "currency": {
+      "code": "CLP",
+      "name": "Chilean Peso",
+      "symbol": "CLP$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (limited)"
+      ],
+      "popularEWallets": [
+        "Redcompra / Webpay (local)",
+        "Apple Pay (growing)"
+      ],
+      "cashAdvice": "Cards are widely accepted in cities, but cash is mandatory in rural Patagonia, national park entry booths, and street markets."
+    },
+    "culturalTips": [
+      "Restaurants ask '¿Desea agregar la propina del 10%?' (Would you like to add 10% tip?)—saying yes is standard practice.",
+      "Chileans value polite formal greetings ('Buenos días') before asking for service or directions.",
+      "Dinner is eaten late (8:30-10:00 PM), preceded by an afternoon tea and bread snack called 'once'.",
+      "Keep the PDI tourist slip issued at airport customs—you must return it when departing the country."
+    ]
   },
   {
     "id": "valparaiso-cl",
@@ -1221,12 +5083,54 @@
     "type": "city",
     "country": "Chile",
     "countryCode": "CL",
-    "tags": ["art", "culture", "scenic", "coastal", "hidden-gem"],
+    "tags": [
+      "art",
+      "culture",
+      "scenic",
+      "coastal",
+      "hidden-gem"
+    ],
     "budget": "$",
-    "bestMonths": ["Nov", "Dec", "Jan", "Feb", "Mar"],
+    "bestMonths": [
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar"
+    ],
     "climate": "mild",
     "safety": 2,
-    "description": "Bohemian coastal city with steep hills, colorful funicular elevators, vibrant street murals, and poet Pablo Neruda's house."
+    "description": "Bohemian coastal city with steep hills, colorful funicular elevators, vibrant street murals, and poet Pablo Neruda's house.",
+    "languages": [
+      "Spanish (official Chilean dialect)",
+      "English (in major hotels & adventure agencies)"
+    ],
+    "currency": {
+      "code": "CLP",
+      "name": "Chilean Peso",
+      "symbol": "CLP$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (limited)"
+      ],
+      "popularEWallets": [
+        "Redcompra / Webpay (local)",
+        "Apple Pay (growing)"
+      ],
+      "cashAdvice": "Cards are widely accepted in cities, but cash is mandatory in rural Patagonia, national park entry booths, and street markets."
+    },
+    "culturalTips": [
+      "Restaurants ask '¿Desea agregar la propina del 10%?' (Would you like to add 10% tip?)—saying yes is standard practice.",
+      "Chileans value polite formal greetings ('Buenos días') before asking for service or directions.",
+      "Dinner is eaten late (8:30-10:00 PM), preceded by an afternoon tea and bread snack called 'once'.",
+      "Keep the PDI tourist slip issued at airport customs—you must return it when departing the country."
+    ]
   },
   {
     "id": "salvador-br",
@@ -1234,12 +5138,54 @@
     "type": "city",
     "country": "Brazil",
     "countryCode": "BR",
-    "tags": ["culture", "music", "history", "beach", "food"],
+    "tags": [
+      "culture",
+      "music",
+      "history",
+      "beach",
+      "food"
+    ],
     "budget": "$",
-    "bestMonths": ["Sep", "Oct", "Nov", "Dec", "Jan"],
+    "bestMonths": [
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+      "Jan"
+    ],
     "climate": "tropical",
     "safety": 3,
-    "description": "Heart of Afro-Brazilian culture with colorful Pelourinho colonial cobblestones, capoeira, drumming, and vibrant Atlantic beaches."
+    "description": "Heart of Afro-Brazilian culture with colorful Pelourinho colonial cobblestones, capoeira, drumming, and vibrant Atlantic beaches.",
+    "languages": [
+      "Portuguese (official)",
+      "English (limited in hospitality, rare elsewhere)"
+    ],
+    "currency": {
+      "code": "BRL",
+      "name": "Brazilian Real",
+      "symbol": "R$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (limited acceptance)"
+      ],
+      "popularEWallets": [
+        "Pix (instant local QR bank transfer - requires local CPF)",
+        "Apple Pay"
+      ],
+      "cashAdvice": "Cards and contactless phone payments are accepted almost everywhere (even beach caipirinha vendors have wireless card machines), but carry small bills for street vendors."
+    },
+    "culturalTips": [
+      "A 10% service charge ('serviço') is almost always included on restaurant bills; extra tipping is optional.",
+      "Brazilians stand close and touch arms/shoulders during warm conversations; personal space is smaller than in the U.S.",
+      "Keep high-value jewelry and smartphones out of sight in public streets to avoid opportunistic theft.",
+      "The OK hand sign (thumb and index finger circle) is considered an offensive and vulgar gesture in Brazil."
+    ]
   },
   {
     "id": "lima-pe",
@@ -1247,12 +5193,55 @@
     "type": "city",
     "country": "Peru",
     "countryCode": "PE",
-    "tags": ["food", "gastronomy", "culture", "history", "coastal"],
+    "tags": [
+      "food",
+      "gastronomy",
+      "culture",
+      "history",
+      "coastal"
+    ],
     "budget": "$$",
-    "bestMonths": ["Dec", "Jan", "Feb", "Mar", "Apr"],
+    "bestMonths": [
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr"
+    ],
     "climate": "mild",
     "safety": 3,
-    "description": "The culinary capital of South America with award-winning ceviche, cliffside Miraflores ocean views, and pre-Inca ruins."
+    "description": "The culinary capital of South America with award-winning ceviche, cliffside Miraflores ocean views, and pre-Inca ruins.",
+    "languages": [
+      "Spanish (official)",
+      "Quechua & Aymara (co-official)",
+      "English (in Cusco, Lima, & tourism)"
+    ],
+    "currency": {
+      "code": "PEN",
+      "name": "Peruvian Sol",
+      "symbol": "S/."
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (limited to luxury venues)"
+      ],
+      "popularEWallets": [
+        "Yape / Plin (locals)",
+        "Apple Pay (limited)"
+      ],
+      "cashAdvice": "Cash is essential for artisan markets, Sacred Valley ruins, taxis, street food, and tips. Carry small, crisp Soles bills; merchants scrutinize bills for small tears."
+    },
+    "culturalTips": [
+      "A 10% tip in sit-down restaurants is customary and appreciated; street eateries do not expect tips.",
+      "Acclimatize to altitude: Rest, drink coca tea ('mate de coca'), and avoid heavy meals or alcohol during your first 24 hours in Cusco (11,150 ft).",
+      "Ask permission before taking photos of Quechua women in traditional dress with alpacas (a small tip of S/ 2-5 is expected).",
+      "Do not drink unfiltered tap water in Peru."
+    ]
   },
   {
     "id": "arequipa-pe",
@@ -1260,12 +5249,57 @@
     "type": "city",
     "country": "Peru",
     "countryCode": "PE",
-    "tags": ["history", "architecture", "food", "mountains", "hidden-gem"],
+    "tags": [
+      "history",
+      "architecture",
+      "food",
+      "mountains",
+      "hidden-gem"
+    ],
     "budget": "$",
-    "bestMonths": ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
+    "bestMonths": [
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct"
+    ],
     "climate": "mild",
     "safety": 2,
-    "description": "The White City built from volcanic sillar stone, featuring Santa Catalina Monastery and day trips to the deep Colca Canyon."
+    "description": "The White City built from volcanic sillar stone, featuring Santa Catalina Monastery and day trips to the deep Colca Canyon.",
+    "languages": [
+      "Spanish (official)",
+      "Quechua & Aymara (co-official)",
+      "English (in Cusco, Lima, & tourism)"
+    ],
+    "currency": {
+      "code": "PEN",
+      "name": "Peruvian Sol",
+      "symbol": "S/."
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (limited to luxury venues)"
+      ],
+      "popularEWallets": [
+        "Yape / Plin (locals)",
+        "Apple Pay (limited)"
+      ],
+      "cashAdvice": "Cash is essential for artisan markets, Sacred Valley ruins, taxis, street food, and tips. Carry small, crisp Soles bills; merchants scrutinize bills for small tears."
+    },
+    "culturalTips": [
+      "A 10% tip in sit-down restaurants is customary and appreciated; street eateries do not expect tips.",
+      "Acclimatize to altitude: Rest, drink coca tea ('mate de coca'), and avoid heavy meals or alcohol during your first 24 hours in Cusco (11,150 ft).",
+      "Ask permission before taking photos of Quechua women in traditional dress with alpacas (a small tip of S/ 2-5 is expected).",
+      "Do not drink unfiltered tap water in Peru."
+    ]
   },
   {
     "id": "quito-ec",
@@ -1273,11 +5307,53 @@
     "type": "city",
     "country": "Ecuador",
     "countryCode": "EC",
-    "tags": ["history", "culture", "mountains", "scenic", "architecture"],
+    "tags": [
+      "history",
+      "culture",
+      "mountains",
+      "scenic",
+      "architecture"
+    ],
     "budget": "$",
-    "bestMonths": ["Jun", "Jul", "Aug", "Sep"],
+    "bestMonths": [
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep"
+    ],
     "climate": "cool",
     "safety": 3,
-    "description": "Historic high-altitude Andean capital with the best-preserved UNESCO colonial center in the Americas, surrounded by volcanoes."
+    "description": "Historic high-altitude Andean capital with the best-preserved UNESCO colonial center in the Americas, surrounded by volcanoes.",
+    "languages": [
+      "Spanish (official)",
+      "Kichwa & Shuar (recognized regional)",
+      "English (in Galápagos & tourism)"
+    ],
+    "currency": {
+      "code": "USD",
+      "name": "U.S. Dollar (official currency since 2000)",
+      "symbol": "$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (limited)"
+      ],
+      "popularEWallets": [
+        "Deuna (local)",
+        "Apple Pay (very limited)"
+      ],
+      "cashAdvice": "U.S. Dollar is the national currency! However, small clean bills ($1, $5, $10, $20) and dollar coins are vital; merchants routinely reject $50 and $100 bills or torn notes."
+    },
+    "culturalTips": [
+      "A 10% service tip is standard in tourist and upscale restaurants; street sodas do not expect tips.",
+      "Bargaining is expected at indigenous craft markets (like Otavalo), but keep negotiations friendly and respectful.",
+      "In the Galápagos, strict wildlife protection laws prohibit touching or approaching within 2 meters (6 feet) of any animal.",
+      "Greetings start with a polite 'Buenos días' or handshake before asking questions."
+    ]
   }
 ]
