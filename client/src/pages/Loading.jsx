@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Loading.css";
 
-import globeImage from "../../loading/globe.png";
+import globeImage from "../../loading/globe (2).png";
 import lightbulbImage from "../../loading/lightbulb-removebg-preview.png";
 
 const facts = [
