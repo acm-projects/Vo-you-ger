@@ -129,6 +129,14 @@ async function createRecommendations(req, res) {
             ? quiz.nationalities
             : [];
 
+      if (userNationalities.length === 0) {
+        return res.status(400).json({
+          error: "Bad Request",
+          message:
+            "Citizenship information is required to recommend visa-free destinations. Please update your profile.",
+        });
+      }
+
       if (userNationalities.length > 0) {
         try {
           visaFreeCountryCodes =
@@ -161,6 +169,23 @@ async function createRecommendations(req, res) {
       destinations,
       visaFreeCountryCodes,
     });
+
+    // Require three distinct eligible countries before calling Gemini.
+    const candidateIdSet = new Set(candidateIds);
+
+    const eligibleCountryCodes = new Set(
+      destinations
+        .filter((destination) => candidateIdSet.has(destination.id))
+        .map((destination) => destination.countryCode)
+    );
+
+    if (eligibleCountryCodes.size < 3) {
+      return res.status(422).json({
+        error: "Insufficient Eligible Destinations",
+        message:
+          "We could not find three eligible countries under your current travel preferences. Please review your visa preference or other travel constraints.",
+      });
+    }
 
     // Step 5: Generate structured recommendations.
     const { data, model } = await llm.generateStructured({

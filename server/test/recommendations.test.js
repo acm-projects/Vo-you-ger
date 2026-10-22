@@ -492,6 +492,91 @@ describe("POST /api/recommendations", () => {
     assert.equal(saved, null);
   });
 
+  // ---------- Visa Eligibility Safeguard Tests ----------
+
+  it("returns 400 when visa-free travel is requested without citizenship", async () => {
+    userModel.findUserById = async () => ({
+      ...fakeUser,
+      nationalities: [],
+    });
+
+    let llmCalled = false;
+    llm.generateStructured = async () => {
+      llmCalled = true;
+      return makeValidAIResponse();
+    };
+
+    const { req, res } = mockReqRes({
+      body: {
+        quiz: {
+          willingToGetVisa: false,
+          dailyBudget: "$$$",
+        },
+      },
+    });
+
+    await createRecommendations(req, res);
+
+    assert.equal(res.statusCode, 400);
+    assert.match(res.body.message, /Citizenship information is required/);
+    assert.equal(llmCalled, false);
+    assert.equal(saved, null);
+  });
+
+  it("returns 422 when only two visa-free countries qualify", async () => {
+    visaService.getVisaFreeCountries = async () =>
+      new Set(["PT", "JP"]);
+
+    let llmCalled = false;
+    llm.generateStructured = async () => {
+      llmCalled = true;
+      return makeValidAIResponse();
+    };
+
+    const { req, res } = mockReqRes({
+      body: {
+        quiz: {
+          willingToGetVisa: false,
+          dailyBudget: "$$$",
+        },
+      },
+    });
+
+    await createRecommendations(req, res);
+
+    assert.equal(res.statusCode, 422);
+    assert.equal(res.body.error, "Insufficient Eligible Destinations");
+    assert.equal(llmCalled, false);
+    assert.equal(saved, null);
+  });
+
+  it("returns 422 when no visa-free destinations qualify", async () => {
+    visaService.getVisaFreeCountries = async () =>
+      new Set();
+
+    let llmCalled = false;
+    llm.generateStructured = async () => {
+      llmCalled = true;
+      return makeValidAIResponse();
+    };
+
+    const { req, res } = mockReqRes({
+      body: {
+        quiz: {
+          willingToGetVisa: false,
+          dailyBudget: "$$$",
+        },
+      },
+    });
+
+    await createRecommendations(req, res);
+
+    assert.equal(res.statusCode, 422);
+    assert.equal(res.body.error, "Insufficient Eligible Destinations");
+    assert.equal(llmCalled, false);
+    assert.equal(saved, null);
+  });
+
   // ---------- Phase 1B Visa Integration Tests ----------
 
   it("calls visa API and enforces green visa-free countries when willingToGetVisa is false", async () => {

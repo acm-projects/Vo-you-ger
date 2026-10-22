@@ -3516,10 +3516,10 @@
     ]
   },
   {
-    "id": "patagonia-ar-cl",
-    "name": "Patagonia",
+    "id": "patagonia-ar",
+    "name": "Argentine Patagonia",
     "type": "place",
-    "country": "Argentina / Chile",
+    "country": "Argentina",
     "countryCode": "AR",
     "tags": [
       "hiking",
@@ -3538,7 +3538,7 @@
     ],
     "climate": "cold",
     "safety": 2,
-    "description": "Jagged peaks, glaciers and multi-day treks such as Torres del Paine. Weather changes fast.",
+    "description": "Argentina's Patagonian wilderness features the dramatic peaks of El Chaltén, glaciers in Los Glaciares National Park, and scenic landscapes around El Calafate.",
     "languages": [
       "Spanish (official Rioplatense dialect)",
       "English (limited outside tourist hotels)"
@@ -3564,10 +3564,65 @@
       "cashAdvice": "Cash is highly favored due to local inflation dynamics. Credit card transactions for foreigners benefit from the MEP dollar rate, but keep cash on hand for small cafes, taxis, and tips."
     },
     "culturalTips": [
-      "Dinner starts very late—locals rarely sit down before 9:30 or 10:00 PM.",
-      "A 10% cash tip ('propina') in restaurants is customary for good service.",
-      "Greeting with a single cheek kiss is the standard social greeting among locals.",
-      "Mate tea is a sacred social ritual; never stir the metal straw (bombilla) when offered mate."
+      "El Chaltén is a popular base for hiking, including trails with views of Mount Fitz Roy.",
+      "Check trail conditions and weather forecasts before hiking because Patagonian weather changes rapidly.",
+      "Reserve accommodation and popular excursions early during the southern summer.",
+      "Carry warm layers and wind protection even during summer."
+    ]
+  },
+  {
+    "id": "patagonia-cl",
+    "name": "Chilean Patagonia",
+    "type": "place",
+    "country": "Chile",
+    "countryCode": "CL",
+    "tags": [
+      "hiking",
+      "adventure",
+      "nature",
+      "scenic",
+      "bucket-list"
+    ],
+    "budget": "$$$",
+    "bestMonths": [
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar"
+    ],
+    "climate": "cold",
+    "safety": 2,
+    "description": "Chile's Patagonian region features the spectacular granite towers of Torres del Paine, glacial lakes, rugged mountains, and wilderness excursions from Puerto Natales.",
+    "languages": [
+      "Spanish (official Chilean dialect)",
+      "English (in major hotels & adventure agencies)"
+    ],
+    "currency": {
+      "code": "CLP",
+      "name": "Chilean Peso",
+      "symbol": "CLP$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (limited)"
+      ],
+      "popularEWallets": [
+        "Redcompra / Webpay (local)",
+        "Apple Pay (growing)"
+      ],
+      "cashAdvice": "Cards are widely accepted in cities, but cash is mandatory in rural Patagonia, national park entry booths, and street markets."
+    },
+    "culturalTips": [
+      "Book Torres del Paine accommodation and popular trekking routes well in advance.",
+      "Follow national park rules, including fire restrictions and designated hiking routes.",
+      "Prepare for strong winds and rapidly changing mountain weather.",
+      "Puerto Natales is a common base for accessing Torres del Paine National Park."
     ]
   },
   {
@@ -5354,6 +5409,2786 @@
       "Bargaining is expected at indigenous craft markets (like Otavalo), but keep negotiations friendly and respectful.",
       "In the Galápagos, strict wildlife protection laws prohibit touching or approaching within 2 meters (6 feet) of any animal.",
       "Greetings start with a polite 'Buenos días' or handshake before asking questions."
+    ]
+  },
+  {
+    "id": "ljubljana-si",
+    "name": "Ljubljana",
+    "type": "city",
+    "country": "Slovenia",
+    "countryCode": "SI",
+    "tags": [
+      "culture",
+      "architecture",
+      "food",
+      "walkable",
+      "hidden-gem"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Jul",
+      "Sep"
+    ],
+    "climate": "mild",
+    "safety": 1,
+    "description": "Slovenia's riverside capital combines pedestrian-friendly streets, a hilltop castle, lively markets, and easy access to the country's mountains and lakes.",
+    "languages": [
+      "Slovene (official)",
+      "English (widely understood in tourism)"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "Euro",
+      "symbol": "€"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "American Express (less widely accepted)",
+        "Discover (limited acceptance)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "Cards are widely accepted in Ljubljana, but carry some euros for small market stalls, rural businesses, and occasional cash-only purchases."
+    },
+    "culturalTips": [
+      "Ljubljana's historic center is largely pedestrianized, making walking and cycling convenient.",
+      "A friendly greeting such as 'Dober dan' is appreciated when entering smaller shops.",
+      "Tipping is appreciated for good service but is generally modest; rounding up a bill is common.",
+      "Visit the Central Market for regional produce and local specialties, checking its operating days first."
+    ]
+  },
+  {
+    "id": "lake-bled-si",
+    "name": "Lake Bled",
+    "type": "place",
+    "country": "Slovenia",
+    "countryCode": "SI",
+    "tags": [
+      "nature",
+      "mountains",
+      "scenic",
+      "hiking",
+      "romance"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep"
+    ],
+    "climate": "cool",
+    "safety": 1,
+    "description": "An Alpine lake famous for its island church, medieval castle, mountain backdrop, lakeside walks, and traditional cream cake.",
+    "languages": [
+      "Slovene (official)",
+      "English (commonly understood in tourism)"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "Euro",
+      "symbol": "€"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "American Express (limited)",
+        "Discover (limited)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "Carry some euros for smaller vendors, local transport, and traditional boat services where card acceptance may vary."
+    },
+    "culturalTips": [
+      "Traditional pletna boats offer trips to Bled Island; departures depend on local conditions.",
+      "Try the local cream cake known as Blejska kremna rezina.",
+      "Use marked hiking trails and check mountain conditions before heading into higher elevations.",
+      "Lake Bled is especially busy in summer; early visits can make popular viewpoints more enjoyable."
+    ]
+  },
+  {
+    "id": "stockholm-se",
+    "name": "Stockholm",
+    "type": "city",
+    "country": "Sweden",
+    "countryCode": "SE",
+    "tags": [
+      "history",
+      "design",
+      "museums",
+      "culture",
+      "scenic"
+    ],
+    "budget": "$$$",
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep"
+    ],
+    "climate": "cool",
+    "safety": 1,
+    "description": "Sweden's waterfront capital spreads across islands, with medieval Gamla Stan, contemporary Nordic design, museums, and access to a scenic archipelago.",
+    "languages": [
+      "Swedish (official)",
+      "English (widely spoken)"
+    ],
+    "currency": {
+      "code": "SEK",
+      "name": "Swedish Krona",
+      "symbol": "kr"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "American Express (acceptance varies)",
+        "Discover (limited acceptance)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Swish (primarily for eligible local users)"
+      ],
+      "cashAdvice": "Sweden is highly cashless. Cards and mobile payments are commonly preferred, and some businesses do not accept physical cash."
+    },
+    "culturalTips": [
+      "Fika, a social coffee break often accompanied by something sweet, is part of everyday Swedish culture.",
+      "Respect queues and personal space in shops, cafés, and public transport.",
+      "Many museums and public attractions have seasonal schedules; check opening times before visiting.",
+      "Explore beyond Gamla Stan to neighborhoods such as Södermalm for independent cafés and local design shops."
+    ]
+  },
+  {
+    "id": "oslo-no",
+    "name": "Oslo",
+    "type": "city",
+    "country": "Norway",
+    "countryCode": "NO",
+    "tags": [
+      "nature",
+      "museums",
+      "architecture",
+      "hiking",
+      "design"
+    ],
+    "budget": "$$$",
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep"
+    ],
+    "climate": "cool",
+    "safety": 1,
+    "description": "Norway's capital combines contemporary waterfront architecture, art museums, forest trails, island ferries, and easy access to outdoor recreation.",
+    "languages": [
+      "Norwegian (official)",
+      "English (widely spoken)"
+    ],
+    "currency": {
+      "code": "NOK",
+      "name": "Norwegian Krone",
+      "symbol": "kr"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "American Express (acceptance varies)",
+        "Discover (limited acceptance)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Vipps (primarily local users)"
+      ],
+      "cashAdvice": "Card and contactless payments are widespread throughout Oslo. Cash is rarely necessary for typical tourist purchases."
+    },
+    "culturalTips": [
+      "Outdoor recreation is an important part of Norwegian culture; follow marked trails and respect natural areas.",
+      "Tipping is optional rather than obligatory, although rounding up for excellent service is appreciated.",
+      "Alcohol is relatively expensive, so account for it when planning a travel budget.",
+      "Public transportation makes it practical to explore both the waterfront and nearby forest recreation areas."
+    ]
+  },
+  {
+    "id": "helsinki-fi",
+    "name": "Helsinki",
+    "type": "city",
+    "country": "Finland",
+    "countryCode": "FI",
+    "tags": [
+      "design",
+      "architecture",
+      "nature",
+      "food",
+      "culture"
+    ],
+    "budget": "$$$",
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Jul",
+      "Aug"
+    ],
+    "climate": "cool",
+    "safety": 1,
+    "description": "Finland's seaside capital offers Nordic design, public saunas, island fortresses, modern architecture, and easy access to nature.",
+    "languages": [
+      "Finnish (official)",
+      "Swedish (official)",
+      "English (widely spoken)"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "Euro",
+      "symbol": "€"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "American Express (acceptance varies)",
+        "Discover (limited acceptance)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "Card and contactless payments are widely accepted. Small amounts of cash can be useful for occasional market purchases."
+    },
+    "culturalTips": [
+      "Sauna is an important part of Finnish culture; follow each facility's posted rules.",
+      "Respect quiet spaces and personal distance, especially on public transport.",
+      "Visit Suomenlinna by ferry and allow time to explore its historic fortifications.",
+      "Tipping is optional, and service is generally included in advertised prices."
+    ]
+  },
+  {
+    "id": "tallinn-ee",
+    "name": "Tallinn",
+    "type": "city",
+    "country": "Estonia",
+    "countryCode": "EE",
+    "tags": [
+      "history",
+      "architecture",
+      "walkable",
+      "culture",
+      "hidden-gem"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep"
+    ],
+    "climate": "cool",
+    "safety": 1,
+    "description": "Estonia's capital combines medieval towers and cobbled Old Town streets with creative neighborhoods, seaside walks, and contemporary cafés.",
+    "languages": [
+      "Estonian (official)",
+      "English (widely spoken in tourism)"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "Euro",
+      "symbol": "€"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "American Express (acceptance varies)",
+        "Discover (limited acceptance)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "Cards and contactless payments are common throughout Tallinn. Some small stalls and rural businesses may prefer cash."
+    },
+    "culturalTips": [
+      "Tallinn's Old Town has uneven cobblestones, so comfortable shoes are useful.",
+      "Estonians generally appreciate a quiet, respectful manner in public spaces.",
+      "Explore Telliskivi for independent shops, street art, and cafés.",
+      "Check seasonal opening hours for museums and historical attractions."
+    ]
+  },
+  {
+    "id": "riga-lv",
+    "name": "Riga",
+    "type": "city",
+    "country": "Latvia",
+    "countryCode": "LV",
+    "tags": [
+      "architecture",
+      "history",
+      "food",
+      "culture",
+      "walkable"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep"
+    ],
+    "climate": "cool",
+    "safety": 1,
+    "description": "Latvia's capital is known for Art Nouveau architecture, a historic Old Town, lively markets, and riverside neighborhoods.",
+    "languages": [
+      "Latvian (official)",
+      "English (commonly spoken in tourism)"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "Euro",
+      "symbol": "€"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "American Express (acceptance varies)",
+        "Discover (limited acceptance)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "Card payments are common in Riga. Keep some euros for smaller markets and businesses outside central tourist areas."
+    },
+    "culturalTips": [
+      "Explore the Art Nouveau district around Alberta Street.",
+      "Riga Central Market is a good place to discover Latvian food traditions.",
+      "A polite greeting when entering smaller establishments is appreciated.",
+      "Seasonal weather varies considerably, so pack layers even during spring and autumn."
+    ]
+  },
+  {
+    "id": "krakow-pl",
+    "name": "Kraków",
+    "type": "city",
+    "country": "Poland",
+    "countryCode": "PL",
+    "tags": [
+      "history",
+      "architecture",
+      "food",
+      "culture",
+      "budget-friendly"
+    ],
+    "budget": "$",
+    "bestMonths": [
+      "Apr",
+      "May",
+      "Jun",
+      "Sep",
+      "Oct"
+    ],
+    "climate": "cool",
+    "safety": 1,
+    "description": "Historic Polish city with a grand medieval square, Wawel Castle, traditional food, and important cultural and memorial sites.",
+    "languages": [
+      "Polish (official)",
+      "English (commonly spoken in tourist areas)"
+    ],
+    "currency": {
+      "code": "PLN",
+      "name": "Polish Złoty",
+      "symbol": "zł"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "American Express (acceptance varies)",
+        "Discover (limited acceptance)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "BLIK (primarily local users)"
+      ],
+      "cashAdvice": "Cards are widely accepted, but carrying some Polish złoty is useful for small vendors. Poland does not use the euro."
+    },
+    "culturalTips": [
+      "Kraków's historic center is best explored on foot.",
+      "Visits to Auschwitz-Birkenau should be approached with respect and appropriate time for reflection.",
+      "Try traditional dishes such as pierogi and żurek.",
+      "Validate public transport tickets according to the local ticketing instructions."
+    ]
+  },
+  {
+    "id": "warsaw-pl",
+    "name": "Warsaw",
+    "type": "city",
+    "country": "Poland",
+    "countryCode": "PL",
+    "tags": [
+      "history",
+      "museums",
+      "culture",
+      "food",
+      "city"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep"
+    ],
+    "climate": "cool",
+    "safety": 1,
+    "description": "Poland's capital blends a carefully reconstructed Old Town, modern skyline, fascinating museums, green parks, and a lively food scene.",
+    "languages": [
+      "Polish (official)",
+      "English (commonly understood in tourism)"
+    ],
+    "currency": {
+      "code": "PLN",
+      "name": "Polish Złoty",
+      "symbol": "zł"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "American Express (acceptance varies)",
+        "Discover (limited acceptance)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "BLIK (primarily local users)"
+      ],
+      "cashAdvice": "Contactless cards are common, though smaller vendors may prefer Polish złoty in cash."
+    },
+    "culturalTips": [
+      "Warsaw's Old Town was extensively reconstructed after World War II.",
+      "Allow several hours for major museums such as the POLIN Museum.",
+      "Łazienki Park is a popular green space for walking and cultural events.",
+      "Use marked pedestrian crossings and observe traffic signals."
+    ]
+  },
+  {
+    "id": "naples-it",
+    "name": "Naples",
+    "type": "city",
+    "country": "Italy",
+    "countryCode": "IT",
+    "tags": [
+      "food",
+      "history",
+      "culture",
+      "coastal",
+      "architecture"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "Apr",
+      "May",
+      "Sep",
+      "Oct"
+    ],
+    "climate": "warm",
+    "safety": 2,
+    "description": "Energetic southern Italian city celebrated for Neapolitan pizza, historic streets, archaeological treasures, and access to Pompeii.",
+    "languages": [
+      "Italian (official)",
+      "English (understood in major tourist centers, less so in countryside)"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "Euro",
+      "symbol": "€"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (moderate in luxury)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Satispay"
+      ],
+      "cashAdvice": "Contactless card payments are widely accepted, but small cash in Euros is useful for espresso at coffee bars, gelato, and city hotel tourist taxes ('tassa di soggiorno')."
+    },
+    "culturalTips": [
+      "Try traditional Neapolitan pizza at a local pizzeria.",
+      "Busy streets and motor scooters require attention when crossing roads.",
+      "Pompeii and Herculaneum make popular archaeological day trips.",
+      "Keep valuables secure in crowded transport hubs and tourist areas."
+    ]
+  },
+  {
+    "id": "seville-es",
+    "name": "Seville",
+    "type": "city",
+    "country": "Spain",
+    "countryCode": "ES",
+    "tags": [
+      "history",
+      "architecture",
+      "food",
+      "culture",
+      "romance"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "Mar",
+      "Apr",
+      "May",
+      "Oct",
+      "Nov"
+    ],
+    "climate": "hot-dry",
+    "safety": 1,
+    "description": "Andalusian city renowned for flamenco, Moorish architecture, orange-lined streets, tapas, and magnificent historic palaces.",
+    "languages": [
+      "Spanish (official)",
+      "English (commonly understood in tourism)"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "Euro",
+      "symbol": "€"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (accepted at department stores/hotels)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Bizum (locals)"
+      ],
+      "cashAdvice": "Contactless card and phone payments are universal for almost all amounts. Keep €10-20 cash for small rural bars, churro stalls, or public restrooms."
+    },
+    "culturalTips": [
+      "Summer temperatures can become extremely hot, so plan outdoor activities for cooler hours.",
+      "Book major attractions such as the Real Alcázar in advance.",
+      "Explore traditional tapas bars and local Andalusian dishes.",
+      "Flamenco performances range from intimate venues to larger tourist productions."
+    ]
+  },
+  {
+    "id": "nice-fr",
+    "name": "Nice",
+    "type": "city",
+    "country": "France",
+    "countryCode": "FR",
+    "tags": [
+      "beach",
+      "coastal",
+      "food",
+      "art",
+      "romance"
+    ],
+    "budget": "$$$",
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Sep",
+      "Oct"
+    ],
+    "climate": "warm",
+    "safety": 1,
+    "description": "French Riviera city with Mediterranean beaches, colorful Old Town streets, art museums, and picturesque coastal excursions.",
+    "languages": [
+      "French (official)",
+      "English (widely understood in Paris and major tourist hubs)"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "Euro",
+      "symbol": "€"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (moderate in luxury)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "cashAdvice": "Nearly cashless. Contactless cards and Apple Pay work in almost all boulangeries and cafes for even a €1.30 croissant."
+    },
+    "culturalTips": [
+      "Many beaches around Nice are pebbly rather than sandy.",
+      "Try regional specialties such as socca and salade niçoise.",
+      "Regional trains connect Nice with several nearby Riviera towns.",
+      "Popular beaches and waterfront areas can become crowded in peak summer."
+    ]
+  },
+  {
+    "id": "luang-prabang-la",
+    "name": "Luang Prabang",
+    "type": "city",
+    "country": "Laos",
+    "countryCode": "LA",
+    "tags": [
+      "culture",
+      "history",
+      "nature",
+      "food",
+      "relaxation"
+    ],
+    "budget": "$",
+    "bestMonths": [
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb"
+    ],
+    "climate": "tropical",
+    "safety": 2,
+    "description": "UNESCO-listed riverside town famous for Buddhist temples, traditional architecture, waterfalls, and laid-back Lao culture.",
+    "languages": [
+      "Lao (official)",
+      "English (used in tourism)"
+    ],
+    "currency": {
+      "code": "LAK",
+      "name": "Lao Kip",
+      "symbol": "₭"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard (selected establishments)"
+      ],
+      "cardsLimited": [
+        "American Express",
+        "Discover"
+      ],
+      "popularEWallets": [],
+      "cashAdvice": "Cash in Lao kip is important for markets, smaller restaurants, and transport. International cards are more useful at larger hotels and established businesses."
+    },
+    "culturalTips": [
+      "Dress modestly when entering Buddhist temples.",
+      "Ask permission before photographing monks or religious ceremonies.",
+      "If observing morning almsgiving, remain respectful and avoid obstructing participants.",
+      "Check waterfall and river conditions during the rainy season."
+    ]
+  },
+  {
+    "id": "siem-reap-kh",
+    "name": "Siem Reap",
+    "type": "city",
+    "country": "Cambodia",
+    "countryCode": "KH",
+    "tags": [
+      "ancient",
+      "history",
+      "architecture",
+      "culture",
+      "bucket-list"
+    ],
+    "budget": "$",
+    "bestMonths": [
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb"
+    ],
+    "climate": "tropical",
+    "safety": 2,
+    "description": "Gateway to Angkor Wat and the Khmer Empire's magnificent temple complexes, with lively markets and traditional Cambodian food.",
+    "languages": [
+      "Khmer (official)",
+      "English (common in tourism)"
+    ],
+    "currency": {
+      "code": "KHR",
+      "name": "Cambodian Riel",
+      "symbol": "៛"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard (larger businesses)"
+      ],
+      "cardsLimited": [
+        "American Express",
+        "Discover"
+      ],
+      "popularEWallets": [
+        "Bakong / KHQR (participating merchants)"
+      ],
+      "cashAdvice": "Cambodian riel and U.S. dollars are both encountered. Carry small, clean notes for markets and local transport; acceptance varies by merchant."
+    },
+    "culturalTips": [
+      "Dress respectfully at Angkor's temples, covering shoulders and knees where required.",
+      "Purchase Angkor archaeological park passes through authorized sellers.",
+      "Stay on marked routes and follow posted restrictions at historic sites.",
+      "Plan temple visits early in the day to avoid the strongest heat."
+    ]
+  },
+  {
+    "id": "phnom-penh-kh",
+    "name": "Phnom Penh",
+    "type": "city",
+    "country": "Cambodia",
+    "countryCode": "KH",
+    "tags": [
+      "history",
+      "culture",
+      "food",
+      "museums",
+      "city"
+    ],
+    "budget": "$",
+    "bestMonths": [
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb"
+    ],
+    "climate": "tropical",
+    "safety": 2,
+    "description": "Cambodia's capital combines riverside life, the Royal Palace, busy markets, contemporary cafés, and important sites documenting the country's history.",
+    "languages": [
+      "Khmer (official)",
+      "English (used in tourism)"
+    ],
+    "currency": {
+      "code": "KHR",
+      "name": "Cambodian Riel",
+      "symbol": "៛"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard (larger businesses)"
+      ],
+      "cardsLimited": [
+        "American Express",
+        "Discover"
+      ],
+      "popularEWallets": [
+        "Bakong / KHQR (participating merchants)"
+      ],
+      "cashAdvice": "Cash remains useful for markets, smaller restaurants, and tuk-tuks. Both riel and U.S. dollars may be used."
+    },
+    "culturalTips": [
+      "Visit memorial sites such as Tuol Sleng with sensitivity and respect.",
+      "Dress modestly when visiting temples and the Royal Palace.",
+      "Use reputable transport services and agree on fares before unmetered trips.",
+      "Take precautions with personal belongings around busy streets and markets."
+    ]
+  },
+  {
+    "id": "da-nang-vn",
+    "name": "Da Nang",
+    "type": "city",
+    "country": "Vietnam",
+    "countryCode": "VN",
+    "tags": [
+      "beach",
+      "food",
+      "coastal",
+      "nature",
+      "relaxation"
+    ],
+    "budget": "$",
+    "bestMonths": [
+      "Feb",
+      "Mar",
+      "Apr",
+      "May"
+    ],
+    "climate": "tropical",
+    "safety": 1,
+    "description": "Central Vietnamese coastal city with sandy beaches, the Marble Mountains, seafood, and convenient access to Hoi An.",
+    "languages": [
+      "Vietnamese (official)",
+      "English (widely understood in Hanoi, HCMC, Hoi An, and tourism)"
+    ],
+    "currency": {
+      "code": "VND",
+      "name": "Vietnamese Dong",
+      "symbol": "₫"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (major international hotels only)"
+      ],
+      "popularEWallets": [
+        "MoMo / ZaloPay (locals)",
+        "GrabPay (for tourists)"
+      ],
+      "cashAdvice": "Cash is king in Vietnam! While hotels and modern restaurants take cards, street food stalls, markets, coffee shops, and cyclo rides are strictly CASH ONLY. Be careful with Dong notes: 20,000 and 500,000 look similar in color."
+    },
+    "culturalTips": [
+      "Plan outdoor activities around the heat and seasonal rain.",
+      "Explore local central Vietnamese dishes such as mì Quảng.",
+      "Use marked crossings carefully on busy roads.",
+      "Check weather and operating conditions before mountain excursions."
+    ]
+  },
+  {
+    "id": "hoi-an-vn",
+    "name": "Hoi An",
+    "type": "city",
+    "country": "Vietnam",
+    "countryCode": "VN",
+    "tags": [
+      "history",
+      "architecture",
+      "food",
+      "romance",
+      "walkable"
+    ],
+    "budget": "$",
+    "bestMonths": [
+      "Feb",
+      "Mar",
+      "Apr",
+      "May"
+    ],
+    "climate": "tropical",
+    "safety": 1,
+    "description": "Historic trading port known for lantern-lit streets, preserved merchant houses, tailoring shops, and riverside dining.",
+    "languages": [
+      "Vietnamese (official)",
+      "English (widely understood in Hanoi, HCMC, Hoi An, and tourism)"
+    ],
+    "currency": {
+      "code": "VND",
+      "name": "Vietnamese Dong",
+      "symbol": "₫"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (major international hotels only)"
+      ],
+      "popularEWallets": [
+        "MoMo / ZaloPay (locals)",
+        "GrabPay (for tourists)"
+      ],
+      "cashAdvice": "Cash is king in Vietnam! While hotels and modern restaurants take cards, street food stalls, markets, coffee shops, and cyclo rides are strictly CASH ONLY. Be careful with Dong notes: 20,000 and 500,000 look similar in color."
+    },
+    "culturalTips": [
+      "Hoi An Ancient Town is especially atmospheric after sunset.",
+      "Some historic buildings and attractions require an entrance ticket.",
+      "Try local specialties such as cao lầu.",
+      "Flooding can affect the Old Town during periods of heavy rain."
+    ]
+  },
+  {
+    "id": "ninh-binh-vn",
+    "name": "Ninh Binh",
+    "type": "place",
+    "country": "Vietnam",
+    "countryCode": "VN",
+    "tags": [
+      "nature",
+      "scenic",
+      "mountains",
+      "photography",
+      "adventure"
+    ],
+    "budget": "$",
+    "bestMonths": [
+      "Mar",
+      "Apr",
+      "May",
+      "Sep",
+      "Oct"
+    ],
+    "climate": "warm",
+    "safety": 1,
+    "description": "Northern Vietnamese region with limestone karst mountains, winding rivers, rice paddies, temples, and scenic boat journeys.",
+    "languages": [
+      "Vietnamese (official)",
+      "English (widely understood in Hanoi, HCMC, Hoi An, and tourism)"
+    ],
+    "currency": {
+      "code": "VND",
+      "name": "Vietnamese Dong",
+      "symbol": "₫"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (major international hotels only)"
+      ],
+      "popularEWallets": [
+        "MoMo / ZaloPay (locals)",
+        "GrabPay (for tourists)"
+      ],
+      "cashAdvice": "Cash is king in Vietnam! While hotels and modern restaurants take cards, street food stalls, markets, coffee shops, and cyclo rides are strictly CASH ONLY. Be careful with Dong notes: 20,000 and 500,000 look similar in color."
+    },
+    "culturalTips": [
+      "Boat excursions in Trang An and Tam Coc depend on weather and local operating conditions.",
+      "Bring sun protection and water for outdoor sightseeing.",
+      "Dress respectfully when visiting temples and religious sites.",
+      "Allow sufficient time for travel between the region's dispersed attractions."
+    ]
+  },
+  {
+    "id": "manila-ph",
+    "name": "Manila",
+    "type": "city",
+    "country": "Philippines",
+    "countryCode": "PH",
+    "tags": [
+      "history",
+      "food",
+      "culture",
+      "city",
+      "nightlife"
+    ],
+    "budget": "$",
+    "bestMonths": [
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar"
+    ],
+    "climate": "tropical",
+    "safety": 2,
+    "description": "The Philippines' bustling capital region offers Spanish colonial heritage, historic Intramuros, diverse Filipino cuisine, museums, and energetic urban districts.",
+    "languages": [
+      "Filipino and English (official)",
+      "Regional languages vary by island"
+    ],
+    "currency": {
+      "code": "PHP",
+      "name": "Philippine Peso",
+      "symbol": "₱"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "American Express (select establishments)",
+        "Discover (limited acceptance)"
+      ],
+      "popularEWallets": [
+        "GCash (local account requirements)",
+        "Maya (local account requirements)",
+        "Apple Pay and Google Pay (availability varies)"
+      ],
+      "cashAdvice": "Carry Philippine pesos for local transport, markets, smaller restaurants, and island excursions. Card acceptance varies considerably outside major cities."
+    },
+    "culturalTips": [
+      "Visit Intramuros to explore Manila's Spanish colonial history.",
+      "Allow extra travel time because road congestion can be significant.",
+      "Try Filipino specialties such as adobo, sinigang, and halo-halo.",
+      "Use reputable transportation options and keep valuables secure in crowded areas."
+    ]
+  },
+  {
+    "id": "palawan-ph",
+    "name": "Palawan",
+    "type": "place",
+    "country": "Philippines",
+    "countryCode": "PH",
+    "tags": [
+      "beach",
+      "nature",
+      "diving",
+      "water-sports",
+      "scenic"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr"
+    ],
+    "climate": "tropical",
+    "safety": 2,
+    "description": "Island province celebrated for limestone cliffs, turquoise lagoons, coral reefs, pristine beaches, and island-hopping adventures around El Nido and Coron.",
+    "languages": [
+      "Filipino and English (official)",
+      "Regional languages vary by island"
+    ],
+    "currency": {
+      "code": "PHP",
+      "name": "Philippine Peso",
+      "symbol": "₱"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "American Express (select establishments)",
+        "Discover (limited acceptance)"
+      ],
+      "popularEWallets": [
+        "GCash (local account requirements)",
+        "Maya (local account requirements)",
+        "Apple Pay and Google Pay (availability varies)"
+      ],
+      "cashAdvice": "Carry Philippine pesos for local transport, markets, smaller restaurants, and island excursions. Card acceptance varies considerably outside major cities."
+    },
+    "culturalTips": [
+      "Boat tours and island excursions depend on weather and sea conditions.",
+      "Use reef-safe practices and avoid touching coral or marine wildlife.",
+      "Bring cash when exploring smaller islands where electronic payments may be unavailable.",
+      "Allow adequate travel time between Puerto Princesa, El Nido, and Coron."
+    ]
+  },
+  {
+    "id": "cebu-ph",
+    "name": "Cebu",
+    "type": "place",
+    "country": "Philippines",
+    "countryCode": "PH",
+    "tags": [
+      "beach",
+      "history",
+      "diving",
+      "food",
+      "adventure"
+    ],
+    "budget": "$",
+    "bestMonths": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May"
+    ],
+    "climate": "tropical",
+    "safety": 2,
+    "description": "Central Philippine island destination combining historic Cebu City, tropical beaches, waterfalls, diving areas, and celebrated local cuisine.",
+    "languages": [
+      "Filipino and English (official)",
+      "Regional languages vary by island"
+    ],
+    "currency": {
+      "code": "PHP",
+      "name": "Philippine Peso",
+      "symbol": "₱"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "American Express (select establishments)",
+        "Discover (limited acceptance)"
+      ],
+      "popularEWallets": [
+        "GCash (local account requirements)",
+        "Maya (local account requirements)",
+        "Apple Pay and Google Pay (availability varies)"
+      ],
+      "cashAdvice": "Carry Philippine pesos for local transport, markets, smaller restaurants, and island excursions. Card acceptance varies considerably outside major cities."
+    },
+    "culturalTips": [
+      "Try Cebu's well-known lechon, a traditional roasted pork dish.",
+      "Travel times between the city and southern attractions can be substantial.",
+      "Choose wildlife experiences that follow responsible animal-welfare practices.",
+      "Check sea conditions before booking ferries and diving excursions."
+    ]
+  },
+  {
+    "id": "yogyakarta-id",
+    "name": "Yogyakarta",
+    "type": "city",
+    "country": "Indonesia",
+    "countryCode": "ID",
+    "tags": [
+      "history",
+      "ancient",
+      "culture",
+      "food",
+      "architecture"
+    ],
+    "budget": "$",
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep"
+    ],
+    "climate": "tropical",
+    "safety": 2,
+    "description": "Java's cultural heartland is known for traditional batik, royal heritage, street food, and excursions to Borobudur and Prambanan temples.",
+    "languages": [
+      "Indonesian (official)",
+      "Javanese (widely spoken locally)",
+      "English (used in tourism)"
+    ],
+    "currency": {
+      "code": "IDR",
+      "name": "Indonesian Rupiah",
+      "symbol": "Rp"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (major resorts only)"
+      ],
+      "popularEWallets": [
+        "GoPay",
+        "OVO",
+        "QRIS (universal QR code, requires local app)"
+      ],
+      "cashAdvice": "Cash is essential for street warungs, local drivers, market purchases, and temple entrance donations. Always carry 50,000 and 100,000 IDR notes."
+    },
+    "culturalTips": [
+      "Respect temple dress codes and posted visitor rules at Borobudur and Prambanan.",
+      "Explore local batik workshops to learn about traditional textile-making.",
+      "Try regional dishes such as gudeg.",
+      "Check volcanic activity advisories before visiting areas near Mount Merapi."
+    ]
+  },
+  {
+    "id": "ubud-id",
+    "name": "Ubud",
+    "type": "place",
+    "country": "Indonesia",
+    "countryCode": "ID",
+    "tags": [
+      "nature",
+      "culture",
+      "spa",
+      "relaxation",
+      "food"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep"
+    ],
+    "climate": "tropical",
+    "safety": 2,
+    "description": "Bali's inland cultural center offers lush rice terraces, traditional arts, yoga retreats, Balinese temples, and tropical forest scenery.",
+    "languages": [
+      "Indonesian (Bahasa Indonesia official)",
+      "Balinese (in Bali)",
+      "English (widely in Bali & tourist spots)"
+    ],
+    "currency": {
+      "code": "IDR",
+      "name": "Indonesian Rupiah",
+      "symbol": "Rp"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (major resorts only)"
+      ],
+      "popularEWallets": [
+        "GoPay",
+        "OVO",
+        "QRIS (universal QR code, requires local app)"
+      ],
+      "cashAdvice": "Cash is essential for street warungs, local drivers, market purchases, and temple entrance donations. Always carry 50,000 and 100,000 IDR notes."
+    },
+    "culturalTips": [
+      "Dress respectfully at Hindu temples and follow local religious customs.",
+      "Keep food and loose belongings secure around monkeys in forest areas.",
+      "Use designated paths when visiting working rice terraces.",
+      "Allow extra travel time because roads around Ubud can become congested."
+    ]
+  },
+  {
+    "id": "busan-kr",
+    "name": "Busan",
+    "type": "city",
+    "country": "South Korea",
+    "countryCode": "KR",
+    "tags": [
+      "beach",
+      "food",
+      "coastal",
+      "culture",
+      "city"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "Apr",
+      "May",
+      "Jun",
+      "Sep",
+      "Oct"
+    ],
+    "climate": "mild",
+    "safety": 1,
+    "description": "South Korea's coastal metropolis combines beaches, colorful hillside neighborhoods, seafood markets, mountain temples, and vibrant waterfront districts.",
+    "languages": [
+      "Korean (official Hangul)",
+      "English (subway signage in English, varying spoken fluency)"
+    ],
+    "currency": {
+      "code": "KRW",
+      "name": "South Korean Won",
+      "symbol": "₩"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (accepted via BC Card network)",
+        "American Express (moderate)"
+      ],
+      "popularEWallets": [
+        "T-Money Transit Card (essential)",
+        "KakaoPay / Naver Pay (locals)",
+        "Apple Pay (expanding)"
+      ],
+      "cashAdvice": "Virtually 100% card-friendly. However, you MUST buy and reload a physical T-Money transit card with CASH at convenience stores or subway kiosks.",
+      "transitTip": "T-Money Card: Buy a T-Money card at any convenience store and reload with CASH to tap on subways, buses, and taxis."
+    },
+    "culturalTips": [
+      "Explore Jagalchi Market for Busan's seafood traditions.",
+      "Haeundae and Gwangalli are popular waterfront areas with different atmospheres.",
+      "Busan is spread across hills and coastal districts, so allow time for transportation.",
+      "Follow temple etiquette and remove shoes where requested."
+    ]
+  },
+  {
+    "id": "accra-gh",
+    "name": "Accra",
+    "type": "city",
+    "country": "Ghana",
+    "countryCode": "GH",
+    "tags": [
+      "culture",
+      "food",
+      "music",
+      "history",
+      "nightlife"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb"
+    ],
+    "climate": "tropical",
+    "safety": 2,
+    "description": "Ghana's lively coastal capital offers contemporary African art, bustling markets, historic landmarks, beaches, and a thriving music and food scene.",
+    "languages": [
+      "English (official)",
+      "Ga, Akan/Twi and other Ghanaian languages"
+    ],
+    "currency": {
+      "code": "GHS",
+      "name": "Ghanaian Cedi",
+      "symbol": "GH₵"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard (selected establishments)"
+      ],
+      "cardsLimited": [
+        "American Express (limited acceptance)",
+        "Discover (limited acceptance)"
+      ],
+      "popularEWallets": [
+        "MTN Mobile Money (local)",
+        "Telecel Cash (local)"
+      ],
+      "cashAdvice": "Carry Ghanaian cedis for markets, street food, and local transport. Card acceptance is more common at larger hotels and established restaurants."
+    },
+    "culturalTips": [
+      "Use your right hand when giving or receiving items in traditional social settings.",
+      "Visit cultural landmarks such as the Kwame Nkrumah Memorial Park.",
+      "Try local dishes including waakye, jollof rice, and kelewele.",
+      "Allow extra travel time during busy traffic periods."
+    ]
+  },
+  {
+    "id": "dakar-sn",
+    "name": "Dakar",
+    "type": "city",
+    "country": "Senegal",
+    "countryCode": "SN",
+    "tags": [
+      "culture",
+      "music",
+      "food",
+      "coastal",
+      "art"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar"
+    ],
+    "climate": "warm",
+    "safety": 2,
+    "description": "Senegal's Atlantic capital combines vibrant markets, contemporary art, West African music, coastal scenery, and excursions to historic Gorée Island.",
+    "languages": [
+      "French (official)",
+      "Wolof (widely spoken)",
+      "English (limited outside tourism)"
+    ],
+    "currency": {
+      "code": "XOF",
+      "name": "West African CFA Franc",
+      "symbol": "CFA"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard (selected establishments)"
+      ],
+      "cardsLimited": [
+        "American Express (limited acceptance)",
+        "Discover (limited acceptance)"
+      ],
+      "popularEWallets": [
+        "Wave (local)",
+        "Orange Money (local)"
+      ],
+      "cashAdvice": "Carry CFA francs for markets, smaller restaurants, and local transport. International card acceptance varies."
+    },
+    "culturalTips": [
+      "Greetings are an important part of everyday social interaction.",
+      "Try Senegalese specialties such as ceebu jën.",
+      "Visit Gorée Island with respect for its historical significance.",
+      "Dress respectfully when visiting religious sites."
+    ]
+  },
+  {
+    "id": "diani-beach-ke",
+    "name": "Diani Beach",
+    "type": "place",
+    "country": "Kenya",
+    "countryCode": "KE",
+    "tags": [
+      "beach",
+      "relaxation",
+      "diving",
+      "water-sports",
+      "nature"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "Jan",
+      "Feb",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct"
+    ],
+    "climate": "tropical",
+    "safety": 2,
+    "description": "Kenya's Indian Ocean coast offers white-sand beaches, coral reefs, tropical forests, water sports, and relaxed coastal resorts.",
+    "languages": [
+      "Swahili (official)",
+      "English (official, widely spoken in government & tourism)"
+    ],
+    "currency": {
+      "code": "KES",
+      "name": "Kenyan Shilling",
+      "symbol": "KSh"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (safari lodges only)"
+      ],
+      "popularEWallets": [
+        "M-Pesa (the world-famous mobile money service used everywhere in Kenya)"
+      ],
+      "cashAdvice": "M-Pesa and cash are kings. Cards work at luxury safari lodges and Nairobi malls, but tipping safari drivers/spotters and buying village crafts requires Kenyan Shillings or clean U.S. Dollar bills (post-2013 series)."
+    },
+    "culturalTips": [
+      "Respect local customs when visiting nearby towns and villages.",
+      "Check ocean conditions before swimming or booking marine activities.",
+      "Use responsible operators for snorkeling and wildlife excursions.",
+      "Carry some Kenyan shillings for small vendors and local transport."
+    ]
+  },
+  {
+    "id": "lamu-ke",
+    "name": "Lamu",
+    "type": "place",
+    "country": "Kenya",
+    "countryCode": "KE",
+    "tags": [
+      "history",
+      "architecture",
+      "culture",
+      "coastal",
+      "hidden-gem"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "Jan",
+      "Feb",
+      "Jul",
+      "Aug",
+      "Sep"
+    ],
+    "climate": "tropical",
+    "safety": 3,
+    "description": "Historic Swahili coastal settlement known for narrow streets, traditional architecture, dhow boats, and centuries of Indian Ocean trading heritage.",
+    "languages": [
+      "Swahili (official)",
+      "English (official, widely spoken in government & tourism)"
+    ],
+    "currency": {
+      "code": "KES",
+      "name": "Kenyan Shilling",
+      "symbol": "KSh"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (safari lodges only)"
+      ],
+      "popularEWallets": [
+        "M-Pesa (the world-famous mobile money service used everywhere in Kenya)"
+      ],
+      "cashAdvice": "Carry Kenyan shillings for smaller businesses, boat transport, and markets. Card acceptance may be limited outside established accommodations."
+    },
+    "culturalTips": [
+      "Dress modestly in Lamu Old Town out of respect for local customs.",
+      "Respect religious spaces and ask before photographing residents.",
+      "Traditional dhow excursions depend on weather and sea conditions.",
+      "Check current government travel advisories and local transport guidance before arranging a visit."
+    ]
+  },
+  {
+    "id": "arusha-tz",
+    "name": "Arusha",
+    "type": "city",
+    "country": "Tanzania",
+    "countryCode": "TZ",
+    "tags": [
+      "safari",
+      "nature",
+      "adventure",
+      "culture",
+      "mountains"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Jan",
+      "Feb"
+    ],
+    "climate": "mild",
+    "safety": 2,
+    "description": "Northern Tanzania's safari gateway offers access to national parks, Mount Meru, coffee plantations, cultural experiences, and excursions toward Kilimanjaro.",
+    "languages": [
+      "Swahili (official)",
+      "English (official, widely used in higher education & safari tourism)"
+    ],
+    "currency": {
+      "code": "TZS",
+      "name": "Tanzanian Shilling",
+      "symbol": "TSh"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (luxury safari lodges only)"
+      ],
+      "popularEWallets": [
+        "M-Pesa / Tigo Pesa (locals)"
+      ],
+      "cashAdvice": "U.S. Dollars (crisp, post-2013 bills) are accepted for safari park fees, international hotels, and hot air balloon rides. Tanzanian Shillings in cash are needed for local markets, food, and tipping."
+    },
+    "culturalTips": [
+      "Book wildlife safaris with reputable, licensed operators.",
+      "Follow park regulations and never approach or feed wildlife.",
+      "Allow travel time between Arusha and the major northern safari parks.",
+      "Ask permission before photographing local residents."
+    ]
+  },
+  {
+    "id": "essaouira-ma",
+    "name": "Essaouira",
+    "type": "city",
+    "country": "Morocco",
+    "countryCode": "MA",
+    "tags": [
+      "coastal",
+      "culture",
+      "food",
+      "architecture",
+      "relaxation"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "Apr",
+      "May",
+      "Jun",
+      "Sep",
+      "Oct"
+    ],
+    "climate": "mild",
+    "safety": 2,
+    "description": "Relaxed Atlantic port city with whitewashed buildings, historic ramparts, artisan workshops, seafood markets, and a windswept beach.",
+    "languages": [
+      "Arabic (official Moroccan Darija)",
+      "Berber / Tamazight (official)",
+      "French (widely used in commerce)",
+      "English (in tourism)"
+    ],
+    "currency": {
+      "code": "MAD",
+      "name": "Moroccan Dirham",
+      "symbol": "DH"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (luxury riads only)"
+      ],
+      "popularEWallets": [
+        "Cash remains primary"
+      ],
+      "cashAdvice": "Morocco is heavily cash-based. Credit cards work in upscale restaurants and riads, but souks, taxis, street food, and tips strictly require physical Dirhams."
+    },
+    "culturalTips": [
+      "Essaouira can be windy, so bring a light jacket even during warmer months.",
+      "Browse local woodwork and artisan shops in the historic medina.",
+      "Try freshly prepared seafood at established local restaurants.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": "fez-ma",
+    "name": "Fez",
+    "type": "city",
+    "country": "Morocco",
+    "countryCode": "MA",
+    "tags": [
+      "history",
+      "architecture",
+      "culture",
+      "food",
+      "hidden-gem"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "Mar",
+      "Apr",
+      "May",
+      "Sep",
+      "Oct",
+      "Nov"
+    ],
+    "climate": "warm",
+    "safety": 2,
+    "description": "Historic Moroccan imperial city celebrated for its labyrinthine medina, traditional crafts, Islamic architecture, and centuries-old cultural institutions.",
+    "languages": [
+      "Arabic (official Moroccan Darija)",
+      "Berber / Tamazight (official)",
+      "French (widely used in commerce)",
+      "English (in tourism)"
+    ],
+    "currency": {
+      "code": "MAD",
+      "name": "Moroccan Dirham",
+      "symbol": "DH"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (luxury riads only)"
+      ],
+      "popularEWallets": [
+        "Cash remains primary"
+      ],
+      "cashAdvice": "Morocco is heavily cash-based. Credit cards work in upscale restaurants and riads, but souks, taxis, street food, and tips strictly require physical Dirhams."
+    },
+    "culturalTips": [
+      "Fez's medina has narrow, winding streets; a reputable local guide can be helpful.",
+      "Respect religious sites and restrictions on non-Muslim entry.",
+      "Agree on prices before purchasing guided services or handmade goods.",
+      "Wear comfortable shoes for uneven streets and extended walking."
+    ]
+  },
+  {
+    "id": "mauritius-mu",
+    "name": "Mauritius",
+    "type": "country",
+    "country": "Mauritius",
+    "countryCode": "MU",
+    "tags": [
+      "beach",
+      "nature",
+      "diving",
+      "luxury",
+      "relaxation"
+    ],
+    "budget": "$$$",
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov"
+    ],
+    "climate": "tropical",
+    "safety": 1,
+    "description": "Indian Ocean island nation offering coral lagoons, volcanic mountains, botanical gardens, diverse cultural traditions, and tropical beach resorts.",
+    "languages": [
+      "English (used in government)",
+      "French (widely spoken)",
+      "Mauritian Creole (widely spoken)"
+    ],
+    "currency": {
+      "code": "MUR",
+      "name": "Mauritian Rupee",
+      "symbol": "₨"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "American Express (selected establishments)",
+        "Discover (limited acceptance)"
+      ],
+      "popularEWallets": [
+        "Apple Pay (participating merchants)",
+        "Google Pay (participating merchants)"
+      ],
+      "cashAdvice": "Cards are commonly accepted at hotels and larger businesses. Carry Mauritian rupees for local markets, small restaurants, and some transportation services."
+    },
+    "culturalTips": [
+      "Mauritius has diverse Hindu, Muslim, Christian, and other cultural traditions; respect local customs and religious sites.",
+      "Check swimming conditions and heed warnings about currents and weather.",
+      "Explore beyond resorts to experience local food, markets, and natural attractions.",
+      "Cyclone season generally falls within the warmer months, so review forecasts when planning a visit."
+    ]
+  },
+  {
+    "id": "chicago-us",
+    "name": "Chicago",
+    "type": "city",
+    "country": "US",
+    "countryCode": "US",
+    "tags": [
+      "architecture",
+      "food",
+      "museums",
+      "music",
+      "city"
+    ],
+    "budget": "$$$",
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct"
+    ],
+    "climate": "cool",
+    "safety": 2,
+    "description": "Lake Michigan metropolis renowned for bold architecture, world-class museums, blues and jazz, deep-dish pizza, and vibrant neighborhoods.",
+    "languages": [
+      "English (de facto)",
+      "Spanish (widely spoken)"
+    ],
+    "currency": {
+      "code": "USD",
+      "name": "U.S. Dollar",
+      "symbol": "$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express",
+        "Discover"
+      ],
+      "cardsLimited": [],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Venmo"
+      ],
+      "cashAdvice": "Nearly cashless. Cards and smartphone contactless payments are accepted virtually everywhere."
+    },
+    "culturalTips": [
+      "Take an architecture river cruise for a different perspective on the city skyline.",
+      "Explore distinct neighborhoods beyond downtown for food and music.",
+      "Chicago winters can be very cold and windy; dress accordingly.",
+      "Use public transit or walk where practical, especially in congested central areas."
+    ]
+  },
+  {
+    "id": "seattle-us",
+    "name": "Seattle",
+    "type": "city",
+    "country": "US",
+    "countryCode": "US",
+    "tags": [
+      "coffee",
+      "nature",
+      "food",
+      "music",
+      "scenic"
+    ],
+    "budget": "$$$",
+    "bestMonths": [
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep"
+    ],
+    "climate": "mild",
+    "safety": 2,
+    "description": "Pacific Northwest city featuring waterfront markets, a celebrated coffee scene, museums, mountain views, and access to spectacular outdoor adventures.",
+    "languages": [
+      "English (de facto)",
+      "Spanish (widely spoken)"
+    ],
+    "currency": {
+      "code": "USD",
+      "name": "U.S. Dollar",
+      "symbol": "$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express",
+        "Discover"
+      ],
+      "cardsLimited": [],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Venmo"
+      ],
+      "cashAdvice": "Nearly cashless. Cards and smartphone contactless payments are accepted virtually everywhere."
+    },
+    "culturalTips": [
+      "Bring a waterproof layer because rain is common during much of the year.",
+      "Visit Pike Place Market while respecting working vendors.",
+      "Use ferries to explore nearby Puget Sound destinations.",
+      "Check mountain weather before planning outdoor excursions."
+    ]
+  },
+  {
+    "id": "washington-dc-us",
+    "name": "Washington DC",
+    "type": "city",
+    "country": "US",
+    "countryCode": "US",
+    "tags": [
+      "history",
+      "museums",
+      "architecture",
+      "culture",
+      "parks"
+    ],
+    "budget": "$$$",
+    "bestMonths": [
+      "Mar",
+      "Apr",
+      "May",
+      "Sep",
+      "Oct"
+    ],
+    "climate": "warm",
+    "safety": 2,
+    "description": "The United States capital combines monumental landmarks, Smithsonian museums, historic neighborhoods, and celebrated spring cherry blossoms.",
+    "languages": [
+      "English (de facto)",
+      "Spanish (widely spoken)"
+    ],
+    "currency": {
+      "code": "USD",
+      "name": "U.S. Dollar",
+      "symbol": "$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express",
+        "Discover"
+      ],
+      "cardsLimited": [],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Venmo"
+      ],
+      "cashAdvice": "Nearly cashless. Cards and smartphone contactless payments are accepted virtually everywhere."
+    },
+    "culturalTips": [
+      "Many Smithsonian museums offer free general admission, although some require timed passes.",
+      "Book popular attractions and tours in advance when required.",
+      "The National Mall is extensive, so plan for considerable walking.",
+      "Cherry blossom peak bloom varies annually with weather conditions."
+    ]
+  },
+  {
+    "id": "toronto-ca",
+    "name": "Toronto",
+    "type": "city",
+    "country": "Canada",
+    "countryCode": "CA",
+    "tags": [
+      "food",
+      "culture",
+      "museums",
+      "shopping",
+      "city"
+    ],
+    "budget": "$$$",
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep"
+    ],
+    "climate": "cool",
+    "safety": 1,
+    "description": "Canada's largest city offers multicultural neighborhoods, diverse cuisine, waterfront attractions, major museums, and a lively arts scene.",
+    "languages": [
+      "English (predominant)",
+      "French (Canada's other official language)",
+      "Many additional languages spoken across the city"
+    ],
+    "currency": {
+      "code": "CAD",
+      "name": "Canadian Dollar",
+      "symbol": "CA$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (moderate acceptance)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Interac Flash"
+      ],
+      "cashAdvice": "Nearly cashless society. Tap-to-pay cards and smartphones are accepted everywhere."
+    },
+    "culturalTips": [
+      "Explore neighborhood food scenes such as Kensington Market and Chinatown.",
+      "Consider using public transit to avoid downtown traffic and parking costs.",
+      "Toronto winters can be cold, with snow and icy conditions.",
+      "Check schedules before visiting the Toronto Islands by ferry."
+    ]
+  },
+  {
+    "id": "quebec-city-ca",
+    "name": "Quebec City",
+    "type": "city",
+    "country": "Canada",
+    "countryCode": "CA",
+    "tags": [
+      "history",
+      "architecture",
+      "romance",
+      "culture",
+      "walkable"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Dec"
+    ],
+    "climate": "cold",
+    "safety": 1,
+    "description": "Historic French-speaking city known for its fortified Old Town, cobblestone streets, Château Frontenac, and atmospheric winter celebrations.",
+    "languages": [
+      "French (predominant)",
+      "English (commonly understood in tourism)"
+    ],
+    "currency": {
+      "code": "CAD",
+      "name": "Canadian Dollar",
+      "symbol": "CA$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (moderate acceptance)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Interac Flash"
+      ],
+      "cashAdvice": "Nearly cashless society. Tap-to-pay cards and smartphones are accepted everywhere."
+    },
+    "culturalTips": [
+      "A greeting in French, such as 'Bonjour', is appreciated.",
+      "Old Québec has steep streets and uneven surfaces, so wear comfortable shoes.",
+      "Winter brings very cold temperatures; pack appropriate layers.",
+      "Explore both Upper Town and Lower Town for different historical perspectives."
+    ]
+  },
+  {
+    "id": "merida-mx",
+    "name": "Mérida",
+    "type": "city",
+    "country": "Mexico",
+    "countryCode": "MX",
+    "tags": [
+      "culture",
+      "food",
+      "history",
+      "architecture",
+      "hidden-gem"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar"
+    ],
+    "climate": "hot-dry",
+    "safety": 2,
+    "description": "Yucatán's colorful cultural capital features colonial architecture, regional cuisine, lively plazas, and access to cenotes and Maya archaeological sites.",
+    "languages": [
+      "Spanish (predominant)",
+      "Yucatec Maya (spoken regionally)",
+      "English (used in tourism)"
+    ],
+    "currency": {
+      "code": "MXN",
+      "name": "Mexican Peso",
+      "symbol": "Mex$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (limited outside resort hotels)"
+      ],
+      "popularEWallets": [
+        "Apple Pay (growing in CDMX & Monterrey)",
+        "Mercado Pago"
+      ],
+      "cashAdvice": "Cards work in hotels, supermarkets, and formal restaurants. Cash in Pesos is essential for taco stands, beach vendors, cantinas, tipping, and toll roads."
+    },
+    "culturalTips": [
+      "Try regional Yucatecan dishes such as cochinita pibil and sopa de lima.",
+      "Midday heat can be intense, especially in spring; plan outdoor time accordingly.",
+      "Use licensed guides and follow site rules when visiting archaeological areas.",
+      "Carry pesos for traditional markets and smaller vendors."
+    ]
+  },
+  {
+    "id": "antigua-guatemala-gt",
+    "name": "Antigua Guatemala",
+    "type": "city",
+    "country": "Guatemala",
+    "countryCode": "GT",
+    "tags": [
+      "history",
+      "architecture",
+      "culture",
+      "coffee",
+      "mountains"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr"
+    ],
+    "climate": "mild",
+    "safety": 2,
+    "description": "Historic Guatemalan city featuring colorful colonial streets, baroque churches, coffee culture, and dramatic views of surrounding volcanoes.",
+    "languages": [
+      "Spanish (official)",
+      "Mayan languages (spoken in Guatemala)",
+      "English (used in tourism)"
+    ],
+    "currency": {
+      "code": "GTQ",
+      "name": "Guatemalan Quetzal",
+      "symbol": "Q"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "American Express (selected establishments)",
+        "Discover (limited acceptance)"
+      ],
+      "popularEWallets": [
+        "Apple Pay (acceptance varies)",
+        "Google Pay (acceptance varies)"
+      ],
+      "cashAdvice": "Cards are accepted at many established Antigua businesses, but carry Guatemalan quetzales for markets, smaller vendors, and local transport."
+    },
+    "culturalTips": [
+      "Wear comfortable shoes for cobblestone streets.",
+      "Choose licensed guides for volcano hikes and check current volcanic activity and weather.",
+      "Respect religious processions, especially during Semana Santa.",
+      "Ask permission before photographing people, particularly at traditional markets."
+    ]
+  },
+  {
+    "id": "panama-city-pa",
+    "name": "Panama City",
+    "type": "city",
+    "country": "Panama",
+    "countryCode": "PA",
+    "tags": [
+      "architecture",
+      "history",
+      "food",
+      "nightlife",
+      "city"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr"
+    ],
+    "climate": "tropical",
+    "safety": 2,
+    "description": "Modern Central American capital with a striking skyline, historic Casco Viejo, waterfront promenades, tropical biodiversity, and access to the Panama Canal.",
+    "languages": [
+      "Spanish (official)",
+      "English (understood in some tourist and business settings)"
+    ],
+    "currency": {
+      "code": "USD",
+      "name": "U.S. Dollar (banknotes; Panamanian balboa coins also circulate)",
+      "symbol": "$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "American Express (acceptance varies)",
+        "Discover (limited acceptance)"
+      ],
+      "popularEWallets": [
+        "Apple Pay (participating merchants)",
+        "Google Pay (participating merchants)"
+      ],
+      "cashAdvice": "U.S. dollar banknotes are used in Panama. Carry small bills for markets, taxis, and small businesses; balboa coins also circulate at parity with the U.S. dollar."
+    },
+    "culturalTips": [
+      "Visit the Panama Canal's visitor facilities to learn about its operation.",
+      "Explore Casco Viejo while respecting its residential neighborhoods.",
+      "Prepare for heat, humidity, and seasonal heavy rain.",
+      "Use reputable transportation services and stay attentive in crowded areas."
+    ]
+  },
+  {
+    "id": "san-pedro-de-atacama-cl",
+    "name": "San Pedro de Atacama",
+    "type": "place",
+    "country": "Chile",
+    "countryCode": "CL",
+    "tags": [
+      "desert",
+      "nature",
+      "adventure",
+      "photography",
+      "scenic"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "Mar",
+      "Apr",
+      "May",
+      "Sep",
+      "Oct",
+      "Nov"
+    ],
+    "climate": "hot-dry",
+    "safety": 2,
+    "description": "Desert oasis in northern Chile surrounded by salt flats, colorful lagoons, volcanic landscapes, geysers, and exceptional stargazing opportunities.",
+    "languages": [
+      "Spanish (official Chilean dialect)",
+      "English (in major hotels & adventure agencies)"
+    ],
+    "currency": {
+      "code": "CLP",
+      "name": "Chilean Peso",
+      "symbol": "CLP$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (limited)"
+      ],
+      "popularEWallets": [
+        "Redcompra / Webpay (local)",
+        "Apple Pay (growing)"
+      ],
+      "cashAdvice": "Cards are accepted at many established hotels and tour operators, but carry Chilean pesos for small shops, markets, and excursions."
+    },
+    "culturalTips": [
+      "Allow time to acclimatize before visiting high-altitude attractions.",
+      "Bring warm layers because desert nights can be very cold.",
+      "Use established tour operators and follow environmental restrictions around protected lagoons.",
+      "Carry drinking water and sun protection during outdoor activities."
+    ]
+  },
+  {
+    "id": "la-paz-bo",
+    "name": "La Paz",
+    "type": "city",
+    "country": "Bolivia",
+    "countryCode": "BO",
+    "tags": [
+      "culture",
+      "mountains",
+      "history",
+      "food",
+      "adventure"
+    ],
+    "budget": "$",
+    "bestMonths": [
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct"
+    ],
+    "climate": "cool",
+    "safety": 2,
+    "description": "High-altitude Andean city known for dramatic mountain scenery, bustling markets, Indigenous heritage, and an extensive urban cable car network.",
+    "languages": [
+      "Spanish (widely spoken)",
+      "Quechua and Aymara (widely spoken regionally)",
+      "Other officially recognized Indigenous languages"
+    ],
+    "currency": {
+      "code": "BOB",
+      "name": "Bolivian Boliviano",
+      "symbol": "Bs"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard (selected businesses)"
+      ],
+      "cardsLimited": [
+        "American Express (limited)",
+        "Discover (limited)"
+      ],
+      "popularEWallets": [
+        "Local QR payments (access varies)"
+      ],
+      "cashAdvice": "Carry bolivianos for markets, transportation, and smaller businesses. Cash is especially important in rural areas; ATM reliability varies."
+    },
+    "culturalTips": [
+      "La Paz is at high altitude; allow time to acclimatize and avoid overexertion on arrival.",
+      "Use the Mi Teleférico cable cars to explore the city's geography.",
+      "Ask permission before photographing market vendors and residents.",
+      "Carry small-denomination bolivianos for local markets and transport."
+    ]
+  },
+  {
+    "id": "uyuni-salt-flats-bo",
+    "name": "Uyuni Salt Flats",
+    "type": "place",
+    "country": "Bolivia",
+    "countryCode": "BO",
+    "tags": [
+      "nature",
+      "scenic",
+      "photography",
+      "adventure",
+      "bucket-list"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep"
+    ],
+    "climate": "cold",
+    "safety": 2,
+    "description": "Vast high-altitude salt flats known for geometric white landscapes and seasonal mirror-like reflections, with excursions to colorful lagoons and volcanic scenery.",
+    "languages": [
+      "Spanish (widely spoken)",
+      "Quechua and Aymara (widely spoken regionally)",
+      "Other officially recognized Indigenous languages"
+    ],
+    "currency": {
+      "code": "BOB",
+      "name": "Bolivian Boliviano",
+      "symbol": "Bs"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard (selected businesses)"
+      ],
+      "cardsLimited": [
+        "American Express (limited)",
+        "Discover (limited)"
+      ],
+      "popularEWallets": [
+        "Local QR payments (access varies)"
+      ],
+      "cashAdvice": "Carry bolivianos for markets, transportation, and smaller businesses. Cash is especially important in rural areas; ATM reliability varies."
+    },
+    "culturalTips": [
+      "Mirror reflections depend on seasonal water levels and cannot be guaranteed.",
+      "Use reputable operators with properly maintained vehicles for multi-day excursions.",
+      "Pack warm layers because temperatures can drop sharply overnight.",
+      "Bring sun protection, drinking water, and cash for remote stops."
+    ]
+  },
+  {
+    "id": "montevideo-uy",
+    "name": "Montevideo",
+    "type": "city",
+    "country": "Uruguay",
+    "countryCode": "UY",
+    "tags": [
+      "coastal",
+      "food",
+      "culture",
+      "history",
+      "relaxation"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr"
+    ],
+    "climate": "mild",
+    "safety": 2,
+    "description": "Uruguay's laid-back waterfront capital features historic neighborhoods, long seaside promenades, traditional markets, tango and candombe culture.",
+    "languages": [
+      "Spanish (official and predominant)",
+      "English (used in some tourism settings)"
+    ],
+    "currency": {
+      "code": "UYU",
+      "name": "Uruguayan Peso",
+      "symbol": "$U"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "American Express (acceptance varies)",
+        "Discover (limited)"
+      ],
+      "popularEWallets": [
+        "Apple Pay (participating merchants)",
+        "Google Pay (participating merchants)"
+      ],
+      "cashAdvice": "International cards are widely accepted in Montevideo, but carry Uruguayan pesos for markets, small vendors, and occasional cash-only services."
+    },
+    "culturalTips": [
+      "Walk along the Rambla, Montevideo's extensive waterfront promenade.",
+      "Try traditional Uruguayan dishes such as chivito and asado.",
+      "Explore Ciudad Vieja for historic architecture, galleries, and cafés.",
+      "Tipping around 10% in restaurants is appreciated but not compulsory."
+    ]
+  },
+  {
+    "id": "florianopolis-br",
+    "name": "Florianópolis",
+    "type": "city",
+    "country": "Brazil",
+    "countryCode": "BR",
+    "tags": [
+      "beach",
+      "nature",
+      "food",
+      "relaxation",
+      "water-sports"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr"
+    ],
+    "climate": "warm",
+    "safety": 2,
+    "description": "Southern Brazilian island city known for surf beaches, coastal trails, seafood, sand dunes, and lively summer neighborhoods.",
+    "languages": [
+      "Portuguese (official)",
+      "English (limited in hospitality, rare elsewhere)"
+    ],
+    "currency": {
+      "code": "BRL",
+      "name": "Brazilian Real",
+      "symbol": "R$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (limited acceptance)"
+      ],
+      "popularEWallets": [
+        "Pix (instant local QR bank transfer - requires local CPF)",
+        "Apple Pay"
+      ],
+      "cashAdvice": "Cards and contactless phone payments are accepted almost everywhere (even beach caipirinha vendors have wireless card machines), but carry small bills for street vendors."
+    },
+    "culturalTips": [
+      "Choose beaches according to local swimming and surf conditions.",
+      "Allow extra travel time during peak summer because island roads become congested.",
+      "Try regional seafood, especially shrimp and fish dishes.",
+      "Use designated hiking trails and check weather before coastal excursions."
+    ]
+  },
+  {
+    "id": "iguazu-falls-ar",
+    "name": "Iguazu Falls",
+    "type": "place",
+    "country": "Argentina",
+    "countryCode": "AR",
+    "tags": [
+      "nature",
+      "wildlife",
+      "scenic",
+      "photography",
+      "bucket-list"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "Mar",
+      "Apr",
+      "May",
+      "Aug",
+      "Sep",
+      "Oct"
+    ],
+    "climate": "tropical",
+    "safety": 2,
+    "description": "Spectacular waterfall system on the Argentina–Brazil border, featuring rainforest trails and dramatic viewpoints within Iguazú National Park on the Argentine side.",
+    "languages": [
+      "Spanish (official Rioplatense dialect)",
+      "English (limited outside tourist hotels)"
+    ],
+    "currency": {
+      "code": "ARS",
+      "name": "Argentine Peso",
+      "symbol": "$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)",
+        "American Express (moderate acceptance)"
+      ],
+      "popularEWallets": [
+        "Mercado Pago (locals)",
+        "Apple Pay (growing)"
+      ],
+      "cashAdvice": "Bring Argentine pesos or an accepted payment card for local expenses. Confirm national park payment options before visiting."
+    },
+    "culturalTips": [
+      "This entry covers the Argentine side of Iguazú Falls; visiting Brazil involves separate immigration requirements.",
+      "Check trail and viewpoint availability because water levels and weather may affect access.",
+      "Do not feed coatis or other wildlife in the national park.",
+      "Wear comfortable walking shoes and carry rain protection near the falls."
+    ]
+  },
+  {
+    "id": "auckland-nz",
+    "name": "Auckland",
+    "type": "city",
+    "country": "New Zealand",
+    "countryCode": "NZ",
+    "tags": [
+      "coastal",
+      "food",
+      "nature",
+      "culture",
+      "city"
+    ],
+    "budget": "$$$",
+    "bestMonths": [
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr"
+    ],
+    "climate": "mild",
+    "safety": 1,
+    "description": "New Zealand's largest city combines volcanic hills, waterfront neighborhoods, multicultural dining, sailing, and nearby islands and beaches.",
+    "languages": [
+      "English (official & primary)",
+      "Māori (official)",
+      "NZ Sign Language"
+    ],
+    "currency": {
+      "code": "NZD",
+      "name": "New Zealand Dollar",
+      "symbol": "NZ$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "EFTPOS (local debit)"
+      ],
+      "cashAdvice": "Nearly 100% cashless. Contactless cards and smartphones are used for virtually all transactions."
+    },
+    "culturalTips": [
+      "Use ferries to explore nearby islands such as Waiheke and Rangitoto, checking schedules first.",
+      "Respect Māori cultural traditions and follow visitor guidance at culturally significant sites.",
+      "Weather can change quickly, so carry a light waterproof layer.",
+      "Explore beyond the central waterfront for neighborhood restaurants, beaches, and walking trails."
+    ]
+  },
+  {
+    "id": "queenstown-nz",
+    "name": "Queenstown",
+    "type": "place",
+    "country": "New Zealand",
+    "countryCode": "NZ",
+    "tags": [
+      "adventure",
+      "mountains",
+      "nature",
+      "scenic",
+      "hiking"
+    ],
+    "budget": "$$$",
+    "bestMonths": [
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar",
+      "Jun",
+      "Jul",
+      "Aug"
+    ],
+    "climate": "cool",
+    "safety": 1,
+    "description": "Spectacular South Island mountain destination overlooking Lake Wakatipu, famous for hiking, skiing, adventure sports, and scenic landscapes.",
+    "languages": [
+      "English (official & primary)",
+      "Māori (official)",
+      "NZ Sign Language"
+    ],
+    "currency": {
+      "code": "NZD",
+      "name": "New Zealand Dollar",
+      "symbol": "NZ$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "EFTPOS (local debit)"
+      ],
+      "cashAdvice": "Nearly 100% cashless. Contactless cards and smartphones are used for virtually all transactions."
+    },
+    "culturalTips": [
+      "Book popular adventure activities with established operators and review their safety requirements.",
+      "Winter snow sports and summer hiking offer very different seasonal experiences.",
+      "Check mountain weather and trail conditions before outdoor excursions.",
+      "Allow additional travel time on winding mountain roads, particularly in winter."
+    ]
+  },
+  {
+    "id": "rotorua-nz",
+    "name": "Rotorua",
+    "type": "city",
+    "country": "New Zealand",
+    "countryCode": "NZ",
+    "tags": [
+      "nature",
+      "culture",
+      "adventure",
+      "spa",
+      "scenic"
+    ],
+    "budget": "$$",
+    "bestMonths": [
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr"
+    ],
+    "climate": "mild",
+    "safety": 1,
+    "description": "North Island destination known for geothermal pools, bubbling mud, volcanic scenery, forests, and opportunities to learn about Māori culture.",
+    "languages": [
+      "English (official & primary)",
+      "Māori (official)",
+      "NZ Sign Language"
+    ],
+    "currency": {
+      "code": "NZD",
+      "name": "New Zealand Dollar",
+      "symbol": "NZ$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "EFTPOS (local debit)"
+      ],
+      "cashAdvice": "Nearly 100% cashless. Contactless cards and smartphones are used for virtually all transactions."
+    },
+    "culturalTips": [
+      "Stay on designated paths in geothermal areas because unstable ground and hot water can be dangerous.",
+      "Choose Māori cultural experiences that are led by and benefit local communities.",
+      "Expect a noticeable sulfur smell around some geothermal attractions.",
+      "Check booking requirements and operating hours for geothermal parks and spa facilities."
+    ]
+  },
+  {
+    "id": "hobart-au",
+    "name": "Hobart",
+    "type": "city",
+    "country": "Australia",
+    "countryCode": "AU",
+    "tags": [
+      "food",
+      "nature",
+      "art",
+      "history",
+      "scenic"
+    ],
+    "budget": "$$$",
+    "bestMonths": [
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr"
+    ],
+    "climate": "cool",
+    "safety": 1,
+    "description": "Tasmania's waterfront capital combines historic architecture, creative galleries, local food markets, mountain views, and access to rugged island wilderness.",
+    "languages": [
+      "English (de facto official)",
+      "Indigenous Australian languages"
+    ],
+    "currency": {
+      "code": "AUD",
+      "name": "Australian Dollar",
+      "symbol": "A$"
+    },
+    "paymentMethods": {
+      "cardsAccepted": [
+        "Visa",
+        "Mastercard",
+        "American Express"
+      ],
+      "cardsLimited": [
+        "Discover (rarely accepted outside major hotels)"
+      ],
+      "popularEWallets": [
+        "Apple Pay",
+        "Google Pay",
+        "Beem"
+      ],
+      "cashAdvice": "Virtually cashless. Tap-to-pay on phones or cards is used for everything including coffees, public transport, and markets."
+    },
+    "culturalTips": [
+      "Visit Salamanca Market on its scheduled market day for Tasmanian food and crafts.",
+      "Check weather and road conditions before visiting kunanyi / Mount Wellington.",
+      "Tasmania's weather can change quickly even during summer.",
+      "Respect Aboriginal cultural heritage and follow posted guidance at historic and natural sites."
     ]
   }
 ]

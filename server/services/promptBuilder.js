@@ -28,7 +28,7 @@ const BUDGET_RANK = { $: 1, $$: 2, $$$: 3 };
  * Fallback Guarantee:
  * The prompt requires Gemini to return 3 destinations across 3 distinct countries.
  * If restrictive budget/safety filters leave fewer than 3 countries, we relax budget/safety
- * first, while strictly retaining the visa-free constraint (as long as >= 3 visa-free countries exist).
+ * first, while always retaining the visa-free constraint.
  *
  * @param {Array<object>} destinations - Master list of destinations from destinations.json
  * @param {object} quiz - Parsed user quiz responses
@@ -52,11 +52,9 @@ function filterDestinations(
   });
 
   // Base pool of destinations: if visa filter is active, only visaCompliant items are considered
-  const basePool =
-    visaFreeCountryCodes &&
-    new Set(visaCompliant.map((d) => d.country)).size >= 3
-      ? visaCompliant
-      : destinations;
+  const basePool = visaFreeCountryCodes
+    ? visaCompliant
+    : destinations;
 
   // Step 2: Apply budget and safety filters on the base pool
   const filtered = basePool.filter((d) => {
