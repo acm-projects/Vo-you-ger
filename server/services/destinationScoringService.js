@@ -1,0 +1,31 @@
+const { normalizeTag, personaTags } = require('../config/interestTags');
+const weights = require('../config/scoringWeights');
+const {toCountryCode}=require('../utils/countryCodes');
+const BUDGET = Object.freeze({ $:1, $$:2, $$$:3 });
+const compact = value => String(value||'').toLowerCase().replace(/[^a-z]/g,'');
+const isRelaxed = quiz => compact(quiz.seeAllOrDeeply).includes('deep');
+const wantsVariety = quiz => !isRelaxed(quiz) && compact(quiz.seeAllOrDeeply).includes('all');
+function scoreDestination(base, quiz={}) {
+  const tags=new Set((base.tags||[]).map(normalizeTag));
+  const wanted=new Set(personaTags(quiz.travelAlterEgo));
+  const imagery=`${quiz.favoriteView||''} ${quiz.tripPhotoStyle||''}`.toLowerCase();
+  for(const [pattern,tag] of [[/mountain/,'mountains'],[/beach/,'beach'],[/city|street/,'city'],[/histor|cultur/,'history'],[/food/,'food'],[/natural|nature/,'nature']]) if(pattern.test(imagery)) wanted.add(tag);
+  const interests=wanted.size ? [...wanted].filter(tag=>tags.has(tag)).length/wanted.size : 0.5;
+  const months=quiz.startDate ? [['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][Number(quiz.startDate.slice(5,7))-1]] : quiz.months||[];
+  const seasonal=months.length&&base.bestMonths?.length ? months.filter(month=>base.bestMonths.some(m=>m.toLowerCase()===month.slice(0,3).toLowerCase())).length/months.length : 0.5;
+  const budget=BUDGET[base.budget]&&BUDGET[quiz.dailyBudget] ? (BUDGET[base.budget]<=BUDGET[quiz.dailyBudget]?1:0) : 0.5;
+  const safety=typeof base.safety==='number' ? (6-base.safety)/5 : 0.5;
+  const preferenceChecks=[];
+  const temperature={warm:['warm','hot-dry','tropical'],cool:['mild','cool'],chilly:['cold']};
+  if(quiz.temperaturePreferences?.length && base.climate && base.climate!=='variable') preferenceChecks.push(quiz.temperaturePreferences.some(value=>temperature[compact(value).startsWith('chill')?'chilly':value.toLowerCase().trim()]?.includes(base.climate)));
+  const wantedCountries=(quiz.countriesOfInterest||[]).map(toCountryCode).filter(Boolean);
+  if(wantedCountries.length) preferenceChecks.push(wantedCountries.includes(base.countryCode));
+  if(quiz.crowdsOrSpace) preferenceChecks.push(tags.has(compact(quiz.crowdsOrSpace).includes('space')?'hidden-gem':'famous'));
+  if(quiz.famousOrHiddenGem) preferenceChecks.push(tags.has(compact(quiz.famousOrHiddenGem).includes('hidden')?'hidden-gem':'famous'));
+  if(quiz.nightlifeOrSunrise) preferenceChecks.push(tags.has(compact(quiz.nightlifeOrSunrise).includes('night')?'nightlife':'nature'));
+  if(quiz.walkingAmount&&compact(quiz.walkingAmount)!=='none') preferenceChecks.push(tags.has('walkable'));
+  const preference=preferenceChecks.length?preferenceChecks.filter(Boolean).length/preferenceChecks.length:0.5;
+  const parts={interest:interests*weights.interest,season:seasonal*weights.season,budget:budget*weights.budget,safety:safety*weights.safety,preferences:preference*weights.preferences};
+  return { score:Number(Object.values(parts).reduce((a,b)=>a+b,0).toFixed(3)),parts };
+}
+module.exports={ scoreDestination,BUDGET,isRelaxed,wantsVariety,compact };

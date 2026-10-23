@@ -1,0 +1,565 @@
+{
+  "checkedOn": "2026-10-23T20:43:00.401Z",
+  "limits": {
+    "google": 21,
+    "gemini": 14,
+    "visa": 1
+  },
+  "requests": {
+    "google": 21,
+    "gemini": 14,
+    "visa": 1
+  },
+  "databaseWrites": 0,
+  "checks": {
+    "dynamodb": {
+      "status": "passed",
+      "tableStatus": "ACTIVE",
+      "ownershipKeysVerified": true,
+      "elapsedMs": 245.2
+    },
+    "visa": {
+      "status": "passed",
+      "confirmedCountryCount": 122,
+      "elapsedMs": 1203
+    },
+    "recommendations": {
+      "status": "failed_before_deadline_fix",
+      "providerStatus": 400,
+      "providerReason": "DEADLINE_TOO_SHORT",
+      "providerMessage": "Manually set deadline 8s is too short. Minimum allowed deadline is 10s.",
+      "fix": "Server timeout now has a 10-second minimum; client abort still enforces the shorter budget. Verified with SDK regression test; not rerun live."
+    },
+    "itinerary": {
+      "status": "passed",
+      "model": "gemini-3.5-flash-lite",
+      "narrativeSource": "gemini",
+      "countryCode": "PL",
+      "days": 7,
+      "bases": 2,
+      "dailyActivities": [
+        {
+          "day": 1,
+          "type": "arrival",
+          "activities": 1
+        },
+        {
+          "day": 2,
+          "type": "full",
+          "activities": 4
+        },
+        {
+          "day": 3,
+          "type": "full",
+          "activities": 4
+        },
+        {
+          "day": 4,
+          "type": "transfer",
+          "activities": 1
+        },
+        {
+          "day": 5,
+          "type": "full",
+          "activities": 4
+        },
+        {
+          "day": 6,
+          "type": "full",
+          "activities": 4
+        },
+        {
+          "day": 7,
+          "type": "departure",
+          "activities": 1
+        }
+      ],
+      "persistenceProjectionVerified": true,
+      "venueRefreshVerified": false,
+      "elapsedMs": 6429.9
+    },
+    "geminiStructuredDiagnostic": {
+      "status": "passed",
+      "model": "gemini-3.5-flash-lite",
+      "elapsedMs": 844
+    },
+    "geminiItinerarySchemaRegression": {
+      "status": "passed",
+      "model": "gemini-3.5-flash-lite",
+      "days": 7,
+      "bases": 2,
+      "source": "synthetic_venue_fixture",
+      "validated": true,
+      "beforeHttpStatus": 400,
+      "afterHttpStatus": 200,
+      "elapsedMs": 3722
+    },
+    "portugalRelaxedItinerary": {
+      "status": "passed",
+      "model": "gemini-3.5-flash-lite",
+      "narrativeSource": "gemini",
+      "countryCode": "PT",
+      "days": 4,
+      "bases": 1,
+      "dailyActivities": [
+        {
+          "day": 1,
+          "type": "arrival",
+          "activities": 1
+        },
+        {
+          "day": 2,
+          "type": "full",
+          "activities": 3
+        },
+        {
+          "day": 3,
+          "type": "full",
+          "activities": 3
+        },
+        {
+          "day": 4,
+          "type": "departure",
+          "activities": 1
+        }
+      ],
+      "persistenceProjectionVerified": true,
+      "venueRefreshVerified": false,
+      "elapsedMs": 3501.7
+    },
+    "argentinaItinerary": {
+      "status": "passed",
+      "model": "gemini-3.5-flash-lite",
+      "narrativeSource": "gemini",
+      "countryCode": "AR",
+      "days": 5,
+      "bases": 1,
+      "dailyActivities": [
+        {
+          "day": 1,
+          "type": "arrival",
+          "activities": 1
+        },
+        {
+          "day": 2,
+          "type": "full",
+          "activities": 4
+        },
+        {
+          "day": 3,
+          "type": "full",
+          "activities": 4
+        },
+        {
+          "day": 4,
+          "type": "full",
+          "activities": 4
+        },
+        {
+          "day": 5,
+          "type": "departure",
+          "activities": 1
+        }
+      ],
+      "persistenceProjectionVerified": true,
+      "venueRefreshVerified": false,
+      "elapsedMs": 4738.3
+    }
+  },
+  "previousRuns": [
+    {
+      "checkedOn": "2026-10-23T17:28:41.214Z",
+      "requests": {
+        "google": 3,
+        "gemini": 2,
+        "visa": 1
+      },
+      "checks": {
+        "dynamodb": {
+          "status": "passed",
+          "tableStatus": "ACTIVE",
+          "ownershipKeysVerified": true,
+          "elapsedMs": 245.2
+        },
+        "visa": {
+          "status": "passed",
+          "confirmedCountryCount": 122,
+          "elapsedMs": 1203
+        },
+        "recommendations": {
+          "status": "failed",
+          "code": "EXPLANATION_FALLBACK_ONLY",
+          "elapsedMs": 38532
+        },
+        "itinerary": {
+          "status": "failed",
+          "code": 503,
+          "elapsedMs": 840.1
+        }
+      }
+    },
+    {
+      "checkedOn": "2026-10-23T17:44:14.656Z",
+      "requests": {
+        "google": 6,
+        "gemini": 4,
+        "visa": 1
+      },
+      "checks": {
+        "dynamodb": {
+          "status": "passed",
+          "tableStatus": "ACTIVE",
+          "ownershipKeysVerified": true,
+          "elapsedMs": 245.2
+        },
+        "visa": {
+          "status": "passed",
+          "confirmedCountryCount": 122,
+          "elapsedMs": 1203
+        },
+        "recommendations": {
+          "status": "failed",
+          "code": "EXPLANATION_FALLBACK_ONLY",
+          "elapsedMs": 38532
+        },
+        "itinerary": {
+          "status": "failed",
+          "code": "GEMINI_UNAVAILABLE",
+          "elapsedMs": 27467
+        }
+      }
+    },
+    {
+      "checkedOn": "2026-10-23T18:36:30.221Z",
+      "requests": {
+        "google": 9,
+        "gemini": 6,
+        "visa": 1
+      },
+      "checks": {
+        "dynamodb": {
+          "status": "passed",
+          "tableStatus": "ACTIVE",
+          "ownershipKeysVerified": true,
+          "elapsedMs": 245.2
+        },
+        "visa": {
+          "status": "passed",
+          "confirmedCountryCount": 122,
+          "elapsedMs": 1203
+        },
+        "recommendations": {
+          "status": "failed_before_deadline_fix",
+          "providerStatus": 400,
+          "providerReason": "DEADLINE_TOO_SHORT",
+          "providerMessage": "Manually set deadline 8s is too short. Minimum allowed deadline is 10s.",
+          "fix": "Server timeout now has a 10-second minimum; client abort still enforces the shorter budget. Verified with SDK regression test; not rerun live."
+        },
+        "itinerary": {
+          "status": "failed",
+          "code": "GEMINI_CONFIGURATION",
+          "elapsedMs": 21207.7
+        },
+        "geminiStructuredDiagnostic": {
+          "status": "passed",
+          "model": "gemini-3.5-flash-lite",
+          "elapsedMs": 844
+        },
+        "geminiItinerarySchemaRegression": {
+          "status": "passed",
+          "model": "gemini-3.5-flash-lite",
+          "days": 7,
+          "bases": 2,
+          "source": "synthetic_venue_fixture",
+          "validated": true,
+          "beforeHttpStatus": 400,
+          "afterHttpStatus": 200,
+          "elapsedMs": 3722
+        }
+      }
+    },
+    {
+      "checkedOn": "2026-10-23T20:00:25.232134+00:00",
+      "requests": {
+        "google": 9,
+        "gemini": 11,
+        "visa": 1
+      },
+      "checks": {
+        "dynamodb": {
+          "status": "passed",
+          "tableStatus": "ACTIVE",
+          "ownershipKeysVerified": true,
+          "elapsedMs": 245.2
+        },
+        "visa": {
+          "status": "passed",
+          "confirmedCountryCount": 122,
+          "elapsedMs": 1203
+        },
+        "recommendations": {
+          "status": "failed_before_deadline_fix",
+          "providerStatus": 400,
+          "providerReason": "DEADLINE_TOO_SHORT",
+          "providerMessage": "Manually set deadline 8s is too short. Minimum allowed deadline is 10s.",
+          "fix": "Server timeout now has a 10-second minimum; client abort still enforces the shorter budget. Verified with SDK regression test; not rerun live."
+        },
+        "itinerary": {
+          "status": "failed",
+          "code": "GEMINI_CONFIGURATION",
+          "elapsedMs": 21207.7
+        },
+        "geminiStructuredDiagnostic": {
+          "status": "passed",
+          "model": "gemini-3.5-flash-lite",
+          "elapsedMs": 844
+        },
+        "geminiItinerarySchemaRegression": {
+          "status": "passed",
+          "model": "gemini-3.5-flash-lite",
+          "days": 7,
+          "bases": 2,
+          "source": "synthetic_venue_fixture",
+          "validated": true,
+          "beforeHttpStatus": 400,
+          "afterHttpStatus": 200,
+          "elapsedMs": 3722
+        }
+      }
+    },
+    {
+      "checkedOn": "2026-10-23T20:24:32.562Z",
+      "requests": {
+        "google": 15,
+        "gemini": 12,
+        "visa": 1
+      },
+      "checks": {
+        "dynamodb": {
+          "status": "passed",
+          "tableStatus": "ACTIVE",
+          "ownershipKeysVerified": true,
+          "elapsedMs": 245.2
+        },
+        "visa": {
+          "status": "passed",
+          "confirmedCountryCount": 122,
+          "elapsedMs": 1203
+        },
+        "recommendations": {
+          "status": "failed_before_deadline_fix",
+          "providerStatus": 400,
+          "providerReason": "DEADLINE_TOO_SHORT",
+          "providerMessage": "Manually set deadline 8s is too short. Minimum allowed deadline is 10s.",
+          "fix": "Server timeout now has a 10-second minimum; client abort still enforces the shorter budget. Verified with SDK regression test; not rerun live."
+        },
+        "itinerary": {
+          "status": "passed",
+          "model": "gemini-3.5-flash-lite",
+          "narrativeSource": "gemini",
+          "countryCode": "PL",
+          "days": 7,
+          "bases": 2,
+          "dailyActivities": [
+            {
+              "day": 1,
+              "type": "arrival",
+              "activities": 1
+            },
+            {
+              "day": 2,
+              "type": "full",
+              "activities": 4
+            },
+            {
+              "day": 3,
+              "type": "full",
+              "activities": 4
+            },
+            {
+              "day": 4,
+              "type": "transfer",
+              "activities": 1
+            },
+            {
+              "day": 5,
+              "type": "full",
+              "activities": 4
+            },
+            {
+              "day": 6,
+              "type": "full",
+              "activities": 4
+            },
+            {
+              "day": 7,
+              "type": "departure",
+              "activities": 1
+            }
+          ],
+          "persistenceProjectionVerified": true,
+          "venueRefreshVerified": false,
+          "elapsedMs": 6429.9
+        },
+        "geminiStructuredDiagnostic": {
+          "status": "passed",
+          "model": "gemini-3.5-flash-lite",
+          "elapsedMs": 844
+        },
+        "geminiItinerarySchemaRegression": {
+          "status": "passed",
+          "model": "gemini-3.5-flash-lite",
+          "days": 7,
+          "bases": 2,
+          "source": "synthetic_venue_fixture",
+          "validated": true,
+          "beforeHttpStatus": 400,
+          "afterHttpStatus": 200,
+          "elapsedMs": 3722
+        }
+      }
+    }
+  ],
+  "networkAttempts": [
+    {
+      "provider": "google",
+      "status": 200,
+      "elapsedMs": 643
+    },
+    {
+      "provider": "google",
+      "status": 200,
+      "elapsedMs": 655.6
+    },
+    {
+      "provider": "google",
+      "status": 200,
+      "elapsedMs": 372.5
+    },
+    {
+      "provider": "gemini",
+      "status": 504,
+      "elapsedMs": 18996.2
+    },
+    {
+      "provider": "gemini",
+      "status": 400,
+      "elapsedMs": 1043.9
+    },
+    {
+      "provider": "gemini",
+      "status": 504,
+      "elapsedMs": 18937.9,
+      "check": "primary_tiny_diagnostic"
+    },
+    {
+      "provider": "gemini",
+      "status": 200,
+      "elapsedMs": 745.2,
+      "check": "fallback_tiny_diagnostic"
+    },
+    {
+      "provider": "gemini",
+      "status": 400,
+      "elapsedMs": 928.1,
+      "check": "original_itinerary_schema"
+    },
+    {
+      "provider": "gemini",
+      "status": 200,
+      "elapsedMs": 3704.4,
+      "check": "simplified_itinerary_schema"
+    },
+    {
+      "provider": "gemini",
+      "status": 400,
+      "elapsedMs": 167.5,
+      "check": "recommendations_before_deadline_fix"
+    },
+    {
+      "provider": "google",
+      "status": 200,
+      "elapsedMs": 548.8
+    },
+    {
+      "provider": "google",
+      "status": 200,
+      "elapsedMs": 584.3
+    },
+    {
+      "provider": "google",
+      "status": 200,
+      "elapsedMs": 386
+    },
+    {
+      "provider": "google",
+      "status": 200,
+      "elapsedMs": 412.1
+    },
+    {
+      "provider": "google",
+      "status": 200,
+      "elapsedMs": 439.9
+    },
+    {
+      "provider": "google",
+      "status": 200,
+      "elapsedMs": 438
+    },
+    {
+      "provider": "gemini",
+      "status": 200,
+      "elapsedMs": 4476.4
+    },
+    {
+      "provider": "google",
+      "status": 200,
+      "elapsedMs": 663.8
+    },
+    {
+      "provider": "google",
+      "status": 200,
+      "elapsedMs": 760.4
+    },
+    {
+      "provider": "google",
+      "status": 200,
+      "elapsedMs": 495.7
+    },
+    {
+      "provider": "gemini",
+      "status": 200,
+      "elapsedMs": 2242.8
+    },
+    {
+      "provider": "google",
+      "status": 200,
+      "elapsedMs": 495
+    },
+    {
+      "provider": "google",
+      "status": 200,
+      "elapsedMs": 548.1
+    },
+    {
+      "provider": "google",
+      "status": 200,
+      "elapsedMs": 375.6
+    },
+    {
+      "provider": "gemini",
+      "status": 200,
+      "elapsedMs": 3725
+    }
+  ],
+  "scopeNotes": {
+    "googleDiscovery": "Latest three Google searches each returned HTTP 200 and usable candidates reached Gemini.",
+    "dynamodb": "DescribeTable only; no profile reads, CRUD verification, writes or deletes.",
+    "generation": "Live seven-day Poland itinerary passed with real Places discovery and Gemini narrative: two bases, 19 activities, four per full day and one per travel day. Total 6429.9 ms. Persistence projection checked; no database writes or live venue refresh.",
+    "authorization": "Cumulative caps approved by user: Google 21, Gemini 14, visa 1. Actual agent requests: 21/14/1. No database writes. No further paid calls are authorized.",
+    "backendTests": "311 JavaScript tests across 45 suites pass. Includes 85 new tests: 10 named scenarios, 64 repeatable stress scenarios, eight preference/budget cases and three additional HTTP lifecycle cases. Providers and database mocked.",
+    "userTerminalRun": "A subsequent user run returned personalized recommendation text, previewed a seven-day Poland route, and reached itinerary validation. The backend rejected a day with excessive geographic spread (HTTP 502 INVALID_AI_OUTPUT).",
+    "geographicFollowUp": "Prompt-only correction was superseded by a backend-owned scheduler. It reserves distinct open venues for every sightseeing day, respects slots/counts and pairwise geography, and fills extras fairly. Gemini only writes copy for the fixed plan; invalid copy/provider failures retain validated neutral copy without changing the schedule.",
+    "expandedLiveCases": "Four-day relaxed Portugal: one base, 3501.7 ms. Five-day Argentina: one base, 4738.3 ms. Both used real Google Places and Gemini narrative; no writes or venue refresh. See planning-scenario-verification.json."
+  }
+}

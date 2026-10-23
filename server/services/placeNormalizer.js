@@ -51,9 +51,13 @@ function normalizePlace(place, category) {
     throw new Error(`Unknown category: ${category}`);
   }
 
-  if (!place?.id || !place?.displayName?.text) {
+  if (place?.businessStatus === "CLOSED_PERMANENTLY" || !place?.id || !place?.displayName?.text) {
     return null;
   }
+
+  const foodTypes = /restaurant|cafe|coffee_shop|bakery|bar$|food|meal_takeaway|ice_cream_shop/;
+  if (category === 'food' && place.types?.length && !place.types.some(type => foodTypes.test(type))) return null;
+  if (category === 'attractions' && foodTypes.test(place.primaryType || '')) return null;
 
   const lat = place.location?.latitude;
   const lng = place.location?.longitude;
@@ -75,7 +79,9 @@ function normalizePlace(place, category) {
     placeId: place.id,
     name: place.displayName.text,
     category,
+    types: Array.isArray(place.types) ? place.types : [],
     address: place.formattedAddress || null,
+    countryCode: place.addressComponents?.find((part) => part.types?.includes("country"))?.shortText || null,
 
     // Keep the existing property name for compatibility
     // with grouping and recommendation services.
@@ -90,6 +96,7 @@ function normalizePlace(place, category) {
     lng,
     rating: place.rating ?? null,
     priceLevel: place.priceLevel ?? null,
+    attributions: place.attributions || [],
     openingHours:
       place.regularOpeningHours?.weekdayDescriptions ?? null,
     typicalTimeSpent: null,

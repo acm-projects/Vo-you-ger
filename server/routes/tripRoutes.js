@@ -7,6 +7,8 @@ const {
   unsaveTripController,
   getSavedTripsController,
   getTripController,
+  getTripGlobeController,
+  getTripDayPlacesController,
 } = require("../controllers/tripController");
 
 const {
@@ -16,9 +18,14 @@ const {
 // All trip routes require authentication.
 router.use(authenticateToken);
 
+const { previewCountryRoute } = require("../controllers/countryTripController");
+router.post("/:tripId/route", previewCountryRoute);
+
 // GET /api/trips/saved
 // Retrieve the authenticated user's saved trips.
 router.get("/saved", getSavedTripsController);
+router.get("/globe", getTripGlobeController);
+router.get('/:tripId/days/:day/places',require('../middleware/generationLimiter').generationLimiter,getTripDayPlacesController);
 
 // PUT /api/trips/:tripId/save
 // Save an existing generated itinerary.

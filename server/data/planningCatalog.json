@@ -1,0 +1,578 @@
+{
+  "version": 4,
+  "notes": "Overnight-base metadata lives in destinations.json under planning. Country availability is derived from enabled concrete bases; countryOverrides supplies optional display pins/names, not an allowlist. Connections and excursions remain explicit domestic planning data. Coordinates are approximate display/search anchors, not boundaries or routes. Stay minima and transfer allowances are editorial rules, not live schedules.",
+  "connections": [
+    {
+      "from": "lisbon-pt",
+      "to": "porto-pt",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 360,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.cp.pt/info/documents/d/cp/comboios-alfa-pendular-intercidades-lisboa-norte-sul",
+      "reviewedOn": "2026-10-22",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.cp.pt/info/documents/d/cp/comboios-alfa-pendular-intercidades-lisboa-norte-sul",
+        "reviewedOn": "2026-10-22",
+        "limitations": "Mode/connection reviewed; planning minutes include editorial buffers and are not current timetable guarantees."
+      }
+    },
+    {
+      "from": "madrid-es",
+      "to": "barcelona-es",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 360,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.renfe.com/es/en/inspirate/rutas/madrid-barcelona",
+      "reviewedOn": "2026-10-22",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.renfe.com/es/en/inspirate/rutas/madrid-barcelona",
+        "reviewedOn": "2026-10-22",
+        "limitations": "Mode/connection reviewed; planning minutes include editorial buffers and are not current timetable guarantees."
+      }
+    },
+    {
+      "from": "rome-it",
+      "to": "florence-it",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 300,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.trenitalia.com/it/frecciarossa/collegamenti-frecciarossa/frecciarossa-roma-firenze.html",
+      "reviewedOn": "2026-10-22",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.trenitalia.com/it/frecciarossa/collegamenti-frecciarossa/frecciarossa-roma-firenze.html",
+        "reviewedOn": "2026-10-22",
+        "limitations": "Mode/connection reviewed; planning minutes include editorial buffers and are not current timetable guarantees."
+      }
+    },
+    {
+      "from": "paris-fr",
+      "to": "lyon-fr",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 300,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.sncf-connect.com/en-en/train/route/paris/lyon",
+      "reviewedOn": "2026-10-22",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.sncf-connect.com/en-en/train/route/paris/lyon",
+        "reviewedOn": "2026-10-22",
+        "limitations": "Mode/connection reviewed; planning minutes include editorial buffers and are not current timetable guarantees."
+      }
+    },
+    {
+      "from": "lyon-fr",
+      "to": "avignon-fr",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 240,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.sncf-connect.com/train/trajet/lyon/avignon",
+      "reviewedOn": "2026-10-22",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.sncf-connect.com/train/trajet/lyon/avignon",
+        "reviewedOn": "2026-10-22",
+        "limitations": "Mode/connection reviewed; planning minutes include editorial buffers and are not current timetable guarantees."
+      }
+    },
+    {
+      "from": "avignon-fr",
+      "to": "nice-fr",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 360,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.sncf-connect.com/train/trajet/avignon/nice",
+      "reviewedOn": "2026-10-22",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.sncf-connect.com/train/trajet/avignon/nice",
+        "reviewedOn": "2026-10-22",
+        "limitations": "Mode/connection reviewed; planning minutes include editorial buffers and are not current timetable guarantees."
+      }
+    },
+    {
+      "from": "london-uk",
+      "to": "york-uk",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 300,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.nationalrail.co.uk/discover-by-train/great-british-destinations/visit-york-by-train/",
+      "reviewedOn": "2026-10-22",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.nationalrail.co.uk/discover-by-train/great-british-destinations/visit-york-by-train/",
+        "reviewedOn": "2026-10-22",
+        "limitations": "Mode/connection reviewed; planning minutes include editorial buffers and are not current timetable guarantees."
+      }
+    },
+    {
+      "from": "york-uk",
+      "to": "edinburgh-uk",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 360,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.lner.co.uk/routes/york-to-edinburgh-trains/are-there-direct-trains-from-york-to-edinburgh/",
+      "reviewedOn": "2026-10-22",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.lner.co.uk/routes/york-to-edinburgh-trains/are-there-direct-trains-from-york-to-edinburgh/",
+        "reviewedOn": "2026-10-22",
+        "limitations": "Mode/connection reviewed; planning minutes include editorial buffers and are not current timetable guarantees."
+      }
+    },
+    {
+      "from": "berlin-de",
+      "to": "dresden-de",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 300,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.bahn.de/reisen/view/verbindung/berlin/dresden.shtml",
+      "reviewedOn": "2026-10-22",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.bahn.de/reisen/view/verbindung/berlin/dresden.shtml",
+        "reviewedOn": "2026-10-22",
+        "limitations": "Mode/connection reviewed; planning minutes include editorial buffers and are not current timetable guarantees."
+      }
+    },
+    {
+      "from": "vienna-at",
+      "to": "salzburg-at",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 300,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.oebb.at/en/reiseplanung-services/oebb-zugverbindungen/zugverbindungen-oesterreich/weststrecke/wien-salzburg",
+      "reviewedOn": "2026-10-22",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.oebb.at/en/reiseplanung-services/oebb-zugverbindungen/zugverbindungen-oesterreich/weststrecke/wien-salzburg",
+        "reviewedOn": "2026-10-22",
+        "limitations": "Mode/connection reviewed; planning minutes include editorial buffers and are not current timetable guarantees."
+      }
+    },
+    {
+      "from": "amsterdam-nl",
+      "to": "utrecht-nl",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 180,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.ns.nl/en/travel/destinations/utrecht",
+      "reviewedOn": "2026-10-22",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.ns.nl/en/travel/destinations/utrecht",
+        "reviewedOn": "2026-10-22",
+        "limitations": "Mode/connection reviewed; planning minutes include editorial buffers and are not current timetable guarantees."
+      }
+    },
+    {
+      "from": "rome-it",
+      "to": "naples-it",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 240,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.trenitalia.com/it/frecciarossa/collegamenti-frecciarossa/viaggia-tra-roma-e-napoli-con-le-frecce.html",
+      "reviewedOn": "2026-10-22",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.trenitalia.com/it/frecciarossa/collegamenti-frecciarossa/viaggia-tra-roma-e-napoli-con-le-frecce.html",
+        "reviewedOn": "2026-10-22",
+        "limitations": "Mode/connection reviewed; planning minutes include editorial buffers and are not current timetable guarantees."
+      }
+    },
+    {
+      "from": "madrid-es",
+      "to": "seville-es",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 300,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.renfe.com/es/eu/inspirate/rutas/madrid-sevilla",
+      "reviewedOn": "2026-10-22",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.renfe.com/es/eu/inspirate/rutas/madrid-sevilla",
+        "reviewedOn": "2026-10-22",
+        "limitations": "Mode/connection reviewed; planning minutes include editorial buffers and are not current timetable guarantees."
+      }
+    },
+    {
+      "from": "tokyo-jp",
+      "to": "kyoto-jp",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 360,
+      "domesticOnly": true,
+      "sourceUrl": "https://kyoto.travel/en/getting-to",
+      "reviewedOn": "2026-10-22",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://kyoto.travel/en/getting-to",
+        "reviewedOn": "2026-10-22",
+        "limitations": "Mode/connection reviewed; planning minutes include editorial buffers and are not current timetable guarantees."
+      }
+    },
+    {
+      "from": "kyoto-jp",
+      "to": "osaka-jp",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 180,
+      "domesticOnly": true,
+      "sourceUrl": "https://kyoto.travel/en/getting-to",
+      "reviewedOn": "2026-10-22",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://kyoto.travel/en/getting-to",
+        "reviewedOn": "2026-10-22",
+        "limitations": "Mode/connection reviewed; planning minutes include editorial buffers and are not current timetable guarantees."
+      }
+    },
+    {
+      "from": "new-york-us",
+      "to": "washington-dc-us",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 360,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.amtrak.com/northeast-regional-train",
+      "reviewedOn": "2026-10-23",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.amtrak.com/northeast-regional-train",
+        "reviewedOn": "2026-10-23",
+        "limitations": "Mode/connection reviewed; planning minutes include editorial buffers and are not current timetable guarantees."
+      }
+    },
+    {
+      "from": "montreal-ca",
+      "to": "quebec-city-ca",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 360,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.viarail.ca/en/explore-our-destinations/trains/ontario-and-quebec/montreal-quebec-city",
+      "reviewedOn": "2026-10-23",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.viarail.ca/en/explore-our-destinations/trains/ontario-and-quebec/montreal-quebec-city",
+        "reviewedOn": "2026-10-23",
+        "limitations": "Mode/connection reviewed; planning minutes include editorial buffers and are not current timetable guarantees."
+      }
+    },
+    {
+      "from": "auckland-nz",
+      "to": "rotorua-nz",
+      "mode": "car",
+      "bidirectional": true,
+      "planningMinutes": 300,
+      "domesticOnly": true,
+      "sourceUrl": "https://traveltrade.newzealand.com/training-and-inspiration/explore-nz-discount-program/explore-itineraries/6-days-rotorua-taupo-waikato/",
+      "reviewedOn": "2026-10-23",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://traveltrade.newzealand.com/training-and-inspiration/explore-nz-discount-program/explore-itineraries/6-days-rotorua-taupo-waikato/",
+        "reviewedOn": "2026-10-23",
+        "limitations": "Mode/connection reviewed; planning minutes include editorial buffers and are not current timetable guarantees."
+      }
+    },
+    {
+      "from": "krakow-pl",
+      "to": "warsaw-pl",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 360,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.gov.pl/web/infrastruktura/regularne-godziny-kursowania-i-wiecej-polaczen-do-najwiekszych-miast-w-kraju-pkp-intercity-zaprezentowaly-rozklad-jazdy-20262027",
+      "reviewedOn": "2026-10-23",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.gov.pl/web/infrastruktura/regularne-godziny-kursowania-i-wiecej-polaczen-do-najwiekszych-miast-w-kraju-pkp-intercity-zaprezentowaly-rozklad-jazdy-20262027",
+        "reviewedOn": "2026-10-23",
+        "limitations": "Mode/connection reviewed; planning minutes include editorial buffers and are not current timetable guarantees."
+      }
+    },
+    {
+      "from": "santiago-cl",
+      "to": "valparaiso-cl",
+      "mode": "bus",
+      "bidirectional": true,
+      "planningMinutes": 240,
+      "domesticOnly": true,
+      "sourceUrl": "https://chile.travel/destinos/valparaiso/",
+      "reviewedOn": "2026-10-23",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://chile.travel/destinos/valparaiso/",
+        "reviewedOn": "2026-10-23",
+        "limitations": "Mode/connection reviewed; planning minutes include editorial buffers and are not current timetable guarantees."
+      }
+    },
+    {
+      "from": "avignon-fr",
+      "to": "gn-2995469",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 180,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.sncf-connect.com/en-en/train/route/avignon/marseille",
+      "reviewedOn": "2026-10-23",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.sncf-connect.com/en-en/train/route/avignon/marseille",
+        "reviewedOn": "2026-10-23",
+        "limitations": "Official operator confirms the domestic rail connection. Planning minutes include editorial local-access and accommodation-change buffers, not published schedules or guaranteed service."
+      }
+    },
+    {
+      "from": "gn-2995469",
+      "to": "nice-fr",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 300,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.sncf-connect.com/en-en/train/route/marseille/nice",
+      "reviewedOn": "2026-10-23",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.sncf-connect.com/en-en/train/route/marseille/nice",
+        "reviewedOn": "2026-10-23",
+        "limitations": "Official operator confirms the domestic rail connection. Planning minutes include editorial local-access and accommodation-change buffers, not published schedules or guaranteed service."
+      }
+    },
+    {
+      "from": "gn-2657896",
+      "to": "gn-2661604",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 180,
+      "domesticOnly": true,
+      "sourceUrl": "https://network.sbb.ch/en/station/ZUE/target/BS",
+      "reviewedOn": "2026-10-23",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://network.sbb.ch/en/station/ZUE/target/BS",
+        "reviewedOn": "2026-10-23",
+        "limitations": "Official operator confirms the domestic rail connection. Planning minutes include editorial local-access and accommodation-change buffers, not published schedules or guaranteed service."
+      }
+    },
+    {
+      "from": "gn-2661604",
+      "to": "gn-2661552",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 180,
+      "domesticOnly": true,
+      "sourceUrl": "https://network.sbb.ch/en/station/BS/target/BN",
+      "reviewedOn": "2026-10-23",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://network.sbb.ch/en/station/BS/target/BN",
+        "reviewedOn": "2026-10-23",
+        "limitations": "Official operator confirms the domestic rail connection. Planning minutes include editorial local-access and accommodation-change buffers, not published schedules or guaranteed service."
+      }
+    },
+    {
+      "from": "gn-2661552",
+      "to": "gn-2659994",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 180,
+      "domesticOnly": true,
+      "sourceUrl": "https://network.sbb.ch/en/station/BN/target/LS",
+      "reviewedOn": "2026-10-23",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://network.sbb.ch/en/station/BN/target/LS",
+        "reviewedOn": "2026-10-23",
+        "limitations": "Official operator confirms the domestic rail connection. Planning minutes include editorial local-access and accommodation-change buffers, not published schedules or guaranteed service."
+      }
+    },
+    {
+      "from": "gn-2659994",
+      "to": "gn-2660646",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 180,
+      "domesticOnly": true,
+      "sourceUrl": "https://network.sbb.ch/en/station/LS/target/GE",
+      "reviewedOn": "2026-10-23",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://network.sbb.ch/en/station/LS/target/GE",
+        "reviewedOn": "2026-10-23",
+        "limitations": "Official operator confirms the domestic rail connection. Planning minutes include editorial local-access and accommodation-change buffers, not published schedules or guaranteed service."
+      }
+    }
+  ],
+  "excursions": [
+    {
+      "destinationId": "sintra-pt",
+      "fromDestinationId": "lisbon-pt",
+      "lat": 38.8029,
+      "lng": -9.3817,
+      "radiusKm": 6,
+      "mode": "train",
+      "roundTripPlanningMinutes": 180,
+      "sourceUrl": "https://visitsintra.travel/en/program-your-visit/how-to-get-there",
+      "reviewedOn": "2026-10-22",
+      "domesticOnly": true
+    },
+    {
+      "destinationId": "versailles-fr",
+      "fromDestinationId": "paris-fr",
+      "lat": 48.8049,
+      "lng": 2.1204,
+      "radiusKm": 6,
+      "mode": "train",
+      "roundTripPlanningMinutes": 180,
+      "sourceUrl": "https://en.chateauversailles.fr/plan-your-visit/practical-information",
+      "reviewedOn": "2026-10-22",
+      "domesticOnly": true
+    },
+    {
+      "destinationId": "nara-jp",
+      "fromDestinationId": "kyoto-jp",
+      "lat": 34.6851,
+      "lng": 135.8048,
+      "radiusKm": 6,
+      "mode": "train",
+      "roundTripPlanningMinutes": 180,
+      "sourceUrl": "https://www.visitnara.jp/travel-to-nara/",
+      "reviewedOn": "2026-10-22",
+      "domesticOnly": true
+    }
+  ],
+  "countryOverrides": [
+    {
+      "id": "country-pt",
+      "name": "Portugal",
+      "countryCode": "PT",
+      "pin": {
+        "lat": 39.5,
+        "lng": -8
+      }
+    },
+    {
+      "id": "country-es",
+      "name": "Spain",
+      "countryCode": "ES",
+      "pin": {
+        "lat": 40,
+        "lng": -4
+      }
+    },
+    {
+      "id": "country-it",
+      "name": "Italy",
+      "countryCode": "IT",
+      "pin": {
+        "lat": 42.5,
+        "lng": 12.5
+      }
+    },
+    {
+      "id": "country-jp",
+      "name": "Japan",
+      "countryCode": "JP",
+      "pin": {
+        "lat": 36,
+        "lng": 138
+      }
+    },
+    {
+      "id": "country-ar",
+      "name": "Argentina",
+      "countryCode": "AR",
+      "pin": {
+        "lat": -34,
+        "lng": -64
+      }
+    },
+    {
+      "id": "country-fr",
+      "name": "France",
+      "countryCode": "FR",
+      "pin": {
+        "lat": 46.5,
+        "lng": 2.5
+      }
+    },
+    {
+      "id": "country-gb",
+      "name": "United Kingdom",
+      "countryCode": "GB",
+      "pin": {
+        "lat": 54,
+        "lng": -2
+      }
+    },
+    {
+      "id": "country-de",
+      "name": "Germany",
+      "countryCode": "DE",
+      "pin": {
+        "lat": 51,
+        "lng": 10
+      }
+    },
+    {
+      "id": "country-at",
+      "name": "Austria",
+      "countryCode": "AT",
+      "pin": {
+        "lat": 47.5,
+        "lng": 14
+      }
+    },
+    {
+      "id": "country-nl",
+      "name": "Netherlands",
+      "countryCode": "NL",
+      "pin": {
+        "lat": 52,
+        "lng": 5.3
+      }
+    }
+  ]
+}

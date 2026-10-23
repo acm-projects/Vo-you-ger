@@ -14,6 +14,8 @@ By combining a short personality assessment with budget, transportation preferen
 
 The goal is simple: **spend less time planning and more time having fun.** 🎒
 
+For the implemented country-first planning flow, API examples, and file-by-file changes, see [Country trip planning](docs/country-trip-planning.md).
+
 ## MVP 🏆
 
 - **Personality Assessment**

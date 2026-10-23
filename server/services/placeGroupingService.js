@@ -148,5 +148,6 @@ function groupPlacesByGeography(
 
 module.exports = {
   distanceKm,
+  isValidLocation,
   groupPlacesByGeography,
 };

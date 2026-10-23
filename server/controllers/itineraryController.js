@@ -27,6 +27,7 @@ const googlePlacesService = require("../services/googlePlacesService");
 const placeNormalizer = require("../services/placeNormalizer");
 const placeGroupingService = require("../services/placeGroupingService");
 const destinations = require("../data/destinations.json");
+const { isCountryTrip } = require("../services/tripOutlineService");
 
 /**
  * POST /api/itinerary/generate
@@ -42,6 +43,10 @@ const destinations = require("../data/destinations.json");
  */
 async function createItinerary(req, res) {
   try {
+    if (!req.body || typeof req.body !== "object" || Array.isArray(req.body)) {
+      return res.status(400).json({ error: "Bad Request", message: "A JSON object body is required" });
+    }
+    if(req.body.numberOfDays != null) { try { require('../config/tripPolicy').maxBasesForDays(req.body.numberOfDays); } catch { return res.status(400).json({error:'Bad Request',code:'INVALID_DURATION',message:'Trip duration must be between 1 and 21 calendar days'}); } }
     const userId = req.user.userId;
     const tripId = req.params.tripId || req.body.tripId;
     const destinationId =
@@ -59,6 +64,15 @@ async function createItinerary(req, res) {
           message: `Trip with id "${tripId}" was not found.`,
         });
       }
+    }
+
+    if (isCountryTrip(trip)) {
+      const { createCountryItinerary } = require("./countryTripController");
+      return await createCountryItinerary(req, res, trip);
+    }
+
+    if (req.body.countryId || (typeof destinationId === "string" && destinationId.startsWith("country-"))) {
+      return res.status(400).json({ error: "Bad Request", message: "Country itineraries require a tripId from country recommendations" });
     }
 
     // 2. Resolve destination object and metadata

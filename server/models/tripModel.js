@@ -14,8 +14,10 @@ const { docClient, TABLE_NAME } = require("../db/dynamo");
  */
 async function createTrip(
   userId,
-  { title, summary, recommendations, quiz, model },
+  { title, summary, recommendations, quiz, model, selectionMetadata = null, itinerary = null },
 ) {
+  if (!userId) throw new Error('userId is required');
+  if (itinerary) itinerary = require('../services/itineraryStorageService').storedItinerary(itinerary);
   const tripId = `t-${crypto.randomUUID()}`;
   const timestamp = new Date().toISOString();
 
@@ -27,7 +29,9 @@ async function createTrip(
     title,
     summary,
     recommendations,
-    itinerary: null,
+    selectionMetadata,
+    schemaVersion: recommendations?.length && recommendations.every((item) => item.type === "country" && item.destinationId?.startsWith("country-")) ? 2 : 1,
+    itinerary,
     isSaved: false,
     savedAt: null,
     quizSnapshot: quiz || null,
@@ -77,13 +81,14 @@ async function updateTripItinerary(
   itinerary,
   model = null,
 ) {
+  itinerary = require('../services/itineraryStorageService').storedItinerary(itinerary);
   if (!userId || !tripId) {
     throw new Error("userId and tripId are required");
   }
 
   const timestamp = new Date().toISOString();
 
-  const updateExpression = model
+  const updateExpression = model || itinerary.schemaVersion===2
     ? "SET itinerary = :itinerary, generatedBy = :model, updatedAt = :updatedAt"
     : "SET itinerary = :itinerary, updatedAt = :updatedAt";
 
@@ -91,9 +96,10 @@ async function updateTripItinerary(
     ":itinerary": itinerary,
     ":updatedAt": timestamp,
   };
+  if(itinerary.schemaVersion===2) expressionAttributeValues[':draftOnly']=false;
 
-  if (model) {
-    expressionAttributeValues[":model"] = model;
+  if (model || itinerary.schemaVersion===2) {
+    expressionAttributeValues[":model"] = model || null;
   }
 
   const result = await docClient.send(
@@ -105,7 +111,7 @@ async function updateTripItinerary(
       },
       UpdateExpression: updateExpression,
       ConditionExpression:
-        "attribute_exists(PK) AND attribute_exists(SK)",
+        "attribute_exists(PK) AND attribute_exists(SK)" + (itinerary.schemaVersion===2 ? " AND (attribute_not_exists(isSaved) OR isSaved = :draftOnly)" : ""),
       ExpressionAttributeValues: expressionAttributeValues,
       ReturnValues: "ALL_NEW",
     }),
@@ -287,4 +293,32 @@ module.exports = {
   saveTrip,
   unsaveTrip,
   getSavedTrips,
+  getSavedTripSummaries,
 };
+
+// Project just the metadata required by the globe. Legacy fields allow older
+// saved trips to appear without a database migration. Projection reduces payload,
+// not DynamoDB read capacity; add a dedicated summary index if scale requires it.
+async function getSavedTripSummaries(userId) {
+  if (!userId) throw new Error("userId is required");
+  const items = [];
+  let lastEvaluatedKey;
+  do {
+    const result = await docClient.send(new QueryCommand({
+      TableName: TABLE_NAME,
+      KeyConditionExpression: "PK = :pk AND begins_with(SK, :sk)",
+      FilterExpression: "#saved = :saved",
+      ProjectionExpression: "tripId, #title, savedAt, #i.#summary, #i.#tripTitle, #i.#outline, #i.#destination, #i.#countryCode, #i.#info.#countryCode, #i.#days[0].#date",
+      ExpressionAttributeNames: {
+        "#saved": "isSaved", "#title": "title", "#i": "itinerary", "#summary": "tripSummary",
+        "#tripTitle": "tripTitle", "#outline": "outline", "#destination": "destination",
+        "#countryCode": "countryCode", "#info": "practicalInfo", "#days": "days", "#date": "date",
+      },
+      ExpressionAttributeValues: { ":pk": `USER#${userId}`, ":sk": "TRIP#", ":saved": true },
+      ExclusiveStartKey: lastEvaluatedKey,
+    }));
+    items.push(...(result.Items || []));
+    lastEvaluatedKey = result.LastEvaluatedKey;
+  } while (lastEvaluatedKey);
+  return items.sort((a, b) => new Date(b.savedAt || 0) - new Date(a.savedAt || 0));
+}

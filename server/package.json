@@ -4,6 +4,11 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "planning:coverage": "node scripts/planning-coverage.js",
+    "planning:benchmark": "node scripts/planning-benchmark.js",
+    "planning:live-check": "node scripts/live-planning-check.js",
+    "planning:verify": "node scripts/verify-planning-integrations.js",
+    "planning:data-test": "python3 -B -m unittest discover -s test -p '*_test.py'",
     "test": "node --test test/**/*.test.js",
     "start": "node server",
     "dev": "nodemon -e js,json,env server"
