@@ -1,3 +1,4 @@
+
 function Hero() {
   return (
     <section className="hero-section" id="home">
@@ -14,23 +15,44 @@ function Hero() {
           travel. We’ll do the rest!
         </p>
 
-        <a href="/signup" className="primary-button">
+        <a
+          href="/signUpAndLogin/signup.html"
+          className="primary-button"
+        >
           Build My Itinerary
-          <span>→</span>
+          <svg
+            className="button-arrow-icon"
+            viewBox="0 0 24 24"
+            width="17"
+            height="17"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
         </a>
       </div>
 
       <div className="hero-photos">
         <div className="polaroid polaroid-back">
-          <div className="photo-placeholder">
-            Photo 2
-          </div>
+          <img
+            className="travel-photo"
+            src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=700&q=85"
+            alt="Colorful Italian coastal village"
+          />
         </div>
 
         <div className="polaroid polaroid-front">
-          <div className="photo-placeholder">
-            Photo 1
-          </div>
+          <img
+            className="travel-photo"
+            src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=700&q=85"
+            alt="Beautiful mountain lake surrounded by the Alps"
+          />
         </div>
       </div>
     </section>

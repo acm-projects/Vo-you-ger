@@ -1,4 +1,5 @@
 
+
 import { useState, useEffect } from "react";
 import "./App.css";
 
@@ -10,32 +11,33 @@ import Loading from "./pages/Loading";
 import Recommendations from "./pages/Recommendations";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState("home");
+  const [currentPage, setCurrentPage] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
 
-  // Automatically show Recommendations after Loading.
+    return params.get("page") === "loading" ? "loading" : "home";
+  });
+
   useEffect(() => {
     if (currentPage !== "loading") {
       return;
     }
 
     const timer = setTimeout(() => {
+      window.history.replaceState({}, "", "/");
       setCurrentPage("recommendations");
     }, 15000);
 
     return () => clearTimeout(timer);
   }, [currentPage]);
 
-  // Loading page
   if (currentPage === "loading") {
     return <Loading />;
   }
 
-  // Recommendations page
   if (currentPage === "recommendations") {
     return <Recommendations />;
   }
 
-  // Landing page
   return (
     <>
       <Navbar />
@@ -44,16 +46,6 @@ function App() {
         <Hero />
         <HowItWorks />
         <AboutVoyager />
-
-        {/* Temporary button for testing the loading flow */}
-        <section className="loading-preview">
-          <button
-            className="recommendations-preview__button"
-            onClick={() => setCurrentPage("loading")}
-          >
-            Preview Loading Page
-          </button>
-        </section>
       </main>
     </>
   );

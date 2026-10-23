@@ -549,7 +549,9 @@ function showScore() {
     nextButton.innerHTML = "See my Recommendations!";
     nextButton.classList.add("recommendations-btn");
     nextButton.style.display = "block";
-    nextButton.onclick = startQuiz;
+    nextButton.onclick = () => {
+    window.location.href = "/?page=loading";
+};
 }
 
 startQuiz();

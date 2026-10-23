@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 
 const destinations = [
@@ -38,8 +39,17 @@ function Recommendations() {
 
   const destination = destinations[index];
 
-  function showNewPick() {
-    setIndex((current) => (current + 1) % destinations.length);
+  function showPreviousPick() {
+    setIndex(
+      (current) =>
+        (current - 1 + destinations.length) % destinations.length
+    );
+  }
+
+  function showNextPick() {
+    setIndex(
+      (current) => (current + 1) % destinations.length
+    );
   }
 
   function createItinerary() {
@@ -48,28 +58,34 @@ function Recommendations() {
 
   return (
     <main className="postcard-page">
-      <nav className="postcard-nav"> </nav>
+      <nav className="postcard-nav"></nav>
 
       <section className="postcard-intro">
         <div>
           <p className="postcard-eyebrow">CURATED FOR YOU</p>
-
           <h1>Your Next Destination</h1>
-
-          <p>
-            Recommended places to begin your next adventure.
-          </p>
+          <p>Recommended places to begin your next adventure.</p>
         </div>
 
         <button
           className="postcard-refresh"
-          onClick={showNewPick}
+          onClick={showNextPick}
         >
           ↻ &nbsp; View New Picks
         </button>
       </section>
 
       <section className="postcard-layout">
+        <button
+          type="button"
+          className="postcard-arrow postcard-arrow--left"
+          onClick={showPreviousPick}
+          aria-label="Previous destination"
+          title="Previous destination"
+        >
+          &#10094;
+        </button>
+
         <article className="travel-postcard">
           <div className="travel-postcard__photo">
             <img
@@ -98,26 +114,38 @@ function Recommendations() {
             </p>
 
             <div className="postcard-divider" />
-            
-            <div className = "postcard-actions">
-               <button className = "postcard-save" onClick = {createItinerary}>
-                  Create Itinerary
-               </button>
 
-            <div className="discover-more-wrapper">
-              <button className="postcard-details-button">
-                Discover More <span>✦</span>
+            <div className="postcard-actions">
+              <button
+                className="postcard-save"
+                onClick={createItinerary}
+              >
+                Create Itinerary
               </button>
 
-              <div className="discover-more-popup">
-                <h3>Explore This Destination</h3>
-                <p>More destination info will be added later.</p>
-              </div>
+              <div className="discover-more-wrapper">
+                <button className="postcard-details-button">
+                  Discover More <span>✦</span>
+                </button>
 
-            </div>
+                <div className="discover-more-popup">
+                  <h3>Explore This Destination</h3>
+                  <p>More destination info will be added later.</p>
+                </div>
+              </div>
             </div>
           </div>
         </article>
+
+        <button
+          type="button"
+          className="postcard-arrow postcard-arrow--right"
+          onClick={showNextPick}
+          aria-label="Next destination"
+          title="Next destination"
+        >
+          &#10095;
+        </button>
       </section>
 
       <div className="postcard-pagination">
@@ -127,6 +155,7 @@ function Recommendations() {
             className={itemIndex === index ? "active" : ""}
             onClick={() => setIndex(itemIndex)}
             aria-label={`Show ${item.name}`}
+            aria-current={itemIndex === index ? "true" : undefined}
           />
         ))}
       </div>
