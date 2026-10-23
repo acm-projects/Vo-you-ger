@@ -1,0 +1,11 @@
+const router=require('express').Router();
+const {authenticateToken}=require('../middleware/authMiddleware');
+const {generationLimiter}=require('../middleware/generationLimiter');
+const {countryAvailability,directRoute,directItinerary}=require('../controllers/countryPlanningController');
+const info=require('../controllers/countryInfoController');
+router.get('/',info.list);
+router.get('/:countryCode/planning',countryAvailability);
+router.get('/:countryCode',info.details);
+router.post('/:countryCode/route',authenticateToken,directRoute);
+router.post('/:countryCode/itinerary',authenticateToken,generationLimiter,directItinerary);
+module.exports=router;

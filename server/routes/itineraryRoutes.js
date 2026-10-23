@@ -1,3 +1,4 @@
+const { generationLimiter } = require('../middleware/generationLimiter');
 /**
  * server/routes/itineraryRoutes.js
  *
@@ -12,11 +13,11 @@ const { authenticateToken } = require("../middleware/authMiddleware");
 
 // POST /api/itinerary/generate
 // Generates an itinerary from Phase 2 candidate places and traveler quiz profile
-router.post("/generate", authenticateToken, createItinerary);
+router.post("/generate", authenticateToken, generationLimiter, createItinerary);
 
 // POST /api/itinerary/:tripId
 // Generates an itinerary and directly updates the specified trip in DynamoDB
-router.post("/:tripId", authenticateToken, createItinerary);
+router.post("/:tripId", authenticateToken, generationLimiter, createItinerary);
 
 module.exports = router;
 

@@ -4,7 +4,7 @@ import axios from "axios";
 
 // Create an Axios instance with backend base URL
 const API = axios.create({
-  baseURL: "http://localhost:8080/api",
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:8080/api",
 });
 
 // Request Interceptor: Runs automatically before EVERY HTTP request
@@ -32,11 +32,32 @@ export const getRecommendations = (quizData) =>
   API.post("/recommendations", quizData ? { quiz: quizData } : {});
 
 // Itinerary endpoints (Phase 3)
-export const generateItinerary = ({ tripId, destination, candidatePlaces, numberOfDays, quiz }) =>
+export const previewTripRoute = (tripId, { countryId, numberOfDays, numberOfNights, startDate }) =>
+  API.post(`/trips/${tripId}/route`, { countryId, numberOfDays, numberOfNights, startDate });
+
+export const getDestinationPlaces = (tripId, selection) =>
+  API.post(`/recommendations/${tripId}/places`, selection);
+
+export const saveTrip = (tripId) => API.put(`/trips/${tripId}/save`);
+export const unsaveTrip = (tripId) => API.delete(`/trips/${tripId}/save`);
+export const getSavedTrips = () => API.get("/trips/saved");
+export const getTripGlobe = () => API.get("/trips/globe");
+export const getTrip = (tripId) => API.get(`/trips/${tripId}`);
+export const getTripDayPlaces = (tripId, day) => API.get(`/trips/${tripId}/days/${day}/places`);
+export const getCountryPlanning = (countryCode) => API.get(`/countries/${countryCode}/planning`);
+export const getCountries = () => API.get('/countries');
+export const getCountryInfo = (countryCode) => API.get(`/countries/${countryCode}`);
+export const generateCountryTrip = (countryCode, input) => API.post(`/countries/${countryCode}/itinerary`, input);
+
+export const generateItinerary = ({ tripId, countryId, destinationId, destination, candidatePlaces, numberOfDays, numberOfNights, startDate, quiz }) =>
   API.post(tripId ? `/itinerary/${tripId}` : "/itinerary/generate", {
     destination,
+    countryId,
+    destinationId,
     candidatePlaces,
     numberOfDays,
+    numberOfNights,
+    startDate,
     quiz,
   });
 

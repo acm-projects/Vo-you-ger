@@ -4,7 +4,27 @@ const {
   saveTrip,
   unsaveTrip,
   getSavedTrips,
+  getSavedTripSummaries,
 } = require("../models/tripModel");
+const { globeResponse } = require("../services/tripSummaryService");
+const {apiError,sendError}=require('../services/apiError');
+function publicTrip(trip) {const {PK,SK,...result}=trip;return result;}
+async function getTripDayPlacesController(req,res) {
+  try {
+    const trip=await findTripById(req.user.userId,req.params.tripId);
+    if(!trip) throw apiError('TRIP_NOT_FOUND','Trip not found',404);
+    const data=await require('../services/savedVenueService').refreshDay(trip,Number(req.params.day));
+    return res.json(data);
+  } catch(error) {return sendError(res,error);}
+}
+
+async function getTripGlobeController(req, res) {
+  try {
+    return res.status(200).json(globeResponse(await getSavedTripSummaries(req.user.userId)));
+  } catch (error) {
+    return handleTripError(error, res);
+  }
+}
 
 function handleTripError(error, res) {
   if (
@@ -42,7 +62,7 @@ async function saveTripController(req, res) {
 
     return res.status(200).json({
       message: "Trip saved successfully",
-      trip,
+      trip: publicTrip(trip),
     });
   } catch (error) {
     return handleTripError(error, res);
@@ -59,7 +79,7 @@ async function unsaveTripController(req, res) {
 
     return res.status(200).json({
       message: "Trip removed from saved trips",
-      trip,
+      trip: publicTrip(trip),
     });
   } catch (error) {
     return handleTripError(error, res);
@@ -72,7 +92,7 @@ async function getSavedTripsController(req, res) {
     const trips = await getSavedTrips(req.user.userId);
 
     return res.status(200).json({
-      trips,
+      trips: trips.map(publicTrip),
       count: trips.length,
     });
   } catch (error) {
@@ -95,7 +115,7 @@ async function getTripController(req, res) {
       });
     }
 
-    return res.status(200).json({ trip });
+    return res.status(200).json({ trip: publicTrip(trip) });
   } catch (error) {
     return handleTripError(error, res);
   }
@@ -106,4 +126,6 @@ module.exports = {
   unsaveTripController,
   getSavedTripsController,
   getTripController,
+  getTripGlobeController,
+  getTripDayPlacesController,
 };
