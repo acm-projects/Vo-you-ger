@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Penang 2026 - Itinerary</title>
+
+    <link rel="stylesheet" href="itenNew.css">
+    <script src="itenNew.jsx" defer></script>
+</head>
+
+<body>
+
+    <!-- Map banner -->
+    <header class="map-banner">
+        <img src="MapScroll-Picsart-AiImageEnhancer.png"
+             alt="Map of Penang"
+             class="map-image">
+    </header>
+
+    <main>
+
+        <h1 class="page-title">Penang 2026</h1>
+
+        <!-- Details modal -->
+        <div class="modal-container"
+             id="details-modal"
+             aria-hidden="true">
+
+            <div class="modal"
+                 role="dialog"
+                 aria-modal="true"
+                 aria-labelledby="details-title">
+
+                <h2 id="details-title">Details</h2>
+
+                <div id="details-content" class="details-content">
+                    <p>Your details will go here.</p>
+                </div>
+
+                <button type="button" id="close-details">
+                    Close
+                </button>
+
+            </div>
+        </div>
+
+        <h2 class="itinerary-heading">Your Itinerary: </h2>
+        <div class="content-container">
+
+            <!-- ===================== ITINERARY ===================== -->
+
+            <section class="itinerary">
+
+                <div class="itinerary-inner">
+
+                    <h2>Itinerary:</h2>
+
+                    <!-- ================================================= -->
+                    <!-- DAY 1 -->
+                    <!-- ================================================= -->
+
+                    <section class="day-section">
+
+                        <button class="day-dropdown"
+                                type="button"
+                                aria-expanded="true">
+
+                            <span class="arrow">⌄</span>
+                            <span>Day 1 · Saturday, October 24, 2026</span>
+
+                        </button>
+
+                        <div class="day-content">
+
+                            <p class="day-theme">
+                                Peranakan Heritage | Clan Jetties
+                            </p>
+
+                            <!-- MORNING -->
+
+                            <section class="time-section">
+
+                                <div class="time-heading">
+                                    <span class="time-icon">☀️</span>
+                                    <span class="time-label">Morning</span>
+                                    <span class="time-line"></span>
+                                </div>
+
+                                <div class="activity-grid">
+
+                                    <article class="activity-card">
+
+                                        <img src="PinangPeranakanMansion.jpg"
+                                             alt="Pinang Peranakan Mansion">
+
+                                        <div class="activity-info">
+                                            <h3>Pinang Peranakan Mansion</h3>
+                                            <p>Opens 9:30 AM · $10</p>
+                                            <p>Rating: 4.5 ★</p>
+                                        </div>
+
+                                        <button type="button"
+                                                class="place-details-button"
+                                                data-place="Pinang Peranakan Mansion">
+                                            Details
+                                        </button>
+
+                                    </article>
+
+                                    <article class="activity-card">
+
+                                        <img src="LeongSanTong.jpg"
+                                             alt="Leong San Tong Khoo Kongsi">
+
+                                        <div class="activity-info">
+                                            <h3>Leong San Tong Khoo Kongsi</h3>
+                                            <p>9:00 AM - 5:00 PM · $5</p>
+                                            <p>Rating: 4.4 ★</p>
+                                        </div>
+
+                                        <button type="button"
+                                                class="place-details-button"
+                                                data-place="Leong San Tong Khoo Kongsi">
+                                            Details
+                                        </button>
+
+                                    </article>
+
+                                </div>
+                            </section>
+
+                            <!-- AFTERNOON -->
+
+                            <section class="time-section">
+
+                                <div class="time-heading">
+                                    <span class="time-icon">🌇</span>
+                                    <span class="time-label">Afternoon</span>
+                                    <span class="time-line"></span>
+                                </div>
+
+                                <div class="activity-grid">
+
+                                    <article class="activity-card">
+
+                                        <img src="ClanJettiesPenang.jpg"
+                                             alt="Clan Jetties of Penang">
+
+                                        <div class="activity-info">
+                                            <h3>Clan Jetties of Penang</h3>
+                                            <p>9:00 AM - 9:00 PM · Free</p>
+                                            <p>Rating: 4.2 ★</p>
+                                        </div>
+
+                                        <button type="button"
+                                                class="place-details-button"
+                                                data-place="Clan Jetties of Penang">
+                                            Details
+                                        </button>
+
+                                    </article>
+
+                                    <article class="activity-card">
+
+                                        <img src="Queen-Victoria-Memorial-Clock-Tower-1.jpg"
+                                             alt="Queen Victoria Memorial Clock Tower">
+
+                                        <div class="activity-info">
+                                            <h3>Queen Victoria Memorial Clock Tower</h3>
+                                            <p>Open 24 hours · Free</p>
+                                            <p>Rating: 4.2 ★</p>
+                                        </div>
+
+                                        <button type="button"
+                                                class="place-details-button"
+                                                data-place="Queen Victoria Memorial Clock Tower">
+                                            Details
+                                        </button>
+
+                                    </article>
+
+                                </div>
+                            </section>
+
+                            <!-- EVENING -->
+
+                            <section class="time-section">
+
+                                <div class="time-heading">
+                                    <span class="time-icon">🍽️</span>
+                                    <span class="time-label">Evening · Dinner</span>
+                                    <span class="time-line"></span>
+                                </div>
+
+                                <div class="activity-grid">
+
+                                    <article class="activity-card">
+
+                                        <img src="chulia-street-night-market-loklok.jpg"
+                                             alt="Chulia Street Hawker Food">
+
+                                        <div class="activity-info">
+                                            <h3>Chulia Street Hawker Food</h3>
+                                            <p>4:00 PM – 12:00 AM · $5–$10</p>
+                                            <p>Rating: 4.1 ★</p>
+                                        </div>
+
+                                        <button type="button"
+                                                class="place-details-button"
+                                                data-place="Chulia Street Hawker Food">
+                                            Details
+                                        </button>
+
+                                    </article>
+
+                                </div>
+                            </section>
+
+                            <!-- LATE NIGHT -->
+
+                            <section class="time-section">
+
+                                <div class="time-heading">
+                                    <span class="time-icon">🌃</span>
+                                    <span class="time-label">Late Night</span>
+                                    <span class="time-line"></span>
+                                </div>
+
+                                <div class="activity-grid">
+
+                                    <article class="activity-card">
+
+                                        <img src="LoveLane.jpg"
+                                             alt="Love Lane in George Town">
+
+                                        <div class="activity-info">
+                                            <h3>Love Lane</h3>
+                                            <p>After 10:00 PM · $15–$25</p>
+                                            <p>Rating: 4.2 ★</p>
+                                        </div>
+
+                                        <button type="button"
+                                                class="place-details-button"
+                                                data-place="Love Lane">
+                                            Details
+                                        </button>
+
+                                    </article>
+
+                                </div>
+                            </section>
+
+                        </div>
+                    </section>
+
+
+                    <!-- ================================================= -->
+                    <!-- DAY 2 -->
+                    <!-- ================================================= -->
+
+                    <section class="day-section">
+
+                        <button class="day-dropdown"
+                                type="button"
+                                aria-expanded="false">
+
+                            <span class="arrow">⌄</span>
+                            <span>Day 2 · Sunday, October 25, 2026</span>
+
+                        </button>
+
+                        <div class="day-content" hidden>
+
+                            <p class="day-theme">
+                                Colonial Forts | Hillside Vistas
+                            </p>
+
+                            <!-- MORNING -->
+
+                            <section class="time-section">
+
+                                <div class="time-heading">
+                                    <span class="time-icon">☀️</span>
+                                    <span class="time-label">Morning</span>
+                                    <span class="time-line"></span>
+                                </div>
+
+                                <div class="activity-grid">
+
+                                    <article class="activity-card">
+
+                                        <img src="FortCornwallis.jpg"
+                                             alt="Fort Cornwallis">
+
+                                        <div class="activity-info">
+                                            <h3>Fort Cornwallis</h3>
+                                            <p>9:00 AM – 6:00 PM · $5</p>
+                                            <p>Rating: 3.5 ★</p>
+                                        </div>
+
+                                        <button type="button"
+                                                class="place-details-button"
+                                                data-place="Fort Cornwallis">
+                                            Details
+                                        </button>
+
+                                    </article>
+
+                                    <article class="activity-card">
+
+                                        <img src="MarketStreet.jpg"
+                                             alt="Market Street in George Town">
+
+                                        <div class="activity-info">
+                                            <h3>Market Street</h3>
+                                            <p>Open 24 hours · Free</p>
+                                            <p>Rating: 4.6 ★</p>
+                                        </div>
+
+                                        <button type="button"
+                                                class="place-details-button"
+                                                data-place="Market Street">
+                                            Details
+                                        </button>
+
+                                    </article>
+
+                                </div>
+                            </section>
+
+                            <!-- AFTERNOON -->
+
+                            <section class="time-section">
+
+                                <div class="time-heading">
+                                    <span class="time-icon">🌇</span>
+                                    <span class="time-label">Afternoon</span>
+                                    <span class="time-line"></span>
+                                </div>
+
+                                <div class="activity-grid">
+
+                                    <article class="activity-card">
+
+                                        <img src="penang-hill.jpg"
+                                             alt="Penang Hill">
+
+                                        <div class="activity-info">
+                                            <h3>Penang Hill</h3>
+                                            <p>6:30 AM – 11:00 PM · $15</p>
+                                            <p>Rating: 4.4 ★</p>
+                                        </div>
+
+                                        <button type="button"
+                                                class="place-details-button"
+                                                data-place="Penang Hill">
+                                            Details
+                                        </button>
+
+                                    </article>
+
+                                </div>
+                            </section>
+
+                            <!-- EVENING -->
+
+                            <section class="time-section">
+
+                                <div class="time-heading">
+                                    <span class="time-icon">🍽️</span>
+                                    <span class="time-label">Evening · Dinner</span>
+                                    <span class="time-line"></span>
+                                </div>
+
+                                <div class="activity-grid">
+
+                                    <article class="activity-card">
+
+                                        <img src="GurneyDriveHawkerCenter.jpg"
+                                             alt="Gurney Drive Hawker Center">
+
+                                        <div class="activity-info">
+                                            <h3>Gurney Drive Hawker Center</h3>
+                                            <p>3:00 PM – 12:00 AM · $10–$15</p>
+                                            <p>Rating: 3.8 ★</p>
+                                        </div>
+
+                                        <button type="button"
+                                                class="place-details-button"
+                                                data-place="Gurney Drive Hawker Center">
+                                            Details
+                                        </button>
+
+                                    </article>
+
+                                </div>
+                            </section>
+
+                            <!-- LATE NIGHT -->
+
+                            <section class="time-section">
+
+                                <div class="time-heading">
+                                    <span class="time-icon">🌃</span>
+                                    <span class="time-label">Late Night</span>
+                                    <span class="time-line"></span>
+                                </div>
+
+                                <div class="activity-grid">
+
+                                    <article class="activity-card">
+
+                                        <img src="PasarMalamBatuFeringghi.jpg"
+                                             alt="Batu Ferringhi night market">
+
+                                        <div class="activity-info">
+                                            <h3>Pasar Malam Batu Feringghi</h3>
+                                            <p>7:00 PM – 11:00 PM · Varies</p>
+                                            <p>Rating: 3.8 ★</p>
+                                        </div>
+
+                                        <button type="button"
+                                                class="place-details-button"
+                                                data-place="Pasar Malam Batu Feringghi">
+                                            Details
+                                        </button>
+
+                                    </article>
+
+                                </div>
+                            </section>
+
+                        </div>
+                    </section>
+
+
+                    <!-- ================================================= -->
+                    <!-- DAY 3 -->
+                    <!-- ================================================= -->
+
+                    <section class="day-section">
+
+                        <button class="day-dropdown"
+                                type="button"
+                                aria-expanded="false">
+
+                            <span class="arrow">⌄</span>
+                            <span>Day 3 · Monday, October 26, 2026</span>
+
+                        </button>
+
+                        <div class="day-content" hidden>
+
+                            <p class="day-theme">
+                                Historic Quarters | Culinary Trails
+                            </p>
+
+                            <!-- MORNING -->
+
+                            <section class="time-section">
+
+                                <div class="time-heading">
+                                    <span class="time-icon">☀️</span>
+                                    <span class="time-label">Morning</span>
+                                    <span class="time-line"></span>
+                                </div>
+
+                                <div class="activity-grid">
+
+                                    <article class="activity-card">
+
+                                        <img src="GeorgetownUNESCO.jpg"
+                                             alt="George Town UNESCO Historic Site">
+
+                                        <div class="activity-info">
+                                            <h3>Georgetown UNESCO Historic Site</h3>
+                                            <p>9:00 AM – 5:00 PM · Free</p>
+                                            <p>Rating: 4.4 ★</p>
+                                        </div>
+
+                                        <button type="button"
+                                                class="place-details-button"
+                                                data-place="Georgetown UNESCO Historic Site">
+                                            Details
+                                        </button>
+
+                                    </article>
+
+                                </div>
+                            </section>
+
+                            <!-- AFTERNOON -->
+
+                            <section class="time-section">
+
+                                <div class="time-heading">
+                                    <span class="time-icon">🌇</span>
+                                    <span class="time-label">Afternoon</span>
+                                    <span class="time-line"></span>
+                                </div>
+
+                                <div class="activity-grid">
+
+                                    <article class="activity-card">
+
+                                        <img src="GTWHI_office_in_George_Town,_Penang.jpg"
+                                             alt="George Town World Heritage Incorporated">
+
+                                        <div class="activity-info">
+                                            <h3>George Town World Heritage Incorporated</h3>
+                                            <p>9:00 AM – 5:00 PM · Free</p>
+                                            <p>Rating: 4.5 ★</p>
+                                        </div>
+
+                                        <button type="button"
+                                                class="place-details-button"
+                                                data-place="George Town World Heritage Incorporated">
+                                            Details
+                                        </button>
+
+                                    </article>
+
+                                </div>
+                            </section>
+
+                            <!-- EVENING -->
+
+                            <section class="time-section">
+
+                                <div class="time-heading">
+                                    <span class="time-icon">🍽️</span>
+                                    <span class="time-label">Evening · Dinner</span>
+                                    <span class="time-line"></span>
+                                </div>
+
+                                <div class="activity-grid">
+
+                                    <article class="activity-card">
+
+                                        <img src="Kimberley-Street-Duck-Kway-Chap-1.jpg.webp"
+                                             alt="Kimberley Street Duck Kway Chap">
+
+                                        <div class="activity-info">
+                                            <h3>Kimberley Street Duck Kway Chap</h3>
+                                            <p>1:00 PM – 10:00 PM · $5–$8</p>
+                                            <p>Rating: 3.9 ★</p>
+                                        </div>
+
+                                        <button type="button"
+                                                class="place-details-button"
+                                                data-place="Kimberley Street Duck Kway Chap">
+                                            Details
+                                        </button>
+
+                                    </article>
+
+                                </div>
+                            </section>
+
+                            <!-- LATE NIGHT -->
+
+                            <section class="time-section">
+
+                                <div class="time-heading">
+                                    <span class="time-icon">🌃</span>
+                                    <span class="time-label">Late Night</span>
+                                    <span class="time-line"></span>
+                                </div>
+
+                                <div class="activity-grid">
+
+                                    <article class="activity-card">
+
+                                        <img src="KimberleyStreetFoodNightMarket.jpg"
+                                             alt="Kimberley Street Food Night Market">
+
+                                        <div class="activity-info">
+                                            <h3>Kimberley Street Food Night Market</h3>
+                                            <p>5:00 PM – 11:00 PM · $5–$10</p>
+                                            <p>Rating: 4.0 ★</p>
+                                        </div>
+
+                                        <button type="button"
+                                                class="place-details-button"
+                                                data-place="Kimberley Street Food Night Market">
+                                            Details
+                                        </button>
+
+                                    </article>
+
+                                </div>
+                            </section>
+
+                        </div>
+                    </section>
+
+
+                    <!-- ================================================= -->
+                    <!-- DAY 4 -->
+                    <!-- ================================================= -->
+
+                    <section class="day-section">
+
+                        <button class="day-dropdown"
+                                type="button"
+                                aria-expanded="false">
+
+                            <span class="arrow">⌄</span>
+                            <span>Day 4 · Tuesday, October 27, 2026</span>
+
+                        </button>
+
+                        <div class="day-content" hidden>
+
+                            <p class="day-theme">
+                                Local Flavors | Neighborhood Markets
+                            </p>
+
+                            <!-- MORNING -->
+
+                            <section class="time-section">
+
+                                <div class="time-heading">
+                                    <span class="time-icon">☀️</span>
+                                    <span class="time-label">Morning</span>
+                                    <span class="time-line"></span>
+                                </div>
+
+                                <div class="activity-grid">
+
+                                    <article class="activity-card">
+
+                                        <img src="malaysia-penang-kek-lok-shadows.jpg"
+                                             alt="George Town heritage site">
+
+                                        <div class="activity-info">
+                                            <h3>Georgetown Heritage Site</h3>
+                                            <p>Open access · Varies</p>
+                                            <p>Rating: 4.8 ★</p>
+                                        </div>
+
+                                        <button type="button"
+                                                class="place-details-button"
+                                                data-place="Georgetown Heritage Site">
+                                            Details
+                                        </button>
+
+                                    </article>
+
+                                </div>
+                            </section>
+
+                            <!-- AFTERNOON -->
+
+                            <section class="time-section">
+
+                                <div class="time-heading">
+                                    <span class="time-icon">🌇</span>
+                                    <span class="time-label">Afternoon</span>
+                                    <span class="time-line"></span>
+                                </div>
+
+                                <div class="activity-grid">
+
+                                    <article class="activity-card">
+
+                                        <img src="(Cecil Street).jpg"
+                                             alt="Muar chee at Cecil Street">
+
+                                        <div class="activity-info">
+                                            <h3>Muar Chee (Cecil Street)</h3>
+                                            <p>11:00 AM – 4:30 PM · $3</p>
+                                            <p>Rating: 4.1 ★</p>
+                                        </div>
+
+                                        <button type="button"
+                                                class="place-details-button"
+                                                data-place="Muar Chee (Cecil Street)">
+                                            Details
+                                        </button>
+
+                                    </article>
+
+                                </div>
+                            </section>
+
+                            <!-- EVENING -->
+
+                            <section class="time-section">
+
+                                <div class="time-heading">
+                                    <span class="time-icon">🍽️</span>
+                                    <span class="time-label">Evening · Dinner</span>
+                                    <span class="time-line"></span>
+                                </div>
+
+                                <div class="activity-grid">
+
+                                    <article class="activity-card">
+
+                                        <img src="PulauTikus.jpg"
+                                             alt="Pulau Tikus Hawker Center">
+
+                                        <div class="activity-info">
+                                            <h3>Pulau Tikus Hawker Center</h3>
+                                            <p>5:00 PM – 10:00 PM · $8–$12</p>
+                                            <p>Rating: 4.0 ★</p>
+                                        </div>
+
+                                        <button type="button"
+                                                class="place-details-button"
+                                                data-place="Pulau Tikus Hawker Center">
+                                            Details
+                                        </button>
+
+                                    </article>
+
+                                </div>
+                            </section>
+
+                            <!-- LATE NIGHT -->
+
+                            <section class="time-section">
+
+                                <div class="time-heading">
+                                    <span class="time-icon">🌃</span>
+                                    <span class="time-label">Late Night</span>
+                                    <span class="time-line"></span>
+                                </div>
+
+                                <div class="activity-grid">
+
+                                    <article class="activity-card">
+
+                                        <img src="NewLaneFoodstalls.jpg"
+                                             alt="New Lane Street Foodstalls">
+
+                                        <div class="activity-info">
+                                            <h3>New Lane Street Foodstalls</h3>
+                                            <p>4:00 PM – 11:00 PM · $10–$15</p>
+                                            <p>Rating: 3.8 ★</p>
+                                        </div>
+
+                                        <button type="button"
+                                                class="place-details-button"
+                                                data-place="New Lane Street Foodstalls">
+                                            Details
+                                        </button>
+
+                                    </article>
+
+                                </div>
+                            </section>
+
+                        </div>
+                    </section>
+
+
+                    <!-- ================================================= -->
+                    <!-- DAY 5 -->
+                    <!-- ================================================= -->
+
+                    <section class="day-section">
+
+                        <button class="day-dropdown"
+                                type="button"
+                                aria-expanded="false">
+
+                            <span class="arrow">⌄</span>
+                            <span>Day 5 · Wednesday, October 28, 2026</span>
+
+                        </button>
+
+                        <div class="day-content" hidden>
+
+                            <p class="day-theme">
+                                Night Markets | Local Treats
+                            </p>
+
+                            <!-- MORNING -->
+
+                            <section class="time-section">
+
+                                <div class="time-heading">
+                                    <span class="time-icon">☀️</span>
+                                    <span class="time-label">Morning</span>
+                                    <span class="time-line"></span>
+                                </div>
+
+                                <div class="activity-grid">
+
+                                    <article class="activity-card">
+
+                                        <img src="ChewJetty.jpg"
+                                             alt="Chew Jetty in Penang">
+
+                                        <div class="activity-info">
+                                            <h3>Chew Jetty</h3>
+                                            <p>9:00 AM – 9:00 PM · Free</p>
+                                            <p>Rating: 4.1 ★</p>
+                                        </div>
+
+                                        <button type="button"
+                                                class="place-details-button"
+                                                data-place="Chew Jetty">
+                                            Details
+                                        </button>
+
+                                    </article>
+
+                                </div>
+                            </section>
+
+                            <!-- AFTERNOON -->
+
+                            <section class="time-section">
+
+                                <div class="time-heading">
+                                    <span class="time-icon">🌇</span>
+                                    <span class="time-label">Afternoon</span>
+                                    <span class="time-line"></span>
+                                </div>
+
+                                <div class="activity-grid">
+
+                                    <article class="activity-card">
+
+                                        <img src="padang-brown-food-court.jpg"
+                                             alt="Kompleks Makanan Padang Brown">
+
+                                        <div class="activity-info">
+                                            <h3>Kompleks Makanan Padang Brown</h3>
+                                            <p>12:00 PM - 11:00 PM · $5-$10</p>
+                                            <p>Rating: 4.0 ★</p>
+                                        </div>
+
+                                        <button type="button"
+                                                class="place-details-button"
+                                                data-place="Kompleks Makanan Padang Brown">
+                                            Details
+                                        </button>
+
+                                    </article>
+
+                                </div>
+                            </section>
+
+                            <!-- EVENING -->
+
+                            <section class="time-section">
+
+                                <div class="time-heading">
+                                    <span class="time-icon">🍽️</span>
+                                    <span class="time-label">Evening · Dinner</span>
+                                    <span class="time-line"></span>
+                                </div>
+
+                                <div class="activity-grid">
+
+                                    <article class="activity-card">
+
+                                        <img src="PresgraveStreetHawkerCentre.jpg"
+                                             alt="Presgrave Street Hawker Centre">
+
+                                        <div class="activity-info">
+                                            <h3>Presgrave Street Hawker Centre</h3>
+                                            <p>4:00 PM – 10:00 PM · $10–$15</p>
+                                            <p>Rating: 4.2 ★</p>
+                                        </div>
+
+                                        <button type="button"
+                                                class="place-details-button"
+                                                data-place="Presgrave Street Hawker Centre">
+                                            Details
+                                        </button>
+
+                                    </article>
+
+                                </div>
+                            </section>
+
+                            <!-- LATE NIGHT -->
+
+                            <section class="time-section">
+
+                                <div class="time-heading">
+                                    <span class="time-icon">🌃</span>
+                                    <span class="time-label">Late Night</span>
+                                    <span class="time-line"></span>
+                                </div>
+
+                                <div class="activity-grid">
+
+                                    <article class="activity-card">
+
+                                        <img src="FarlimWednesdayNightMarket.jpg"
+                                             alt="Farlim Wednesday Night Market">
+
+                                        <div class="activity-info">
+                                            <h3>Farlim Wednesday Night Market</h3>
+                                            <p>4:00 PM – 11:00 PM · $5–$15</p>
+                                            <p>Rating: 4.0 ★</p>
+                                        </div>
+
+                                        <button type="button"
+                                                class="place-details-button"
+                                                data-place="Farlim Wednesday Night Market">
+                                            Details
+                                        </button>
+
+                                    </article>
+
+                                </div>
+                            </section>
+
+                        </div>
+                    </section>
+
+                </div>
+            </section>
+
+
+            <!-- ===================== SCRAPBOOK IMAGES ===================== -->
+
+            
+            <aside class="right-boxes">
+            <!-- First image with travel information overlay -->
+            <div class="travel-info-image">
+                <img
+                src="sidePiece (1)-Picsart-AiImageEnhancer.png"
+                alt="Decorative brown scrapbook paper"
+                class="side-image"
+                />
+
+                <div class="travel-info-text">
+                <h4>Languages Spoken</h4>
+                <p>
+                    Malay | English | Mandarin
+                </p>
+
+                <h4>Currency</h4>
+                <p>
+                    Malaysian Ringgit (MYR / RM)
+                </p>
+
+                <h4>Cultural Tips</h4>
+                <ul>
+                    <li>Tipping is not customary</li>
+                    <li>Remove your shoes when entering homes and where required at religious sites.</li>
+                </ul>
+
+                <h4>Transit Tips</h4>
+                <ul>
+                    <li>Grab: convenient ride-hailing.</li>
+                    <li>Local bus routes for public transport</li>
+                    <li>Keep small amounts of cash handy.</li>
+                </ul>
+
+                <h4>Payment | Cash Advice</h4>
+                <ul>
+                    <li>Visa and Mastercard</li>
+                    <li>Digital payment options: Touch 'n Go eWallet, GrabPay, DuitNow QR</li>
+                </ul>
+                </div>
+            </div>
+
+            <!-- Second image remains unchanged -->
+            <img
+                src="cuteCar (1)-Picsart-AiImageEnhancer.png"
+                alt="Scrapbook memory"
+                class="side-image"
+            />
+            </aside>
+
+
+        </div>
+    </main>
+
+</body>
+</html>
