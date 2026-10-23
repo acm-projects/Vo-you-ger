@@ -44,6 +44,13 @@ app.use("/api/recommendations", recommendationRoutes);
 app.use("/api/itinerary", itineraryRoutes);
 // Mount Saved Trips routes
 app.use("/api/trips", tripRoutes);
+app.use("/api/countries", require("./routes/countryRoutes"));
+app.use((error, req, res, next) => {
+  if(error.type==='entity.too.large') return res.status(413).json({error:'Request Error',code:'BODY_TOO_LARGE',message:'Request body exceeds the supported size'});
+  if(error instanceof SyntaxError && error.status === 400) return res.status(400).json({error:"Bad Request",code:"INVALID_JSON",message:"Request body must be valid JSON"});
+  if(res.headersSent) return next(error);
+  return res.status(500).json({error:"Internal Server Error",code:"INTERNAL_ERROR",message:"Unable to process this request"});
+});
 
 // Export app instance (useful for testing)
 module.exports = app;

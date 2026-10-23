@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-10-23T18:44:48.326Z",
+  "runtime": "v24.20.0",
+  "platform": "darwin/arm64",
+  "policyVersion": "2026-10-23.1",
+  "externalServices": "Not exercised by this offline benchmark; no API calls",
+  "benchmarks": [
+    {
+      "name": "Rank supported countries, 21 days",
+      "iterations": 50,
+      "p50Ms": 5.01,
+      "p95Ms": 5.778,
+      "resultCount": 62
+    },
+    {
+      "name": "France 21-day outline",
+      "iterations": 50,
+      "p50Ms": 0.78,
+      "p95Ms": 0.862,
+      "resultCount": 5
+    },
+    {
+      "name": "Synthetic dense 80-node graph, up to five bases",
+      "iterations": 50,
+      "p50Ms": 1.89,
+      "p95Ms": 2.533,
+      "resultCount": 280
+    }
+  ],
+  "thresholdFailures": []
+}

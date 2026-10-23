@@ -385,13 +385,13 @@ form.addEventListener("submit", async (e) => {
     localStorage.setItem("user", JSON.stringify(data.user));
 
     // 6. Redirect to the main React homepage
-    // After signup, start the travel assessment.
-// After login, return to the homepage.
-  if (isSignup) {
-     window.location.href = "/Assessments/assessments.html";
-  } else {
-     window.location.href = "/";
-  }
+// After signup, start the assessment. After login, return home.
+      // First-time users can complete their assessment before planning a trip.
+      if (isSignup) {
+        window.location.href = "/Assessments/assessments.html";
+      } else {
+        window.location.href = "/";
+      }
   } catch (err) {
     console.error("Network error:", err);
     error_message.innerText =

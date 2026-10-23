@@ -1,0 +1,322 @@
+{
+  "registryScope": "ISO 3166-1 alpha-2, including territories/dependencies; excludes non-ISO extensions such as XK. Geographic coverage is separate from operational planning readiness.",
+  "registryCountries": 249,
+  "countriesWithFiveVerifiedSettlements": 224,
+  "countriesBelowFive": 25,
+  "verifiedDestinationRecords": 1186,
+  "totalDestinationRecords": 1227,
+  "planningEnabledCountries": 62,
+  "overnightBases": 88,
+  "reviewedDomesticConnections": 26,
+  "multiCityCountries": 15,
+  "routeCombinations": {
+    "2": 26,
+    "3": 11,
+    "4": 5,
+    "5": 2
+  },
+  "countriesWithIncompletePlanning": 187,
+  "coverageExceptions": [
+    {
+      "countryCode": "AQ",
+      "name": "Antarctica",
+      "verifiedSettlements": 0,
+      "geographicCoverage": "exception",
+      "exception": {
+        "code": "no_permanent_cities",
+        "reason": "Research stations are not counted as permanent cities or towns."
+      },
+      "planningAvailable": false,
+      "overnightBases": 0
+    },
+    {
+      "countryCode": "BL",
+      "name": "Saint Barthelemy",
+      "verifiedSettlements": 1,
+      "geographicCoverage": "source_gap",
+      "exception": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "planningAvailable": false,
+      "overnightBases": 0
+    },
+    {
+      "countryCode": "BM",
+      "name": "Bermuda",
+      "verifiedSettlements": 3,
+      "geographicCoverage": "source_gap",
+      "exception": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "planningAvailable": false,
+      "overnightBases": 0
+    },
+    {
+      "countryCode": "BV",
+      "name": "Bouvet Island",
+      "verifiedSettlements": 0,
+      "geographicCoverage": "source_gap",
+      "exception": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "planningAvailable": false,
+      "overnightBases": 0
+    },
+    {
+      "countryCode": "CC",
+      "name": "Cocos Islands",
+      "verifiedSettlements": 1,
+      "geographicCoverage": "source_gap",
+      "exception": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "planningAvailable": false,
+      "overnightBases": 0
+    },
+    {
+      "countryCode": "CK",
+      "name": "Cook Islands",
+      "verifiedSettlements": 2,
+      "geographicCoverage": "source_gap",
+      "exception": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "planningAvailable": false,
+      "overnightBases": 0
+    },
+    {
+      "countryCode": "CX",
+      "name": "Christmas Island",
+      "verifiedSettlements": 1,
+      "geographicCoverage": "source_gap",
+      "exception": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "planningAvailable": false,
+      "overnightBases": 0
+    },
+    {
+      "countryCode": "FK",
+      "name": "Falkland Islands",
+      "verifiedSettlements": 1,
+      "geographicCoverage": "source_gap",
+      "exception": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "planningAvailable": false,
+      "overnightBases": 0
+    },
+    {
+      "countryCode": "GI",
+      "name": "Gibraltar",
+      "verifiedSettlements": 2,
+      "geographicCoverage": "source_gap",
+      "exception": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "planningAvailable": false,
+      "overnightBases": 0
+    },
+    {
+      "countryCode": "GS",
+      "name": "South Georgia and the South Sandwich Islands",
+      "verifiedSettlements": 1,
+      "geographicCoverage": "source_gap",
+      "exception": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "planningAvailable": false,
+      "overnightBases": 0
+    },
+    {
+      "countryCode": "HM",
+      "name": "Heard Island and McDonald Islands",
+      "verifiedSettlements": 0,
+      "geographicCoverage": "source_gap",
+      "exception": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "planningAvailable": false,
+      "overnightBases": 0
+    },
+    {
+      "countryCode": "IO",
+      "name": "British Indian Ocean Territory",
+      "verifiedSettlements": 0,
+      "geographicCoverage": "source_gap",
+      "exception": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "planningAvailable": false,
+      "overnightBases": 0
+    },
+    {
+      "countryCode": "MC",
+      "name": "Monaco",
+      "verifiedSettlements": 1,
+      "geographicCoverage": "exception",
+      "exception": {
+        "code": "city_state",
+        "reason": "Monaco is a single municipality; quarters are not counted as independent towns."
+      },
+      "planningAvailable": false,
+      "overnightBases": 0
+    },
+    {
+      "countryCode": "MS",
+      "name": "Montserrat",
+      "verifiedSettlements": 4,
+      "geographicCoverage": "source_gap",
+      "exception": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "planningAvailable": false,
+      "overnightBases": 0
+    },
+    {
+      "countryCode": "NF",
+      "name": "Norfolk Island",
+      "verifiedSettlements": 1,
+      "geographicCoverage": "source_gap",
+      "exception": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "planningAvailable": false,
+      "overnightBases": 0
+    },
+    {
+      "countryCode": "NU",
+      "name": "Niue",
+      "verifiedSettlements": 1,
+      "geographicCoverage": "source_gap",
+      "exception": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "planningAvailable": false,
+      "overnightBases": 0
+    },
+    {
+      "countryCode": "PM",
+      "name": "Saint Pierre and Miquelon",
+      "verifiedSettlements": 2,
+      "geographicCoverage": "source_gap",
+      "exception": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "planningAvailable": false,
+      "overnightBases": 0
+    },
+    {
+      "countryCode": "PN",
+      "name": "Pitcairn",
+      "verifiedSettlements": 1,
+      "geographicCoverage": "source_gap",
+      "exception": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "planningAvailable": false,
+      "overnightBases": 0
+    },
+    {
+      "countryCode": "SG",
+      "name": "Singapore",
+      "verifiedSettlements": 1,
+      "geographicCoverage": "exception",
+      "exception": {
+        "code": "city_state",
+        "reason": "Singapore is a city-state; planning areas/neighborhoods are not counted as separate cities."
+      },
+      "planningAvailable": true,
+      "overnightBases": 1
+    },
+    {
+      "countryCode": "SJ",
+      "name": "Svalbard and Jan Mayen",
+      "verifiedSettlements": 2,
+      "geographicCoverage": "source_gap",
+      "exception": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "planningAvailable": false,
+      "overnightBases": 0
+    },
+    {
+      "countryCode": "TF",
+      "name": "French Southern Territories",
+      "verifiedSettlements": 1,
+      "geographicCoverage": "source_gap",
+      "exception": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "planningAvailable": false,
+      "overnightBases": 0
+    },
+    {
+      "countryCode": "TK",
+      "name": "Tokelau",
+      "verifiedSettlements": 3,
+      "geographicCoverage": "source_gap",
+      "exception": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "planningAvailable": false,
+      "overnightBases": 0
+    },
+    {
+      "countryCode": "UM",
+      "name": "United States Minor Outlying Islands",
+      "verifiedSettlements": 0,
+      "geographicCoverage": "source_gap",
+      "exception": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "planningAvailable": false,
+      "overnightBases": 0
+    },
+    {
+      "countryCode": "VA",
+      "name": "Vatican",
+      "verifiedSettlements": 1,
+      "geographicCoverage": "exception",
+      "exception": {
+        "code": "city_state",
+        "reason": "Vatican City is one city-state."
+      },
+      "planningAvailable": false,
+      "overnightBases": 0
+    },
+    {
+      "countryCode": "VG",
+      "name": "British Virgin Islands",
+      "verifiedSettlements": 2,
+      "geographicCoverage": "source_gap",
+      "exception": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "planningAvailable": false,
+      "overnightBases": 0
+    }
+  ],
+  "note": "Gazetteer verification proves settlement identity/country, not safety, accommodation availability, or transport readiness. Search is policy-bounded; combinations ignore direction."
+}

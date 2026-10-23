@@ -33,7 +33,9 @@
  * marked with color "green" (visa-free).
  */
 
-const { toCountryCode } = require("../utils/countryCodes");
+const { toCountryCode, VALID_ISO_CODES } = require("../utils/countryCodes");
+const { TRIP_POLICY } = require('../config/tripPolicy');
+const { count, mapLimit } = require('./telemetryService');
 
 // RapidAPI endpoint for TravelBuddy Visa Requirements API
 const VISA_API_URL = "https://visa-requirement.p.rapidapi.com/v2/visa/map";
@@ -55,14 +57,14 @@ function extractGreenCountryCodes(json) {
     return green
       .split(",")
       .map((code) => code.trim().toUpperCase())
-      .filter((code) => code.length === 2);
+      .filter((code) => VALID_ISO_CODES.has(code));
   }
 
   // Or as an array of country code strings: ["FR", "ES", "IT"]
   if (Array.isArray(green)) {
     return green
       .map((code) => String(code).trim().toUpperCase())
-      .filter((code) => code.length === 2);
+      .filter((code) => VALID_ISO_CODES.has(code));
   }
 
   return [];
@@ -83,6 +85,7 @@ async function fetchVisaFreeForPassport(passportCode) {
       `Invalid or unrecognized passport country code: "${passportCode}"`
     );
   }
+  if (!process.env.VISA_API_KEY) throw new Error('Visa service is not configured');
 
   // Set up request headers with our single VISA_API_KEY environment variable
   const headers = {
@@ -95,16 +98,17 @@ async function fetchVisaFreeForPassport(passportCode) {
   }
 
   // Prepare POST request with JSON body: { "passport": "XX" }
+  count('visaRequests');
   const response = await fetch(VISA_API_URL, {
     method: "POST",
     headers,
     body: JSON.stringify({ passport: normalizedPassport }),
+    signal: AbortSignal.timeout(TRIP_POLICY.externalTimeoutMs),
   });
 
   if (!response.ok) {
-    const errorBody = await response.text().catch(() => "");
     throw new Error(
-      `Visa API request failed with status ${response.status}: ${errorBody || response.statusText}`
+      `Visa API request failed with status ${response.status}: ${response.statusText}`
     );
   }
 
@@ -142,22 +146,10 @@ async function getVisaFreeCountries(nationalities = []) {
     return new Set();
   }
 
-  // Fetch visa map for each passport in parallel
+  // Fetch with bounded concurrency; incomplete provider data never broadens access.
   const visaFreeUnion = new Set();
-  for (const passportCode of passportCodes) {
-    try {
-      const greenSet = await visaService.fetchVisaFreeForPassport(passportCode);
-      for (const code of greenSet) {
-        visaFreeUnion.add(code);
-      }
-    } catch (err) {
-      console.warn(
-        `[visaService] Warning: Could not fetch visa map for passport ${passportCode}: ${err.message}`
-      );
-      // Re-throw so caller can handle external service errors
-      throw err;
-    }
-  }
+  const sets = await mapLimit(passportCodes, 2, passportCode => visaService.fetchVisaFreeForPassport(passportCode));
+  for (const set of sets) for (const code of set) visaFreeUnion.add(code);
 
   return visaFreeUnion;
 }

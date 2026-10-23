@@ -1,3 +1,4 @@
+const { generationLimiter } = require('../middleware/generationLimiter');
 
 const express = require("express");
 const router = express.Router();
@@ -15,6 +16,7 @@ const {
 router.post(
   "/",
   authenticateToken,
+  generationLimiter,
   createRecommendations
 );
 
@@ -22,6 +24,7 @@ router.post(
 router.post(
   "/:tripId/places",
   authenticateToken,
+  generationLimiter,
   getDestinationPlaces
 );
 

@@ -211,8 +211,16 @@ const COUNTRY_TO_CODE = {
   Zimbabwe: "ZW",
 };
 
-// Set of all valid 2-letter uppercase ISO alpha-2 codes
-const VALID_ISO_CODES = new Set(Object.values(COUNTRY_TO_CODE));
+// Registry identity is authoritative; the earlier table retains signup aliases.
+const registry = require('../data/countries.json').countries;
+const VALID_ISO_CODES = new Set(registry.map(country=>country.countryCode));
+for (const country of registry) {
+  COUNTRY_TO_CODE[country.name] = country.countryCode;
+  if (country.isoName) COUNTRY_TO_CODE[country.isoName] = country.countryCode;
+  if (country.officialName) COUNTRY_TO_CODE[country.officialName] = country.countryCode;
+}
+const normalizedName = value => value.normalize('NFKD').toLowerCase().replace(/[^a-z0-9]/g,'');
+const NAME_TO_CODE = new Map(Object.entries(COUNTRY_TO_CODE).map(([name,code])=>[normalizedName(name),code]));
 
 /**
  * Converts a country name or code to a 2-letter capitalized ISO code.
@@ -232,20 +240,7 @@ function toCountryCode(input) {
     return upper;
   }
 
-  // Exact match from lookup table
-  if (COUNTRY_TO_CODE[trimmed]) {
-    return COUNTRY_TO_CODE[trimmed];
-  }
-
-  // Case-insensitive lookup match
-  const lower = trimmed.toLowerCase();
-  for (const [name, code] of Object.entries(COUNTRY_TO_CODE)) {
-    if (name.toLowerCase() === lower) {
-      return code;
-    }
-  }
-
-  return null;
+  return NAME_TO_CODE.get(normalizedName(trimmed)) || null;
 }
 
 module.exports = {

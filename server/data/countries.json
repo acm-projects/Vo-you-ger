@@ -1,0 +1,4559 @@
+{
+  "version": "2026-10-23",
+  "scope": "ISO 3166-1 alpha-2, including territories/dependencies; excludes non-ISO extensions such as XK. Geographic coverage is separate from operational planning readiness.",
+  "sources": [
+    {
+      "file": "iso_3166-1.json",
+      "sha256": "f01b812b57fba9f31ff621bf33e7c7570a01964dbeb5be2167e94decf538c89f"
+    },
+    {
+      "file": "countryInfo.txt",
+      "sha256": "c55f638cfaafb4fe45a9aa15120a0f1f78e8a34a8e1847d7b9320cf740fbc9ab"
+    },
+    {
+      "file": "cities500.zip",
+      "sha256": "8c9b0ad3de5a80493b48344d964972685405380cd2ae2206dc70fce2bf52ac9e"
+    },
+    {
+      "file": "admin1CodesASCII.txt",
+      "sha256": "55153d45d5347e658eed69c1064563e929c6e199d51ed0649a61d2e629711d44"
+    }
+  ],
+  "attribution": "GeoNames (https://www.geonames.org), CC BY 4.0; country-code registry from iso-codes (LGPL-2.1-or-later). Data transformed by filtering settlements, selecting geographically distinct population-ranked records, and merging legacy IDs.",
+  "countries": [
+    {
+      "id": "country-ad",
+      "countryCode": "AD",
+      "alpha3": "AND",
+      "numeric": "020",
+      "name": "Andorra",
+      "isoName": "Andorra",
+      "officialName": "Principality of Andorra",
+      "currencyCode": "EUR",
+      "languages": [
+        "ca"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ae",
+      "countryCode": "AE",
+      "alpha3": "ARE",
+      "numeric": "784",
+      "name": "United Arab Emirates",
+      "isoName": "United Arab Emirates",
+      "officialName": "United Arab Emirates",
+      "currencyCode": "AED",
+      "languages": [
+        "ar-AE",
+        "fa",
+        "en",
+        "hi",
+        "ur"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-af",
+      "countryCode": "AF",
+      "alpha3": "AFG",
+      "numeric": "004",
+      "name": "Afghanistan",
+      "isoName": "Afghanistan",
+      "officialName": "Islamic Republic of Afghanistan",
+      "currencyCode": "AFN",
+      "languages": [
+        "fa-AF",
+        "ps",
+        "uz-AF",
+        "tk"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ag",
+      "countryCode": "AG",
+      "alpha3": "ATG",
+      "numeric": "028",
+      "name": "Antigua and Barbuda",
+      "isoName": "Antigua and Barbuda",
+      "officialName": "Antigua and Barbuda",
+      "currencyCode": "XCD",
+      "languages": [
+        "en-AG"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ai",
+      "countryCode": "AI",
+      "alpha3": "AIA",
+      "numeric": "660",
+      "name": "Anguilla",
+      "isoName": "Anguilla",
+      "officialName": "Anguilla",
+      "currencyCode": "XCD",
+      "languages": [
+        "en-AI"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-al",
+      "countryCode": "AL",
+      "alpha3": "ALB",
+      "numeric": "008",
+      "name": "Albania",
+      "isoName": "Albania",
+      "officialName": "Republic of Albania",
+      "currencyCode": "ALL",
+      "languages": [
+        "sq",
+        "el"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-am",
+      "countryCode": "AM",
+      "alpha3": "ARM",
+      "numeric": "051",
+      "name": "Armenia",
+      "isoName": "Armenia",
+      "officialName": "Republic of Armenia",
+      "currencyCode": "AMD",
+      "languages": [
+        "hy"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ao",
+      "countryCode": "AO",
+      "alpha3": "AGO",
+      "numeric": "024",
+      "name": "Angola",
+      "isoName": "Angola",
+      "officialName": "Republic of Angola",
+      "currencyCode": "AOA",
+      "languages": [
+        "pt-AO"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-aq",
+      "countryCode": "AQ",
+      "alpha3": "ATA",
+      "numeric": "010",
+      "name": "Antarctica",
+      "isoName": "Antarctica",
+      "officialName": "Antarctica",
+      "currencyCode": "",
+      "languages": [],
+      "coverageException": {
+        "code": "no_permanent_cities",
+        "reason": "Research stations are not counted as permanent cities or towns."
+      },
+      "verifiedSettlementCount": 0,
+      "geographicCoverage": "exception"
+    },
+    {
+      "id": "country-ar",
+      "countryCode": "AR",
+      "alpha3": "ARG",
+      "numeric": "032",
+      "name": "Argentina",
+      "isoName": "Argentina",
+      "officialName": "Argentine Republic",
+      "currencyCode": "ARS",
+      "languages": [
+        "es-AR",
+        "en",
+        "it",
+        "de",
+        "fr",
+        "gn"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-as",
+      "countryCode": "AS",
+      "alpha3": "ASM",
+      "numeric": "016",
+      "name": "American Samoa",
+      "isoName": "American Samoa",
+      "officialName": "American Samoa",
+      "currencyCode": "USD",
+      "languages": [
+        "en-AS",
+        "sm",
+        "to"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-at",
+      "countryCode": "AT",
+      "alpha3": "AUT",
+      "numeric": "040",
+      "name": "Austria",
+      "isoName": "Austria",
+      "officialName": "Republic of Austria",
+      "currencyCode": "EUR",
+      "languages": [
+        "de-AT",
+        "hr",
+        "hu",
+        "sl"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-au",
+      "countryCode": "AU",
+      "alpha3": "AUS",
+      "numeric": "036",
+      "name": "Australia",
+      "isoName": "Australia",
+      "officialName": "Australia",
+      "currencyCode": "AUD",
+      "languages": [
+        "en-AU"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 6,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-aw",
+      "countryCode": "AW",
+      "alpha3": "ABW",
+      "numeric": "533",
+      "name": "Aruba",
+      "isoName": "Aruba",
+      "officialName": "Aruba",
+      "currencyCode": "AWG",
+      "languages": [
+        "nl-AW",
+        "pap",
+        "es",
+        "en"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ax",
+      "countryCode": "AX",
+      "alpha3": "ALA",
+      "numeric": "248",
+      "name": "Aland Islands",
+      "isoName": "Åland Islands",
+      "officialName": "Åland Islands",
+      "currencyCode": "EUR",
+      "languages": [
+        "sv-AX"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-az",
+      "countryCode": "AZ",
+      "alpha3": "AZE",
+      "numeric": "031",
+      "name": "Azerbaijan",
+      "isoName": "Azerbaijan",
+      "officialName": "Republic of Azerbaijan",
+      "currencyCode": "AZN",
+      "languages": [
+        "az",
+        "ru",
+        "hy"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ba",
+      "countryCode": "BA",
+      "alpha3": "BIH",
+      "numeric": "070",
+      "name": "Bosnia and Herzegovina",
+      "isoName": "Bosnia and Herzegovina",
+      "officialName": "Republic of Bosnia and Herzegovina",
+      "currencyCode": "BAM",
+      "languages": [
+        "bs",
+        "hr-BA",
+        "sr-BA"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-bb",
+      "countryCode": "BB",
+      "alpha3": "BRB",
+      "numeric": "052",
+      "name": "Barbados",
+      "isoName": "Barbados",
+      "officialName": "Barbados",
+      "currencyCode": "BBD",
+      "languages": [
+        "en-BB"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-bd",
+      "countryCode": "BD",
+      "alpha3": "BGD",
+      "numeric": "050",
+      "name": "Bangladesh",
+      "isoName": "Bangladesh",
+      "officialName": "People's Republic of Bangladesh",
+      "currencyCode": "BDT",
+      "languages": [
+        "bn-BD",
+        "en"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-be",
+      "countryCode": "BE",
+      "alpha3": "BEL",
+      "numeric": "056",
+      "name": "Belgium",
+      "isoName": "Belgium",
+      "officialName": "Kingdom of Belgium",
+      "currencyCode": "EUR",
+      "languages": [
+        "nl-BE",
+        "fr-BE",
+        "de-BE"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-bf",
+      "countryCode": "BF",
+      "alpha3": "BFA",
+      "numeric": "854",
+      "name": "Burkina Faso",
+      "isoName": "Burkina Faso",
+      "officialName": "Burkina Faso",
+      "currencyCode": "XOF",
+      "languages": [
+        "fr-BF",
+        "mos"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-bg",
+      "countryCode": "BG",
+      "alpha3": "BGR",
+      "numeric": "100",
+      "name": "Bulgaria",
+      "isoName": "Bulgaria",
+      "officialName": "Republic of Bulgaria",
+      "currencyCode": "BGN",
+      "languages": [
+        "bg",
+        "tr-BG",
+        "rom"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-bh",
+      "countryCode": "BH",
+      "alpha3": "BHR",
+      "numeric": "048",
+      "name": "Bahrain",
+      "isoName": "Bahrain",
+      "officialName": "Kingdom of Bahrain",
+      "currencyCode": "BHD",
+      "languages": [
+        "ar-BH",
+        "en",
+        "fa",
+        "ur"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-bi",
+      "countryCode": "BI",
+      "alpha3": "BDI",
+      "numeric": "108",
+      "name": "Burundi",
+      "isoName": "Burundi",
+      "officialName": "Republic of Burundi",
+      "currencyCode": "BIF",
+      "languages": [
+        "fr-BI",
+        "rn"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-bj",
+      "countryCode": "BJ",
+      "alpha3": "BEN",
+      "numeric": "204",
+      "name": "Benin",
+      "isoName": "Benin",
+      "officialName": "Republic of Benin",
+      "currencyCode": "XOF",
+      "languages": [
+        "fr-BJ"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-bl",
+      "countryCode": "BL",
+      "alpha3": "BLM",
+      "numeric": "652",
+      "name": "Saint Barthelemy",
+      "isoName": "Saint Barthélemy",
+      "officialName": "Saint Barthélemy",
+      "currencyCode": "EUR",
+      "languages": [
+        "fr"
+      ],
+      "coverageException": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "verifiedSettlementCount": 1,
+      "geographicCoverage": "source_gap"
+    },
+    {
+      "id": "country-bm",
+      "countryCode": "BM",
+      "alpha3": "BMU",
+      "numeric": "060",
+      "name": "Bermuda",
+      "isoName": "Bermuda",
+      "officialName": "Bermuda",
+      "currencyCode": "BMD",
+      "languages": [
+        "en-BM",
+        "pt"
+      ],
+      "coverageException": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "verifiedSettlementCount": 3,
+      "geographicCoverage": "source_gap"
+    },
+    {
+      "id": "country-bn",
+      "countryCode": "BN",
+      "alpha3": "BRN",
+      "numeric": "096",
+      "name": "Brunei",
+      "isoName": "Brunei Darussalam",
+      "officialName": "Brunei Darussalam",
+      "currencyCode": "BND",
+      "languages": [
+        "ms-BN",
+        "en-BN"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-bo",
+      "countryCode": "BO",
+      "alpha3": "BOL",
+      "numeric": "068",
+      "name": "Bolivia",
+      "isoName": "Bolivia, Plurinational State of",
+      "officialName": "Plurinational State of Bolivia",
+      "currencyCode": "BOB",
+      "languages": [
+        "es-BO",
+        "qu",
+        "ay"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-bq",
+      "countryCode": "BQ",
+      "alpha3": "BES",
+      "numeric": "535",
+      "name": "Bonaire, Saint Eustatius and Saba ",
+      "isoName": "Bonaire, Sint Eustatius and Saba",
+      "officialName": "Bonaire, Sint Eustatius and Saba",
+      "currencyCode": "USD",
+      "languages": [
+        "nl",
+        "pap",
+        "en"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-br",
+      "countryCode": "BR",
+      "alpha3": "BRA",
+      "numeric": "076",
+      "name": "Brazil",
+      "isoName": "Brazil",
+      "officialName": "Federative Republic of Brazil",
+      "currencyCode": "BRL",
+      "languages": [
+        "pt-BR",
+        "es",
+        "en",
+        "fr"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 6,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-bs",
+      "countryCode": "BS",
+      "alpha3": "BHS",
+      "numeric": "044",
+      "name": "Bahamas",
+      "isoName": "Bahamas",
+      "officialName": "Commonwealth of the Bahamas",
+      "currencyCode": "BSD",
+      "languages": [
+        "en-BS"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-bt",
+      "countryCode": "BT",
+      "alpha3": "BTN",
+      "numeric": "064",
+      "name": "Bhutan",
+      "isoName": "Bhutan",
+      "officialName": "Kingdom of Bhutan",
+      "currencyCode": "BTN",
+      "languages": [
+        "dz"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-bv",
+      "countryCode": "BV",
+      "alpha3": "BVT",
+      "numeric": "074",
+      "name": "Bouvet Island",
+      "isoName": "Bouvet Island",
+      "officialName": "Bouvet Island",
+      "currencyCode": "NOK",
+      "languages": [],
+      "coverageException": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "verifiedSettlementCount": 0,
+      "geographicCoverage": "source_gap"
+    },
+    {
+      "id": "country-bw",
+      "countryCode": "BW",
+      "alpha3": "BWA",
+      "numeric": "072",
+      "name": "Botswana",
+      "isoName": "Botswana",
+      "officialName": "Republic of Botswana",
+      "currencyCode": "BWP",
+      "languages": [
+        "en-BW",
+        "tn-BW"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-by",
+      "countryCode": "BY",
+      "alpha3": "BLR",
+      "numeric": "112",
+      "name": "Belarus",
+      "isoName": "Belarus",
+      "officialName": "Republic of Belarus",
+      "currencyCode": "BYN",
+      "languages": [
+        "be",
+        "ru"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-bz",
+      "countryCode": "BZ",
+      "alpha3": "BLZ",
+      "numeric": "084",
+      "name": "Belize",
+      "isoName": "Belize",
+      "officialName": "Belize",
+      "currencyCode": "BZD",
+      "languages": [
+        "en-BZ",
+        "es"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ca",
+      "countryCode": "CA",
+      "alpha3": "CAN",
+      "numeric": "124",
+      "name": "Canada",
+      "isoName": "Canada",
+      "officialName": "Canada",
+      "currencyCode": "CAD",
+      "languages": [
+        "en-CA",
+        "fr-CA",
+        "iu"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 7,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-cc",
+      "countryCode": "CC",
+      "alpha3": "CCK",
+      "numeric": "166",
+      "name": "Cocos Islands",
+      "isoName": "Cocos (Keeling) Islands",
+      "officialName": "Cocos (Keeling) Islands",
+      "currencyCode": "AUD",
+      "languages": [
+        "ms-CC",
+        "en"
+      ],
+      "coverageException": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "verifiedSettlementCount": 1,
+      "geographicCoverage": "source_gap"
+    },
+    {
+      "id": "country-cd",
+      "countryCode": "CD",
+      "alpha3": "COD",
+      "numeric": "180",
+      "name": "Democratic Republic of the Congo",
+      "isoName": "Congo, The Democratic Republic of the",
+      "officialName": "Congo, The Democratic Republic of the",
+      "currencyCode": "CDF",
+      "languages": [
+        "fr-CD",
+        "ln",
+        "ktu",
+        "kg",
+        "sw",
+        "lua"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-cf",
+      "countryCode": "CF",
+      "alpha3": "CAF",
+      "numeric": "140",
+      "name": "Central African Republic",
+      "isoName": "Central African Republic",
+      "officialName": "Central African Republic",
+      "currencyCode": "XAF",
+      "languages": [
+        "fr-CF",
+        "sg",
+        "ln",
+        "kg"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-cg",
+      "countryCode": "CG",
+      "alpha3": "COG",
+      "numeric": "178",
+      "name": "Republic of the Congo",
+      "isoName": "Congo",
+      "officialName": "Republic of the Congo",
+      "currencyCode": "XAF",
+      "languages": [
+        "fr-CG",
+        "kg",
+        "ln-CG"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ch",
+      "countryCode": "CH",
+      "alpha3": "CHE",
+      "numeric": "756",
+      "name": "Switzerland",
+      "isoName": "Switzerland",
+      "officialName": "Swiss Confederation",
+      "currencyCode": "CHF",
+      "languages": [
+        "de-CH",
+        "fr-CH",
+        "it-CH",
+        "rm"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ci",
+      "countryCode": "CI",
+      "alpha3": "CIV",
+      "numeric": "384",
+      "name": "Ivory Coast",
+      "isoName": "Côte d'Ivoire",
+      "officialName": "Republic of Côte d'Ivoire",
+      "currencyCode": "XOF",
+      "languages": [
+        "fr-CI"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ck",
+      "countryCode": "CK",
+      "alpha3": "COK",
+      "numeric": "184",
+      "name": "Cook Islands",
+      "isoName": "Cook Islands",
+      "officialName": "Cook Islands",
+      "currencyCode": "NZD",
+      "languages": [
+        "en-CK",
+        "mi"
+      ],
+      "coverageException": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "verifiedSettlementCount": 2,
+      "geographicCoverage": "source_gap"
+    },
+    {
+      "id": "country-cl",
+      "countryCode": "CL",
+      "alpha3": "CHL",
+      "numeric": "152",
+      "name": "Chile",
+      "isoName": "Chile",
+      "officialName": "Republic of Chile",
+      "currencyCode": "CLP",
+      "languages": [
+        "es-CL"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 6,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-cm",
+      "countryCode": "CM",
+      "alpha3": "CMR",
+      "numeric": "120",
+      "name": "Cameroon",
+      "isoName": "Cameroon",
+      "officialName": "Republic of Cameroon",
+      "currencyCode": "XAF",
+      "languages": [
+        "en-CM",
+        "fr-CM"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-cn",
+      "countryCode": "CN",
+      "alpha3": "CHN",
+      "numeric": "156",
+      "name": "China",
+      "isoName": "China",
+      "officialName": "People's Republic of China",
+      "currencyCode": "CNY",
+      "languages": [
+        "zh-CN",
+        "yue",
+        "wuu",
+        "dta",
+        "ug",
+        "za"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-co",
+      "countryCode": "CO",
+      "alpha3": "COL",
+      "numeric": "170",
+      "name": "Colombia",
+      "isoName": "Colombia",
+      "officialName": "Republic of Colombia",
+      "currencyCode": "COP",
+      "languages": [
+        "es-CO"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-cr",
+      "countryCode": "CR",
+      "alpha3": "CRI",
+      "numeric": "188",
+      "name": "Costa Rica",
+      "isoName": "Costa Rica",
+      "officialName": "Republic of Costa Rica",
+      "currencyCode": "CRC",
+      "languages": [
+        "es-CR",
+        "en"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-cu",
+      "countryCode": "CU",
+      "alpha3": "CUB",
+      "numeric": "192",
+      "name": "Cuba",
+      "isoName": "Cuba",
+      "officialName": "Republic of Cuba",
+      "currencyCode": "CUP",
+      "languages": [
+        "es-CU",
+        "pap"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-cv",
+      "countryCode": "CV",
+      "alpha3": "CPV",
+      "numeric": "132",
+      "name": "Cabo Verde",
+      "isoName": "Cabo Verde",
+      "officialName": "Republic of Cabo Verde",
+      "currencyCode": "CVE",
+      "languages": [
+        "pt-CV"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-cw",
+      "countryCode": "CW",
+      "alpha3": "CUW",
+      "numeric": "531",
+      "name": "Curacao",
+      "isoName": "Curaçao",
+      "officialName": "Curaçao",
+      "currencyCode": "XCG",
+      "languages": [
+        "nl",
+        "pap"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-cx",
+      "countryCode": "CX",
+      "alpha3": "CXR",
+      "numeric": "162",
+      "name": "Christmas Island",
+      "isoName": "Christmas Island",
+      "officialName": "Christmas Island",
+      "currencyCode": "AUD",
+      "languages": [
+        "en",
+        "zh",
+        "ms-CX"
+      ],
+      "coverageException": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "verifiedSettlementCount": 1,
+      "geographicCoverage": "source_gap"
+    },
+    {
+      "id": "country-cy",
+      "countryCode": "CY",
+      "alpha3": "CYP",
+      "numeric": "196",
+      "name": "Cyprus",
+      "isoName": "Cyprus",
+      "officialName": "Republic of Cyprus",
+      "currencyCode": "EUR",
+      "languages": [
+        "el-CY",
+        "tr-CY",
+        "en"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-cz",
+      "countryCode": "CZ",
+      "alpha3": "CZE",
+      "numeric": "203",
+      "name": "Czechia",
+      "isoName": "Czechia",
+      "officialName": "Czech Republic",
+      "currencyCode": "CZK",
+      "languages": [
+        "cs",
+        "sk"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-de",
+      "countryCode": "DE",
+      "alpha3": "DEU",
+      "numeric": "276",
+      "name": "Germany",
+      "isoName": "Germany",
+      "officialName": "Federal Republic of Germany",
+      "currencyCode": "EUR",
+      "languages": [
+        "de"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 6,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-dj",
+      "countryCode": "DJ",
+      "alpha3": "DJI",
+      "numeric": "262",
+      "name": "Djibouti",
+      "isoName": "Djibouti",
+      "officialName": "Republic of Djibouti",
+      "currencyCode": "DJF",
+      "languages": [
+        "fr-DJ",
+        "ar",
+        "so-DJ",
+        "aa"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-dk",
+      "countryCode": "DK",
+      "alpha3": "DNK",
+      "numeric": "208",
+      "name": "Denmark",
+      "isoName": "Denmark",
+      "officialName": "Kingdom of Denmark",
+      "currencyCode": "DKK",
+      "languages": [
+        "da-DK",
+        "en",
+        "fo",
+        "de-DK"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-dm",
+      "countryCode": "DM",
+      "alpha3": "DMA",
+      "numeric": "212",
+      "name": "Dominica",
+      "isoName": "Dominica",
+      "officialName": "Commonwealth of Dominica",
+      "currencyCode": "XCD",
+      "languages": [
+        "en-DM"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-do",
+      "countryCode": "DO",
+      "alpha3": "DOM",
+      "numeric": "214",
+      "name": "Dominican Republic",
+      "isoName": "Dominican Republic",
+      "officialName": "Dominican Republic",
+      "currencyCode": "DOP",
+      "languages": [
+        "es-DO"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-dz",
+      "countryCode": "DZ",
+      "alpha3": "DZA",
+      "numeric": "012",
+      "name": "Algeria",
+      "isoName": "Algeria",
+      "officialName": "People's Democratic Republic of Algeria",
+      "currencyCode": "DZD",
+      "languages": [
+        "ar-DZ"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ec",
+      "countryCode": "EC",
+      "alpha3": "ECU",
+      "numeric": "218",
+      "name": "Ecuador",
+      "isoName": "Ecuador",
+      "officialName": "Republic of Ecuador",
+      "currencyCode": "USD",
+      "languages": [
+        "es-EC"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ee",
+      "countryCode": "EE",
+      "alpha3": "EST",
+      "numeric": "233",
+      "name": "Estonia",
+      "isoName": "Estonia",
+      "officialName": "Republic of Estonia",
+      "currencyCode": "EUR",
+      "languages": [
+        "et",
+        "ru"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-eg",
+      "countryCode": "EG",
+      "alpha3": "EGY",
+      "numeric": "818",
+      "name": "Egypt",
+      "isoName": "Egypt",
+      "officialName": "Arab Republic of Egypt",
+      "currencyCode": "EGP",
+      "languages": [
+        "ar-EG",
+        "en",
+        "fr"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 6,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-eh",
+      "countryCode": "EH",
+      "alpha3": "ESH",
+      "numeric": "732",
+      "name": "Western Sahara",
+      "isoName": "Western Sahara",
+      "officialName": "Western Sahara",
+      "currencyCode": "MAD",
+      "languages": [
+        "ar",
+        "mey"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-er",
+      "countryCode": "ER",
+      "alpha3": "ERI",
+      "numeric": "232",
+      "name": "Eritrea",
+      "isoName": "Eritrea",
+      "officialName": "the State of Eritrea",
+      "currencyCode": "ERN",
+      "languages": [
+        "aa-ER",
+        "ar",
+        "tig",
+        "kun",
+        "ti-ER"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-es",
+      "countryCode": "ES",
+      "alpha3": "ESP",
+      "numeric": "724",
+      "name": "Spain",
+      "isoName": "Spain",
+      "officialName": "Kingdom of Spain",
+      "currencyCode": "EUR",
+      "languages": [
+        "es-ES",
+        "ca",
+        "gl",
+        "eu",
+        "oc"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-et",
+      "countryCode": "ET",
+      "alpha3": "ETH",
+      "numeric": "231",
+      "name": "Ethiopia",
+      "isoName": "Ethiopia",
+      "officialName": "Federal Democratic Republic of Ethiopia",
+      "currencyCode": "ETB",
+      "languages": [
+        "am",
+        "en-ET",
+        "om-ET",
+        "ti-ET",
+        "so-ET",
+        "sid"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-fi",
+      "countryCode": "FI",
+      "alpha3": "FIN",
+      "numeric": "246",
+      "name": "Finland",
+      "isoName": "Finland",
+      "officialName": "Republic of Finland",
+      "currencyCode": "EUR",
+      "languages": [
+        "fi-FI",
+        "sv-FI",
+        "smn"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-fj",
+      "countryCode": "FJ",
+      "alpha3": "FJI",
+      "numeric": "242",
+      "name": "Fiji",
+      "isoName": "Fiji",
+      "officialName": "Republic of Fiji",
+      "currencyCode": "FJD",
+      "languages": [
+        "en-FJ",
+        "fj"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-fk",
+      "countryCode": "FK",
+      "alpha3": "FLK",
+      "numeric": "238",
+      "name": "Falkland Islands",
+      "isoName": "Falkland Islands (Malvinas)",
+      "officialName": "Falkland Islands (Malvinas)",
+      "currencyCode": "FKP",
+      "languages": [
+        "en-FK"
+      ],
+      "coverageException": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "verifiedSettlementCount": 1,
+      "geographicCoverage": "source_gap"
+    },
+    {
+      "id": "country-fm",
+      "countryCode": "FM",
+      "alpha3": "FSM",
+      "numeric": "583",
+      "name": "Micronesia",
+      "isoName": "Micronesia, Federated States of",
+      "officialName": "Federated States of Micronesia",
+      "currencyCode": "USD",
+      "languages": [
+        "en-FM",
+        "chk",
+        "pon",
+        "yap",
+        "kos",
+        "uli",
+        "woe",
+        "nkr",
+        "kpg"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-fo",
+      "countryCode": "FO",
+      "alpha3": "FRO",
+      "numeric": "234",
+      "name": "Faroe Islands",
+      "isoName": "Faroe Islands",
+      "officialName": "Faroe Islands",
+      "currencyCode": "DKK",
+      "languages": [
+        "fo",
+        "da-FO"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-fr",
+      "countryCode": "FR",
+      "alpha3": "FRA",
+      "numeric": "250",
+      "name": "France",
+      "isoName": "France",
+      "officialName": "French Republic",
+      "currencyCode": "EUR",
+      "languages": [
+        "fr-FR",
+        "frp",
+        "br",
+        "co",
+        "ca",
+        "eu",
+        "oc"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 7,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ga",
+      "countryCode": "GA",
+      "alpha3": "GAB",
+      "numeric": "266",
+      "name": "Gabon",
+      "isoName": "Gabon",
+      "officialName": "Gabonese Republic",
+      "currencyCode": "XAF",
+      "languages": [
+        "fr-GA"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-gb",
+      "countryCode": "GB",
+      "alpha3": "GBR",
+      "numeric": "826",
+      "name": "United Kingdom",
+      "isoName": "United Kingdom",
+      "officialName": "United Kingdom of Great Britain and Northern Ireland",
+      "currencyCode": "GBP",
+      "languages": [
+        "en-GB",
+        "cy-GB",
+        "gd"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 7,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-gd",
+      "countryCode": "GD",
+      "alpha3": "GRD",
+      "numeric": "308",
+      "name": "Grenada",
+      "isoName": "Grenada",
+      "officialName": "Grenada",
+      "currencyCode": "XCD",
+      "languages": [
+        "en-GD"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ge",
+      "countryCode": "GE",
+      "alpha3": "GEO",
+      "numeric": "268",
+      "name": "Georgia",
+      "isoName": "Georgia",
+      "officialName": "Georgia",
+      "currencyCode": "GEL",
+      "languages": [
+        "ka",
+        "ru",
+        "hy",
+        "az"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-gf",
+      "countryCode": "GF",
+      "alpha3": "GUF",
+      "numeric": "254",
+      "name": "French Guiana",
+      "isoName": "French Guiana",
+      "officialName": "French Guiana",
+      "currencyCode": "EUR",
+      "languages": [
+        "fr-GF"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-gg",
+      "countryCode": "GG",
+      "alpha3": "GGY",
+      "numeric": "831",
+      "name": "Guernsey",
+      "isoName": "Guernsey",
+      "officialName": "Guernsey",
+      "currencyCode": "GBP",
+      "languages": [
+        "en",
+        "nrf"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-gh",
+      "countryCode": "GH",
+      "alpha3": "GHA",
+      "numeric": "288",
+      "name": "Ghana",
+      "isoName": "Ghana",
+      "officialName": "Republic of Ghana",
+      "currencyCode": "GHS",
+      "languages": [
+        "en-GH",
+        "ak",
+        "ee",
+        "tw"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-gi",
+      "countryCode": "GI",
+      "alpha3": "GIB",
+      "numeric": "292",
+      "name": "Gibraltar",
+      "isoName": "Gibraltar",
+      "officialName": "Gibraltar",
+      "currencyCode": "GIP",
+      "languages": [
+        "en-GI",
+        "es",
+        "it",
+        "pt"
+      ],
+      "coverageException": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "verifiedSettlementCount": 2,
+      "geographicCoverage": "source_gap"
+    },
+    {
+      "id": "country-gl",
+      "countryCode": "GL",
+      "alpha3": "GRL",
+      "numeric": "304",
+      "name": "Greenland",
+      "isoName": "Greenland",
+      "officialName": "Greenland",
+      "currencyCode": "DKK",
+      "languages": [
+        "kl",
+        "da-GL",
+        "en"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-gm",
+      "countryCode": "GM",
+      "alpha3": "GMB",
+      "numeric": "270",
+      "name": "Gambia",
+      "isoName": "Gambia",
+      "officialName": "Republic of the Gambia",
+      "currencyCode": "GMD",
+      "languages": [
+        "en-GM",
+        "mnk",
+        "wof",
+        "wo",
+        "ff"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-gn",
+      "countryCode": "GN",
+      "alpha3": "GIN",
+      "numeric": "324",
+      "name": "Guinea",
+      "isoName": "Guinea",
+      "officialName": "Republic of Guinea",
+      "currencyCode": "GNF",
+      "languages": [
+        "fr-GN"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-gp",
+      "countryCode": "GP",
+      "alpha3": "GLP",
+      "numeric": "312",
+      "name": "Guadeloupe",
+      "isoName": "Guadeloupe",
+      "officialName": "Guadeloupe",
+      "currencyCode": "EUR",
+      "languages": [
+        "fr-GP"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-gq",
+      "countryCode": "GQ",
+      "alpha3": "GNQ",
+      "numeric": "226",
+      "name": "Equatorial Guinea",
+      "isoName": "Equatorial Guinea",
+      "officialName": "Republic of Equatorial Guinea",
+      "currencyCode": "XAF",
+      "languages": [
+        "es-GQ",
+        "fr",
+        "pt"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-gr",
+      "countryCode": "GR",
+      "alpha3": "GRC",
+      "numeric": "300",
+      "name": "Greece",
+      "isoName": "Greece",
+      "officialName": "Hellenic Republic",
+      "currencyCode": "EUR",
+      "languages": [
+        "el-GR",
+        "en",
+        "fr"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-gs",
+      "countryCode": "GS",
+      "alpha3": "SGS",
+      "numeric": "239",
+      "name": "South Georgia and the South Sandwich Islands",
+      "isoName": "South Georgia and the South Sandwich Islands",
+      "officialName": "South Georgia and the South Sandwich Islands",
+      "currencyCode": "GBP",
+      "languages": [
+        "en"
+      ],
+      "coverageException": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "verifiedSettlementCount": 1,
+      "geographicCoverage": "source_gap"
+    },
+    {
+      "id": "country-gt",
+      "countryCode": "GT",
+      "alpha3": "GTM",
+      "numeric": "320",
+      "name": "Guatemala",
+      "isoName": "Guatemala",
+      "officialName": "Republic of Guatemala",
+      "currencyCode": "GTQ",
+      "languages": [
+        "es-GT"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 6,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-gu",
+      "countryCode": "GU",
+      "alpha3": "GUM",
+      "numeric": "316",
+      "name": "Guam",
+      "isoName": "Guam",
+      "officialName": "Guam",
+      "currencyCode": "USD",
+      "languages": [
+        "en-GU",
+        "ch-GU"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-gw",
+      "countryCode": "GW",
+      "alpha3": "GNB",
+      "numeric": "624",
+      "name": "Guinea-Bissau",
+      "isoName": "Guinea-Bissau",
+      "officialName": "Republic of Guinea-Bissau",
+      "currencyCode": "XOF",
+      "languages": [
+        "pt-GW",
+        "pov"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-gy",
+      "countryCode": "GY",
+      "alpha3": "GUY",
+      "numeric": "328",
+      "name": "Guyana",
+      "isoName": "Guyana",
+      "officialName": "Republic of Guyana",
+      "currencyCode": "GYD",
+      "languages": [
+        "en-GY"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-hk",
+      "countryCode": "HK",
+      "alpha3": "HKG",
+      "numeric": "344",
+      "name": "Hong Kong",
+      "isoName": "Hong Kong",
+      "officialName": "Hong Kong Special Administrative Region of China",
+      "currencyCode": "HKD",
+      "languages": [
+        "zh-HK",
+        "yue",
+        "zh",
+        "en"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-hm",
+      "countryCode": "HM",
+      "alpha3": "HMD",
+      "numeric": "334",
+      "name": "Heard Island and McDonald Islands",
+      "isoName": "Heard Island and McDonald Islands",
+      "officialName": "Heard Island and McDonald Islands",
+      "currencyCode": "AUD",
+      "languages": [],
+      "coverageException": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "verifiedSettlementCount": 0,
+      "geographicCoverage": "source_gap"
+    },
+    {
+      "id": "country-hn",
+      "countryCode": "HN",
+      "alpha3": "HND",
+      "numeric": "340",
+      "name": "Honduras",
+      "isoName": "Honduras",
+      "officialName": "Republic of Honduras",
+      "currencyCode": "HNL",
+      "languages": [
+        "es-HN",
+        "cab",
+        "miq"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-hr",
+      "countryCode": "HR",
+      "alpha3": "HRV",
+      "numeric": "191",
+      "name": "Croatia",
+      "isoName": "Croatia",
+      "officialName": "Republic of Croatia",
+      "currencyCode": "EUR",
+      "languages": [
+        "hr-HR",
+        "sr"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 6,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ht",
+      "countryCode": "HT",
+      "alpha3": "HTI",
+      "numeric": "332",
+      "name": "Haiti",
+      "isoName": "Haiti",
+      "officialName": "Republic of Haiti",
+      "currencyCode": "HTG",
+      "languages": [
+        "ht",
+        "fr-HT"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-hu",
+      "countryCode": "HU",
+      "alpha3": "HUN",
+      "numeric": "348",
+      "name": "Hungary",
+      "isoName": "Hungary",
+      "officialName": "Hungary",
+      "currencyCode": "HUF",
+      "languages": [
+        "hu-HU"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-id",
+      "countryCode": "ID",
+      "alpha3": "IDN",
+      "numeric": "360",
+      "name": "Indonesia",
+      "isoName": "Indonesia",
+      "officialName": "Republic of Indonesia",
+      "currencyCode": "IDR",
+      "languages": [
+        "id",
+        "en",
+        "nl",
+        "jv"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 6,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ie",
+      "countryCode": "IE",
+      "alpha3": "IRL",
+      "numeric": "372",
+      "name": "Ireland",
+      "isoName": "Ireland",
+      "officialName": "Ireland",
+      "currencyCode": "EUR",
+      "languages": [
+        "en-IE",
+        "ga-IE"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-il",
+      "countryCode": "IL",
+      "alpha3": "ISR",
+      "numeric": "376",
+      "name": "Israel",
+      "isoName": "Israel",
+      "officialName": "State of Israel",
+      "currencyCode": "ILS",
+      "languages": [
+        "he",
+        "ar-IL",
+        "en-IL",
+        ""
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-im",
+      "countryCode": "IM",
+      "alpha3": "IMN",
+      "numeric": "833",
+      "name": "Isle of Man",
+      "isoName": "Isle of Man",
+      "officialName": "Isle of Man",
+      "currencyCode": "GBP",
+      "languages": [
+        "en",
+        "gv"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-in",
+      "countryCode": "IN",
+      "alpha3": "IND",
+      "numeric": "356",
+      "name": "India",
+      "isoName": "India",
+      "officialName": "Republic of India",
+      "currencyCode": "INR",
+      "languages": [
+        "en-IN",
+        "hi",
+        "bn",
+        "te",
+        "mr",
+        "ta",
+        "ur",
+        "gu",
+        "kn",
+        "ml",
+        "or",
+        "pa",
+        "as",
+        "bh",
+        "sat",
+        "ks",
+        "ne",
+        "sd",
+        "kok",
+        "doi",
+        "mni",
+        "sit",
+        "sa",
+        "fr",
+        "lus",
+        "inc"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 6,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-io",
+      "countryCode": "IO",
+      "alpha3": "IOT",
+      "numeric": "086",
+      "name": "British Indian Ocean Territory",
+      "isoName": "British Indian Ocean Territory",
+      "officialName": "British Indian Ocean Territory",
+      "currencyCode": "USD",
+      "languages": [
+        "en-IO"
+      ],
+      "coverageException": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "verifiedSettlementCount": 0,
+      "geographicCoverage": "source_gap"
+    },
+    {
+      "id": "country-iq",
+      "countryCode": "IQ",
+      "alpha3": "IRQ",
+      "numeric": "368",
+      "name": "Iraq",
+      "isoName": "Iraq",
+      "officialName": "Republic of Iraq",
+      "currencyCode": "IQD",
+      "languages": [
+        "ar-IQ",
+        "ku",
+        "hy"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ir",
+      "countryCode": "IR",
+      "alpha3": "IRN",
+      "numeric": "364",
+      "name": "Iran",
+      "isoName": "Iran, Islamic Republic of",
+      "officialName": "Islamic Republic of Iran",
+      "currencyCode": "IRR",
+      "languages": [
+        "fa-IR",
+        "ku"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-is",
+      "countryCode": "IS",
+      "alpha3": "ISL",
+      "numeric": "352",
+      "name": "Iceland",
+      "isoName": "Iceland",
+      "officialName": "Republic of Iceland",
+      "currencyCode": "ISK",
+      "languages": [
+        "is",
+        "en",
+        "de",
+        "da",
+        "sv",
+        "no"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-it",
+      "countryCode": "IT",
+      "alpha3": "ITA",
+      "numeric": "380",
+      "name": "Italy",
+      "isoName": "Italy",
+      "officialName": "Italian Republic",
+      "currencyCode": "EUR",
+      "languages": [
+        "it-IT",
+        "de-IT",
+        "fr-IT",
+        "sc",
+        "ca",
+        "co",
+        "sl"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 6,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-je",
+      "countryCode": "JE",
+      "alpha3": "JEY",
+      "numeric": "832",
+      "name": "Jersey",
+      "isoName": "Jersey",
+      "officialName": "Jersey",
+      "currencyCode": "GBP",
+      "languages": [
+        "en",
+        "fr",
+        "nrf"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-jm",
+      "countryCode": "JM",
+      "alpha3": "JAM",
+      "numeric": "388",
+      "name": "Jamaica",
+      "isoName": "Jamaica",
+      "officialName": "Jamaica",
+      "currencyCode": "JMD",
+      "languages": [
+        "en-JM"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-jo",
+      "countryCode": "JO",
+      "alpha3": "JOR",
+      "numeric": "400",
+      "name": "Jordan",
+      "isoName": "Jordan",
+      "officialName": "Hashemite Kingdom of Jordan",
+      "currencyCode": "JOD",
+      "languages": [
+        "ar-JO",
+        "en"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-jp",
+      "countryCode": "JP",
+      "alpha3": "JPN",
+      "numeric": "392",
+      "name": "Japan",
+      "isoName": "Japan",
+      "officialName": "Japan",
+      "currencyCode": "JPY",
+      "languages": [
+        "ja"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 7,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ke",
+      "countryCode": "KE",
+      "alpha3": "KEN",
+      "numeric": "404",
+      "name": "Kenya",
+      "isoName": "Kenya",
+      "officialName": "Republic of Kenya",
+      "currencyCode": "KES",
+      "languages": [
+        "en-KE",
+        "sw-KE"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-kg",
+      "countryCode": "KG",
+      "alpha3": "KGZ",
+      "numeric": "417",
+      "name": "Kyrgyzstan",
+      "isoName": "Kyrgyzstan",
+      "officialName": "Kyrgyz Republic",
+      "currencyCode": "KGS",
+      "languages": [
+        "ky",
+        "uz",
+        "ru"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-kh",
+      "countryCode": "KH",
+      "alpha3": "KHM",
+      "numeric": "116",
+      "name": "Cambodia",
+      "isoName": "Cambodia",
+      "officialName": "Kingdom of Cambodia",
+      "currencyCode": "KHR",
+      "languages": [
+        "km",
+        "fr",
+        "en"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ki",
+      "countryCode": "KI",
+      "alpha3": "KIR",
+      "numeric": "296",
+      "name": "Kiribati",
+      "isoName": "Kiribati",
+      "officialName": "Republic of Kiribati",
+      "currencyCode": "AUD",
+      "languages": [
+        "en-KI",
+        "gil"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-km",
+      "countryCode": "KM",
+      "alpha3": "COM",
+      "numeric": "174",
+      "name": "Comoros",
+      "isoName": "Comoros",
+      "officialName": "Union of the Comoros",
+      "currencyCode": "KMF",
+      "languages": [
+        "ar",
+        "fr-KM"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-kn",
+      "countryCode": "KN",
+      "alpha3": "KNA",
+      "numeric": "659",
+      "name": "Saint Kitts and Nevis",
+      "isoName": "Saint Kitts and Nevis",
+      "officialName": "Saint Kitts and Nevis",
+      "currencyCode": "XCD",
+      "languages": [
+        "en-KN"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-kp",
+      "countryCode": "KP",
+      "alpha3": "PRK",
+      "numeric": "408",
+      "name": "North Korea",
+      "isoName": "Korea, Democratic People's Republic of",
+      "officialName": "Democratic People's Republic of Korea",
+      "currencyCode": "KPW",
+      "languages": [
+        "ko-KP"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-kr",
+      "countryCode": "KR",
+      "alpha3": "KOR",
+      "numeric": "410",
+      "name": "South Korea",
+      "isoName": "Korea, Republic of",
+      "officialName": "Korea, Republic of",
+      "currencyCode": "KRW",
+      "languages": [
+        "ko-KR",
+        "en"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-kw",
+      "countryCode": "KW",
+      "alpha3": "KWT",
+      "numeric": "414",
+      "name": "Kuwait",
+      "isoName": "Kuwait",
+      "officialName": "State of Kuwait",
+      "currencyCode": "KWD",
+      "languages": [
+        "ar-KW",
+        "en"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ky",
+      "countryCode": "KY",
+      "alpha3": "CYM",
+      "numeric": "136",
+      "name": "Cayman Islands",
+      "isoName": "Cayman Islands",
+      "officialName": "Cayman Islands",
+      "currencyCode": "KYD",
+      "languages": [
+        "en-KY"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-kz",
+      "countryCode": "KZ",
+      "alpha3": "KAZ",
+      "numeric": "398",
+      "name": "Kazakhstan",
+      "isoName": "Kazakhstan",
+      "officialName": "Republic of Kazakhstan",
+      "currencyCode": "KZT",
+      "languages": [
+        "kk",
+        "ru"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-la",
+      "countryCode": "LA",
+      "alpha3": "LAO",
+      "numeric": "418",
+      "name": "Laos",
+      "isoName": "Lao People's Democratic Republic",
+      "officialName": "Lao People's Democratic Republic",
+      "currencyCode": "LAK",
+      "languages": [
+        "lo",
+        "fr",
+        "en"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 6,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-lb",
+      "countryCode": "LB",
+      "alpha3": "LBN",
+      "numeric": "422",
+      "name": "Lebanon",
+      "isoName": "Lebanon",
+      "officialName": "Lebanese Republic",
+      "currencyCode": "LBP",
+      "languages": [
+        "ar-LB",
+        "fr-LB",
+        "en",
+        "hy"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-lc",
+      "countryCode": "LC",
+      "alpha3": "LCA",
+      "numeric": "662",
+      "name": "Saint Lucia",
+      "isoName": "Saint Lucia",
+      "officialName": "Saint Lucia",
+      "currencyCode": "XCD",
+      "languages": [
+        "en-LC"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-li",
+      "countryCode": "LI",
+      "alpha3": "LIE",
+      "numeric": "438",
+      "name": "Liechtenstein",
+      "isoName": "Liechtenstein",
+      "officialName": "Principality of Liechtenstein",
+      "currencyCode": "CHF",
+      "languages": [
+        "de-LI"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-lk",
+      "countryCode": "LK",
+      "alpha3": "LKA",
+      "numeric": "144",
+      "name": "Sri Lanka",
+      "isoName": "Sri Lanka",
+      "officialName": "Democratic Socialist Republic of Sri Lanka",
+      "currencyCode": "LKR",
+      "languages": [
+        "si",
+        "ta",
+        "en"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-lr",
+      "countryCode": "LR",
+      "alpha3": "LBR",
+      "numeric": "430",
+      "name": "Liberia",
+      "isoName": "Liberia",
+      "officialName": "Republic of Liberia",
+      "currencyCode": "LRD",
+      "languages": [
+        "en-LR"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ls",
+      "countryCode": "LS",
+      "alpha3": "LSO",
+      "numeric": "426",
+      "name": "Lesotho",
+      "isoName": "Lesotho",
+      "officialName": "Kingdom of Lesotho",
+      "currencyCode": "LSL",
+      "languages": [
+        "en-LS",
+        "st",
+        "zu",
+        "xh"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-lt",
+      "countryCode": "LT",
+      "alpha3": "LTU",
+      "numeric": "440",
+      "name": "Lithuania",
+      "isoName": "Lithuania",
+      "officialName": "Republic of Lithuania",
+      "currencyCode": "EUR",
+      "languages": [
+        "lt",
+        "ru",
+        "pl"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-lu",
+      "countryCode": "LU",
+      "alpha3": "LUX",
+      "numeric": "442",
+      "name": "Luxembourg",
+      "isoName": "Luxembourg",
+      "officialName": "Grand Duchy of Luxembourg",
+      "currencyCode": "EUR",
+      "languages": [
+        "lb",
+        "de-LU",
+        "fr-LU"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-lv",
+      "countryCode": "LV",
+      "alpha3": "LVA",
+      "numeric": "428",
+      "name": "Latvia",
+      "isoName": "Latvia",
+      "officialName": "Republic of Latvia",
+      "currencyCode": "EUR",
+      "languages": [
+        "lv",
+        "ru",
+        "lt"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ly",
+      "countryCode": "LY",
+      "alpha3": "LBY",
+      "numeric": "434",
+      "name": "Libya",
+      "isoName": "Libya",
+      "officialName": "Libya",
+      "currencyCode": "LYD",
+      "languages": [
+        "ar-LY",
+        "it",
+        "en"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ma",
+      "countryCode": "MA",
+      "alpha3": "MAR",
+      "numeric": "504",
+      "name": "Morocco",
+      "isoName": "Morocco",
+      "officialName": "Kingdom of Morocco",
+      "currencyCode": "MAD",
+      "languages": [
+        "ar-MA",
+        "ber",
+        "fr"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 7,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-mc",
+      "countryCode": "MC",
+      "alpha3": "MCO",
+      "numeric": "492",
+      "name": "Monaco",
+      "isoName": "Monaco",
+      "officialName": "Principality of Monaco",
+      "currencyCode": "EUR",
+      "languages": [
+        "fr-MC",
+        "en",
+        "it"
+      ],
+      "coverageException": {
+        "code": "city_state",
+        "reason": "Monaco is a single municipality; quarters are not counted as independent towns."
+      },
+      "verifiedSettlementCount": 1,
+      "geographicCoverage": "exception"
+    },
+    {
+      "id": "country-md",
+      "countryCode": "MD",
+      "alpha3": "MDA",
+      "numeric": "498",
+      "name": "Moldova",
+      "isoName": "Moldova, Republic of",
+      "officialName": "Republic of Moldova",
+      "currencyCode": "MDL",
+      "languages": [
+        "ro",
+        "ru",
+        "gag",
+        "tr"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-me",
+      "countryCode": "ME",
+      "alpha3": "MNE",
+      "numeric": "499",
+      "name": "Montenegro",
+      "isoName": "Montenegro",
+      "officialName": "Montenegro",
+      "currencyCode": "EUR",
+      "languages": [
+        "sr",
+        "hu",
+        "bs",
+        "sq",
+        "hr",
+        "rom"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-mf",
+      "countryCode": "MF",
+      "alpha3": "MAF",
+      "numeric": "663",
+      "name": "Saint Martin",
+      "isoName": "Saint Martin (French part)",
+      "officialName": "Saint Martin (French part)",
+      "currencyCode": "EUR",
+      "languages": [
+        "fr"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-mg",
+      "countryCode": "MG",
+      "alpha3": "MDG",
+      "numeric": "450",
+      "name": "Madagascar",
+      "isoName": "Madagascar",
+      "officialName": "Republic of Madagascar",
+      "currencyCode": "MGA",
+      "languages": [
+        "fr-MG",
+        "mg"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-mh",
+      "countryCode": "MH",
+      "alpha3": "MHL",
+      "numeric": "584",
+      "name": "Marshall Islands",
+      "isoName": "Marshall Islands",
+      "officialName": "Republic of the Marshall Islands",
+      "currencyCode": "USD",
+      "languages": [
+        "mh",
+        "en-MH"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-mk",
+      "countryCode": "MK",
+      "alpha3": "MKD",
+      "numeric": "807",
+      "name": "North Macedonia",
+      "isoName": "North Macedonia",
+      "officialName": "Republic of North Macedonia",
+      "currencyCode": "MKD",
+      "languages": [
+        "mk",
+        "sq",
+        "tr",
+        "rmm",
+        "sr"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ml",
+      "countryCode": "ML",
+      "alpha3": "MLI",
+      "numeric": "466",
+      "name": "Mali",
+      "isoName": "Mali",
+      "officialName": "Republic of Mali",
+      "currencyCode": "XOF",
+      "languages": [
+        "fr-ML",
+        "bm"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-mm",
+      "countryCode": "MM",
+      "alpha3": "MMR",
+      "numeric": "104",
+      "name": "Myanmar",
+      "isoName": "Myanmar",
+      "officialName": "Republic of Myanmar",
+      "currencyCode": "MMK",
+      "languages": [
+        "my"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-mn",
+      "countryCode": "MN",
+      "alpha3": "MNG",
+      "numeric": "496",
+      "name": "Mongolia",
+      "isoName": "Mongolia",
+      "officialName": "Mongolia",
+      "currencyCode": "MNT",
+      "languages": [
+        "mn",
+        "ru"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-mo",
+      "countryCode": "MO",
+      "alpha3": "MAC",
+      "numeric": "446",
+      "name": "Macao",
+      "isoName": "Macao",
+      "officialName": "Macao Special Administrative Region of China",
+      "currencyCode": "MOP",
+      "languages": [
+        "zh",
+        "zh-MO",
+        "pt"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-mp",
+      "countryCode": "MP",
+      "alpha3": "MNP",
+      "numeric": "580",
+      "name": "Northern Mariana Islands",
+      "isoName": "Northern Mariana Islands",
+      "officialName": "Commonwealth of the Northern Mariana Islands",
+      "currencyCode": "USD",
+      "languages": [
+        "fil",
+        "tl",
+        "zh",
+        "ch-MP",
+        "en-MP"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-mq",
+      "countryCode": "MQ",
+      "alpha3": "MTQ",
+      "numeric": "474",
+      "name": "Martinique",
+      "isoName": "Martinique",
+      "officialName": "Martinique",
+      "currencyCode": "EUR",
+      "languages": [
+        "fr-MQ"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-mr",
+      "countryCode": "MR",
+      "alpha3": "MRT",
+      "numeric": "478",
+      "name": "Mauritania",
+      "isoName": "Mauritania",
+      "officialName": "Islamic Republic of Mauritania",
+      "currencyCode": "MRU",
+      "languages": [
+        "ar-MR",
+        "fuc",
+        "snk",
+        "fr",
+        "mey",
+        "wo"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ms",
+      "countryCode": "MS",
+      "alpha3": "MSR",
+      "numeric": "500",
+      "name": "Montserrat",
+      "isoName": "Montserrat",
+      "officialName": "Montserrat",
+      "currencyCode": "XCD",
+      "languages": [
+        "en-MS"
+      ],
+      "coverageException": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "verifiedSettlementCount": 4,
+      "geographicCoverage": "source_gap"
+    },
+    {
+      "id": "country-mt",
+      "countryCode": "MT",
+      "alpha3": "MLT",
+      "numeric": "470",
+      "name": "Malta",
+      "isoName": "Malta",
+      "officialName": "Republic of Malta",
+      "currencyCode": "EUR",
+      "languages": [
+        "mt",
+        "en-MT"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-mu",
+      "countryCode": "MU",
+      "alpha3": "MUS",
+      "numeric": "480",
+      "name": "Mauritius",
+      "isoName": "Mauritius",
+      "officialName": "Republic of Mauritius",
+      "currencyCode": "MUR",
+      "languages": [
+        "en-MU",
+        "bho",
+        "fr"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-mv",
+      "countryCode": "MV",
+      "alpha3": "MDV",
+      "numeric": "462",
+      "name": "Maldives",
+      "isoName": "Maldives",
+      "officialName": "Republic of Maldives",
+      "currencyCode": "MVR",
+      "languages": [
+        "dv",
+        "en"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-mw",
+      "countryCode": "MW",
+      "alpha3": "MWI",
+      "numeric": "454",
+      "name": "Malawi",
+      "isoName": "Malawi",
+      "officialName": "Republic of Malawi",
+      "currencyCode": "MWK",
+      "languages": [
+        "ny",
+        "yao",
+        "tum",
+        "swk"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-mx",
+      "countryCode": "MX",
+      "alpha3": "MEX",
+      "numeric": "484",
+      "name": "Mexico",
+      "isoName": "Mexico",
+      "officialName": "United Mexican States",
+      "currencyCode": "MXN",
+      "languages": [
+        "es-MX"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 7,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-my",
+      "countryCode": "MY",
+      "alpha3": "MYS",
+      "numeric": "458",
+      "name": "Malaysia",
+      "isoName": "Malaysia",
+      "officialName": "Malaysia",
+      "currencyCode": "MYR",
+      "languages": [
+        "ms-MY",
+        "en",
+        "zh",
+        "ta",
+        "te",
+        "ml",
+        "pa",
+        "th"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 6,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-mz",
+      "countryCode": "MZ",
+      "alpha3": "MOZ",
+      "numeric": "508",
+      "name": "Mozambique",
+      "isoName": "Mozambique",
+      "officialName": "Republic of Mozambique",
+      "currencyCode": "MZN",
+      "languages": [
+        "pt-MZ",
+        "vmw"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-na",
+      "countryCode": "NA",
+      "alpha3": "NAM",
+      "numeric": "516",
+      "name": "Namibia",
+      "isoName": "Namibia",
+      "officialName": "Republic of Namibia",
+      "currencyCode": "NAD",
+      "languages": [
+        "en-NA",
+        "af",
+        "de",
+        "hz",
+        "naq"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-nc",
+      "countryCode": "NC",
+      "alpha3": "NCL",
+      "numeric": "540",
+      "name": "New Caledonia",
+      "isoName": "New Caledonia",
+      "officialName": "New Caledonia",
+      "currencyCode": "XPF",
+      "languages": [
+        "fr-NC"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ne",
+      "countryCode": "NE",
+      "alpha3": "NER",
+      "numeric": "562",
+      "name": "Niger",
+      "isoName": "Niger",
+      "officialName": "Republic of the Niger",
+      "currencyCode": "XOF",
+      "languages": [
+        "fr-NE",
+        "ha",
+        "kr",
+        "dje"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-nf",
+      "countryCode": "NF",
+      "alpha3": "NFK",
+      "numeric": "574",
+      "name": "Norfolk Island",
+      "isoName": "Norfolk Island",
+      "officialName": "Norfolk Island",
+      "currencyCode": "AUD",
+      "languages": [
+        "en-NF"
+      ],
+      "coverageException": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "verifiedSettlementCount": 1,
+      "geographicCoverage": "source_gap"
+    },
+    {
+      "id": "country-ng",
+      "countryCode": "NG",
+      "alpha3": "NGA",
+      "numeric": "566",
+      "name": "Nigeria",
+      "isoName": "Nigeria",
+      "officialName": "Federal Republic of Nigeria",
+      "currencyCode": "NGN",
+      "languages": [
+        "en-NG",
+        "ha",
+        "yo",
+        "ig",
+        "ff"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ni",
+      "countryCode": "NI",
+      "alpha3": "NIC",
+      "numeric": "558",
+      "name": "Nicaragua",
+      "isoName": "Nicaragua",
+      "officialName": "Republic of Nicaragua",
+      "currencyCode": "NIO",
+      "languages": [
+        "es-NI",
+        "en"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-nl",
+      "countryCode": "NL",
+      "alpha3": "NLD",
+      "numeric": "528",
+      "name": "The Netherlands",
+      "isoName": "Netherlands",
+      "officialName": "Kingdom of the Netherlands",
+      "currencyCode": "EUR",
+      "languages": [
+        "nl-NL",
+        "fy-NL"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-no",
+      "countryCode": "NO",
+      "alpha3": "NOR",
+      "numeric": "578",
+      "name": "Norway",
+      "isoName": "Norway",
+      "officialName": "Kingdom of Norway",
+      "currencyCode": "NOK",
+      "languages": [
+        "no",
+        "nb",
+        "nn",
+        "se",
+        "fi"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-np",
+      "countryCode": "NP",
+      "alpha3": "NPL",
+      "numeric": "524",
+      "name": "Nepal",
+      "isoName": "Nepal",
+      "officialName": "Federal Democratic Republic of Nepal",
+      "currencyCode": "NPR",
+      "languages": [
+        "ne",
+        "en"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-nr",
+      "countryCode": "NR",
+      "alpha3": "NRU",
+      "numeric": "520",
+      "name": "Nauru",
+      "isoName": "Nauru",
+      "officialName": "Republic of Nauru",
+      "currencyCode": "AUD",
+      "languages": [
+        "na",
+        "en-NR"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-nu",
+      "countryCode": "NU",
+      "alpha3": "NIU",
+      "numeric": "570",
+      "name": "Niue",
+      "isoName": "Niue",
+      "officialName": "Niue",
+      "currencyCode": "NZD",
+      "languages": [
+        "niu",
+        "en-NU"
+      ],
+      "coverageException": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "verifiedSettlementCount": 1,
+      "geographicCoverage": "source_gap"
+    },
+    {
+      "id": "country-nz",
+      "countryCode": "NZ",
+      "alpha3": "NZL",
+      "numeric": "554",
+      "name": "New Zealand",
+      "isoName": "New Zealand",
+      "officialName": "New Zealand",
+      "currencyCode": "NZD",
+      "languages": [
+        "en-NZ",
+        "mi"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 6,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-om",
+      "countryCode": "OM",
+      "alpha3": "OMN",
+      "numeric": "512",
+      "name": "Oman",
+      "isoName": "Oman",
+      "officialName": "Sultanate of Oman",
+      "currencyCode": "OMR",
+      "languages": [
+        "ar-OM",
+        "en",
+        "bal",
+        "ur"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-pa",
+      "countryCode": "PA",
+      "alpha3": "PAN",
+      "numeric": "591",
+      "name": "Panama",
+      "isoName": "Panama",
+      "officialName": "Republic of Panama",
+      "currencyCode": "PAB",
+      "languages": [
+        "es-PA",
+        "en"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-pe",
+      "countryCode": "PE",
+      "alpha3": "PER",
+      "numeric": "604",
+      "name": "Peru",
+      "isoName": "Peru",
+      "officialName": "Republic of Peru",
+      "currencyCode": "PEN",
+      "languages": [
+        "es-PE",
+        "qu",
+        "ay"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-pf",
+      "countryCode": "PF",
+      "alpha3": "PYF",
+      "numeric": "258",
+      "name": "French Polynesia",
+      "isoName": "French Polynesia",
+      "officialName": "French Polynesia",
+      "currencyCode": "XPF",
+      "languages": [
+        "fr-PF",
+        "ty"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-pg",
+      "countryCode": "PG",
+      "alpha3": "PNG",
+      "numeric": "598",
+      "name": "Papua New Guinea",
+      "isoName": "Papua New Guinea",
+      "officialName": "Independent State of Papua New Guinea",
+      "currencyCode": "PGK",
+      "languages": [
+        "en-PG",
+        "ho",
+        "meu",
+        "tpi"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ph",
+      "countryCode": "PH",
+      "alpha3": "PHL",
+      "numeric": "608",
+      "name": "Philippines",
+      "isoName": "Philippines",
+      "officialName": "Republic of the Philippines",
+      "currencyCode": "PHP",
+      "languages": [
+        "tl",
+        "en-PH",
+        "fil",
+        "ceb",
+        "ilo",
+        "hil",
+        "war",
+        "pam",
+        "bik",
+        "bcl",
+        "pag",
+        "mrw",
+        "tsg",
+        "mdh",
+        "cbk",
+        "krj",
+        "sgd",
+        "msb",
+        "akl",
+        "ibg",
+        "yka",
+        "mta",
+        "abx"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-pk",
+      "countryCode": "PK",
+      "alpha3": "PAK",
+      "numeric": "586",
+      "name": "Pakistan",
+      "isoName": "Pakistan",
+      "officialName": "Islamic Republic of Pakistan",
+      "currencyCode": "PKR",
+      "languages": [
+        "ur-PK",
+        "en-PK",
+        "pa",
+        "sd",
+        "ps",
+        "brh"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-pl",
+      "countryCode": "PL",
+      "alpha3": "POL",
+      "numeric": "616",
+      "name": "Poland",
+      "isoName": "Poland",
+      "officialName": "Republic of Poland",
+      "currencyCode": "PLN",
+      "languages": [
+        "pl"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-pm",
+      "countryCode": "PM",
+      "alpha3": "SPM",
+      "numeric": "666",
+      "name": "Saint Pierre and Miquelon",
+      "isoName": "Saint Pierre and Miquelon",
+      "officialName": "Saint Pierre and Miquelon",
+      "currencyCode": "EUR",
+      "languages": [
+        "fr-PM"
+      ],
+      "coverageException": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "verifiedSettlementCount": 2,
+      "geographicCoverage": "source_gap"
+    },
+    {
+      "id": "country-pn",
+      "countryCode": "PN",
+      "alpha3": "PCN",
+      "numeric": "612",
+      "name": "Pitcairn",
+      "isoName": "Pitcairn",
+      "officialName": "Pitcairn",
+      "currencyCode": "NZD",
+      "languages": [
+        "en-PN"
+      ],
+      "coverageException": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "verifiedSettlementCount": 1,
+      "geographicCoverage": "source_gap"
+    },
+    {
+      "id": "country-pr",
+      "countryCode": "PR",
+      "alpha3": "PRI",
+      "numeric": "630",
+      "name": "Puerto Rico",
+      "isoName": "Puerto Rico",
+      "officialName": "Puerto Rico",
+      "currencyCode": "USD",
+      "languages": [
+        "en-PR",
+        "es-PR"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ps",
+      "countryCode": "PS",
+      "alpha3": "PSE",
+      "numeric": "275",
+      "name": "Palestinian Territory",
+      "isoName": "Palestine, State of",
+      "officialName": "the State of Palestine",
+      "currencyCode": "ILS",
+      "languages": [
+        "ar-PS"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-pt",
+      "countryCode": "PT",
+      "alpha3": "PRT",
+      "numeric": "620",
+      "name": "Portugal",
+      "isoName": "Portugal",
+      "officialName": "Portuguese Republic",
+      "currencyCode": "EUR",
+      "languages": [
+        "pt-PT",
+        "mwl"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 6,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-pw",
+      "countryCode": "PW",
+      "alpha3": "PLW",
+      "numeric": "585",
+      "name": "Palau",
+      "isoName": "Palau",
+      "officialName": "Republic of Palau",
+      "currencyCode": "USD",
+      "languages": [
+        "pau",
+        "sov",
+        "en-PW",
+        "tox",
+        "ja",
+        "fil",
+        "zh"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-py",
+      "countryCode": "PY",
+      "alpha3": "PRY",
+      "numeric": "600",
+      "name": "Paraguay",
+      "isoName": "Paraguay",
+      "officialName": "Republic of Paraguay",
+      "currencyCode": "PYG",
+      "languages": [
+        "es-PY",
+        "gn"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-qa",
+      "countryCode": "QA",
+      "alpha3": "QAT",
+      "numeric": "634",
+      "name": "Qatar",
+      "isoName": "Qatar",
+      "officialName": "State of Qatar",
+      "currencyCode": "QAR",
+      "languages": [
+        "ar-QA",
+        "es"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-re",
+      "countryCode": "RE",
+      "alpha3": "REU",
+      "numeric": "638",
+      "name": "Reunion",
+      "isoName": "Réunion",
+      "officialName": "Réunion",
+      "currencyCode": "EUR",
+      "languages": [
+        "fr-RE"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ro",
+      "countryCode": "RO",
+      "alpha3": "ROU",
+      "numeric": "642",
+      "name": "Romania",
+      "isoName": "Romania",
+      "officialName": "Romania",
+      "currencyCode": "RON",
+      "languages": [
+        "ro",
+        "hu",
+        "rom"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-rs",
+      "countryCode": "RS",
+      "alpha3": "SRB",
+      "numeric": "688",
+      "name": "Serbia",
+      "isoName": "Serbia",
+      "officialName": "Republic of Serbia",
+      "currencyCode": "RSD",
+      "languages": [
+        "sr",
+        "hu",
+        "bs",
+        "rom"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ru",
+      "countryCode": "RU",
+      "alpha3": "RUS",
+      "numeric": "643",
+      "name": "Russia",
+      "isoName": "Russian Federation",
+      "officialName": "Russian Federation",
+      "currencyCode": "RUB",
+      "languages": [
+        "ru",
+        "tt",
+        "xal",
+        "cau",
+        "ady",
+        "kv",
+        "ce",
+        "tyv",
+        "cv",
+        "udm",
+        "tut",
+        "mns",
+        "bua",
+        "myv",
+        "mdf",
+        "chm",
+        "ba",
+        "inh",
+        "kbd",
+        "krc",
+        "av",
+        "sah",
+        "nog"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-rw",
+      "countryCode": "RW",
+      "alpha3": "RWA",
+      "numeric": "646",
+      "name": "Rwanda",
+      "isoName": "Rwanda",
+      "officialName": "Rwandese Republic",
+      "currencyCode": "RWF",
+      "languages": [
+        "rw",
+        "en-RW",
+        "fr-RW",
+        "sw"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-sa",
+      "countryCode": "SA",
+      "alpha3": "SAU",
+      "numeric": "682",
+      "name": "Saudi Arabia",
+      "isoName": "Saudi Arabia",
+      "officialName": "Kingdom of Saudi Arabia",
+      "currencyCode": "SAR",
+      "languages": [
+        "ar-SA"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-sb",
+      "countryCode": "SB",
+      "alpha3": "SLB",
+      "numeric": "090",
+      "name": "Solomon Islands",
+      "isoName": "Solomon Islands",
+      "officialName": "Solomon Islands",
+      "currencyCode": "SBD",
+      "languages": [
+        "en-SB",
+        "tpi"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-sc",
+      "countryCode": "SC",
+      "alpha3": "SYC",
+      "numeric": "690",
+      "name": "Seychelles",
+      "isoName": "Seychelles",
+      "officialName": "Republic of Seychelles",
+      "currencyCode": "SCR",
+      "languages": [
+        "en-SC",
+        "fr-SC"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-sd",
+      "countryCode": "SD",
+      "alpha3": "SDN",
+      "numeric": "729",
+      "name": "Sudan",
+      "isoName": "Sudan",
+      "officialName": "Republic of the Sudan",
+      "currencyCode": "SDG",
+      "languages": [
+        "ar-SD",
+        "en",
+        "fia"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-se",
+      "countryCode": "SE",
+      "alpha3": "SWE",
+      "numeric": "752",
+      "name": "Sweden",
+      "isoName": "Sweden",
+      "officialName": "Kingdom of Sweden",
+      "currencyCode": "SEK",
+      "languages": [
+        "sv-SE",
+        "se",
+        "sma",
+        "fi-SE"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-sg",
+      "countryCode": "SG",
+      "alpha3": "SGP",
+      "numeric": "702",
+      "name": "Singapore",
+      "isoName": "Singapore",
+      "officialName": "Republic of Singapore",
+      "currencyCode": "SGD",
+      "languages": [
+        "cmn",
+        "en-SG",
+        "ms-SG",
+        "ta-SG",
+        "zh-SG"
+      ],
+      "coverageException": {
+        "code": "city_state",
+        "reason": "Singapore is a city-state; planning areas/neighborhoods are not counted as separate cities."
+      },
+      "verifiedSettlementCount": 1,
+      "geographicCoverage": "exception"
+    },
+    {
+      "id": "country-sh",
+      "countryCode": "SH",
+      "alpha3": "SHN",
+      "numeric": "654",
+      "name": "Saint Helena",
+      "isoName": "Saint Helena, Ascension and Tristan da Cunha",
+      "officialName": "Saint Helena, Ascension and Tristan da Cunha",
+      "currencyCode": "SHP",
+      "languages": [
+        "en-SH"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-si",
+      "countryCode": "SI",
+      "alpha3": "SVN",
+      "numeric": "705",
+      "name": "Slovenia",
+      "isoName": "Slovenia",
+      "officialName": "Republic of Slovenia",
+      "currencyCode": "EUR",
+      "languages": [
+        "sl",
+        "sh"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-sj",
+      "countryCode": "SJ",
+      "alpha3": "SJM",
+      "numeric": "744",
+      "name": "Svalbard and Jan Mayen",
+      "isoName": "Svalbard and Jan Mayen",
+      "officialName": "Svalbard and Jan Mayen",
+      "currencyCode": "NOK",
+      "languages": [
+        "no",
+        "ru"
+      ],
+      "coverageException": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "verifiedSettlementCount": 2,
+      "geographicCoverage": "source_gap"
+    },
+    {
+      "id": "country-sk",
+      "countryCode": "SK",
+      "alpha3": "SVK",
+      "numeric": "703",
+      "name": "Slovakia",
+      "isoName": "Slovakia",
+      "officialName": "Slovak Republic",
+      "currencyCode": "EUR",
+      "languages": [
+        "sk",
+        "hu"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-sl",
+      "countryCode": "SL",
+      "alpha3": "SLE",
+      "numeric": "694",
+      "name": "Sierra Leone",
+      "isoName": "Sierra Leone",
+      "officialName": "Republic of Sierra Leone",
+      "currencyCode": "SLE",
+      "languages": [
+        "en-SL",
+        "men",
+        "tem"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-sm",
+      "countryCode": "SM",
+      "alpha3": "SMR",
+      "numeric": "674",
+      "name": "San Marino",
+      "isoName": "San Marino",
+      "officialName": "Republic of San Marino",
+      "currencyCode": "EUR",
+      "languages": [
+        "it-SM"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-sn",
+      "countryCode": "SN",
+      "alpha3": "SEN",
+      "numeric": "686",
+      "name": "Senegal",
+      "isoName": "Senegal",
+      "officialName": "Republic of Senegal",
+      "currencyCode": "XOF",
+      "languages": [
+        "fr-SN",
+        "wo",
+        "fuc",
+        "mnk"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-so",
+      "countryCode": "SO",
+      "alpha3": "SOM",
+      "numeric": "706",
+      "name": "Somalia",
+      "isoName": "Somalia",
+      "officialName": "Federal Republic of Somalia",
+      "currencyCode": "SOS",
+      "languages": [
+        "so-SO",
+        "ar-SO",
+        "it",
+        "en-SO"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-sr",
+      "countryCode": "SR",
+      "alpha3": "SUR",
+      "numeric": "740",
+      "name": "Suriname",
+      "isoName": "Suriname",
+      "officialName": "Republic of Suriname",
+      "currencyCode": "SRD",
+      "languages": [
+        "nl-SR",
+        "en",
+        "srn",
+        "hns",
+        "jv"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ss",
+      "countryCode": "SS",
+      "alpha3": "SSD",
+      "numeric": "728",
+      "name": "South Sudan",
+      "isoName": "South Sudan",
+      "officialName": "Republic of South Sudan",
+      "currencyCode": "SSP",
+      "languages": [
+        "en"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-st",
+      "countryCode": "ST",
+      "alpha3": "STP",
+      "numeric": "678",
+      "name": "Sao Tome and Principe",
+      "isoName": "Sao Tome and Principe",
+      "officialName": "Democratic Republic of Sao Tome and Principe",
+      "currencyCode": "STN",
+      "languages": [
+        "pt-ST"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-sv",
+      "countryCode": "SV",
+      "alpha3": "SLV",
+      "numeric": "222",
+      "name": "El Salvador",
+      "isoName": "El Salvador",
+      "officialName": "Republic of El Salvador",
+      "currencyCode": "USD",
+      "languages": [
+        "es-SV"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-sx",
+      "countryCode": "SX",
+      "alpha3": "SXM",
+      "numeric": "534",
+      "name": "Sint Maarten",
+      "isoName": "Sint Maarten (Dutch part)",
+      "officialName": "Sint Maarten (Dutch part)",
+      "currencyCode": "XCG",
+      "languages": [
+        "nl",
+        "en"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-sy",
+      "countryCode": "SY",
+      "alpha3": "SYR",
+      "numeric": "760",
+      "name": "Syria",
+      "isoName": "Syrian Arab Republic",
+      "officialName": "Syrian Arab Republic",
+      "currencyCode": "SYP",
+      "languages": [
+        "ar-SY",
+        "ku",
+        "hy",
+        "arc",
+        "fr",
+        "en"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-sz",
+      "countryCode": "SZ",
+      "alpha3": "SWZ",
+      "numeric": "748",
+      "name": "Eswatini",
+      "isoName": "Eswatini",
+      "officialName": "Kingdom of Eswatini",
+      "currencyCode": "SZL",
+      "languages": [
+        "en-SZ",
+        "ss-SZ"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-tc",
+      "countryCode": "TC",
+      "alpha3": "TCA",
+      "numeric": "796",
+      "name": "Turks and Caicos Islands",
+      "isoName": "Turks and Caicos Islands",
+      "officialName": "Turks and Caicos Islands",
+      "currencyCode": "USD",
+      "languages": [
+        "en-TC"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-td",
+      "countryCode": "TD",
+      "alpha3": "TCD",
+      "numeric": "148",
+      "name": "Chad",
+      "isoName": "Chad",
+      "officialName": "Republic of Chad",
+      "currencyCode": "XAF",
+      "languages": [
+        "fr-TD",
+        "ar-TD",
+        "sre"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-tf",
+      "countryCode": "TF",
+      "alpha3": "ATF",
+      "numeric": "260",
+      "name": "French Southern Territories",
+      "isoName": "French Southern Territories",
+      "officialName": "French Southern Territories",
+      "currencyCode": "EUR",
+      "languages": [
+        "fr"
+      ],
+      "coverageException": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "verifiedSettlementCount": 1,
+      "geographicCoverage": "source_gap"
+    },
+    {
+      "id": "country-tg",
+      "countryCode": "TG",
+      "alpha3": "TGO",
+      "numeric": "768",
+      "name": "Togo",
+      "isoName": "Togo",
+      "officialName": "Togolese Republic",
+      "currencyCode": "XOF",
+      "languages": [
+        "fr-TG",
+        "ee",
+        "hna",
+        "kbp",
+        "dag",
+        "ha"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-th",
+      "countryCode": "TH",
+      "alpha3": "THA",
+      "numeric": "764",
+      "name": "Thailand",
+      "isoName": "Thailand",
+      "officialName": "Kingdom of Thailand",
+      "currencyCode": "THB",
+      "languages": [
+        "th",
+        "en"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 6,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-tj",
+      "countryCode": "TJ",
+      "alpha3": "TJK",
+      "numeric": "762",
+      "name": "Tajikistan",
+      "isoName": "Tajikistan",
+      "officialName": "Republic of Tajikistan",
+      "currencyCode": "TJS",
+      "languages": [
+        "tg",
+        "ru"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-tk",
+      "countryCode": "TK",
+      "alpha3": "TKL",
+      "numeric": "772",
+      "name": "Tokelau",
+      "isoName": "Tokelau",
+      "officialName": "Tokelau",
+      "currencyCode": "NZD",
+      "languages": [
+        "tkl",
+        "en-TK"
+      ],
+      "coverageException": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "verifiedSettlementCount": 3,
+      "geographicCoverage": "source_gap"
+    },
+    {
+      "id": "country-tl",
+      "countryCode": "TL",
+      "alpha3": "TLS",
+      "numeric": "626",
+      "name": "Timor Leste",
+      "isoName": "Timor-Leste",
+      "officialName": "Democratic Republic of Timor-Leste",
+      "currencyCode": "USD",
+      "languages": [
+        "tet",
+        "pt-TL",
+        "id",
+        "en"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-tm",
+      "countryCode": "TM",
+      "alpha3": "TKM",
+      "numeric": "795",
+      "name": "Turkmenistan",
+      "isoName": "Turkmenistan",
+      "officialName": "Turkmenistan",
+      "currencyCode": "TMT",
+      "languages": [
+        "tk",
+        "ru",
+        "uz"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-tn",
+      "countryCode": "TN",
+      "alpha3": "TUN",
+      "numeric": "788",
+      "name": "Tunisia",
+      "isoName": "Tunisia",
+      "officialName": "Republic of Tunisia",
+      "currencyCode": "TND",
+      "languages": [
+        "ar-TN",
+        "fr"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-to",
+      "countryCode": "TO",
+      "alpha3": "TON",
+      "numeric": "776",
+      "name": "Tonga",
+      "isoName": "Tonga",
+      "officialName": "Kingdom of Tonga",
+      "currencyCode": "TOP",
+      "languages": [
+        "to",
+        "en-TO"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-tr",
+      "countryCode": "TR",
+      "alpha3": "TUR",
+      "numeric": "792",
+      "name": "Turkey",
+      "isoName": "Türkiye",
+      "officialName": "Republic of Türkiye",
+      "currencyCode": "TRY",
+      "languages": [
+        "tr-TR",
+        "ku",
+        "diq",
+        "az",
+        "av"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-tt",
+      "countryCode": "TT",
+      "alpha3": "TTO",
+      "numeric": "780",
+      "name": "Trinidad and Tobago",
+      "isoName": "Trinidad and Tobago",
+      "officialName": "Republic of Trinidad and Tobago",
+      "currencyCode": "TTD",
+      "languages": [
+        "en-TT",
+        "hns",
+        "fr",
+        "es",
+        "zh"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-tv",
+      "countryCode": "TV",
+      "alpha3": "TUV",
+      "numeric": "798",
+      "name": "Tuvalu",
+      "isoName": "Tuvalu",
+      "officialName": "Tuvalu",
+      "currencyCode": "AUD",
+      "languages": [
+        "tvl",
+        "en",
+        "sm",
+        "gil"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-tw",
+      "countryCode": "TW",
+      "alpha3": "TWN",
+      "numeric": "158",
+      "name": "Taiwan",
+      "isoName": "Taiwan, Province of China",
+      "officialName": "Taiwan, Province of China",
+      "currencyCode": "TWD",
+      "languages": [
+        "zh-TW",
+        "zh",
+        "nan",
+        "hak"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-tz",
+      "countryCode": "TZ",
+      "alpha3": "TZA",
+      "numeric": "834",
+      "name": "Tanzania",
+      "isoName": "Tanzania, United Republic of",
+      "officialName": "United Republic of Tanzania",
+      "currencyCode": "TZS",
+      "languages": [
+        "sw-TZ",
+        "en",
+        "ar"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ua",
+      "countryCode": "UA",
+      "alpha3": "UKR",
+      "numeric": "804",
+      "name": "Ukraine",
+      "isoName": "Ukraine",
+      "officialName": "Ukraine",
+      "currencyCode": "UAH",
+      "languages": [
+        "uk",
+        "ru-UA",
+        "rom",
+        "pl",
+        "hu"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ug",
+      "countryCode": "UG",
+      "alpha3": "UGA",
+      "numeric": "800",
+      "name": "Uganda",
+      "isoName": "Uganda",
+      "officialName": "Republic of Uganda",
+      "currencyCode": "UGX",
+      "languages": [
+        "en-UG",
+        "lg",
+        "sw",
+        "ar"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-um",
+      "countryCode": "UM",
+      "alpha3": "UMI",
+      "numeric": "581",
+      "name": "United States Minor Outlying Islands",
+      "isoName": "United States Minor Outlying Islands",
+      "officialName": "United States Minor Outlying Islands",
+      "currencyCode": "USD",
+      "languages": [
+        "en-UM"
+      ],
+      "coverageException": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "verifiedSettlementCount": 0,
+      "geographicCoverage": "source_gap"
+    },
+    {
+      "id": "country-us",
+      "countryCode": "US",
+      "alpha3": "USA",
+      "numeric": "840",
+      "name": "United States",
+      "isoName": "United States",
+      "officialName": "United States of America",
+      "currencyCode": "USD",
+      "languages": [
+        "en-US",
+        "es-US",
+        "haw",
+        "fr"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 10,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-uy",
+      "countryCode": "UY",
+      "alpha3": "URY",
+      "numeric": "858",
+      "name": "Uruguay",
+      "isoName": "Uruguay",
+      "officialName": "Eastern Republic of Uruguay",
+      "currencyCode": "UYU",
+      "languages": [
+        "es-UY"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-uz",
+      "countryCode": "UZ",
+      "alpha3": "UZB",
+      "numeric": "860",
+      "name": "Uzbekistan",
+      "isoName": "Uzbekistan",
+      "officialName": "Republic of Uzbekistan",
+      "currencyCode": "UZS",
+      "languages": [
+        "uz",
+        "ru",
+        "tg"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-va",
+      "countryCode": "VA",
+      "alpha3": "VAT",
+      "numeric": "336",
+      "name": "Vatican",
+      "isoName": "Holy See (Vatican City State)",
+      "officialName": "Holy See (Vatican City State)",
+      "currencyCode": "EUR",
+      "languages": [
+        "la",
+        "it",
+        "fr"
+      ],
+      "coverageException": {
+        "code": "city_state",
+        "reason": "Vatican City is one city-state."
+      },
+      "verifiedSettlementCount": 1,
+      "geographicCoverage": "exception"
+    },
+    {
+      "id": "country-vc",
+      "countryCode": "VC",
+      "alpha3": "VCT",
+      "numeric": "670",
+      "name": "Saint Vincent and the Grenadines",
+      "isoName": "Saint Vincent and the Grenadines",
+      "officialName": "Saint Vincent and the Grenadines",
+      "currencyCode": "XCD",
+      "languages": [
+        "en-VC",
+        "fr"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ve",
+      "countryCode": "VE",
+      "alpha3": "VEN",
+      "numeric": "862",
+      "name": "Venezuela",
+      "isoName": "Venezuela, Bolivarian Republic of",
+      "officialName": "Bolivarian Republic of Venezuela",
+      "currencyCode": "VES",
+      "languages": [
+        "es-VE"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-vg",
+      "countryCode": "VG",
+      "alpha3": "VGB",
+      "numeric": "092",
+      "name": "British Virgin Islands",
+      "isoName": "Virgin Islands, British",
+      "officialName": "British Virgin Islands",
+      "currencyCode": "USD",
+      "languages": [
+        "en-VG"
+      ],
+      "coverageException": {
+        "code": "insufficient_qualifying_source_records",
+        "reason": "Fewer than five qualifying distinct settlements in this source snapshot; not a claim that no other settlements exist."
+      },
+      "verifiedSettlementCount": 2,
+      "geographicCoverage": "source_gap"
+    },
+    {
+      "id": "country-vi",
+      "countryCode": "VI",
+      "alpha3": "VIR",
+      "numeric": "850",
+      "name": "U.S. Virgin Islands",
+      "isoName": "Virgin Islands, U.S.",
+      "officialName": "Virgin Islands of the United States",
+      "currencyCode": "USD",
+      "languages": [
+        "en-VI"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-vn",
+      "countryCode": "VN",
+      "alpha3": "VNM",
+      "numeric": "704",
+      "name": "Vietnam",
+      "isoName": "Viet Nam",
+      "officialName": "Socialist Republic of Viet Nam",
+      "currencyCode": "VND",
+      "languages": [
+        "vi",
+        "en",
+        "fr",
+        "zh",
+        "km"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 7,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-vu",
+      "countryCode": "VU",
+      "alpha3": "VUT",
+      "numeric": "548",
+      "name": "Vanuatu",
+      "isoName": "Vanuatu",
+      "officialName": "Republic of Vanuatu",
+      "currencyCode": "VUV",
+      "languages": [
+        "bi",
+        "en-VU",
+        "fr-VU"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-wf",
+      "countryCode": "WF",
+      "alpha3": "WLF",
+      "numeric": "876",
+      "name": "Wallis and Futuna",
+      "isoName": "Wallis and Futuna",
+      "officialName": "Wallis and Futuna",
+      "currencyCode": "XPF",
+      "languages": [
+        "wls",
+        "fud",
+        "fr-WF"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ws",
+      "countryCode": "WS",
+      "alpha3": "WSM",
+      "numeric": "882",
+      "name": "Samoa",
+      "isoName": "Samoa",
+      "officialName": "Independent State of Samoa",
+      "currencyCode": "WST",
+      "languages": [
+        "sm",
+        "en-WS"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-ye",
+      "countryCode": "YE",
+      "alpha3": "YEM",
+      "numeric": "887",
+      "name": "Yemen",
+      "isoName": "Yemen",
+      "officialName": "Republic of Yemen",
+      "currencyCode": "YER",
+      "languages": [
+        "ar-YE"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-yt",
+      "countryCode": "YT",
+      "alpha3": "MYT",
+      "numeric": "175",
+      "name": "Mayotte",
+      "isoName": "Mayotte",
+      "officialName": "Mayotte",
+      "currencyCode": "EUR",
+      "languages": [
+        "fr-YT"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-za",
+      "countryCode": "ZA",
+      "alpha3": "ZAF",
+      "numeric": "710",
+      "name": "South Africa",
+      "isoName": "South Africa",
+      "officialName": "Republic of South Africa",
+      "currencyCode": "ZAR",
+      "languages": [
+        "zu",
+        "xh",
+        "af",
+        "nso",
+        "en-ZA",
+        "tn",
+        "st",
+        "ts",
+        "ss",
+        "ve",
+        "nr"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-zm",
+      "countryCode": "ZM",
+      "alpha3": "ZMB",
+      "numeric": "894",
+      "name": "Zambia",
+      "isoName": "Zambia",
+      "officialName": "Republic of Zambia",
+      "currencyCode": "ZMW",
+      "languages": [
+        "en-ZM",
+        "bem",
+        "loz",
+        "lun",
+        "lue",
+        "ny",
+        "toi"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    },
+    {
+      "id": "country-zw",
+      "countryCode": "ZW",
+      "alpha3": "ZWE",
+      "numeric": "716",
+      "name": "Zimbabwe",
+      "isoName": "Zimbabwe",
+      "officialName": "Republic of Zimbabwe",
+      "currencyCode": "ZWG",
+      "languages": [
+        "en-ZW",
+        "sn",
+        "nr",
+        "nd"
+      ],
+      "coverageException": null,
+      "verifiedSettlementCount": 5,
+      "geographicCoverage": "minimum_met"
+    }
+  ]
+}

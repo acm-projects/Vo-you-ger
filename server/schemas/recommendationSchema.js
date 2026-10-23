@@ -9,6 +9,9 @@
  */
 
 const { z } = require("zod");
+const { TRIP_POLICY } = require('../config/tripPolicy');
+const monthNames='January February March April May June July August September October November December'.split(' ');
+const validMonths=new Set(monthNames.flatMap(month=>[month.toLowerCase(),month.slice(0,3).toLowerCase()]));
 
 // ---------- INPUT: what the frontend sends us ----------
 // Key names are loose to prevent minor frontend variations from breaking the endpoint.
@@ -17,9 +20,12 @@ const quizSchema = z.looseObject({
   // Trip basics
   startingLocation: z.string().optional(),
   countriesOfInterest: z.array(z.string()).optional(),
-  months: z.array(z.string()).optional(),
-  minNights: z.number().int().min(1).optional(),
-  maxNights: z.number().int().min(1).optional(),
+  months: z.array(z.string().trim().refine(value=>validMonths.has(value.toLowerCase()),'Use a month name or three-letter abbreviation')).max(12).optional(),
+  minNights: z.number().int().min(0).max(TRIP_POLICY.maxSupportedDays - 1).optional(),
+  maxNights: z.number().int().min(0).max(TRIP_POLICY.maxSupportedDays - 1).optional(),
+  startDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine((value) =>
+    !Number.isNaN(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value,
+  "startDate must be a real calendar date").optional(),
   temperaturePreferences: z.array(z.string()).optional(), // warm | cool | chilly
   weatherPreferences: z.array(z.string()).optional(), // sunny | overcast | rainy
   willingToGetVisa: z.boolean().optional(),
@@ -28,9 +34,10 @@ const quizSchema = z.looseObject({
 
   // Logistics
   transportModes: z.array(z.string()).optional(), // plane | car | train
+  intercityTransportModes: z.array(z.enum(["train", "car", "bus", "plane", "ferry"])).optional(),
   accommodationTypes: z.array(z.string()).optional(),
   groupSize: z.string().optional(), // "1" | "2" | "3-5" | "6-9" | "10+"
-  dailyBudget: z.string().optional(), // "$" | "$$" | "$$$"
+  dailyBudget: z.string().trim().pipe(z.enum(['$','$$','$$$'])).optional(),
   dietaryRestrictions: z.array(z.string()).optional(),
   walkingAmount: z.string().optional(), // none | a bit | a lot
 
@@ -42,6 +49,8 @@ const quizSchema = z.looseObject({
   famousOrHiddenGem: z.string().optional(),
   seeAllOrDeeply: z.string().optional(),
   crowdsOrSpace: z.string().optional(),
+}).refine((quiz) => quiz.minNights == null || quiz.maxNights == null || quiz.minNights <= quiz.maxNights, {
+  message: "minNights must not exceed maxNights", path: ["maxNights"],
 });
 
 // ---------- OUTPUT: what we want back from the model ----------
