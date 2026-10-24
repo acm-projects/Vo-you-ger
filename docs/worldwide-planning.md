@@ -210,7 +210,9 @@ Keep existing `.env` credentials; no values were changed. Optional limits are in
 one network/429/5xx failure. Gemini makes at most two HTTP attempts on distinct
 configured models, reserving time for fallback; SDK automatic retries are off.
 Explanations default to a 60-second total budget and itinerary copy to 90 seconds,
-with a 45-second per-attempt maximum. All three budgets are configurable.
+with a 90-second per-attempt maximum. The first of two attempts receives at most
+half the total budget; the fallback can use time left by a fast failure. All
+three budgets are configurable.
 Timeouts do not disable a model for later requests. Explicit quota/provider/model
 failures can trigger a 60-second cooldown, with safe diagnostics distinguishing
 those skips from timeouts and configuration rejections. Generation uses low

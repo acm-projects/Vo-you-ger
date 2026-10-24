@@ -33,6 +33,56 @@ describe('Gemini SDK request controls',()=>{
   assert.ok(timeouts[0]<=15000);assert.ok(timeouts[1]>timeouts[0],'The second attempt has its own reserved time');
   assert.equal(response.diagnostics[0].reason,'request_timeout');
  });
+ it('gives the fallback unused time after the observed fast 503 within the same 90-second deadline',async()=>{
+  const llm=fresh('gemini-3.5-flash-lite,gemini-3.8-flash'),budgets=[],messages=[];
+  let now=1000000,calls=0;
+  mock.method(Date,'now',()=>now);
+  mock.method(console,'warn',message=>messages.push(message));
+  const originalTimeout=AbortSignal.timeout.bind(AbortSignal);
+  mock.method(AbortSignal,'timeout',ms=>{budgets.push(ms);return originalTimeout(ms);});
+  mock.method(global,'fetch',async(_url,init)=>{
+   calls++;
+   if(calls===1){
+    now+=2353;
+    return new Response(JSON.stringify({error:{code:503,message:'Private provider detail'}}),{status:503});
+   }
+   assert.ok(Number(new Headers(init.headers).get('x-server-timeout'))>=87);
+   // A response taking 50 seconds would miss the old 45-second cutoff.
+   assert.ok(budgets[1]>50000);
+   now+=50000;
+   return result();
+  });
+  const response=await llm.generateWithFallback('Private traveler prompt',{}, {timeoutMs:90000});
+  assert.equal(response.model,'gemini-3.8-flash');assert.equal(calls,2);
+  assert.deepEqual(budgets,[45000,87647]);
+  assert.equal(response.diagnostics[0].attemptTimeoutMs,45000);
+  assert.equal(response.diagnostics[0].elapsedMs,2353);
+  assert.equal(now,1052353);
+  assert.ok(!messages.join(' ').includes('Private'));
+ });
+ it('keeps the total deadline and two-attempt limit when both model attempts time out',async()=>{
+  const llm=fresh('gemini-3.5-flash-lite,gemini-3.8-flash'),budgets=[],messages=[];
+  let now=1000000,calls=0;
+  mock.method(Date,'now',()=>now);
+  mock.method(console,'warn',message=>messages.push(message));
+  const originalTimeout=AbortSignal.timeout.bind(AbortSignal);
+  mock.method(AbortSignal,'timeout',ms=>{budgets.push(ms);return originalTimeout(ms);});
+  mock.method(global,'fetch',async()=>{
+   calls++;now+=45000;
+   if(calls===1)throw new DOMException('Private aborted request','AbortError');
+   return new Response(JSON.stringify({error:{code:504,message:'Private deadline exceeded'}}),{status:504});
+  });
+  await assert.rejects(llm.generateWithFallback('Private prompt',{}, {timeoutMs:90000}),error=>{
+   assert.equal(error.fallbackReason,'request_timeout');
+   assert.deepEqual(error.diagnostics.map(item=>item.timeoutOrigin),['client','provider']);
+   assert.deepEqual(error.diagnostics.map(item=>item.attemptTimeoutMs),[45000,45000]);
+   return true;
+  });
+  assert.equal(calls,2);assert.deepEqual(budgets,[45000,45000]);assert.equal(now,1090000);
+  assert.match(messages[0],/budget 45000ms, timeout client/);
+  assert.match(messages[1],/budget 45000ms, timeout provider/);
+  assert.ok(!messages.join(' ').includes('Private'));
+ });
  for(const mode of ['abort','504'])it(`does not let a short ${mode} timeout suppress the next longer request`,async()=>{
   const llm=fresh('gemini-3.5-flash-lite');let calls=0;
   mock.method(console,'warn',()=>{});
