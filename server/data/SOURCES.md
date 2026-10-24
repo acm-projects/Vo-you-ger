@@ -139,7 +139,66 @@ preserving current photo metadata. `--refresh-images` explicitly refreshes publi
 image metadata using a disk cache, pacing and Retry-After handling. This importer
 never changes planning readiness or calls paid services.
 
+### Itinerary practical information: October 24, 2026
+
+`practicalGuidance.json` contains paraphrased, field-scoped guidance reviewed
+against the official sources below. Each entry records its review date and
+separate payment/tip source URLs. These are snapshots and general travel
+guidance, not live confirmation of a specific business's acceptance or policies.
+
+| Country | Payment source | Cultural-tip source |
+|---|---|---|
+| Portugal | [Turismo de Portugal useful information](https://www.visitportugal.com/en/sobre-portugal/info-util), [Banco de Portugal card acceptance](https://clientebancario.bportugal.pt/en/acceptance-cards) | The same tourism-board page's tipping guidance |
+| Poland | [Polish Tourism Organisation money guide](https://www.poland.travel/en/money-in-poland-notes-and-coins/) | No reviewed country-level tips in this snapshot |
+| Japan | [JNTO cashless payments](https://www.japan.travel/en/plan/cashless-payments-in-japan/), [JNTO FAQ](https://www.japan.travel/en/faq/) | [JNTO tipping guide](https://www.japan.travel/en/plan/tipping-in-japan/) |
+| Switzerland | [Switzerland Tourism currency/payment guide](https://www.myswitzerland.com/en-us/planning/about-switzerland/general-facts/money-and-shopping/currency/) | [Switzerland Tourism tipping guide](https://www.myswitzerland.com/en-us/planning/about-switzerland/general-facts/money-and-shopping/tipping/) |
+| Argentina | [Official national tourism FAQ, Money section](https://inprotur-prod.turismo.gob.ar/en/faqs) | No reviewed country-level tips in this snapshot |
+| France | [Official Service Public business payment guide](https://entreprendre.service-public.gouv.fr/vosdroits/F22929) | No reviewed country-level tips in this snapshot |
+
+Only the reviewed claims are used. Old prices, visa statements, ATM counts,
+exchange rates and unrelated material on those pages are not imported.
+Argentina/France's reviewed entries do not establish particular card networks,
+so their `cardsAccepted` lists remain empty rather than borrowing unsourced lists.
+Unrecorded wallets/limited networks likewise have empty lists meaning unknown.
+
+Currency codes come from the existing GeoNames country snapshot, independent of
+Gemini and destination-level currency fields. English names/symbols use Node's
+Intl/CLDR display labels, with the code retained to disambiguate shared symbols.
+No exchange rates or card-conversion benefits are calculated or claimed.
+
+Existing `destinations.json` payment and cultural notes have no recorded source
+reviews. They are preserved only as `legacy_editorial` guidance for the selected
+bases; missing-city notes are never copied from another city's record. A country
+payment summary can show networks shared by all selected bases, clearly marked
+editorial. City customs stay in `practicalInfo.byStop`. Reviewed country payment
+guidance takes precedence; reviewed country cultural guidance also takes
+precedence over potentially conflicting legacy cultural notes.
+
+To extend reviewed coverage, inspect a primary tourism/government source, add
+only supported fields and source URLs, and record the real review date. Do not
+promote imported geography or Gemini output to reviewed practical facts.
+If policy or acceptance guidance changes, revise the entry and review date.
+Saved itineraries retain their guidance/provenance snapshot; missing fields in
+older country trips are supplemented on read without a database migration.
+
+Activity `travelTip` text is application-authored planning guidance derived from
+available regular hours, food category, dietary uncertainty and travel-day type.
+It does not assert specific ticket, dress-code, access or reservation rules.
+Google metadata remains subject to the display/refresh rules below.
+
 ### Google Places display
+
+Country discovery now applies a conservative visitor-venue classification using
+Google's [documented place types](https://developers.google.com/maps/documentation/places/web-service/place-types).
+Tour/travel agencies and generic establishments are not treated as scheduled
+visitor activities merely because they have an address or 24-hour office hours.
+The filter is an application planning rule, not an independent inspection of a
+business. Unclassified listings are omitted rather than guessed into activities.
+
+Regular hours prefer Google's [structured weekly periods](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#OpeningHours),
+using local weekday/hour values and week/overnight rollover. English display
+text is a fallback, including shared AM/PM markers. Neither representation
+verifies special holiday hours, ticket availability or actual visit duration.
 
 Google Places is queried at runtime, not used as a static catalog source. New
 country itineraries persist place IDs and application-authored itinerary text;

@@ -17,6 +17,51 @@ function result(text='{"ok":true}') {
 }
 
 describe('Gemini SDK request controls',()=>{
+ it('reserves fallback time and switches models after an abort without SDK retries',async()=>{
+  const llm=fresh('gemini-3.5-flash-lite,gemini-3.8-flash'),timeouts=[],urls=[];
+  const originalTimeout=AbortSignal.timeout.bind(AbortSignal);
+  mock.method(AbortSignal,'timeout',ms=>{timeouts.push(ms);return originalTimeout(ms);});
+  mock.method(console,'warn',()=>{});
+  mock.method(global,'fetch',async url=>{
+   urls.push(String(url));
+   if(urls.length===1)throw new DOMException('Private aborted request','AbortError');
+   return result();
+  });
+  const response=await llm.generateWithFallback('Test',{}, {maxAttempts:2,timeoutMs:30000});
+  assert.equal(response.model,'gemini-3.8-flash');assert.equal(urls.length,2);
+  assert.ok(urls[0].includes('gemini-3.5-flash-lite'));assert.ok(urls[1].includes('gemini-3.8-flash'));
+  assert.ok(timeouts[0]<=15000);assert.ok(timeouts[1]>timeouts[0],'The second attempt has its own reserved time');
+  assert.equal(response.diagnostics[0].reason,'request_timeout');
+ });
+ for(const mode of ['abort','504'])it(`does not let a short ${mode} timeout suppress the next longer request`,async()=>{
+  const llm=fresh('gemini-3.5-flash-lite');let calls=0;
+  mock.method(console,'warn',()=>{});
+  mock.method(global,'fetch',async()=>{
+   calls++;
+   if(calls>1)return result();
+   if(mode==='abort')throw new DOMException('Aborted','AbortError');
+   return new Response(JSON.stringify({error:{code:504,message:'Private deadline exceeded'}}),{status:504});
+  });
+  await assert.rejects(llm.generateWithFallback('Test',{}, {maxAttempts:1,timeoutMs:8000}),error=>error.code==='GEMINI_TIMEOUT'&&error.fallbackReason==='request_timeout');
+  const response=await llm.generateWithFallback('Longer request',{}, {maxAttempts:1,timeoutMs:60000});
+  assert.equal(response.model,'gemini-3.5-flash-lite');assert.equal(calls,2);
+ });
+ it('distinguishes a quota failure from a later cooldown skip without exposing provider details',async()=>{
+  const llm=fresh();let calls=0;const messages=[];
+  mock.method(console,'warn',message=>messages.push(message));
+  mock.method(global,'fetch',async()=>{calls++;return new Response(JSON.stringify({error:{code:429,message:'Private key and traveler data'}}),{status:429});});
+  await assert.rejects(llm.generateWithFallback('Private prompt'),error=>error.statusCode===429&&error.fallbackReason==='rate_limited');
+  await assert.rejects(llm.generateWithFallback('Private prompt'),error=>error.code==='GEMINI_COOLDOWN'&&error.fallbackReason==='cooldown_skipped'&&error.diagnostics[0].previousReason==='rate_limited');
+  assert.equal(calls,1);assert.ok(!messages.join(' ').includes('Private'));
+ });
+ it('tries a different model immediately after overload within the two-attempt cap',async()=>{
+  const llm=fresh('gemini-3.5-flash-lite,gemini-3.8-flash'),urls=[];
+  mock.method(console,'warn',()=>{});
+  mock.method(global,'fetch',async url=>{urls.push(String(url));return urls.length===1?new Response(JSON.stringify({error:{code:503,message:'Unavailable'}}),{status:503}):result();});
+  const response=await llm.generateWithFallback('Test');
+  assert.equal(response.model,'gemini-3.8-flash');assert.equal(urls.length,2);
+  assert.ok(urls[0].includes('gemini-3.5-flash-lite'));assert.ok(urls[1].includes('gemini-3.8-flash'));
+ });
  it('uses supported low thinking and bounded output with the real SDK serializer',async()=>{
   const llm=fresh();let calls=0;
   mock.method(global,'fetch',async(_url,init)=>{
@@ -124,7 +169,7 @@ describe('Gemini SDK request controls',()=>{
    if(init.signal.aborted)reject(new DOMException('Aborted','AbortError'));
    else init.signal.addEventListener('abort',()=>reject(new DOMException('Aborted','AbortError')),{once:true});
   });});
-  try{await assert.rejects(llm.generateWithFallback('Test',{}, {maxAttempts:1,timeoutMs:20}),error=>error.code==='GEMINI_UNAVAILABLE');assert.equal(calls,1);}
+  try{await assert.rejects(llm.generateWithFallback('Test',{}, {maxAttempts:1,timeoutMs:20}),error=>error.code==='GEMINI_TIMEOUT'&&error.fallbackReason==='request_timeout');assert.equal(calls,1);}
   finally{clearTimeout(keepAlive);}
  });
 });

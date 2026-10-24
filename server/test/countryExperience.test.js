@@ -73,7 +73,7 @@ describe('Bounded structured planning prompts',()=>{
    return {data:{tripTitle:'A day in Portugal',summary:'History at a comfortable pace.',days:[{day:1,stopId:stop.stopId,theme:'Explore local history',morning:[{placeId:'approved',activityDescription:'Consider a visit.'}],afternoon:[],evening:[]}]},model:'mock'};
   });
   const {itinerary}=await generateCountryItinerary({outline,quiz,startDate:outline.startDate});
-  assert.equal(itinerary.promptVersion,'2026-10-23.4');
+  assert.equal(itinerary.promptVersion,'2026-10-24.1');
   assert.equal(itinerary.days[0].morning[0].address,'Unnecessary provider address');
  });
 });

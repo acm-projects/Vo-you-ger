@@ -22,13 +22,13 @@ function storedItinerary(itinerary) {
     if (activities > expected.maxActivities || (['full','visit','excursion'].includes(expected.type) && activities === 0)) throw apiError('INVALID_ITINERARY', 'Activity counts violate the trip policy');
   }
   const result={};
-  for(const field of ['schemaVersion','tripTitle','summary','destination','countryCode','outline','tripSummary','planningNotes','promptVersion','catalogAttribution','schedulerVersion','narrativeSource']) result[field]=itinerary[field] ?? null;
+  for(const field of ['schemaVersion','tripTitle','summary','destination','countryCode','outline','tripSummary','planningNotes','promptVersion','catalogAttribution','schedulerVersion','narrativeSource','narrativeFallbackReason','practicalInfo']) result[field]=itinerary[field] ?? null;
   result.placesStoredAs='ids_only';
   result.stays=(itinerary.stays||[]).map(stay=>({stopId:stay.stopId,destinationId:stay.destinationId,name:stay.name,nights:stay.nights,recommendedStayArea:null,stayAreaRationale:'Open a day at this base to see a suggested accommodation area near its activities.',alternatives:[]}));
   result.days=itinerary.days.map(day=>{
     const saved={};
     for(const field of ['day','date','dayOfWeek','theme','stopId','locationId','locationName','type','transfer','excursion']) saved[field]=day[field] ?? null;
-    for(const slot of ['morning','afternoon','evening']) saved[slot]=(day[slot]||[]).map(activity=>({placeId:activity.placeId,category:activity.category,activityDescription:activity.activityDescription}));
+    for(const slot of ['morning','afternoon','evening']) saved[slot]=(day[slot]||[]).map(activity=>({placeId:activity.placeId,category:activity.category,activityDescription:activity.activityDescription,travelTip:activity.travelTip ?? null,travelTipSource:activity.travelTipSource ?? null}));
     return saved;
   });
   if(Buffer.byteLength(JSON.stringify(result))>300000) throw apiError('ITINERARY_TOO_LARGE','Itinerary exceeds the persistence size limit',413);

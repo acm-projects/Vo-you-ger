@@ -33,6 +33,22 @@ function request(method,path,body,token) {
 }
 
 describe('Planning HTTP contract',()=>{
+ it('restores guidance on retrieval of an older country trip without database writes or provider requests',async()=>{
+  const outline=buildOutline({countryId:'country-pt',numberOfDays:1,startDate:'2027-06-05',quiz:{}});
+  const row={tripId:'older',schemaVersion:2,isSaved:true,itinerary:{schemaVersion:2,outline,days:[{day:1,dayOfWeek:'Saturday',morning:[{placeId:'older-venue',category:'food',activityDescription:'A meal'}],afternoon:[],evening:[]}]}};
+  const original=structuredClone(row);
+  mock.method(docClient,'send',async command=>{
+   assert.equal(command.constructor.name,'GetCommand');
+   assert.equal(command.input.Key.PK,'USER#older-owner');
+   return {Item:row};
+  });
+  mock.method(global,'fetch',()=>assert.fail('Trip retrieval must not request provider data'));
+  const result=await request('GET','/api/trips/older',undefined,generateToken({id:'older-owner'}));
+  assert.equal(result.status,200);
+  assert.equal(result.body.trip.itinerary.practicalInfo.currency.code,'EUR');
+  assert.match(result.body.trip.itinerary.days[0].morning[0].travelTip,/could not be verified/);
+  assert.deepEqual(row,original);
+ });
  it('serves uniform country information without authentication or provider calls',async()=>{
   mock.method(docClient,'send',()=>assert.fail('Country information is public and local'));
   mock.method(global,'fetch',()=>assert.fail('No paid provider lookup for country information'));
@@ -99,7 +115,7 @@ describe('Planning HTTP contract',()=>{
   const reopened=await request('GET',`/api/trips/${id}`,undefined,token);
   assert.equal(reopened.status,200);assert.equal(reopened.body.trip.itinerary.days[0].morning[0].placeName,undefined);
   const stop=reopened.body.trip.itinerary.outline.stops[0],base=data.baseById.get(stop.destinationId);
-  mock.method(google,'getPlaceDetails',async()=>({id:'http-venue',displayName:{text:'Refreshed provider name'},location:{latitude:base.lat,longitude:base.lng},addressComponents:[{types:['country'],shortText:'PT'}]}));
+  mock.method(google,'getPlaceDetails',async()=>({id:'http-venue',displayName:{text:'Refreshed provider name'},types:['museum'],location:{latitude:base.lat,longitude:base.lng},addressComponents:[{types:['country'],shortText:'PT'}]}));
   const details=await request('GET',`/api/trips/${id}/days/1/places`,undefined,token);
   assert.equal(details.status,200);assert.equal(details.body.places[0].placeName,'Refreshed provider name');
   const foreign=await request('GET',`/api/trips/${id}/days/1/places`,undefined,generateToken({id:'another-owner'}));
@@ -157,11 +173,21 @@ describe('Planning HTTP contract',()=>{
    assert.equal(generated.body.itinerary.narrativeSource,source);
    if(failure==='valid')assert.ok(row.generatedBy);
    else assert.equal(row.generatedBy,null,'Old Gemini attribution must be cleared');
-   assert.equal(googleCalls,6);assert.equal(geminiCalls,1);
+   assert.equal(googleCalls,6);assert.equal(geminiCalls,failure==='provider-unavailable'?2:1);
    const saved=await request('PUT','/api/trips/draft/save',{},token);assert.equal(saved.status,200);
    const reopened=await request('GET','/api/trips/draft',undefined,token);assert.equal(reopened.status,200);
    assert.equal(reopened.body.trip.isSaved,true);assert.equal(reopened.body.trip.itinerary.days.length,7);
    assert.equal(reopened.body.trip.itinerary.narrativeSource,source);
+   const original=generated.body.itinerary,stored=reopened.body.trip.itinerary;
+   assert.equal(original.practicalInfo.currency.code,'PLN');
+   assert.ok(original.practicalInfo.paymentMethods.cardsAccepted.includes('Visa'));
+   assert.equal(original.practicalInfo.byStop.length,2);
+   assert.deepEqual(stored.practicalInfo,original.practicalInfo);
+   assert.equal(stored.narrativeFallbackReason,original.narrativeFallbackReason);
+   for(const [index,day] of stored.days.entries())for(const slot of ['morning','afternoon','evening']) {
+    assert.deepEqual(day[slot].map(activity=>activity.travelTip),original.days[index][slot].map(activity=>activity.travelTip));
+    assert.ok(day[slot].every(activity=>activity.travelTip&&activity.travelTipSource==='planning_guidance'));
+   }
   }finally{
    if(previousKey===undefined)delete process.env.GEMINI_API_KEY;else process.env.GEMINI_API_KEY=previousKey;
    if(previousGoogle===undefined)delete process.env.GOOGLE_PLACES_API_KEY;else process.env.GOOGLE_PLACES_API_KEY=previousGoogle;

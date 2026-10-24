@@ -67,7 +67,7 @@ archived globe geometry later, when a globe UI is deliberately integrated.
 
 ## Verification and remaining integration
 
-- All 311 JavaScript tests across 45 suites pass. They cover empty/overpacked model
+- The original branch verification passed 311 JavaScript tests across 45 suites. They cover empty/overpacked model
   output, invented/repeated IDs, wrong bases/travel slots, provider outages,
   scarce-day venue allocation and more than 700 country/duration/pace cases.
 - HTTP regression tests exercise the production itinerary, Google discovery,
@@ -82,19 +82,23 @@ archived globe geometry later, when a globe UI is deliberately integrated.
 - `narrativeSource` records `gemini` or `deterministic_fallback`. Copy is accepted
   only if it keeps every assigned venue/slot unchanged. A rejected or unavailable
   narrative uses neutral descriptions without changing the validated plan.
-- Prompt version is `2026-10-23.4`; scheduler version is `2026-10-23.1`. There is
-  one narrative HTTP attempt, bounded by the configured request timeout. SDK
-  hidden retries are disabled. Server deadlines respect Google's ten-second
-  minimum while client abort signals enforce shorter budgets.
+- The October 24 update uses prompt version `2026-10-24.1`. Gemini gets at most
+  two HTTP attempts on distinct models, with reserved fallback time and no SDK
+  hidden retries. Defaults are 60 seconds total for explanations, 90 seconds for
+  itinerary copy, and 45 seconds per attempt. Timeouts do not cause cooldown.
+  Safe reasons distinguish configuration, quota, timeout and cooldown failures.
 - Prefer `gemini-3.5-flash-lite`, then `gemini-3.8-flash`; the latter timed out on
   an earlier tiny diagnostic. The existing provider-schema simplification remains.
 - Additional real-provider cases passed: four-day relaxed Portugal (one base,
   3.5 seconds) and five-day Argentina (one base, 4.7 seconds). An existing user-run
   resume-test result confirms a saved/retrieved seven-day trip. See
   `planning-scenario-verification.json` for the expanded matrix and limitations.
-- Cumulative live agent requests: 21 Google, 14 Gemini and 1 visa, zero database
-  writes. All current paid-call allowances are exhausted. See
-  `planning-live-verification.json` for the redacted historical and latest checks.
+- The October 24 live checks passed a structured Gemini response and a real
+  seven-day, two-base Portugal itinerary with 19 activities and accepted Gemini
+  descriptions in 12.2 seconds. Cumulative agent requests are now 27 Google,
+  16 Gemini and 1 visa, with zero database writes. See
+  `planning-reliability-verification.json` for the current scope and
+  `planning-live-verification.json` for historical checks.
 - Six importer tests passed before these service changes. The restored frontend
   build and smoke check previously passed; frontend files were not changed by
   this scheduler fix. Connecting the original screens to the backend is pending.
@@ -108,6 +112,13 @@ Run `npm test` and `npm run planning:data-test` from `server`; run `npm run buil
 from `client`. For local development, run `npm run dev` in each directory and open
 `http://localhost:5173`. The Vite configuration and production entry structure are
 restored to their prior form; expanding production frontend routing is deferred.
+
+The current terminal walkthrough, restored practical-information contract and
+timeout settings are in [backend-flow-testing.md](backend-flow-testing.md).
+It explicitly fails an AI verification when backup text was returned, even if
+the HTTP request succeeded. The October 24 update also handles compact AM/PM
+hours and structured Google periods, filters operator offices out of discovery,
+and increases ranking preference for feasible multi-base routes when requested.
 
 The removed frontend implementation was backed up outside the repository at
 `/private/tmp/voyouger-frontend-before-revert-8hocifkq` before removal. Git's branch,

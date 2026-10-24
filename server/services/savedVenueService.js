@@ -7,6 +7,7 @@ const {mapLimit}=require('./telemetryService');
 const {TRIP_POLICY}=require('../config/tripPolicy');
 const {apiError}=require('./apiError');
 const {checkHours}=require('./countryItineraryService');
+const {isVisitCandidate}=require('./venueEligibilityService');
 async function refreshDay(trip,dayNumber) {
   if(!Number.isInteger(dayNumber)||dayNumber<1||dayNumber>TRIP_POLICY.maxSupportedDays) throw apiError('INVALID_DAY','day must be an integer from 1 to 21');
   const itinerary=trip.itinerary,day=itinerary?.days?.find(day=>day.day===dayNumber);
@@ -23,6 +24,7 @@ async function refreshDay(trip,dayNumber) {
   const places=await mapLimit(unique,TRIP_POLICY.placesConcurrency,async activity=>{
     const raw=await google.getPlaceDetails(activity.placeId);
     const place=normalizePlace(raw,activity.category||'attractions');
+    if(itinerary.schemaVersion===2 && place && !isVisitCandidate(place)) throw apiError('VENUE_NO_LONGER_ELIGIBLE','This saved listing is not a verified visitable venue. Generate a new itinerary to replace it.',502);
     if(!place || place.placeId!==activity.placeId || (countryCode && place.countryCode!==countryCode) || (anchor && distanceKm(anchor,place)>(anchor.radiusKm||15))) throw apiError('VENUE_NO_LONGER_ELIGIBLE','A saved venue is closed, relocated, or outside the supported location. Generate a new itinerary to replace it.',502);
     const slot=['morning','afternoon','evening'].find(slot=>day[slot]?.some(item=>item.placeId===activity.placeId));
     if(day.dayOfWeek && slot) {

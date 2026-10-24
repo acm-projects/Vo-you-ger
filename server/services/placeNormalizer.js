@@ -80,6 +80,7 @@ function normalizePlace(place, category) {
     name: place.displayName.text,
     category,
     types: Array.isArray(place.types) ? place.types : [],
+    primaryType: place.primaryType || null,
     address: place.formattedAddress || null,
     countryCode: place.addressComponents?.find((part) => part.types?.includes("country"))?.shortText || null,
 
@@ -99,6 +100,7 @@ function normalizePlace(place, category) {
     attributions: place.attributions || [],
     openingHours:
       place.regularOpeningHours?.weekdayDescriptions ?? null,
+    openingPeriods: place.regularOpeningHours?.periods ?? null,
     typicalTimeSpent: null,
   };
 }

@@ -272,6 +272,7 @@ describe("Server-owned country pipeline", () => {
     google.searchPlacesForQueries = async (_queries, base) => ({ places: {
       attractions: Array.from({ length: 10 }, (_, index) => ({
         id: `${base.id}-${index}`, displayName: { text: `Real venue ${index}` },
+        types: ['museum'],
         location: { latitude: base.lat, longitude: base.lng },
         addressComponents: [
           { types: ["country"], shortText: base.countryCode },

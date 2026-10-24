@@ -163,7 +163,7 @@ A structured narrative prompt receives only the fixed plan and selected venues,
 with a 240 KB guard. Gemini supplies title, summary, themes and descriptions; it
 cannot alter any venue/slot assignment. Invalid or unavailable copy retains the
 validated plan with neutral descriptions and `narrativeSource: deterministic_fallback`.
-There is one narrative attempt, no semantic regeneration loop. Canonical venue
+There are at most two transport attempts on distinct models, no semantic regeneration loop. Canonical venue
 facts, calendar and area rankings come from the backend/provider data.
 
 New schema-v2 persistence stores route, summary, dates, application-authored text
@@ -207,13 +207,15 @@ expose provider responses or credentials.
 
 Keep existing `.env` credentials; no values were changed. Optional limits are in
 `.env.example`. Google/visa requests default to 15-second timeouts; Google retries
-one network/429/5xx failure. Gemini tries at most three configured models with
-one transient overload retry/model and a 45-second deadline per structured call.
-SDK automatic retries are explicitly disabled: only the application fallback
-loop retries. Explanations use one request with an eight-second deadline and
-deterministic fallback. Generation uses low thinking effort where supported and
-at most 16,384 output tokens. Country itinerary copy uses exactly one HTTP attempt
-within the configured request timeout, with local text fallback. Discovery calls are
+one network/429/5xx failure. Gemini makes at most two HTTP attempts on distinct
+configured models, reserving time for fallback; SDK automatic retries are off.
+Explanations default to a 60-second total budget and itinerary copy to 90 seconds,
+with a 45-second per-attempt maximum. All three budgets are configurable.
+Timeouts do not disable a model for later requests. Explicit quota/provider/model
+failures can trigger a 60-second cooldown, with safe diagnostics distinguishing
+those skips from timeouts and configuration rejections. Generation uses low
+thinking effort where supported and at most 16,384 output tokens. Invalid or
+unavailable copy retains the validated plan with local text fallback. Discovery calls are
 bounded but sequential locations and slow providers can still produce long
 end-to-end latency; there is no queue or global request cancellation yet.
 The local generation limiter defaults to 12 costly requests/minute per user with

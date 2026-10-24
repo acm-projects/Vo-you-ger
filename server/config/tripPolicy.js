@@ -23,9 +23,10 @@ const TRIP_POLICY = Object.freeze({
   placesPageSize: 15,
   maxCandidatesPerLocation: 36,
   externalTimeoutMs: timeout('PLANNING_EXTERNAL_TIMEOUT_MS', 15000, 30000),
-  geminiRequestTimeoutMs: timeout('PLANNING_GEMINI_REQUEST_TIMEOUT_MS', 20000, 30000),
-  geminiDeadlineMs: timeout('PLANNING_GEMINI_DEADLINE_MS', 45000, 60000),
-  explanationTimeoutMs: 8000,
+  geminiRequestTimeoutMs: timeout('PLANNING_GEMINI_REQUEST_TIMEOUT_MS', 45000, 90000),
+  geminiDeadlineMs: timeout('PLANNING_GEMINI_DEADLINE_MS', 90000, 180000),
+  explanationTimeoutMs: timeout('PLANNING_EXPLANATION_TIMEOUT_MS', 60000, 120000),
+  geminiMaxAttempts: 2,
   maxGeminiOutputTokens: 16384,
   maxPromptBytes: 240000,
 });
