@@ -14,7 +14,7 @@ console.log(`destinations: ${destinations.length}, unique ids: ${ids.size}`);
 
 // 2. Prompt building with a cheap, low-risk quiz
 const { prompt, candidateIds } = buildPrompt({
-  quiz: { dailyBudget: "$", riskTolerance: 1, travelAlterEgo: "Foodie", minNights: 4, maxNights: 7 },
+  quiz: { budgetLevel: "$", highRiskDestWillingness: false, travelAlterEgo: "Foodie", minNights: 4, maxNights: 7 },
   nationalities: ["United States"],
   destinations,
 });

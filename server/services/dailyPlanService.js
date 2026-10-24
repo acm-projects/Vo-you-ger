@@ -24,10 +24,13 @@ function preferenceScore(place, quiz) {
   if (tags.includes('history') && /museum|historic|heritage|art_gallery|cultural/.test(text)) score += 6;
   if (tags.includes('nature') && /park|garden|hiking|nature|wildlife|beach/.test(text)) score += 6;
   if (tags.includes('spa') && /spa|wellness|beach|garden/.test(text)) score += 6;
-  if ((quiz.dietaryRestrictions || []).some(value => /vegetarian|vegan/i.test(value)) &&
+  const restrictions = Array.isArray(quiz.dietaryRestrictions)
+    ? quiz.dietaryRestrictions
+    : quiz.dietaryRestrictions ? [quiz.dietaryRestrictions] : [];
+  if (restrictions.some(value => /vegetarian|vegan/i.test(value)) &&
       place.category === 'food' && /vegetarian|vegan/.test(text)) score += 4;
   const price = {PRICE_LEVEL_FREE:0,PRICE_LEVEL_INEXPENSIVE:1,PRICE_LEVEL_MODERATE:2,PRICE_LEVEL_EXPENSIVE:3,PRICE_LEVEL_VERY_EXPENSIVE:4}[place.priceLevel];
-  const budget = {$:1,$$:2,$$$:4}[quiz.dailyBudget];
+  const budget = {$:1,$$:2,$$$:4}[quiz.budgetLevel];
   if (price !== undefined && budget !== undefined && price > budget) score -= 8;
   return score;
 }

@@ -45,8 +45,8 @@ function supportedBases(countryCode, quiz = {}) {
   return (catalog.basesByCountry.get(countryCode) || []).flatMap((base) => {
     const destination = catalog.destinationById.get(base.destinationId);
     if (!destination || destination.countryCode !== countryCode) return [];
-    if (BUDGET[quiz.dailyBudget] && BUDGET[destination.budget] > BUDGET[quiz.dailyBudget]) return [];
-    if (quiz.riskTolerance && (typeof destination.safety !== 'number' || destination.safety > quiz.riskTolerance)) return [];
+    if (BUDGET[quiz.budgetLevel] && BUDGET[destination.budget] > BUDGET[quiz.budgetLevel]) return [];
+    if (quiz.highRiskDestWillingness === false && (typeof destination.safety !== 'number' || destination.safety > 1)) return [];
     return [{ ...destination, ...base }];
   });
 }
@@ -152,8 +152,8 @@ function chooseExcursions(stops, countryCode, quiz) {
       const destination = destinations.find((destination) => destination.id === item.destinationId);
       return item.fromDestinationId === stop.destinationId && item.domesticOnly === true &&
         item.roundTripPlanningMinutes <= TRIP_POLICY.maxExcursionMinutes && destination?.countryCode === countryCode &&
-        (!BUDGET[quiz.dailyBudget] || BUDGET[destination.budget] <= BUDGET[quiz.dailyBudget]) &&
-        (!quiz.riskTolerance || (typeof destination.safety==='number' && destination.safety <= quiz.riskTolerance)) &&
+        (!BUDGET[quiz.budgetLevel] || BUDGET[destination.budget] <= BUDGET[quiz.budgetLevel]) &&
+        (quiz.highRiskDestWillingness !== false || (typeof destination.safety==='number' && destination.safety <= 1)) &&
         (!modes?.length || modes.includes(item.mode));
     }).sort((a, b) => a.destinationId.localeCompare(b.destinationId))[0];
     if (!excursion) return [];
@@ -275,8 +275,8 @@ function validateOutline(outline, quiz = {}) {
         excursionDays.has(excursion.day) || excursionStops.has(excursion.stopId) || excursion.roundTripPlanningMinutes !== supported.roundTripPlanningMinutes ||
         excursion.mode !== supported.mode || excursion.sourceUrl !== supported.sourceUrl ||
         (modes?.length && !modes.includes(excursion.mode)) ||
-        (BUDGET[quiz.dailyBudget] && BUDGET[destination.budget] > BUDGET[quiz.dailyBudget]) ||
-        (quiz.riskTolerance && (typeof destination.safety!=='number' || destination.safety > quiz.riskTolerance))) {
+        (BUDGET[quiz.budgetLevel] && BUDGET[destination.budget] > BUDGET[quiz.budgetLevel]) ||
+        (quiz.highRiskDestWillingness === false && (typeof destination.safety!=='number' || destination.safety > 1))) {
       throw planningError("Unsupported excursion, day allocation, or transport preference");
     }
     excursionDays.add(excursion.day);

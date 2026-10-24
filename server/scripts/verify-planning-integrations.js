@@ -88,7 +88,7 @@ async function main() {
       return {confirmedCountryCount:codes.size};
     });
     if(!only||only==='recommendations')await check('recommendations',async()=>{
-      const quiz={willingToGetVisa:true,minNights:3,maxNights:3,dailyBudget:'$$',riskTolerance:3,travelAlterEgo:'Historian',startDate:'2027-06-05',seeAllOrDeeply:'seeAll'};
+      const quiz={visaWillingness:true,minNights:3,maxNights:3,budgetLevel:'$$',travelAlterEgo:'Historian',startDate:'2027-06-05',seeAllOrDeeply:'seeAll'};
       const result=await require('../services/countryRecommendationService').recommendCountries({nationalities:['US']},quiz);
       if(!result.model)throw Object.assign(new Error('Provider explanation was not verified'),{code:'EXPLANATION_FALLBACK_ONLY'});
       return {countryCount:result.recommendations.length,countryIds:result.recommendations.map(country=>country.destinationId),model:result.model};
@@ -96,7 +96,7 @@ async function main() {
     if(!only||only==='itinerary')await check('itinerary',async()=>{
       const country=(option('country')||'PT').toUpperCase(),nights=Number(option('nights')??3),pace=option('pace')||'seeAll';
       if(!/^[A-Z]{2}$/.test(country)||!Number.isInteger(nights)||nights<0||nights>20||!['seeAll','deeply'].includes(pace))throw new Error('Invalid country, nights or pace');
-      const quiz={willingToGetVisa:true,minNights:nights,maxNights:nights,dailyBudget:'$$',riskTolerance:3,travelAlterEgo:option('persona')||'Historian',dietaryRestrictions:['Vegetarian'],startDate:'2027-06-05',seeAllOrDeeply:pace};
+      const quiz={visaWillingness:true,minNights:nights,maxNights:nights,budgetLevel:'$$',travelAlterEgo:option('persona')||'Historian',dietaryRestrictions:['Vegetarian'],startDate:'2027-06-05',seeAllOrDeeply:pace};
       const outline=require('../services/tripOutlineService').buildOutline({countryId:`country-${country.toLowerCase()}`,quiz});
       const {itinerary,model}=await require('../services/countryItineraryService').generateCountryItinerary({outline,quiz,startDate:outline.startDate});
       const stored=require('../services/itineraryStorageService').storedItinerary(itinerary);
@@ -111,7 +111,7 @@ async function main() {
     if(only==='google-details')await check('googleDetails',async()=>{
       const places=await require('../services/googlePlacesService').searchPlaces('museums in Lisbon Portugal',{pageSize:1});
       if(!places.length)throw new Error('No provider venues');
-      const outline=require('../services/tripOutlineService').buildOutline({countryId:'country-pt',numberOfDays:1,startDate:'2027-06-05',quiz:{famousOrHiddenGem:'famous'}});
+      const outline=require('../services/tripOutlineService').buildOutline({countryId:'country-pt',numberOfDays:1,startDate:'2027-06-05',quiz:{visitFamousLocationOrHiddenGem:'famous'}});
       const day={day:1,dayOfWeek:'Saturday',stopId:outline.stops[0].stopId,morning:[{placeId:places[0].id,category:'attractions'}],afternoon:[],evening:[]};
       const details=await require('../services/savedVenueService').refreshDay({itinerary:{schemaVersion:2,countryCode:'PT',outline,days:[day]}},1);
       return {verifiedVenueCount:details.places.length,persisted:false};

@@ -35,7 +35,7 @@ describe("Destination-driven planning coverage", () => {
     assert.equal(catalog.countries.find(country=>country.countryCode==='CH').planningAvailable,true);
   });
   it("makes existing destinations available across continents", () => {
-    const countries = new Set(countryCandidates({ dailyBudget: "$$$", riskTolerance: 5 }).map((country) => country.countryCode));
+    const countries = new Set(countryCandidates({ budgetLevel: "$$$" }).map((country) => country.countryCode));
     for (const code of ["US", "CA", "MX", "AU", "NZ", "KR", "TH", "IN", "ZA", "MA", "CL", "BR", "SE"]) assert.ok(countries.has(code), code);
   });
   it("adds only supported domestic multi-city routes and honors their modes", () => {

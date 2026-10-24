@@ -64,7 +64,7 @@ function response() {
 
 describe("Country outline feasibility", () => {
   it("selects a complete regional route for a seven-day France trip", () => {
-    const outline = buildOutline({ countryId: "country-fr", numberOfNights: 6, startDate: "2027-06-05", quiz: { seeAllOrDeeply: "seeAll", travelAlterEgo: "Foodie", dailyBudget: "$$$" } });
+    const outline = buildOutline({ countryId: "country-fr", numberOfNights: 6, startDate: "2027-06-05", quiz: { seeAllOrDeeply: "seeAll", travelAlterEgo: "Foodie", budgetLevel: "$$$" } });
     assert.equal(outline.stops.length, 2);
     assert.ok(outline.stops.every((stop) => stop.countryCode === "FR"));
     assert.equal(outline.startDate, "2027-06-05");
@@ -153,11 +153,11 @@ describe("Country outline feasibility", () => {
     }
   });
   it("never relaxes budget, safety, or visa constraints", () => {
-    const candidates = countryCandidates({ dailyBudget: "$", riskTolerance: 1 });
+    const candidates = countryCandidates({ budgetLevel: "$", highRiskDestWillingness: false });
     assert.ok(candidates.length > 0);
     assert.ok(candidates.every((country) => country.supportedBases.every((base) => base.budget === "$" && base.safety <= 1)));
     assert.deepEqual(countryCandidates({}, new Set(["PT"])).map((country) => country.countryCode), ["PT"]);
-    assert.throws(() => buildOutline({ countryId: "country-ar", quiz: { riskTolerance: 1 } }));
+    assert.throws(() => buildOutline({ countryId: "country-ar", quiz: { highRiskDestWillingness: false } }));
   });
   it("rejects mixed countries, unsupported connections, wrong nights, and modified allowances", () => {
     for (const mutate of [
@@ -288,7 +288,7 @@ describe("Server-owned country pipeline", () => {
   it("discovers and persists excursions and longer three-base itineraries", async () => {
     mockGoogle();
     for (const scenario of [
-      { countryId: "country-pt", nights: 6, pace: "deeply", quiz: { nightlifeOrSunrise: "nightlife" }, expectedBases: 1, expectedExcursions: 1 },
+      { countryId: "country-pt", nights: 6, pace: "deeply", quiz: { sleepInOrEarly: "Sleep in" }, expectedBases: 1, expectedExcursions: 1 },
       { countryId: "country-it", nights: 9, pace: "seeAll", expectedBases: 3, expectedExcursions: 0 },
       { countryId: "country-pt", nights: 6, pace: "seeAll", saved: true, expectedBases: 2, expectedExcursions: 0 },
     ]) {

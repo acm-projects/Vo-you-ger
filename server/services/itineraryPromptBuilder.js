@@ -11,7 +11,7 @@
  *    - Instructs Gemini to pack 2 activities in morning/afternoon when `seeAllOrDeeply === 'seeAll'`.
  *    - Instructs 1 focused activity per slot when `'deeply'`.
  * 3. Night Owls & Late Nights:
- *    - Instructs Gemini to populate the optional `lateNight` slot if the user indicated `nightlifeOrSunrise === 'nightlife'`.
+ *    - Instructs Gemini to populate the optional `lateNight` slot if the user indicated `sleepInOrEarly === 'Sleep in'`.
  * 4. Strict Negative Constraints:
  *    - Candidates list ONLY (zero hallucinated venues).
  *    - Exact placeId enforcement.
@@ -138,9 +138,9 @@ PACING, MULTI-ACTIVITY & NIGHTLIFE RULES:
   * If the traveler's quiz specifies "seeAll" in seeAllOrDeeply, schedule MULTIPLE activities (1-2 in morning, 2 in afternoon) to maximize their experience, provided enough distinct candidates exist. NEVER duplicate venues just to fill slots.
   * If they specified "deeply", schedule 1 focused, immersive activity per slot to allow relaxed exploration.
 - Night Owls & Late Nights:
-  * If the traveler specified "nightlife" in nightlifeOrSunrise, or indicated a desire for late evenings, include the optional "lateNight" slot (e.g. night markets, cocktail bars, late jazz lounges, illuminated walks). If they are early risers or do not want late nights, omit the "lateNight" slot.
+  * If the traveler specified "Sleep in" or nightlife in sleepInOrEarly, or indicated a desire for late evenings, include the optional "lateNight" slot (e.g. night markets, cocktail bars, late jazz lounges, illuminated walks). If they are early risers or do not want late nights, omit the "lateNight" slot.
 - Dietary Requirements: If the traveler has dietary restrictions (e.g. Vegetarian, Halal, Gluten-Free), ensure dining spots explicitly accommodate them.
-- Daily Budget: Respect the traveler's daily budget ($ = budget/value, $$ = moderate, $$$ = luxury/upscale) in estimatedCost fields.
+- Budget Level: Respect the traveler's budgetLevel ($ = budget/value, $$ = moderate, $$$ = luxury/upscale) in estimatedCost fields.
 
 NO INTERNAL DELIBERATIONS OR META-COMMENTARY:
 - NEVER leak self-corrections, internal deliberation, or constraint discussions (such as "Wait, let's keep every place unique", "Instead of duplicating...", "Ensure unique venues only") into activityDescription or travelTip.
@@ -197,7 +197,7 @@ function buildItineraryPrompt({
       : 3;
 
   // Compute exact dates and days of week for the trip
-  const schedule = computeItinerarySchedule(startDate, targetDays, quiz.months);
+  const schedule = computeItinerarySchedule(startDate, targetDays, quiz.preferredMonths);
 
   const candidatePlaceIds = new Set(
     candidatePlaces.map((p) => p.placeId).filter(Boolean)
@@ -252,7 +252,7 @@ REMINDERS:
 - Geographic Clustering: Cluster activities by neighborhood or proximity each day. Avoid zigzagging or sending travelers far away for a single activity.
 - Verify opening hours and daysOpen against each day's dayOfWeek before assigning a place.
 - seeAllOrDeeply preference: "${quiz.seeAllOrDeeply || "flexible"}" (if seeAll, provide 2 morning and 2 afternoon activities ONLY if enough distinct venues exist).
-- nightlifeOrSunrise preference: "${quiz.nightlifeOrSunrise || "balanced"}" (if nightlife, include the optional lateNight slot).
+- sleepInOrEarly preference: "${quiz.sleepInOrEarly || "balanced"}" (if "Sleep in" or nightlife, include the optional lateNight slot).
 - ZERO DUPLICATES: Every placeId must be unique across the entire trip. Never repeat a placeId.
 - Recommend a strategic neighborhood in "recommendedStayArea" and explain why in "stayAreaRationale" without naming specific hotels.
 - Every placeId MUST strictly match one of the candidate places listed above.`;

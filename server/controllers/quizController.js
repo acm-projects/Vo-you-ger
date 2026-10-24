@@ -1,5 +1,6 @@
 const { quizSchema } = require("../schemas/recommendationSchema");
 const { findUserById, updateUser } = require("../models/userModel");
+const { toCountryCode } = require("../utils/countryCodes");
 
 /**
  * POST /api/quiz
@@ -46,6 +47,13 @@ async function saveQuiz(req, res) {
     }
 
     const validatedQuiz = validationResult.data;
+
+    // Normalize country codes in preferredCountries if full country names were submitted
+    if (Array.isArray(validatedQuiz.preferredCountries)) {
+      validatedQuiz.preferredCountries = validatedQuiz.preferredCountries.map(
+        (country) => toCountryCode(country) || country.toUpperCase()
+      );
+    }
 
     // Call updateUser to update DynamoDB save quiz response and set firstTime to false
     const updatedUser = await updateUser(userId, {
