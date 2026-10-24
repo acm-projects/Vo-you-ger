@@ -113,9 +113,9 @@ async function generateWithFallback(contents, config = {}, options = {}) {
   for (const [index,model] of selected.entries()) {
       if (Date.now() >= deadline) break;
       const started=Date.now();
+      const remaining=Math.max(1,Math.min(REQUEST_TIMEOUT_MS,Math.floor((deadline-started)/(selected.length-index))));
       try {
         count('geminiRequests');
-        const remaining=Math.max(1,Math.min(REQUEST_TIMEOUT_MS,Math.floor((deadline-Date.now())/(selected.length-index))));
         const signal=AbortSignal.timeout(remaining);
         const thinkingConfig=model.startsWith('gemini-3') ? {thinkingLevel:model.startsWith('gemini-3.5-flash-lite')?'MINIMAL':'LOW'} : model.startsWith('gemini-2.5-flash') ? {thinkingBudget:0} : undefined;
         const response = await provider.models.generateContent({
@@ -137,7 +137,9 @@ async function generateWithFallback(contents, config = {}, options = {}) {
       } catch (err) {
         const status = getStatus(err);
         const reason=failureReason(err);
-        diagnostics.push({model,reason,status,elapsedMs:Date.now()-started});
+        const timeoutOrigin=reason==='request_timeout' ? (status===504?'provider':'client') : undefined;
+        diagnostics.push({model,reason,status,elapsedMs:Date.now()-started,attemptTimeoutMs:remaining,
+          ...(timeoutOrigin?{timeoutOrigin}:{})});
 
         // Do not spend fallback attempts on rejected credentials/configuration.
         if (status === 400 || status === 401 || status === 403) {
@@ -151,7 +153,7 @@ async function generateWithFallback(contents, config = {}, options = {}) {
         // A caller's timeout is not evidence that a model is unavailable to
         // longer requests. Only explicit quota/model/provider failures cool down.
         if (reason!=='request_timeout' && status) unavailableUntil.set(model,{until:Date.now()+COOLDOWN_MS,reason});
-        console.warn(`Gemini model ${model} failed (${reason}, HTTP ${status ?? 'none'}, ${Date.now()-started}ms)`);
+        console.warn(`Gemini model ${model} failed (${reason}, HTTP ${status ?? 'none'}, ${Date.now()-started}ms, budget ${remaining}ms${timeoutOrigin?`, timeout ${timeoutOrigin}`:''})`);
       }
   }
   const last=diagnostics.findLast(item=>item.reason!=='cooldown_skipped');

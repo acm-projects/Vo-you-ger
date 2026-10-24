@@ -85,7 +85,9 @@ archived globe geometry later, when a globe UI is deliberately integrated.
 - The October 24 update uses prompt version `2026-10-24.1`. Gemini gets at most
   two HTTP attempts on distinct models, with reserved fallback time and no SDK
   hidden retries. Defaults are 60 seconds total for explanations, 90 seconds for
-  itinerary copy, and 45 seconds per attempt. Timeouts do not cause cooldown.
+  itinerary copy, and a 90-second per-attempt ceiling. The first of two attempts
+  gets at most half the total budget; a fast failure leaves more time for the
+  fallback. Timeouts do not cause cooldown.
   Safe reasons distinguish configuration, quota, timeout and cooldown failures.
 - Prefer `gemini-3.5-flash-lite`, then `gemini-3.8-flash`; the latter timed out on
   an earlier tiny diagnostic. The existing provider-schema simplification remains.

@@ -82,9 +82,11 @@ is saved for inspection but fails the verification command. To deliberately test
 the degraded path, pass `--allow-fallback`; it is not proof that Gemini worked.
 
 Gemini defaults are 60 seconds total for recommendation explanations, 90 seconds
-total for itinerary copy and 45 seconds maximum per HTTP attempt. The first
+total for itinerary copy and 90 seconds maximum per HTTP attempt. The first
 model receives at most half of the remaining operation budget when a second model
-is available. Configure `PLANNING_EXPLANATION_TIMEOUT_MS`,
+is available: normally 45 seconds for itinerary copy. If it fails quickly, the
+second model can use the unused time within the same 90-second total deadline.
+Configure `PLANNING_EXPLANATION_TIMEOUT_MS`,
 `PLANNING_GEMINI_DEADLINE_MS` and `PLANNING_GEMINI_REQUEST_TIMEOUT_MS` in
 `server/.env` if needed; the supported maxima are 120, 180 and 90 seconds
 respectively. Existing explicit settings override the new defaults. Restart the
@@ -92,7 +94,9 @@ server after updating them. The walkthrough's outer request deadline is ten
 minutes to accommodate long multi-base discovery plus configured AI budgets.
 
 Client aborts and provider HTTP 504 errors are reported as `request_timeout` and
-do not put a model on cooldown. Explicit quota, model-not-found and provider
+do not put a model on cooldown. Server logs include the allocated attempt budget
+and distinguish `timeout client` from `timeout provider`; the public fallback
+reason remains unchanged. Explicit quota, model-not-found and provider
 failures can enter a 60-second cooldown; skips are reported separately. Auth or
 configuration rejections stop immediately. Logs contain reason categories,
 status, model and elapsed time, never raw provider errors, keys or traveler text.
