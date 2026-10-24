@@ -30,7 +30,7 @@ async function main() {
           },
         ],
         quizSnapshot: {
-          dailyBudget: "$$",
+          budgetLevel: "$$",
           travelAlterEgo: "Foodie",
           dietaryRestrictions: ["Vegetarian"],
         },
@@ -46,12 +46,12 @@ async function main() {
 
     assert.equal(trip.tripId, "test-trip-456");
     assert.equal(trip.recommendations[0].name, "Tokyo");
-    assert.equal(trip.quizSnapshot.dailyBudget, "$$");
+    assert.equal(trip.quizSnapshot.budgetLevel, "$$");
 
     console.log("\n=== TRIP LOOKUP TEST ===");
     console.log("Trip found:", trip.tripId);
     console.log("Destination:", trip.recommendations[0].name);
-    console.log("Saved budget:", trip.quizSnapshot.dailyBudget);
+    console.log("Saved budget:", trip.quizSnapshot.budgetLevel);
     console.log("\nFINAL RESULT: PASS");
   } finally {
     // Restore original DynamoDB behavior

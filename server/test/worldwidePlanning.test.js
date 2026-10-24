@@ -156,7 +156,7 @@ describe('Direct-country endpoints',()=>{
     for(const [code,status] of [['PTT',400],['XX',404]]) {const res=response();await direct.countryAvailability({params:{countryCode:code}},res);assert.equal(res.statusCode,status);}
   });
   it('previews through the same deterministic engine without database writes',async()=>{
-    const quiz={minNights:6,maxNights:6,willingToGetVisa:true};
+    const quiz={minNights:6,maxNights:6,visaWillingness:true};
     mock.method(users,'findUserById',async id=>{assert.equal(id,'owner');return {quizResponse:quiz};});
     mock.method(trips,'createTrip',()=>assert.fail('Preview cannot write'));
     const req=request(),res=response();await direct.directRoute(req,res);
@@ -165,15 +165,15 @@ describe('Direct-country endpoints',()=>{
   it('rejects missing assessments, invalid duration, unavailable countries and visa uncertainty',async()=>{
     mock.method(users,'findUserById',async()=>({}));
     let res=response();await direct.directRoute(request(),res);assert.equal(res.body.code,'ASSESSMENT_REQUIRED');
-    const req=request();req.body.quiz={willingToGetVisa:true};req.body.numberOfNights=21;
+    const req=request();req.body.quiz={visaWillingness:true};req.body.numberOfNights=21;
     res=response();await direct.directRoute(req,res);assert.equal(res.body.code,'INVALID_DURATION');
     req.params.countryCode='JO';res=response();await direct.directRoute(req,res);assert.equal(res.body.code,'COUNTRY_NOT_READY');
-    req.params.countryCode='PT';req.body.quiz={willingToGetVisa:false};res=response();await direct.directRoute(req,res);assert.equal(res.body.code,'CITIZENSHIP_REQUIRED');
+    req.params.countryCode='PT';req.body.quiz={visaWillingness:false};res=response();await direct.directRoute(req,res);assert.equal(res.body.code,'CITIZENSHIP_REQUIRED');
     req.body.quiz.nationalities=['US'];mock.method(visa,'getVisaFreeCountries',async()=>{throw new Error('private upstream body');});
     res=response();await direct.directRoute(req,res);assert.equal(res.body.code,'VISA_UNAVAILABLE');assert.ok(!JSON.stringify(res.body).includes('private'));
   });
   it('uses shared itinerary generation and only creates a draft after validation',async()=>{
-    mock.method(users,'findUserById',async()=>({quizResponse:{willingToGetVisa:true,minNights:6,maxNights:6}}));
+    mock.method(users,'findUserById',async()=>({quizResponse:{visaWillingness:true,minNights:6,maxNights:6}}));
     const f=fixture();const generated=itineraries.validateAndEnrich(f.data,f.outline,f.schedule,f.discovered,{});
     mock.method(itineraries,'generateCountryItinerary',async()=>({itinerary:generated,model:'mock'}));
     let writes=0;

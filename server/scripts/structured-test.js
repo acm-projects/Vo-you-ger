@@ -20,11 +20,10 @@ async function main() {
   // Example traveler preferences for a real Gemini test.
   const quiz = {
     travelAlterEgo: "Foodie",
-    dailyBudget: "$$",
-    riskTolerance: 2,
+    budgetLevel: "$$",
     minNights: 4,
     maxNights: 7,
-    temperaturePreferences: ["warm"],
+    preferredWeather: "Warm",
   };
 
   // Use the actual prompt builder and destination database.

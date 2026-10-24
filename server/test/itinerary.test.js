@@ -342,11 +342,11 @@ describe("Phase 3: Itinerary Generation Suite", () => {
     it("injects quiz preferences, candidate places, and operating hour constraints", () => {
       const quiz = {
         travelAlterEgo: "Explorer",
-        dailyBudget: "$$",
+        budgetLevel: "$$",
         dietaryRestrictions: ["Vegetarian"],
         minNights: 2,
         seeAllOrDeeply: "seeAll",
-        nightlifeOrSunrise: "nightlife",
+        sleepInOrEarly: "Sleep in",
       };
 
       const { systemPrompt, prompt, candidatePlaceIds, schedule } =
@@ -368,7 +368,7 @@ describe("Phase 3: Itinerary Generation Suite", () => {
       assert.ok(prompt.includes("Tokyo, Japan"));
       assert.ok(prompt.includes("Day 1: Saturday, 2026-10-24"));
       assert.ok(prompt.includes('"seeAllOrDeeply": "seeAll"'));
-      assert.ok(prompt.includes('"nightlifeOrSunrise": "nightlife"'));
+      assert.ok(prompt.includes('"sleepInOrEarly": "Sleep in"'));
       assert.ok(prompt.includes("tokyo-sensoji"));
 
       // Candidate place ID set
@@ -389,7 +389,7 @@ describe("Phase 3: Itinerary Generation Suite", () => {
     it("successfully generates and normalizes multi-activity days and lateNight slots", async () => {
       const result = await generateItinerary({
         destination: "Tokyo, Japan",
-        quiz: { dailyBudget: "$$", seeAllOrDeeply: "seeAll" },
+        quiz: { budgetLevel: "$$", seeAllOrDeeply: "seeAll" },
         candidatePlaces: mockCandidatePlaces,
         numberOfDays: 2,
         startDate: "2026-10-24",
@@ -501,7 +501,7 @@ describe("Phase 3: Itinerary Generation Suite", () => {
         userId,
         title: "Initial Tokyo Trip",
         itinerary: null,
-        quizSnapshot: { dailyBudget: "$$" },
+        quizSnapshot: { budgetLevel: "$$" },
       });
 
       tripModel.updateTripItinerary = async (userId, tripId, itinerary, model) => {
@@ -633,7 +633,7 @@ describe("Phase 3: Itinerary Generation Suite", () => {
       userModel.findUserById = async () => ({
         id: "u-test-traveler",
         quizResponse: {
-          dailyBudget: "$$",
+          budgetLevel: "$$",
           travelAlterEgo: "Explorer",
           minNights: 2,
           maxNights: 3,
@@ -667,7 +667,7 @@ describe("Phase 3: Itinerary Generation Suite", () => {
           },
         ],
         quizSnapshot: {
-          dailyBudget: "$$",
+          budgetLevel: "$$",
           travelAlterEgo: "Explorer",
           minNights: 2,
           maxNights: 3,

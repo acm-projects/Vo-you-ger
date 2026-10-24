@@ -2,11 +2,11 @@
  * Constructs the AI prompt and filters candidate destinations for Gemini.
  *
  * In Phase 1B:
- * - If the traveler is NOT willing to get a visa (willingToGetVisa === false or visaWillingness === false),
+ * - If the traveler is NOT willing to get a visa (visaWillingness === false),
  *   candidate destinations are filtered to keep ONLY those in countries where the traveler
  *   enjoys visa-free entry (color green from TravelBuddy Visa API).
  * - From that visa-compliant subset, we compare the traveler's quiz responses
- *   (budget, safety risk tolerance, climate, preferred months, travel alter ego, tags).
+ *   (budget, safety risk, climate, preferred months, travel alter ego, tags).
  * - Gemini selects the top 3 preference-compliant destinations in 3 different countries.
  */
 
@@ -20,10 +20,10 @@ const BUDGET_RANK = { $: 1, $$: 2, $$$: 3 };
  *    If `visaFreeCountryCodes` is provided (a Set of 2-letter ISO country codes), only keep destinations whose `countryCode` is in this set.
  *
  * 2. Budget filter:
- *    Only keep destinations with a cost rating <= user's `dailyBudget` ($ < $$ < $$$).
+ *    Only keep destinations with a cost rating <= user's `budgetLevel` ($ < $$ < $$$).
  *
  * 3. Safety / Risk tolerance filter:
- *    Only keep destinations whose safety risk rating is within user's `riskTolerance`.
+ *    Only keep destinations whose safety risk rating is within user's `highRiskDestWillingness`.
  *
  * Fallback Guarantee:
  * The prompt requires Gemini to return 3 destinations across 3 distinct countries.
@@ -40,9 +40,8 @@ function filterDestinations(
   quiz = {},
   visaFreeCountryCodes = null,
 ) {
-  const maxBudget = BUDGET_RANK[quiz.dailyBudget];
-  const maxSafety =
-    typeof quiz.riskTolerance === "number" ? quiz.riskTolerance + 1 : null;
+  const maxBudget = BUDGET_RANK[quiz.budgetLevel];
+  const maxSafety = quiz.highRiskDestWillingness === false ? 2 : null;
 
   // Step 1: Apply Visa Filter if visaFreeCountryCodes is provided
   // Only keep destinations situated in visa-free countries

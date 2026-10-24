@@ -74,7 +74,7 @@ describe('Planning HTTP contract',()=>{
   assert.equal(large.status,413);assert.equal(large.body.code,'BODY_TOO_LARGE');
  });
  it('previews without writes and rejects invalid duration through the mounted route',async()=>{
-  mock.method(users,'findUserById',async()=>({quizResponse:{willingToGetVisa:true}}));
+  mock.method(users,'findUserById',async()=>({quizResponse:{visaWillingness:true}}));
   mock.method(docClient,'send',()=>assert.fail('Preview cannot write'));
   mock.method(global,'fetch',()=>assert.fail('Preview needs no external service'));
   const token=generateToken({id:'http-preview'});
@@ -85,7 +85,7 @@ describe('Planning HTTP contract',()=>{
  });
  it('generates, saves, reopens, refreshes and forks a country trip without exposing database keys',async()=>{
   const owner='http-lifecycle',token=generateToken({id:owner}),rows=new Map();
-  const quiz={willingToGetVisa:true,minNights:0,maxNights:0};
+  const quiz={visaWillingness:true,minNights:0,maxNights:0};
   mock.method(users,'findUserById',async()=>({quizResponse:quiz}));
   mock.method(global,'fetch',()=>assert.fail('Paid providers must be mocked'));
   mock.method(itineraries,'generateCountryItinerary',async({outline})=>{
@@ -127,7 +127,7 @@ describe('Planning HTTP contract',()=>{
  });
  for(const failure of ['valid','empty','overpacked','malformed-json','configuration-rejected','provider-unavailable'])it(`generates, saves and retrieves a real seven-day pipeline with ${failure} Gemini output`,async()=>{
   const owner=`http-real-pipeline-${failure}`,token=generateToken({id:owner});
-  const quiz={willingToGetVisa:true,minNights:6,maxNights:6,startDate:'2027-06-05',dailyBudget:'$$',seeAllOrDeeply:'seeAll',travelAlterEgo:'Foodie',dietaryRestrictions:['Vegetarian']};
+  const quiz={visaWillingness:true,minNights:6,maxNights:6,startDate:'2027-06-05',budgetLevel:'$$',seeAllOrDeeply:'seeAll',travelAlterEgo:'Foodie',dietaryRestrictions:['Vegetarian']};
   const row={PK:`USER#${owner}`,SK:'TRIP#draft',tripId:'draft',userId:owner,schemaVersion:2,isSaved:false,generatedBy:'old-model',quizSnapshot:quiz,recommendations:[{type:'country',destinationId:'country-pl'}]};
   let googleCalls=0,geminiCalls=0;
   const previousKey=process.env.GEMINI_API_KEY,previousGoogle=process.env.GOOGLE_PLACES_API_KEY;

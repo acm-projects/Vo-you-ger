@@ -18,13 +18,13 @@ async function main() {
   };
 
   const quiz = {
-    dailyBudget: "$$",
+    budgetLevel: "$$",
     travelAlterEgo: "Foodie",
     dietaryRestrictions: ["Vegetarian"],
     minNights: 5,
     maxNights: 7,
     transportModes: ["train"],
-    favoriteView: "City skyline at night",
+    preferredViews: "City skyline at night",
   };
 
   // Step 1: Gemini creates three personalized queries

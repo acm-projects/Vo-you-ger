@@ -119,15 +119,14 @@ describe("Quiz Assessment Endpoints (Phase 1A)", () => {
     it("should successfully save quiz answers and set firstTime to false", async () => {
       const sampleQuiz = {
         startingLocation: "Dallas, TX",
-        countriesOfInterest: ["Japan", "France"],
-        months: ["October", "November"],
+        preferredCountries: ["Japan", "France"],
+        preferredMonths: ["October", "November"],
         minNights: 5,
         maxNights: 10,
-        temperaturePreferences: ["warm", "cool"],
-        weatherPreferences: ["sunny"],
-        willingToGetVisa: false,
-        riskTolerance: 2,
-        dailyBudget: "$$",
+        preferredWeather: "Sunny",
+        visaWillingness: false,
+        highRiskDestWillingness: false,
+        budgetLevel: "$$",
         travelAlterEgo: "Explorer",
         dietaryRestrictions: ["Vegetarian"],
       };
@@ -144,8 +143,52 @@ describe("Quiz Assessment Endpoints (Phase 1A)", () => {
       assert.equal(res.body.firstTime, false);
       assert.equal(res.body.quizResponse.startingLocation, "Dallas, TX");
       assert.equal(res.body.quizResponse.travelAlterEgo, "Explorer");
-      assert.equal(res.body.quizResponse.willingToGetVisa, false);
-      assert.deepEqual(res.body.quizResponse.countriesOfInterest, ["Japan", "France"]);
+      assert.equal(res.body.quizResponse.visaWillingness, false);
+      assert.deepEqual(res.body.quizResponse.preferredCountries, ["JP", "FR"]);
+    });
+
+    it("should successfully save complete 20-field quiz responses matching frontend format", async () => {
+      const frontendQuiz = {
+        startingLocation: ["Portland, OR"],
+        preferredCountries: ["MY"],
+        preferredMonths: ["Jan", "Feb"],
+        minNights: 1,
+        maxNights: 3,
+        preferredWeather: "Sunny",
+        visaWillingness: false,
+        highRiskDestWillingness: false,
+        preferredAccomodation: "5 star hotel",
+        travelAlterEgo: "The Explorer",
+        preferredViews: "Sunset by the beach",
+        photosToPost: "Food",
+        seeAllOrDeeply: "See it all",
+        sleepInOrEarly: "Sleep in",
+        visitFamousLocationOrHiddenGem: "Discover a hidden gem",
+        enjoyCrowdsOrSpace: "Enjoy space to yourself",
+        walkAmount: "A bit",
+        peopleOnTrip: 1,
+        budgetLevel: "$$",
+        dietaryRestrictions: "None",
+      };
+
+      const { req, res } = mockReqRes({
+        user: { userId: user.id, email: user.email },
+        body: frontendQuiz,
+      });
+
+      await saveQuiz(req, res);
+
+      assert.equal(res.statusCode, 200);
+      assert.equal(res.body.message, "Quiz responses saved successfully");
+      assert.equal(res.body.firstTime, false);
+      assert.deepEqual(res.body.quizResponse.startingLocation, ["Portland, OR"]);
+      assert.deepEqual(res.body.quizResponse.preferredCountries, ["MY"]);
+      assert.deepEqual(res.body.quizResponse.preferredMonths, ["Jan", "Feb"]);
+      assert.equal(res.body.quizResponse.minNights, 1);
+      assert.equal(res.body.quizResponse.maxNights, 3);
+      assert.equal(res.body.quizResponse.budgetLevel, "$$");
+      assert.equal(res.body.quizResponse.dietaryRestrictions, "None");
+      assert.equal(res.body.quizResponse.peopleOnTrip, 1);
     });
 
     it("should reject saving an empty quiz body", async () => {
@@ -192,7 +235,7 @@ describe("Quiz Assessment Endpoints (Phase 1A)", () => {
       const sampleQuiz = {
         startingLocation: "San Francisco, CA",
         travelAlterEgo: "Foodie",
-        dailyBudget: "$$$",
+        budgetLevel: "$$$",
       };
 
       // 1. Save quiz
@@ -213,7 +256,7 @@ describe("Quiz Assessment Endpoints (Phase 1A)", () => {
       assert.equal(getReq.res.body.firstTime, false);
       assert.equal(getReq.res.body.quizResponse.startingLocation, "San Francisco, CA");
       assert.equal(getReq.res.body.quizResponse.travelAlterEgo, "Foodie");
-      assert.equal(getReq.res.body.quizResponse.dailyBudget, "$$$");
+      assert.equal(getReq.res.body.quizResponse.budgetLevel, "$$$");
     });
   });
 });

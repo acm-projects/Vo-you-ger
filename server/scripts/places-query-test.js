@@ -17,20 +17,20 @@ async function main() {
   // Simulated saved assessment
   const quiz = {
     startingLocation: "Dallas, TX",
-    months: ["October"],
+    preferredMonths: ["October"],
     minNights: 5,
     maxNights: 7,
-    dailyBudget: "$$",
+    budgetLevel: "$$",
     travelAlterEgo: "Foodie",
     dietaryRestrictions: ["Vegetarian"],
     transportModes: ["train"],
-    walkingAmount: "a lot",
-    famousOrHiddenGem: "Discover a hidden gem",
-    tripPhotoStyle: "Cool historical/cultural stuff",
-    favoriteView: "City skyline at night",
-    nightlifeOrSunrise: "Enjoy the nightlife and sleep in",
+    walkAmount: "a lot",
+    visitFamousLocationOrHiddenGem: "Discover a hidden gem",
+    photosToPost: "Cool historical/cultural stuff",
+    preferredViews: "City skyline at night",
+    sleepInOrEarly: "Sleep in",
     seeAllOrDeeply: "See it deeply",
-    crowdsOrSpace: "Enjoy the bustle of the locals",
+    enjoyCrowdsOrSpace: "Enjoy the bustle of the locals",
   };
 
   const result = await buildPlacesQueries({

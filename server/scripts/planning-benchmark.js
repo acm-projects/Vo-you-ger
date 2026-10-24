@@ -11,7 +11,7 @@ function benchmark(name, work, iterations = 50) {
   samples.sort((a,b)=>a-b);
   return {name,iterations,p50Ms:Number(samples[Math.floor(iterations*0.5)].toFixed(3)),p95Ms:Number(samples[Math.ceil(iterations*0.95)-1].toFixed(3)),resultCount:result.length??result.stops?.length};
 }
-const quiz={travelAlterEgo:'Foodie',minNights:20,maxNights:20,dailyBudget:'$$$',riskTolerance:5,seeAllOrDeeply:'seeAll',startDate:'2027-06-05'};
+const quiz={travelAlterEgo:'Foodie',minNights:20,maxNights:20,budgetLevel:'$$$',seeAllOrDeeply:'seeAll',startDate:'2027-06-05'};
 const dense=Array.from({length:80},(_,i)=>({id:`synthetic-${i}`,tags:['food'],minNights:2}));
 const report={timestamp:new Date().toISOString(),runtime:process.version,platform:`${process.platform}/${process.arch}`,policyVersion:TRIP_POLICY.version,externalServices:'Not exercised by this offline benchmark; no API calls',benchmarks:[
   benchmark('Rank supported countries, 21 days',()=>rankCountries(quiz)),

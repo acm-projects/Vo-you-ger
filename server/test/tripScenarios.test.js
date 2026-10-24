@@ -28,7 +28,7 @@ const cases=[
 
 function random(seed){let value=seed>>>0;return()=>((value=(Math.imul(value,1664525)+1013904223)>>>0)/4294967296);}
 function fixture(scenario,seed=1){
- const rng=random(seed),quiz={seeAllOrDeeply:scenario.pace||'seeAll',travelAlterEgo:scenario.persona||'Foodie',dailyBudget:scenario.budget||'$$',dietaryRestrictions:scenario.diet||['Vegetarian'],willingToGetVisa:true};
+ const rng=random(seed),quiz={seeAllOrDeeply:scenario.pace||'seeAll',travelAlterEgo:scenario.persona||'Foodie',budgetLevel:scenario.budget||'$$',dietaryRestrictions:scenario.diet||['Vegetarian'],visaWillingness:true};
  const startDate=scenario.startDate||'2027-06-05';
  const outline=buildOutline({countryId:scenario.countryId,numberOfDays:scenario.days,startDate,quiz});
  const locations=[...outline.stops.map(stop=>({...stop,locationId:stop.stopId})),...outline.excursions.map(excursion=>({...excursion,locationId:`excursion:${excursion.stopId}:${excursion.destinationId}`}))];
@@ -134,7 +134,7 @@ describe('Preferences affect deterministic venue choices',()=>{
   assert.ok(source.types.includes(preferred));
  });
  for(const countryId of ['country-ch','country-us'])it(`does not bypass an incompatible budget for ${countryId}`,()=>{
-  assert.throws(()=>buildOutline({countryId,numberOfDays:7,startDate:'2027-06-05',quiz:{dailyBudget:'$$',seeAllOrDeeply:'seeAll'}}),error=>error.code==='NO_FEASIBLE_ROUTE');
+  assert.throws(()=>buildOutline({countryId,numberOfDays:7,startDate:'2027-06-05',quiz:{budgetLevel:'$$',seeAllOrDeeply:'seeAll'}}),error=>error.code==='NO_FEASIBLE_ROUTE');
  });
  for(const diet of ['Vegetarian','Vegan','Gluten-free','None'])it(`preserves ${diet} preferences without inventing dietary guarantees`,async()=>{
   const {itinerary}=await exercise({countryId:'country-pt',days:4,pace:'deeply',diet:[diet]},93,'schema-error');

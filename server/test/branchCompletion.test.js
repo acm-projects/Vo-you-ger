@@ -20,11 +20,11 @@ describe('Branch completion: assessment compatibility',()=>{
   const {wantsVariety,scoreDestination}=require('../services/destinationScoringService');
   assert.equal(wantsVariety({seeAllOrDeeply:'See it all'}),true);
   assert.equal(wantsVariety({seeAllOrDeeply:'Experience deeply'}),false);
-  assert.equal(quizSchema.safeParse({dailyBudget:'cheap'}).success,false);
-  assert.equal(quizSchema.safeParse({months:['Smarch']}).success,false);
-  assert.equal(quizSchema.safeParse({months:['June','sep'],dailyBudget:' $$ '}).success,true);
+  assert.equal(quizSchema.safeParse({budgetLevel:'cheap'}).success,false);
+  assert.equal(quizSchema.safeParse({preferredMonths:['Smarch']}).success,false);
+  assert.equal(quizSchema.safeParse({preferredMonths:['June','sep'],budgetLevel:' $$ '}).success,true);
   const base={countryCode:'FR',tags:[],climate:'cold'};
-  assert.equal(scoreDestination(base,{countriesOfInterest:['France'],temperaturePreferences:['Chilly but not too cold']}).parts.preferences,20);
+  assert.equal(scoreDestination(base,{preferredCountries:['France'],preferredWeather:'Chilly but not too cold'}).parts.preferences,20);
  });
  it('scores the requested arrival season rather than the saved assessment date',()=>{
   const {scoreDestination}=require('../services/destinationScoringService');
@@ -72,7 +72,7 @@ describe('Branch completion: data integrity',()=>{
 
 describe('Branch completion: reviewed production routes',()=>{
  for(const country of ['fr','ch'])it(`supports a real five-base 21-day ${country.toUpperCase()} route`,()=>{
-  const quiz={dailyBudget:'$$$',riskTolerance:3,seeAllOrDeeply:'seeAll'};
+  const quiz={budgetLevel:'$$$',seeAllOrDeeply:'seeAll'};
   const outline=buildOutline({countryId:`country-${country}`,numberOfDays:21,startDate:'2027-06-05',quiz});
   validateOutline(outline,quiz);
   assert.equal(outline.stops.length,5);assert.equal(outline.stops.reduce((sum,s)=>sum+s.nights,0),20);
@@ -88,7 +88,7 @@ describe('Branch completion: reviewed production routes',()=>{
   }
  });
  it('does not mistake a country advisory for a low-risk city exemption',()=>{
-  assert.throws(()=>buildOutline({countryId:'country-fr',numberOfDays:7,quiz:{riskTolerance:1}}),error=>error.code==='NO_FEASIBLE_ROUTE');
+  assert.throws(()=>buildOutline({countryId:'country-fr',numberOfDays:7,quiz:{highRiskDestWillingness:false}}),error=>error.code==='NO_FEASIBLE_ROUTE');
  });
 });
 
@@ -105,7 +105,7 @@ describe('Branch completion: discovery and saved venue refresh',()=>{
   await assert.rejects(refreshDay({itinerary:{schemaVersion:2,countryCode:'PT',days:[{day:1,morning:[],afternoon:[],evening:[]}]}},1),error=>error.code==='VENUE_LOCATION_UNAVAILABLE');
  });
  it('rechecks the excursion radius rather than a broader default radius',async()=>{
-  const outline=buildOutline({countryId:'country-pt',numberOfDays:7,quiz:{seeAllOrDeeply:'deeply',nightlifeOrSunrise:'nightlife'}});
+  const outline=buildOutline({countryId:'country-pt',numberOfDays:7,quiz:{seeAllOrDeeply:'deeply',sleepInOrEarly:'Sleep in'}});
   const excursion=outline.excursions[0];assert.ok(excursion);
   const itinerary={schemaVersion:2,countryCode:'PT',outline,days:[{day:excursion.day,stopId:excursion.stopId,excursion,morning:[],afternoon:[{placeId:'moved',category:'attractions'}],evening:[]}]};
   mock.method(google,'getPlaceDetails',async()=>({id:'moved',displayName:{text:'Moved venue'},location:{latitude:excursion.lat+0.08,longitude:excursion.lng},addressComponents:[{types:['country'],shortText:'PT'}]}));
