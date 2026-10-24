@@ -9,6 +9,7 @@ const { supportedBases, planningError, validateOutline } = require("./tripOutlin
 const {apiError}=require('./apiError');
 const destinations = require("../data/destinations.json");
 const catalog = require("./planningDataService");
+const {isVisitCandidate}=require('./venueEligibilityService');
 
 async function discoverStops(outline, quiz) {
   validateOutline(outline,quiz);
@@ -27,7 +28,7 @@ async function discoverStops(outline, quiz) {
     const searched = await google.searchPlacesForQueries(generated.queries, base, { pageSize: TRIP_POLICY.placesPageSize });
     const normalized = normalizePlaces(searched.places);
     const filtered = Object.fromEntries(Object.entries(normalized).map(([category, places]) => [category,
-      places.filter((place) => place.countryCode === outline.countryCode && distanceKm(base, place) <= base.radiusKm)
+      places.filter((place) => isVisitCandidate(place) && place.countryCode === outline.countryCode && distanceKm(base, place) <= base.radiusKm)
         .map((place) => ({ ...place, stopId: stop.stopId, locationId: stop.locationId })),
     ]));
     // Round-robin categories so large attraction pools cannot displace all food.
@@ -38,7 +39,7 @@ async function discoverStops(outline, quiz) {
     }
     count("selectedCandidates",candidatePlaces.length);
     if (!candidatePlaces.length) {
-      throw apiError('NO_USABLE_PLACES',`No geographically verified places found for ${stop.name}; try again later`,502);
+      throw apiError('NO_USABLE_PLACES',`No visitable places with verified locations found for ${stop.name}; try again later`,502);
     }
     return {
       stopId: stop.stopId, locationId: stop.locationId, isExcursion: Boolean(stop.isExcursion), destinationId: stop.destinationId, name: stop.name,

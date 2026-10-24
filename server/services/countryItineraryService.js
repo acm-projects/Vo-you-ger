@@ -11,6 +11,7 @@ const { validateStartDate } = require("./tripTimingService");
 const { tripSummary } = require("./tripSummaryService");
 const { checkHours } = require('./venueHoursService');
 const { buildDailyPlan } = require('./dailyPlanService');
+const { practicalInfoForOutline, activityTravelTip } = require('./travelGuidanceService');
 
 function buildSchedule(outline, startDate) {
   validateStartDate(startDate);
@@ -63,6 +64,8 @@ function validateAndEnrich(data, outline, schedule, discovered, quiz) {
           address: place.address, lat: place.lat, lng: place.lng,
           rating: place.rating, openingHours: place.openingHours,
           attributions: place.attributions || [],
+          travelTip: activityTravelTip(place, expected, slot, quiz),
+          travelTipSource: 'planning_guidance',
           ...hours,
         };
       });
@@ -95,6 +98,7 @@ function validateAndEnrich(data, outline, schedule, discovered, quiz) {
   result.destination = outline.country;
   result.countryCode = outline.countryCode;
   result.outline = outline;
+  result.practicalInfo = practicalInfoForOutline(outline);
   result.stays = outline.stops.filter(stop=>stop.nights>0).map((stop) => {
     const places = selectedByStop.get(stop.stopId);
     const grouped = Object.fromEntries(["attractions", "food", "experiences"].map((category) => [category, places.filter((place) => place.category === category)]));
@@ -150,7 +154,7 @@ async function generate({ outline, quiz, startDate }) {
       places:stop.candidatePlaces.filter(place=>selectedIds.has(place.placeId))
         .map(({placeId,name,category,types})=>({placeId,name,category,types}))})),
   };
-  let model=null, narrativeSource='deterministic_fallback';
+  let model=null, narrativeSource='deterministic_fallback', narrativeFallbackReason='prompt_too_large';
   const prompt=JSON.stringify(payload);
   if(Buffer.byteLength(prompt)<=TRIP_POLICY.maxPromptBytes) {
     try {
@@ -158,9 +162,10 @@ async function generate({ outline, quiz, startDate }) {
       const response=await measured('geminiNarrative',()=>llm.generateStructured({
         systemPrompt:template.systemPrompt,prompt,
         jsonSchema:getCountryItineraryJsonSchema(),zodSchema:countryItinerarySchema,
-        maxAttempts:1,timeoutMs:TRIP_POLICY.geminiRequestTimeoutMs,
+        maxAttempts:TRIP_POLICY.geminiMaxAttempts,timeoutMs:TRIP_POLICY.geminiDeadlineMs,
       }));
       const parsed=countryItinerarySchema.safeParse(response.data);
+      narrativeFallbackReason=parsed.success ? 'schedule_changed' : 'invalid_response';
       // Treat the response strictly as copy for the fixed plan. Empty/extra days,
       // invented IDs, changed slots, repeats, and rescheduling use neutral copy.
       if(parsed.success && matchesFixedPlan(parsed.data,plan)) {
@@ -174,16 +179,18 @@ async function generate({ outline, quiz, startDate }) {
             }
           }
         }
-        narrativeSource='gemini';model=response.model||null;
+        narrativeSource='gemini';model=response.model||null;narrativeFallbackReason=null;
       }
     } catch(error) {
       // The validated plan remains usable during provider/configuration outages.
       // Unexpected application failures still surface rather than being hidden.
       if(![429,502,503,504].includes(error.statusCode)) throw error;
+      narrativeFallbackReason=llm.fallbackReason(error);
     }
   }
   if(narrativeSource==='deterministic_fallback')count('narrativeFallbacks');
   itinerary.narrativeSource=narrativeSource;
+  itinerary.narrativeFallbackReason=narrativeFallbackReason;
   itinerary.schedulerVersion='2026-10-23.1';
   itinerary.promptVersion=template.version;
   itinerary.tripSummary=tripSummary(itinerary);

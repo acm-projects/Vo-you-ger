@@ -62,7 +62,7 @@ async function main() {
   async function check(name,work) {
     const start=performance.now();
     try {report.checks[name]={status:'passed',...await work(),elapsedMs:Number((performance.now()-start).toFixed(1))};}
-    catch(error){report.checks[name]={status:'failed',code:error.code||error.statusCode||error.status||'PROVIDER_CHECK_FAILED',...(error.providerStatus?{providerStatus:error.providerStatus,providerCategory:error.providerCategory,providerReason:error.providerReason}:{}),elapsedMs:Number((performance.now()-start).toFixed(1))};}
+    catch(error){report.checks[name]={status:'failed',code:error.code||error.statusCode||error.status||'PROVIDER_CHECK_FAILED',...(error.fallbackReason?{fallbackReason:error.fallbackReason}:{}),...(error.diagnostics?{diagnostics:error.diagnostics}:{}),...(error.providerStatus?{providerStatus:error.providerStatus,providerCategory:error.providerCategory,providerReason:error.providerReason}:{}),elapsedMs:Number((performance.now()-start).toFixed(1))};}
     fs.writeFileSync(reportFile,JSON.stringify(report,null,2)+'\n');
   }
   try {
@@ -71,7 +71,7 @@ async function main() {
     if(only==='gemini')await check('gemini',async()=>{
       const {z}=require('zod');
       const schema=z.object({ok:z.boolean()}),jsonSchema=z.toJSONSchema(schema);delete jsonSchema.$schema;
-      const result=await require('../services/llmclient').generateStructured({prompt:'Return {"ok":true}.',zodSchema:schema,jsonSchema,maxAttempts:1,timeoutMs:20000,maxOutputTokens:128});
+      const result=await require('../services/llmclient').generateStructured({prompt:'Return {"ok":true}.',zodSchema:schema,jsonSchema,maxAttempts:1,timeoutMs:require('../config/tripPolicy').TRIP_POLICY.geminiDeadlineMs,maxOutputTokens:128});
       if(!result.data.ok)throw Object.assign(new Error('Unexpected diagnostic output'),{code:'INVALID_DIAGNOSTIC_OUTPUT'});
       return {model:result.model,structuredOutputVerified:true};
     });
@@ -100,6 +100,9 @@ async function main() {
       const outline=require('../services/tripOutlineService').buildOutline({countryId:`country-${country.toLowerCase()}`,quiz});
       const {itinerary,model}=await require('../services/countryItineraryService').generateCountryItinerary({outline,quiz,startDate:outline.startDate});
       const stored=require('../services/itineraryStorageService').storedItinerary(itinerary);
+      if(!model||itinerary.narrativeSource!=='gemini')throw Object.assign(new Error('Only backup descriptions were returned'),{code:'NARRATIVE_FALLBACK_ONLY',fallbackReason:itinerary.narrativeFallbackReason});
+      const {countryItinerarySchema}=require('../schemas/countryItinerarySchema');
+      if(!countryItinerarySchema.safeParse(itinerary).success)throw Object.assign(new Error('Invalid itinerary structure'),{code:'INVALID_ITINERARY_STRUCTURE'});
       const first=itinerary.days.find(day=>['morning','afternoon','evening'].some(slot=>day[slot].length));
       let venueRefreshVerified=false;
       if(first && !process.argv.includes('--skip-venue-refresh') && counts.google<limits.google) {

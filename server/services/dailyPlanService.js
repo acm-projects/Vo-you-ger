@@ -39,11 +39,17 @@ function defaultTheme(day) {
   return `Explore ${day.locationName}`;
 }
 
-function description(place) {
-  // Neutral app-authored fallback: no invented venue facts or dietary claims.
-  return place.category === 'food'
-    ? 'Consider a meal here; confirm the menu and any dietary requirements with the venue.'
-    : 'Consider a visit here; check current opening hours and any admission requirements.';
+function description(place, slot) {
+  // Use only supplied category/type data. Practical checks live in travelTip.
+  if (place.category === 'food') return {
+    morning: 'Take a break for something to eat, leaving time to enjoy your meal at your own pace.',
+    afternoon: 'Pause for a meal between today’s visits before continuing your exploration.',
+    evening: 'Wind down over a meal and leave the rest of the evening flexible.',
+  }[slot];
+  if (place.types?.includes('museum')) return 'Explore the museum at your own pace, focusing on the exhibits that interest you most.';
+  if (place.types?.some(type => ['park', 'botanical_garden', 'garden'].includes(type))) return 'Spend some time exploring the grounds, choosing a pace and distance that feel comfortable.';
+  if (place.types?.includes('art_gallery')) return 'Browse the gallery and take time with the works that catch your attention.';
+  return 'Explore this stop at your own pace, with room to follow your interests and take breaks.';
 }
 
 function buildDailyPlan({ outline, schedule, discovered, quiz = {} }) {
@@ -93,7 +99,7 @@ function buildDailyPlan({ outline, schedule, discovered, quiz = {} }) {
   const days = schedule.map(day => ({day:day.day,stopId:day.stopId,theme:defaultTheme(day),morning:[],afternoon:[],evening:[]}));
   const used = new Set();
   function add(day, choice, slot) {
-    day[slot].push({placeId:choice.place.placeId,activityDescription:description(choice.place)});
+    day[slot].push({placeId:choice.place.placeId,activityDescription:description(choice.place,slot)});
     used.add(choice.place.placeId);
   }
   for (const day of days) {

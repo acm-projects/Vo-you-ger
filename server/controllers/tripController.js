@@ -8,7 +8,11 @@ const {
 } = require("../models/tripModel");
 const { globeResponse } = require("../services/tripSummaryService");
 const {apiError,sendError}=require('../services/apiError');
-function publicTrip(trip) {const {PK,SK,...result}=trip;return result;}
+function publicTrip(trip) {
+  const {PK,SK,...result}=trip;
+  if (result.itinerary) result.itinerary=require('../services/travelGuidanceService').withTravelGuidance(result.itinerary);
+  return result;
+}
 async function getTripDayPlacesController(req,res) {
   try {
     const trip=await findTripById(req.user.userId,req.params.tripId);

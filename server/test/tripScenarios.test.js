@@ -98,7 +98,7 @@ async function exercise(scenario,seed,mode='valid'){
  mock.method(discovery,'discoverStops',async()=>f.discovered);
  let calls=0;
  mock.method(llm,'generateStructured',async request=>{
-  calls++;assert.equal(request.maxAttempts,1);
+  calls++;assert.equal(request.maxAttempts,2);
   if(mode==='provider-error')throw Object.assign(new Error('Provider unavailable'),{statusCode:503});
   if(mode==='schema-error')throw Object.assign(new Error('Invalid JSON'),{statusCode:502});
   const payload=JSON.parse(request.prompt),data=payload.plan;
@@ -140,6 +140,6 @@ describe('Preferences affect deterministic venue choices',()=>{
   const {itinerary}=await exercise({countryId:'country-pt',days:4,pace:'deeply',diet:[diet]},93,'schema-error');
   const meals=itinerary.days.flatMap(day=>slots.flatMap(slot=>day[slot])).filter(activity=>activity.category==='food');
   assert.ok(meals.length>0);
-  for(const meal of meals)assert.match(meal.activityDescription,/confirm.*dietary requirements/);
+  for(const meal of meals)assert.match(meal.travelTip,/Confirm.*dietary requirements/);
  });
 });

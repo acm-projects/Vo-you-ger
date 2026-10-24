@@ -213,7 +213,7 @@ describe('Provider bounds and storage contract',()=>{
     const outline=outlines.buildOutline({countryId:'country-pt',numberOfDays:7});let calls=0;
     mock.method(google,'searchPlacesForQueries',async(_queries,base,options)=>{
       calls++;assert.equal(options.pageSize,TRIP_POLICY.placesPageSize);
-      const places=Array.from({length:50},(_,i)=>({id:`${base.id}-${i}`,displayName:{text:'Venue'},location:{latitude:base.lat,longitude:base.lng},addressComponents:[{types:['country'],shortText:'PT'}]}));
+      const places=Array.from({length:50},(_,i)=>({id:`${base.id}-${i}`,displayName:{text:'Venue'},types:['museum'],location:{latitude:base.lat,longitude:base.lng},addressComponents:[{types:['country'],shortText:'PT'}]}));
       return {places:{attractions:places,food:[],experiences:[]}};
     });
     const results=await discovery.discoverStops(outline,{});assert.equal(calls,outline.stops.length);
@@ -254,10 +254,10 @@ describe('Provider bounds and storage contract',()=>{
   it('refreshes provider content without database writes and rechecks country',async()=>{
     const f=fixture();const enriched=itineraries.validateAndEnrich(f.data,f.outline,f.schedule,f.discovered,{});const saved=storedItinerary(enriched);
     const base=catalog.baseById.get(saved.outline.stops[0].destinationId);
-    mock.method(google,'getPlaceDetails',async id=>({id,displayName:{text:'Fresh venue'},location:{latitude:base.lat,longitude:base.lng},addressComponents:[{types:['country'],shortText:'PT'}]}));
+    mock.method(google,'getPlaceDetails',async id=>({id,displayName:{text:'Fresh venue'},types:['restaurant'],location:{latitude:base.lat,longitude:base.lng},addressComponents:[{types:['country'],shortText:'PT'}]}));
     mock.method(docClient,'send',()=>assert.fail('Venue reads cannot persist Google content'));
     const result=await refreshDay({itinerary:saved},1);assert.equal(result.persisted,false);assert.equal(result.places[0].placeName,'Fresh venue');
-    google.getPlaceDetails=async id=>({id,displayName:{text:'Foreign venue'},location:{latitude:base.lat,longitude:base.lng},addressComponents:[{types:['country'],shortText:'FR'}]});
+    google.getPlaceDetails=async id=>({id,displayName:{text:'Foreign venue'},types:['restaurant'],location:{latitude:base.lat,longitude:base.lng},addressComponents:[{types:['country'],shortText:'FR'}]});
     await assert.rejects(refreshDay({itinerary:saved},1),error=>error.code==='VENUE_NO_LONGER_ELIGIBLE');
   });
 });

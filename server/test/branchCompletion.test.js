@@ -95,7 +95,7 @@ describe('Branch completion: reviewed production routes',()=>{
 describe('Branch completion: discovery and saved venue refresh',()=>{
  it('preserves restaurants in a capped pool when attraction results are numerous',async()=>{
   const outline=buildOutline({countryId:'country-pt',numberOfDays:4});
-  mock.method(google,'searchPlacesForQueries',async(_queries,base)=>({places:Object.fromEntries(['attractions','food','experiences'].map(category=>[category,Array.from({length:20},(_,i)=>({id:`${category}-${i}`,displayName:{text:'Venue'},location:{latitude:base.lat,longitude:base.lng},addressComponents:[{types:['country'],shortText:'PT'}]}))]))}));
+  mock.method(google,'searchPlacesForQueries',async(_queries,base)=>({places:Object.fromEntries(['attractions','food','experiences'].map(category=>[category,Array.from({length:20},(_,i)=>({id:`${category}-${i}`,displayName:{text:'Venue'},types:[category==='food'?'restaurant':'museum'],location:{latitude:base.lat,longitude:base.lng},addressComponents:[{types:['country'],shortText:'PT'}]}))]))}));
   const stops=await discoverStops(outline,{});
   assert.equal(stops[0].candidatePlaces.length,36);
   assert.equal(stops[0].candidatePlaces.filter(p=>p.category==='food').length,12);

@@ -112,7 +112,7 @@ describe('Narrative failures cannot change the fixed itinerary',()=>{
   const f=fixture(),fixed=buildDailyPlan(f);let calls=0;
   mock.method(discovery,'discoverStops',async()=>f.discovered);
   mock.method(llm,'generateStructured',async request=>{
-   calls++;assert.equal(request.maxAttempts,1);
+   calls++;assert.equal(request.maxAttempts,2);
    const data=JSON.parse(request.prompt).plan;mutate(data);return {data,model:'untrusted'};
   });
   const {itinerary,model}=await generateCountryItinerary({...f,startDate:f.outline.startDate});

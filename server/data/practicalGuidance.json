@@ -1,0 +1,65 @@
+{
+  "version": "2026-10-24.1",
+  "countries": {
+    "PT": {
+      "reviewedOn": "2026-10-24",
+      "paymentMethods": {
+        "cardsAccepted": ["Visa", "Mastercard", "American Express", "Diners Club", "JCB", "Maestro"],
+        "cashAdvice": "Check the business's displayed payment options before ordering; merchants choose which card brands and types they accept."
+      },
+      "culturalTips": ["Restaurant service is included in the bill; Portugal's tourism board describes an additional tip of roughly 5–10% as customary."],
+      "paymentSources": ["https://www.visitportugal.com/en/sobre-portugal/info-util", "https://clientebancario.bportugal.pt/en/acceptance-cards"],
+      "tipSources": ["https://www.visitportugal.com/en/sobre-portugal/info-util"]
+    },
+    "PL": {
+      "reviewedOn": "2026-10-24",
+      "paymentMethods": {
+        "cardsAccepted": ["Visa", "Mastercard", "American Express"],
+        "cashAdvice": "Card payments are common in towns and tourist areas. Poland uses złoty rather than the euro; check your card issuer's overseas charges."
+      },
+      "culturalTips": [],
+      "paymentSources": ["https://www.poland.travel/en/money-in-poland-notes-and-coins/"],
+      "tipSources": []
+    },
+    "JP": {
+      "reviewedOn": "2026-10-24",
+      "paymentMethods": {
+        "cardsAccepted": ["Visa", "Mastercard", "JCB"],
+        "cashAdvice": "Keep yen available as a backup: some small businesses accept cash only, and an overseas card may not work at every terminal."
+      },
+      "culturalTips": ["Tipping is generally not expected in restaurants, taxis and hotels. Some private guides or interpreters accustomed to overseas visitors may accept a discreet gratuity."],
+      "paymentSources": ["https://www.japan.travel/en/plan/cashless-payments-in-japan/", "https://www.japan.travel/en/faq/"],
+      "tipSources": ["https://www.japan.travel/en/plan/tipping-in-japan/"]
+    },
+    "CH": {
+      "reviewedOn": "2026-10-24",
+      "paymentMethods": {
+        "cardsAccepted": ["Visa", "Mastercard", "American Express", "Maestro"],
+        "cashAdvice": "Cash, debit cards and credit cards are common payment options. Confirm acceptance in advance; Switzerland's national currency is the Swiss franc."
+      },
+      "culturalTips": ["A tip is optional in Switzerland; guests are not obliged to leave one."],
+      "paymentSources": ["https://www.myswitzerland.com/en-us/planning/about-switzerland/general-facts/money-and-shopping/currency/"],
+      "tipSources": ["https://www.myswitzerland.com/en-us/planning/about-switzerland/general-facts/money-and-shopping/tipping/"]
+    },
+    "AR": {
+      "reviewedOn": "2026-10-24",
+      "paymentMethods": {
+        "cardsAccepted": [],
+        "cashAdvice": "Argentina's tourism board reports that credit cards are accepted by many businesses. Confirm your specific card with each venue; this guide does not quote exchange rates or card conversion benefits."
+      },
+      "culturalTips": [],
+      "paymentSources": ["https://inprotur-prod.turismo.gob.ar/en/faqs"],
+      "tipSources": []
+    },
+    "FR": {
+      "reviewedOn": "2026-10-24",
+      "paymentMethods": {
+        "cardsAccepted": [],
+        "cashAdvice": "Check displayed payment methods and any minimum card amount before ordering. Businesses may decline card payments; carry an alternative way to pay."
+      },
+      "culturalTips": [],
+      "paymentSources": ["https://entreprendre.service-public.gouv.fr/vosdroits/F22929"],
+      "tipSources": []
+    }
+  }
+}

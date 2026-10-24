@@ -8,11 +8,14 @@ async function buildPlacesQueries({destination,quiz={}}){
   const profile=quizSchema.parse(quiz);
   const location=`${destination.name}, ${destination.country}`;
   const interests=personaTags(profile.travelAlterEgo).slice(0,3).join(' ');
+  const experienceTypes=/nature|adventure/.test(interests)?'parks gardens hiking areas scenic spots'
+    : /food/.test(interests)?'markets food halls cultural attractions'
+    : /spa/.test(interests)?'spas wellness centers gardens':'art galleries cultural centers historic landmarks';
   const diets=(profile.dietaryRestrictions||[]).filter(value=>!/none|no restrictions/i.test(value)).map(value=>value.replace(/[^a-z -]/gi,'').slice(0,30)).slice(0,3).join(' ');
   return {destination:{name:destination.name,country:destination.country},model:null,queries:{
     attractions:`${interests} attractions museums parks in ${location}`,
     food:`${diets} restaurants local food in ${location}`,
-    experiences:`${interests} cultural experiences activities in ${location}`,
+    experiences:`${experienceTypes} to visit in ${location}`,
   }};
 }
 module.exports={buildPlacesQueries,searchQuerySchema,getQueryJsonSchema};
