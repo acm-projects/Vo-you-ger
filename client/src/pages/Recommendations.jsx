@@ -53,7 +53,7 @@ function Recommendations() {
   }
 
   function createItinerary() {
-    alert("Will add Itinerary Page Later.");
+    window.location.href = "/ItineraryNew/itenNew.html";
   }
 
   return (
