@@ -67,7 +67,7 @@ describe('Visitable places rather than tour-office addresses',()=>{
 });
 
 describe('Country matches respect requested route variety',()=>{
- const profile={minNights:9,maxNights:9,startDate:'2027-06-05',travelAlterEgo:'Explorer',seeAllOrDeeply:'seeAll',dailyBudget:'$$$',walkingAmount:'a bit'};
+ const profile={minNights:9,maxNights:9,startDate:'2027-06-05',travelAlterEgo:'Explorer',seeAllOrDeeply:'seeAll',budgetLevel:'$$$',walkAmount:'a bit'};
  it('puts feasible multi-base options ahead of the reported ten-day Arusha-only match',()=>{
   const ranked=rankCountries(profile),top=ranked.slice(0,3);
   assert.equal(top.filter(country=>country.suggestedRoute.bases.length>1).length,3);
@@ -77,11 +77,10 @@ describe('Country matches respect requested route variety',()=>{
  });
  it('does not invent connections or bypass visa eligibility to obtain variety',()=>{
   const ranked=rankCountries(profile,new Set(['TZ','EE','LV']));
-  assert.equal(ranked.length,3);
-  for(const country of ranked){assert.equal(country.suggestedRoute.bases.length,1);assert.equal(country.scoreBreakdown.requestedVarietyBonus,0);}
+  assert.deepEqual(ranked,[],'Single-base-only visa choices are excluded instead of fabricating variety');
  });
- it('retains one base for relaxed travelers and short stays',()=>{
-  for(const quiz of [{...profile,seeAllOrDeeply:'deeply'},{...profile,minNights:3,maxNights:3}])for(const country of rankCountries(quiz)){
+ it('retains one base for short stays including relaxed travelers',()=>{
+  for(const quiz of [{...profile,minNights:6,maxNights:6,seeAllOrDeeply:'deeply'},{...profile,minNights:3,maxNights:3}])for(const country of rankCountries(quiz)){
    assert.equal(country.suggestedRoute.bases.length,1);assert.equal(country.scoreBreakdown.requestedVarietyBonus,0);
   }
  });

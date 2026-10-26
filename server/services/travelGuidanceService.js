@@ -62,7 +62,7 @@ function practicalInfoForOutline(outline, records = destinations, countries = re
     culturalTips: [...(entry?.culturalTips || [])],
     byStop,
     provenance: {
-      currency: {status: country?.currencyCode ? 'source_snapshot' : 'unknown',
+      currency: country?.currencyProvenance ? structuredClone(country.currencyProvenance) : {status: country?.currencyCode ? 'source_snapshot' : 'unknown',
         source: 'https://www.geonames.org/', snapshotVersion: registry.version, license: 'CC-BY-4.0',
         note: 'Currency code from the country snapshot; English name and display symbol from Intl. No exchange rates.'},
       paymentMethods: entry?.paymentMethods ? reviewedSource(entry, entry.paymentSources)
@@ -82,7 +82,9 @@ function activityTravelTip(place, day, slot, quiz = {}) {
     : 'Listed regular hours overlap this slot; confirm holiday hours and allow enough time before closing.'];
   if (place.category === 'food') {
     tips.push('Confirm the menu, dietary requirements and accepted payment methods with the venue.');
-    if ((quiz.dietaryRestrictions || []).some(value => !/^(none|no restrictions)$/i.test(value.trim())))
+    const restrictions=Array.isArray(quiz.dietaryRestrictions)
+      ? quiz.dietaryRestrictions : (quiz.dietaryRestrictions || '').split(',');
+    if (restrictions.some(value => value.trim() && !/^(none|no restrictions)$/i.test(value.trim())))
       tips.push('The search used your dietary preferences, but ingredients and cross-contact have not been verified.');
   } else tips.push('Check the venue’s own information for admission, reservation and accessibility requirements.');
   if (['arrival', 'transfer', 'departure'].includes(day.type)) tips.push('Keep this optional and adjust it to your actual travel arrangements.');

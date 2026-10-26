@@ -6,10 +6,13 @@ function timeout(name, fallback, maximum) {
 }
 
 const TRIP_POLICY = Object.freeze({
-  version: "2026-10-23.1",
+  version: "2026-10-25.2",
   minSupportedDays: 1,
   maxSupportedDays: 21,
   minNightsPerBase: 2,
+  varietyRequiresMultipleBasesFromDays: 7,
+  relaxedSingleBaseMaxDays: 7,
+  maxRelaxedBases: 2,
   minimumCatalogCitiesPerCountry: 5,
   maxItineraryBases: 5,
   maxActivitiesPerFullDay: 4,

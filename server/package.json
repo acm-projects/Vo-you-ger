@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "planning:coverage": "node scripts/planning-coverage.js",
+    "planning:assessment-coverage": "node scripts/assessment-coverage.js",
     "planning:benchmark": "node scripts/planning-benchmark.js",
     "planning:live-check": "node scripts/live-planning-check.js",
     "planning:verify": "node scripts/verify-planning-integrations.js",

@@ -395,7 +395,7 @@
       "name": "Bulgaria",
       "isoName": "Bulgaria",
       "officialName": "Republic of Bulgaria",
-      "currencyCode": "BGN",
+      "currencyCode": "EUR",
       "languages": [
         "bg",
         "tr-BG",
@@ -403,7 +403,17 @@
       ],
       "coverageException": null,
       "verifiedSettlementCount": 5,
-      "geographicCoverage": "minimum_met"
+      "geographicCoverage": "minimum_met",
+      "currencyProvenance": {
+        "status": "source_reviewed",
+        "currencyCode": "EUR",
+        "effectiveFrom": "2026-01-01",
+        "reviewedOn": "2026-10-25",
+        "sources": [
+          "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.pr260101~c830245e42.en.html"
+        ],
+        "note": "Reviewed correction to the GeoNames currency snapshot. English display name and symbol come from Intl; no exchange rates."
+      }
     },
     {
       "id": "country-bh",

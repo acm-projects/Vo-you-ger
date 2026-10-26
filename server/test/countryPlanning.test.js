@@ -108,6 +108,11 @@ describe("Country outline feasibility", () => {
             assert.throws(() => buildOutline({countryId:country.id,numberOfDays:days,quiz}),error=>error.code==='NO_FEASIBLE_ROUTE');
             continue;
           }
+          if (quiz.seeAllOrDeeply === 'deeply' && days > 7 &&
+              !require('../services/tripOutlineService').enumerateRoutes(supportedBases(country.countryCode,quiz),quiz,days).some(route=>route.length===2)) {
+            assert.throws(()=>buildOutline({countryId:country.id,numberOfDays:days,quiz}),error=>error.code==='NO_FEASIBLE_ROUTE');
+            continue;
+          }
           const outline = buildOutline({ countryId: country.id, numberOfDays: days, quiz });
           validateOutline(outline, quiz);
           assert.equal(outline.stops.at(-1).endDay, days);
@@ -148,14 +153,16 @@ describe("Country outline feasibility", () => {
     }
   });
   it("honors relaxed pace and restricted transport modes", () => {
-    for (const quiz of [{ seeAllOrDeeply: "deeply" }, { transportModes: ["car"] }, { transportModes: ["plane"] }]) {
+    assert.equal(buildOutline({countryId:'country-pt',numberOfDays:9,quiz:{seeAllOrDeeply:'deeply'}}).stops.length,2);
+    for (const quiz of [{ transportModes: ["car"] }, { transportModes: ["plane"] }]) {
       assert.equal(buildOutline({ countryId: "country-pt", numberOfDays: 9, quiz }).stops.length, 1);
     }
   });
-  it("never relaxes budget, safety, or visa constraints", () => {
+  it("treats budget as a preference while enforcing safety exclusions and visa eligibility", () => {
     const candidates = countryCandidates({ budgetLevel: "$", highRiskDestWillingness: false });
     assert.ok(candidates.length > 0);
-    assert.ok(candidates.every((country) => country.supportedBases.every((base) => base.budget === "$" && base.safety <= 1)));
+    assert.ok(candidates.every((country) => country.supportedBases.every((base) => base.safety <= 1)));
+    assert.ok(candidates.some(country=>country.countryCode==='PT' && country.supportedBases.some(base=>base.budget!=='$')));
     assert.deepEqual(countryCandidates({}, new Set(["PT"])).map((country) => country.countryCode), ["PT"]);
     assert.throws(() => buildOutline({ countryId: "country-ar", quiz: { highRiskDestWillingness: false } }));
   });

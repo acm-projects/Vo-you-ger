@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 6,
   "notes": "Overnight-base metadata lives in destinations.json under planning. Country availability is derived from enabled concrete bases; countryOverrides supplies optional display pins/names, not an allowlist. Connections and excursions remain explicit domestic planning data. Coordinates are approximate display/search anchors, not boundaries or routes. Stay minima and transfer allowances are editorial rules, not live schedules.",
   "connections": [
     {
@@ -442,6 +442,503 @@
         "sourceUrl": "https://network.sbb.ch/en/station/LS/target/GE",
         "reviewedOn": "2026-10-23",
         "limitations": "Official operator confirms the domestic rail connection. Planning minutes include editorial local-access and accommodation-change buffers, not published schedules or guaranteed service."
+      }
+    },
+    {
+      "from": "prague-cz",
+      "to": "gn-3078610",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 300,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.cd.cz/trasy/trasy-ceska-republika/praha-brno/-30125/",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.cd.cz/trasy/trasy-ceska-republika/praha-brno/-30125/",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Source establishes mode and connection; minutes include conservative local-access and accommodation-change buffers. Not a live timetable, fare, booking or future service guarantee."
+      }
+    },
+    {
+      "from": "prague-cz",
+      "to": "gn-3068160",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 210,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.cd.cz/nase-vlaky/interjet/interjet/-35817/",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.cd.cz/nase-vlaky/interjet/interjet/-35817/",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Source establishes mode and connection; minutes include conservative local-access and accommodation-change buffers. Not a live timetable, fare, booking or future service guarantee."
+      }
+    },
+    {
+      "from": "copenhagen-dk",
+      "to": "gn-2615876",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 210,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.dsb.dk/en/train-rides-in-denmark/copenhagen-odense/",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.dsb.dk/en/train-rides-in-denmark/copenhagen-odense/",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Source establishes mode and connection; minutes include conservative local-access and accommodation-change buffers. Not a live timetable, fare, booking or future service guarantee."
+      }
+    },
+    {
+      "from": "gn-2615876",
+      "to": "gn-2624652",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 240,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.dsb.dk/en/travelling-in-the-cities/odense/",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.dsb.dk/en/travelling-in-the-cities/odense/",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Source establishes mode and connection; minutes include conservative local-access and accommodation-change buffers. Not a live timetable, fare, booking or future service guarantee."
+      }
+    },
+    {
+      "from": "copenhagen-dk",
+      "to": "gn-2624652",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 300,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.visitdenmark.com/denmark/plan-your-trip/transport/public-transport",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.visitdenmark.com/denmark/plan-your-trip/transport/public-transport",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Source establishes mode and connection; minutes include conservative local-access and accommodation-change buffers. Not a live timetable, fare, booking or future service guarantee."
+      }
+    },
+    {
+      "from": "stockholm-se",
+      "to": "gn-2711537",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 330,
+      "domesticOnly": true,
+      "sourceUrl": "https://visitsweden.com/where-to-go/southern-sweden/goteborg/",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://visitsweden.com/where-to-go/southern-sweden/goteborg/",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Source establishes mode and connection; minutes include conservative local-access and accommodation-change buffers. Not a live timetable, fare, booking or future service guarantee."
+      }
+    },
+    {
+      "from": "gn-2711537",
+      "to": "gn-2692969",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 300,
+      "domesticOnly": true,
+      "sourceUrl": "https://visitsweden.com/where-to-go/southern-sweden/malmo/",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://visitsweden.com/where-to-go/southern-sweden/malmo/",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Source establishes mode and connection; minutes include conservative local-access and accommodation-change buffers. Not a live timetable, fare, booking or future service guarantee."
+      }
+    },
+    {
+      "from": "stockholm-se",
+      "to": "gn-2692969",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 360,
+      "domesticOnly": true,
+      "sourceUrl": "https://visitsweden.com/where-to-go/southern-sweden/malmo/",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://visitsweden.com/where-to-go/southern-sweden/malmo/",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Source establishes mode and connection; minutes include conservative local-access and accommodation-change buffers. Not a live timetable, fare, booking or future service guarantee."
+      }
+    },
+    {
+      "from": "dublin-ie",
+      "to": "gn-2965140",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 300,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.irishrail.ie/en-ie/train-timetables/timetables-by-route",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.irishrail.ie/en-ie/train-timetables/timetables-by-route",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Source establishes mode and connection; minutes include conservative local-access and accommodation-change buffers. Not a live timetable, fare, booking or future service guarantee."
+      }
+    },
+    {
+      "from": "dublin-ie",
+      "to": "gn-2964180",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 300,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.irishrail.ie/en-ie/train-timetables/timetables-by-route",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.irishrail.ie/en-ie/train-timetables/timetables-by-route",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Source establishes mode and connection; minutes include conservative local-access and accommodation-change buffers. Not a live timetable, fare, booking or future service guarantee."
+      }
+    },
+    {
+      "from": "gn-2965140",
+      "to": "gn-2964180",
+      "mode": "bus",
+      "bidirectional": true,
+      "planningMinutes": 300,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.ireland.com/en-gb/home/destinations/county/cork/cork-city/",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.ireland.com/en-gb/home/destinations/county/cork/cork-city/",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Source establishes mode and connection; minutes include conservative local-access and accommodation-change buffers. Not a live timetable, fare, booking or future service guarantee."
+      }
+    },
+    {
+      "from": "budapest-hu",
+      "to": "gn-3046526",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 360,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.mavcsoport.hu/mav-szemelyszallitas/szolgaltatasok/kerekparszallitas/belfold/turisztikai-kerekparszallitas/mecsek",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.mavcsoport.hu/mav-szemelyszallitas/szolgaltatasok/kerekparszallitas/belfold/turisztikai-kerekparszallitas/mecsek",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Source establishes mode and connection; minutes include conservative local-access and accommodation-change buffers. Not a live timetable, fare, booking or future service guarantee."
+      }
+    },
+    {
+      "from": "budapest-hu",
+      "to": "gn-715429",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 300,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.mavcsoport.hu/mav-csoport/bovitett-kapacitassal-es-ejszakai-jaratokkal-keszul-mav-csoport-szegedi-ifjusagi-napokra",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.mavcsoport.hu/mav-csoport/bovitett-kapacitassal-es-ejszakai-jaratokkal-keszul-mav-csoport-szegedi-ifjusagi-napokra",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Source establishes mode and connection; minutes include conservative local-access and accommodation-change buffers. Not a live timetable, fare, booking or future service guarantee."
+      }
+    },
+    {
+      "from": "ljubljana-si",
+      "to": "gn-3195506",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 300,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.slovenia.info/en/plan-your-trip/getting-to-and-around-slovenia/to-slovenia-by-train",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.slovenia.info/en/plan-your-trip/getting-to-and-around-slovenia/to-slovenia-by-train",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Source establishes mode and connection; minutes include conservative local-access and accommodation-change buffers. Not a live timetable, fare, booking or future service guarantee."
+      }
+    },
+    {
+      "from": "ljubljana-si",
+      "to": "gn-3197753",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 300,
+      "domesticOnly": true,
+      "sourceUrl": "https://potniski.sz.si/vozni-redi/vozni-redi-po-relacijah/",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://potniski.sz.si/vozni-redi/vozni-redi-po-relacijah/",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Source establishes mode and connection; minutes include conservative local-access and accommodation-change buffers. Not a live timetable, fare, booking or future service guarantee."
+      }
+    },
+    {
+      "from": "seoul-kr",
+      "to": "gn-1835329",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 300,
+      "domesticOnly": true,
+      "sourceUrl": "https://english1.visitkorea.or.kr/enu/TRP/TP_ENG_4.jsp",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://english1.visitkorea.or.kr/enu/TRP/TP_ENG_4.jsp",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Source establishes mode and connection; minutes include conservative local-access and accommodation-change buffers. Not a live timetable, fare, booking or future service guarantee."
+      }
+    },
+    {
+      "from": "gn-1835329",
+      "to": "busan-kr",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 210,
+      "domesticOnly": true,
+      "sourceUrl": "https://english1.visitkorea.or.kr/enu/TRP/TP_ENG_4.jsp",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://english1.visitkorea.or.kr/enu/TRP/TP_ENG_4.jsp",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Source establishes mode and connection; minutes include conservative local-access and accommodation-change buffers. Not a live timetable, fare, booking or future service guarantee."
+      }
+    },
+    {
+      "from": "seoul-kr",
+      "to": "busan-kr",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 360,
+      "domesticOnly": true,
+      "sourceUrl": "https://english.visitkorea.or.kr/svc/contents/contentsView.do?vcontsId=1589997",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://english.visitkorea.or.kr/svc/contents/contentsView.do?vcontsId=1589997",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Source establishes mode and connection; minutes include conservative local-access and accommodation-change buffers. Not a live timetable, fare, booking or future service guarantee."
+      }
+    },
+    {
+      "from": "marrakech-ma",
+      "to": "essaouira-ma",
+      "mode": "bus",
+      "bidirectional": false,
+      "planningMinutes": 300,
+      "domesticOnly": true,
+      "sourceUrl": "https://booking.ctm.ma/journeys?dCity=5595&oCity=5686",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://booking.ctm.ma/journeys?dCity=5595&oCity=5686",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Source establishes mode and connection; minutes include conservative local-access and accommodation-change buffers. Not a live timetable, fare, booking or future service guarantee. Only Marrakech to Essaouira is enabled from this directional source; the reverse requires separate review."
+      }
+    },
+    {
+      "from": "gn-3081368",
+      "to": "gn-3088171",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 240,
+      "domesticOnly": true,
+      "sourceUrl": "https://polregio.pl/pl/rozklad-jazdy-i-mapa-polaczen/rozklad-jazdy/",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://polregio.pl/pl/rozklad-jazdy-i-mapa-polaczen/rozklad-jazdy/",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Connection and mode reviewed against tourism/operator information; buffered planning minutes include local access and changing accommodation. Source timetables or disruption notices establish the corridor, not service availability on a future date. Not a timetable, fare or booking."
+      }
+    },
+    {
+      "from": "warsaw-pl",
+      "to": "gn-3081368",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 360,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.poland.travel/en/timetables/",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.poland.travel/en/timetables/",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Connection and mode reviewed against tourism/operator information; buffered planning minutes include local access and changing accommodation. Source timetables or disruption notices establish the corridor, not service availability on a future date. Not a timetable, fare or booking."
+      }
+    },
+    {
+      "from": "warsaw-pl",
+      "to": "gn-3088171",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 300,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.poland.travel/en/timetables/",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.poland.travel/en/timetables/",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Connection and mode reviewed against tourism/operator information; buffered planning minutes include local access and changing accommodation. Source timetables or disruption notices establish the corridor, not service availability on a future date. Not a timetable, fare or booking."
+      }
+    },
+    {
+      "from": "krakow-pl",
+      "to": "gn-3081368",
+      "mode": "bus",
+      "bidirectional": true,
+      "planningMinutes": 360,
+      "domesticOnly": true,
+      "sourceUrl": "https://global.flixbus.com/bus-routes/bus-krakow-wroclaw",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://global.flixbus.com/bus-routes/bus-krakow-wroclaw",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Connection and mode reviewed against tourism/operator information; buffered planning minutes include local access and changing accommodation. Source timetables or disruption notices establish the corridor, not service availability on a future date. Not a timetable, fare or booking.",
+        "sourceUrls": [
+          "https://global.flixbus.com/bus-routes/bus-krakow-wroclaw",
+          "https://global.flixbus.com/bus-routes/bus-wroclaw-krakow"
+        ]
+      }
+    },
+    {
+      "from": "gn-683506",
+      "to": "gn-683844",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 300,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.cfrcalatori.ro/comunicate/intarzieri-in-circulatia-trenurilor-de-calatori-pe-relatia-bucuresti-ploiesti-brasov/",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.cfrcalatori.ro/comunicate/intarzieri-in-circulatia-trenurilor-de-calatori-pe-relatia-bucuresti-ploiesti-brasov/",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Connection and mode reviewed against tourism/operator information; buffered planning minutes include local access and changing accommodation. Source timetables or disruption notices establish the corridor, not service availability on a future date. Not a timetable, fare or booking."
+      }
+    },
+    {
+      "from": "gn-683506",
+      "to": "gn-680963",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 300,
+      "domesticOnly": true,
+      "sourceUrl": "https://romaniatourism.com/constanta.html",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://romaniatourism.com/constanta.html",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Connection and mode reviewed against tourism/operator information; buffered planning minutes include local access and changing accommodation. Source timetables or disruption notices establish the corridor, not service availability on a future date. Not a timetable, fare or booking."
+      }
+    },
+    {
+      "from": "gn-727011",
+      "to": "gn-728193",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 360,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.bdz.bg/bg",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.bdz.bg/bg",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Connection and mode reviewed against tourism/operator information; buffered planning minutes include local access and changing accommodation. Source timetables or disruption notices establish the corridor, not service availability on a future date. Not a timetable, fare or booking."
+      }
+    },
+    {
+      "from": "gn-728193",
+      "to": "gn-726848",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 240,
+      "domesticOnly": true,
+      "sourceUrl": "https://p.bdz.bg/www/0/4/04-plovdiv-sofiia-2-499.pdf",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://p.bdz.bg/www/0/4/04-plovdiv-sofiia-2-499.pdf",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Connection and mode reviewed against tourism/operator information; buffered planning minutes include local access and changing accommodation. Source timetables or disruption notices establish the corridor, not service availability on a future date. Not a timetable, fare or booking."
+      }
+    },
+    {
+      "from": "gn-593116",
+      "to": "gn-598316",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 210,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.govilnius.lt/visit-vilnius/plan-your-trip/arrival/trains",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.govilnius.lt/visit-vilnius/plan-your-trip/arrival/trains",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Connection and mode reviewed against tourism/operator information; buffered planning minutes include local access and changing accommodation. Source timetables or disruption notices establish the corridor, not service availability on a future date. Not a timetable, fare or booking."
+      }
+    },
+    {
+      "from": "gn-593116",
+      "to": "gn-598098",
+      "mode": "train",
+      "bidirectional": true,
+      "planningMinutes": 360,
+      "domesticOnly": true,
+      "sourceUrl": "https://www.govilnius.lt/visit-vilnius/plan-your-trip/arrival/trains",
+      "reviewedOn": "2026-10-25",
+      "status": "reviewed",
+      "validity": "editorial_planning_allowance",
+      "provenance": {
+        "sourceUrl": "https://www.govilnius.lt/visit-vilnius/plan-your-trip/arrival/trains",
+        "reviewedOn": "2026-10-25",
+        "limitations": "Connection and mode reviewed against tourism/operator information; buffered planning minutes include local access and changing accommodation. Source timetables or disruption notices establish the corridor, not service availability on a future date. Not a timetable, fare or booking."
       }
     }
   ],

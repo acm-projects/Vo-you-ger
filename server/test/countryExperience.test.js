@@ -15,7 +15,7 @@ describe('Country browsing independent of trip planning',()=>{
  it('lists every registry country while deriving availability from reviewed bases',()=>{
   const countries=info.listCountries();
   assert.equal(countries.length,249);
-  assert.equal(countries.filter(country=>country.planningAvailable).length,62);
+  assert.equal(countries.filter(country=>country.planningAvailable).length,65);
   for(const country of countries){
    const source=catalog.countries.find(item=>item.countryCode===country.countryCode);
    assert.equal(country.planningAvailable,source.planningAvailable);

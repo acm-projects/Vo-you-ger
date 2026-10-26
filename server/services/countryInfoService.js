@@ -23,7 +23,7 @@ function countryDetails(code) {
     description:`${country.name}${info.continent?` is in ${info.continent}`:''}.${info.capital?` Its capital is ${info.capital}.`:''}`,
     facts:{capital:info.capital||null,continent:info.continent||null,currencyCode:country.currencyCode||null,
       languages:country.languages||[],areaKm2:info.areaKm2??null,population:info.population??null},
-    source:{name:'GeoNames',url:display.source,license:display.license,snapshotDate:display.snapshotDate,populationNote:display.populationNote},
+    source:{name:'GeoNames',url:display.source,license:display.license,snapshotDate:display.snapshotDate,populationNote:display.populationNote,currency:country.currencyProvenance||null},
     planning:{available:country.planningAvailable,supportedOvernightBases:country.supportedBaseCount,
       assessmentRequired:true,message:country.planningAvailable?'Plan a trip using your travel preferences.':'Trip planning is not available here yet.'}};
 }

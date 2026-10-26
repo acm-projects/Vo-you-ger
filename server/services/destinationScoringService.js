@@ -13,7 +13,9 @@ function scoreDestination(base, quiz={}) {
   const interests=wanted.size ? [...wanted].filter(tag=>tags.has(tag)).length/wanted.size : 0.5;
   const months=quiz.startDate ? [['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][Number(quiz.startDate.slice(5,7))-1]] : quiz.preferredMonths||[];
   const seasonal=months.length&&base.bestMonths?.length ? months.filter(month=>base.bestMonths.some(m=>m.toLowerCase()===month.slice(0,3).toLowerCase())).length/months.length : 0.5;
-  const budget=BUDGET[base.budget]&&BUDGET[quiz.budgetLevel] ? (BUDGET[base.budget]<=BUDGET[quiz.budgetLevel]?1:0) : 0.5;
+  // Budget is a preference: modestly higher tiers lose some points, never eligibility.
+  const budget=BUDGET[base.budget]&&BUDGET[quiz.budgetLevel]
+    ? Math.max(0,1-Math.max(0,BUDGET[base.budget]-BUDGET[quiz.budgetLevel])/2) : 0.5;
   const safety=typeof base.safety==='number' ? (6-base.safety)/5 : 0.5;
   const preferenceChecks=[];
   const temperature={warm:['warm','hot-dry','tropical'],cool:['mild','cool'],chilly:['cold'],sunny:['warm','hot-dry','tropical'],overcast:['mild','cool'],rainy:['mild','cool']};

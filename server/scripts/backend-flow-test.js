@@ -22,9 +22,11 @@ async function send({baseUrl, token}, method, route, body) {
   return data;
 }
 
-async function runStep({step, directory, scenario = 'foodie', choice = 1, day = 2, allowFallback = false, baseUrl = 'http://localhost:8080/api', request = send, log = console.log}) {
+async function runStep({step, directory, scenario = 'foodie', numberOfNights, choice = 1, day = 2, allowFallback = false, baseUrl = 'http://localhost:8080/api', request = send, log = console.log}) {
   if (!steps.includes(step)) throw new Error(`Unknown step: ${step}`);
   if (!scenarios[scenario]) throw new Error('Choose --scenario foodie, relaxed or variety.');
+  if (numberOfNights !== undefined && (!Number.isInteger(numberOfNights) || numberOfNights < 0 || numberOfNights > 20)) throw new Error('--nights must be an integer from 0 to 20.');
+  if (numberOfNights !== undefined && step !== 'signup') throw new Error('Set --nights at signup; later steps use the saved session duration.');
   if (!Number.isInteger(choice) || choice < 1 || choice > 3) throw new Error('--choice must be 1, 2 or 3.');
   if (!Number.isInteger(day) || day < 1 || day > 21) throw new Error('--day must be 1–21.');
   fs.mkdirSync(directory, {recursive: true, mode: 0o700});
@@ -38,7 +40,7 @@ async function runStep({step, directory, scenario = 'foodie', choice = 1, day = 
     fs.chmodSync(file(name), 0o600);
   };
   const show = value => log(JSON.stringify(value, null, 2));
-  const session = fs.existsSync(file('session')) ? read('session') : {baseUrl, scenario};
+  const session = fs.existsSync(file('session')) ? read('session') : {baseUrl, scenario, ...(numberOfNights !== undefined ? {numberOfNights} : {})};
   const account = step === 'signup' ? null : read('account');
   const context = {baseUrl: session.baseUrl, token: session.token || account?.token};
   const call = async (method, route, body, output) => {
@@ -60,11 +62,11 @@ async function runStep({step, directory, scenario = 'foodie', choice = 1, day = 
     assert.ok(result.token, 'Login must return a token');
     write('session', {...session, token: result.token}); show({userId: result.user.id, loggedIn: true});
   } else if (step === 'assessment') {
-    const profile = scenarios[session.scenario], quiz = {
-      startDate: '2027-06-05', minNights: profile.nights, maxNights: profile.nights,
-      travelAlterEgo: profile.persona, seeAllOrDeeply: profile.pace, dailyBudget: profile.budget,
-      dietaryRestrictions: profile.diet, willingToGetVisa: true,
-      intercityTransportModes: ['train', 'car', 'bus', 'plane', 'ferry'], walkingAmount: 'a bit',
+    const profile = scenarios[session.scenario], nights = session.numberOfNights ?? profile.nights, quiz = {
+      startDate: '2027-06-05', minNights: nights, maxNights: nights,
+      travelAlterEgo: profile.persona, seeAllOrDeeply: profile.pace, budgetLevel: profile.budget,
+      dietaryRestrictions: profile.diet, visaWillingness: true,
+      intercityTransportModes: ['train', 'car', 'bus', 'plane', 'ferry'], walkAmount: 'a bit',
     };
     write('assessment-input', quiz);
     await call('POST', '/quiz', quiz, 'assessment-saved');
@@ -139,14 +141,19 @@ async function main() {
   if (args.includes('--help') || !args.includes('--allow-live')) {
     console.log('Usage: node scripts/backend-flow-test.js STEP --state /path/to/test-directory --allow-live');
     console.log(`Steps: ${steps.join(', ')}, all`);
-    console.log('Options: --scenario foodie|relaxed|variety (at signup), --choice 1|2|3 (at route), --day 2, --base-url http://localhost:8080/api, --allow-fallback (explicit degraded-mode test)');
+    console.log('Options: --scenario foodie|relaxed|variety and --nights 0..20 (at signup), --choice 1|2|3 (at route), --day 2, --base-url http://localhost:8080/api, --allow-fallback (explicit degraded-mode test)');
     console.log('Makes real API calls, creates a test account, uses Google/Gemini during recommendations/generation/day refresh, and saves a trip. Credentials stay in private local files.');
     return;
   }
   if (!option('--state')) throw new Error('--state is required. Use a fresh temporary directory for each scenario.');
   const options = {directory: path.resolve(option('--state')), scenario: option('--scenario') || 'foodie',
+    ...(args.includes('--nights') ? {numberOfNights:Number(option('--nights'))} : {}),
     choice: Number(option('--choice') || 1), day: Number(option('--day') || 2), allowFallback: args.includes('--allow-fallback'), baseUrl: option('--base-url') || 'http://localhost:8080/api'};
-  for (const action of step === 'all' ? steps : [step]) await runStep({...options, step: action});
+  for (const action of step === 'all' ? steps : [step]) {
+    const actionOptions={...options,step:action};
+    if(step==='all' && action!=='signup')delete actionOptions.numberOfNights;
+    await runStep(actionOptions);
+  }
 }
 if (require.main === module) main().catch(error => {console.error(`TEST FAILED: ${error.message}`); process.exitCode = 1;});
 module.exports = {runStep, scenarios, steps};

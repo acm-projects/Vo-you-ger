@@ -61,6 +61,55 @@ it('rejects duplicate signup and missing prerequisites before making any request
   } finally {fs.rmSync(directory, {recursive: true, force: true});}
 });
 
+it('keeps a custom 13-night assessment and previews a slow two-base 14-day route',async()=>{
+  const directory=fs.mkdtempSync(path.join(os.tmpdir(),'voyouger-flow-long-stay-'));
+  let quiz,outline;
+  const request=async(_context,method,route,body)=>{
+    if(route==='/auth/register')return {token:'private-token',user:{id:'owner',firstTime:true}};
+    if(route==='/quiz'){
+      if(method==='POST')quiz=body;
+      return {quizResponse:quiz,firstTime:false};
+    }
+    if(route==='/recommendations')return {trip:{tripId:'draft',selectionMetadata:{explanationSource:'gemini'},recommendations:['CA','PT','JP'].map(code=>({destinationId:`country-${code.toLowerCase()}`,countryCode:code,type:'country'}))}};
+    if(route==='/trips/draft/route'){
+      assert.equal(body.countryId,'country-pt');assert.equal(body.numberOfNights,13);
+      outline=buildOutline({...body,quiz});return {outline};
+    }
+    assert.fail(`Unexpected request ${method} ${route}`);
+  };
+  const options={directory,request,log:()=>{}};
+  try{
+    await runStep({...options,step:'signup',scenario:'relaxed',numberOfNights:13});
+    // Later invocations default to foodie, so saved session settings must win.
+    for(const step of ['assessment','recommend','route'])await runStep({...options,step,choice:2});
+    assert.equal(quiz.minNights,13);assert.equal(quiz.maxNights,13);
+    assert.equal(quiz.travelAlterEgo,'Historian');assert.equal(quiz.seeAllOrDeeply,'deeply');
+    assert.equal(quiz.budgetLevel,'$$');assert.equal(quiz.visaWillingness,true);assert.equal(quiz.walkAmount,'a bit');
+    for(const key of ['dailyBudget','willingToGetVisa','walkingAmount'])assert.equal(Object.hasOwn(quiz,key),false);
+    assert.equal(outline.numberOfDays,14);assert.equal(outline.stops.length,2);
+    assert.deepEqual(outline.stops.map(stop=>stop.nights).sort((a,b)=>a-b),[6,7]);
+    assert.equal(outline.transfers.length,1);
+  }finally{fs.rmSync(directory,{recursive:true,force:true});}
+});
+
+it('validates duration overrides before requests and retains an explicit zero-night override',async()=>{
+  const directory=fs.mkdtempSync(path.join(os.tmpdir(),'voyouger-flow-duration-'));
+  const noRequest=()=>assert.fail('Invalid overrides cannot make requests');
+  try{
+    for(const numberOfNights of [-1,21,1.5,NaN])await assert.rejects(runStep({step:'signup',directory,numberOfNights,request:noRequest}),/--nights must be an integer/);
+    await assert.rejects(runStep({step:'assessment',directory,numberOfNights:13,request:noRequest}),/Set --nights at signup/);
+    let quiz;
+    const request=async(_context,method,route,body)=>{
+      if(route==='/auth/register')return {token:'private-token',user:{id:'owner',firstTime:true}};
+      if(route==='/quiz'){if(method==='POST')quiz=body;return {quizResponse:quiz,firstTime:false};}
+      assert.fail('Unexpected request');
+    };
+    await runStep({step:'signup',directory,numberOfNights:0,request,log:()=>{}});
+    await runStep({step:'assessment',directory,request,log:()=>{}});
+    assert.equal(quiz.minNights,0);assert.equal(quiz.maxNights,0);
+  }finally{fs.rmSync(directory,{recursive:true,force:true});}
+});
+
 for(const step of ['recommend','generate'])it(`does not count HTTP success with backup ${step} text as a successful AI verification`,async()=>{
   const directory=fs.mkdtempSync(path.join(os.tmpdir(),'voyouger-flow-degraded-'));
   const recommendations={trip:{tripId:'draft',selectionMetadata:{explanationSource:'deterministic_fallback',explanationFallbackReason:'request_timeout'},recommendations:['PT','JP','PL'].map(countryCode=>({countryCode,destinationId:`country-${countryCode.toLowerCase()}`}))}};
