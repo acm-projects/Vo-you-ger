@@ -5,17 +5,17 @@
   "countriesBelowFive": 25,
   "verifiedDestinationRecords": 1186,
   "totalDestinationRecords": 1227,
-  "planningEnabledCountries": 62,
-  "overnightBases": 88,
-  "reviewedDomesticConnections": 26,
-  "multiCityCountries": 15,
+  "planningEnabledCountries": 65,
+  "overnightBases": 114,
+  "reviewedDomesticConnections": 55,
+  "multiCityCountries": 26,
   "routeCombinations": {
-    "2": 26,
-    "3": 11,
-    "4": 5,
+    "2": 55,
+    "3": 25,
+    "4": 6,
     "5": 2
   },
-  "countriesWithIncompletePlanning": 187,
+  "countriesWithIncompletePlanning": 184,
   "coverageExceptions": [
     {
       "countryCode": "AQ",

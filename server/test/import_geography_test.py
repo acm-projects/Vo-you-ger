@@ -52,6 +52,31 @@ class GeographyImporterTests(unittest.TestCase):
         self.run_import()
         self.assertEqual(before,{p.name:p.read_bytes() for p in self.data.iterdir()})
 
+    def test_reviewed_currency_correction_survives_snapshot_refresh(self):
+        self.run_import()
+        path = self.data / 'countries.json'
+        registry = json.loads(path.read_text())
+        correction = dict(status='source_reviewed',currencyCode='EUR',effectiveFrom='2026-01-01',
+                          reviewedOn='2026-10-25',sources=['https://example.test/currency-review'])
+        registry['countries'][0].update(currencyCode='EUR',currencyProvenance=correction)
+        path.write_text(json.dumps(registry))
+        for _ in range(2):
+            self.run_import()
+            current = json.loads(path.read_text())['countries'][0]
+            self.assertEqual(current['currencyCode'],'EUR')
+            self.assertEqual(current['currencyProvenance'],correction)
+
+    def test_future_currency_correction_does_not_change_earlier_snapshot(self):
+        self.run_import()
+        path = self.data / 'countries.json'
+        registry = json.loads(path.read_text())
+        registry['countries'][0]['currencyProvenance'] = dict(status='source_reviewed',currencyCode='EUR',
+            effectiveFrom='2027-01-01',sources=['https://example.test/future-currency'])
+        path.write_text(json.dumps(registry))
+        self.run_import()
+        current = json.loads(path.read_text())['countries'][0]
+        self.assertEqual(current['currencyCode'],'XXX')
+
     def test_imports_do_not_become_reviewed_travel_claims(self):
         result=self.run_import()
         for destination in result[1:]:

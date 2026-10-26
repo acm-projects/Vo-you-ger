@@ -124,7 +124,7 @@ describe('Five-base routing and independent validation',()=>{
       for(const days of [1,4,5,9,10,15,16,20,21]) {
         assert.equal(outlines.buildOutline({countryId:'country-xx',numberOfDays:days,quiz:{seeAllOrDeeply:'seeAll'}}).stops.length,maxBasesForDays(days));
       }
-      assert.equal(outlines.buildOutline({countryId:'country-xx',numberOfDays:21,quiz:{seeAllOrDeeply:'deeply'}}).stops.length,1);
+      assert.equal(outlines.buildOutline({countryId:'country-xx',numberOfDays:21,quiz:{seeAllOrDeeply:'deeply'}}).stops.length,2);
       assert.equal(outlines.buildOutline({countryId:'country-xx',numberOfDays:21,quiz:{intercityTransportModes:['ferry']}}).stops.length,1);
     } finally {restore();}
   });

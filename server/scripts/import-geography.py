@@ -42,6 +42,8 @@ def main():
         row = line.split('\t'); admins[row[0]] = row[1]
     destinations_path = args.data_dir/'destinations.json'
     destinations = json.loads(destinations_path.read_text())
+    registry_path = args.data_dir/'countries.json'
+    prior_countries = {c['countryCode']: c for c in json.loads(registry_path.read_text())['countries']} if registry_path.exists() else {}
     # Preserve later editorial enrichment of imported IDs across source refreshes.
     prior_imports = {d['id']: d for d in destinations if d.get('id','').startswith('gn-')}
     legacy = [d for d in destinations if not d.get('id','').startswith('gn-')]
@@ -129,6 +131,14 @@ def main():
         row = info.get(code)
         exception = exceptions.get(code)
         registry.append(dict(id=f"country-{code.lower()}",countryCode=code,alpha3=country['alpha_3'],numeric=country['numeric'],name=row[4] if row else country['name'],isoName=country['name'],officialName=country.get('official_name',country['name']),currencyCode=row[10] if row else None,languages=row[15].split(',') if row and row[15] else [],coverageException={'code':exception[0],'reason':exception[1]} if exception else None))
+        # Preserve explicit reviewed corrections when the upstream snapshot lags
+        # a currency change. Do not infer currencies from an enabled city.
+        correction = prior_countries.get(code, {}).get('currencyProvenance', {})
+        corrected_code = correction.get('currencyCode', '')
+        if (correction.get('status') == 'source_reviewed' and
+                len(corrected_code) == 3 and corrected_code.isascii() and corrected_code.isalpha() and corrected_code.isupper() and
+                correction.get('effectiveFrom', '9999-12-31') <= args.snapshot_date and correction.get('sources')):
+            registry[-1].update(currencyCode=corrected_code, currencyProvenance=correction)
     # Retired or reclassified source records keep their IDs but lose readiness.
     # Never silently remove a destination referenced by a saved trip.
     generated_ids = {d['id'] for d in additions}

@@ -54,7 +54,7 @@ describe('Backend-owned daily scheduling',()=>{
   assert.deepEqual(buildDailyPlan(f),plan,'The same assessment and candidates yield the same plan');
  });
  it('reserves scarce days before optional activities and reassigns earlier choices when needed',()=>{
-  const f=fixture('country-ie',5,{}),stop=f.outline.stops[0],base=catalog.baseById.get(stop.destinationId);
+  const f=fixture('country-ie',5,{seeAllOrDeeply:'deeply'}),stop=f.outline.stops[0],base=catalog.baseById.get(stop.destinationId);
   const open={A:['Sunday','Monday','Tuesday'],B:['Sunday'],C:['Monday','Tuesday']};
   f.discovered=[{stopId:stop.stopId,locationId:stop.stopId,candidatePlaces:['A','B','C'].map((placeId,index)=>({
    placeId,name:placeId,stopId:stop.stopId,locationId:stop.stopId,category:'attractions',rating:5-index/10,lat:base.lat,lng:base.lng,
@@ -88,13 +88,20 @@ describe('Backend-owned daily scheduling',()=>{
    for(const days of [1,2,5,7,10,16,21])for(const pace of ['seeAll','deeply']){
     const quiz={seeAllOrDeeply:pace,travelAlterEgo:'Foodie'};
     if(!supportedBases(country.countryCode,quiz).some(base=>minimumNights(base,days)<=days-1))continue;
+    if(days>=7 && pace==='seeAll' || days>7 && pace==='deeply') {
+     const routes=require('../services/tripOutlineService').enumerateRoutes(supportedBases(country.countryCode,quiz),quiz,days);
+     if(!routes.some(route=>route.length>=2)){
+      assert.throws(()=>buildOutline({countryId:country.id,numberOfDays:days,quiz}),error=>error.code==='NO_FEASIBLE_ROUTE');
+      continue;
+     }
+    }
     const f=fixture(country.id,days,quiz),plan=buildDailyPlan(f);
     const itinerary=validateAndEnrich(plan,f.outline,f.schedule,f.discovered,quiz);
     assert.equal(itinerary.days.length,days);checked++;
     if(pace==='deeply')for(const day of itinerary.days)assert.ok(slots.flatMap(slot=>day[slot]).length<=3);
    }
   }
-  assert.ok(checked>=700,`Expected broad coverage, checked ${checked} plans`);
+  assert.ok(checked>=500,`Expected broad feasible-route coverage, checked ${checked} plans`);
  });
 });
 

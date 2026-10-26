@@ -133,8 +133,10 @@ describe('Preferences affect deterministic venue choices',()=>{
   const source=f.discovered[0].candidatePlaces.find(place=>place.placeId===seed.placeId);
   assert.ok(source.types.includes(preferred));
  });
- for(const countryId of ['country-ch','country-us'])it(`does not bypass an incompatible budget for ${countryId}`,()=>{
-  assert.throws(()=>buildOutline({countryId,numberOfDays:7,startDate:'2027-06-05',quiz:{budgetLevel:'$$',seeAllOrDeeply:'seeAll'}}),error=>error.code==='NO_FEASIBLE_ROUTE');
+ for(const countryId of ['country-ch','country-us'])it(`generates and stores a feasible ${countryId} trip above the preferred budget tier`,async()=>{
+  const {itinerary}=await exercise({countryId,days:7,bases:2,budget:'$$'},101);
+  assert.equal(itinerary.days.length,7);
+  assert.ok(itinerary.outline.stops.some(stop=>catalog.destinationById.get(stop.destinationId).budget==='$$$'));
  });
  for(const diet of ['Vegetarian','Vegan','Gluten-free','None'])it(`preserves ${diet} preferences without inventing dietary guarantees`,async()=>{
   const {itinerary}=await exercise({countryId:'country-pt',days:4,pace:'deeply',diet:[diet]},93,'schema-error');

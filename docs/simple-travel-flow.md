@@ -11,10 +11,10 @@ The existing `client/src/services/api.js` retains the backend API helpers. The
 login page's missing `validation.js` reference is corrected to the existing
 `validation.jsx`; the login/signup and assessment layouts are unchanged.
 
-The original assessment and recommendation cards retain their earlier prototype
-behavior. Connecting those existing designs to the backend is a separate frontend
-integration task. This rollback does not claim that the old screens now save an
-assessment or display live country recommendations.
+Since this original rollback, main has integrated the assessment with the backend
+using the current quiz field names. The route-coverage branch follows that
+contract; it adds no frontend implementation. The historical rollback details
+above describe the earlier frontend work, not a new change in this branch.
 
 ## Backend retained
 
@@ -23,7 +23,9 @@ rollback. The backend still provides:
 
 - Assessment storage and deterministic top-three country recommendations.
 - Single-country route planning that applies preferences, duration, budget,
-  safety and visa constraints; relaxed trips retain one base.
+  safety and visa constraints; relaxed trips retain one base through seven days
+  and use two from eight days. Explicit see-all trips from seven days require at
+  least two connected overnight bases.
 - A deterministic daily scheduler that reserves open, distinct venues, enforces
   activity counts/travel windows and keeps every pair of same-day venues within
   eight kilometers. Structured Gemini prompts describe this fixed plan only;
@@ -33,8 +35,9 @@ rollback. The backend still provides:
 - Owner-protected draft generation, save/unsave, saved-trip summaries and day-level
   venue refresh. Saved-trip regeneration forks a new draft.
 - Country facts, flags and licensed photo references for all 249 ISO entries,
-  independently of planning availability. Planning remains available in 62
-  countries, with 88 bases and 44 multi-city combinations across 15 countries.
+  independently of planning availability. Planning is available in 65
+  countries, with 114 bases and 88 multi-city combinations across 26 countries.
+  See [route coverage and sources](route-coverage-and-variety.md).
 
 ## Contracts for the existing frontend
 

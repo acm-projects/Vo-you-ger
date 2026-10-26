@@ -50,6 +50,18 @@ The first example requests June 5–11, 2027: six nights, seven calendar days,
 moderate budget, vegetarian food preferences, and a Foodie/see-all profile.
 Route feasibility still determines the number of overnight bases.
 
+To test another duration, set `--nights` at signup. For example,
+`voyo_flow signup --scenario relaxed --nights 13` requests 14 calendar days,
+including arrival and departure, with 13 nights. The duration is saved in the
+test session and used by subsequent assessment, route, and generation steps;
+do not repeat the flag on later steps. Values from 0 to 20 are supported.
+The same flag is supported by `all` with a fresh state directory.
+The helper submits the current assessment keys `budgetLevel`, `visaWillingness`,
+and `walkAmount`. See [route coverage rules](route-coverage-and-variety.md):
+14-day variety trips require at least two bases, and relaxed trips over seven
+days use two connected bases. Single-base-only countries will not be recommended
+for either long-trip case.
+
 | Command | Backend behavior | Response files |
 |---|---|---|
 | `signup` | Create account; obtain authentication token | `account.json`, private `credentials.json` and `session.json` |
@@ -179,10 +191,12 @@ take priority over display text. Shared AM/PM ranges such as `1:30–11:30 PM` a
 also understood; ambiguous or genuinely missing hours remain unknown. Listing
 hours still do not establish ticket availability or visit duration.
 
-An explicit see-all preference rewards countries with feasible multi-base routes
-more strongly in ranking. This is a preference bonus, not permission to bypass
-visa, budget, transport or minimum-stay constraints. Short and relaxed trips
-retain one base. Single-base countries remain eligible where they fit the user.
+An explicit see-all preference rewards feasible multi-base routes, and from seven
+days it requires at least two connected overnight bases. Five- and six-day trips
+prefer two bases while retaining single-base options. Relaxed trips keep one base
+through seven days and use two from eight days. Visa, budget, transport and
+minimum-stay constraints remain hard requirements; insufficient eligible choices
+return HTTP 422 rather than padding the list.
 
 Legacy city itineraries retain their existing structure. This change does not
 restore cost estimates, meal labels or late-night scheduling, and does not

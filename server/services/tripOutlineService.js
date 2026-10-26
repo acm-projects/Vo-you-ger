@@ -2,7 +2,6 @@ const catalog = require("./planningDataService");
 const destinations = require("../data/destinations.json");
 const { validateStartDate } = require("./tripTimingService");
 
-const BUDGET = { $: 1, $$: 2, $$$: 3 };
 const { TRIP_POLICY, maxBasesForDays, minimumNights } = require('../config/tripPolicy');
 const weights = require('../config/scoringWeights');
 const { scoreDestination, isRelaxed, wantsVariety } = require('./destinationScoringService');
@@ -45,13 +44,23 @@ function supportedBases(countryCode, quiz = {}) {
   return (catalog.basesByCountry.get(countryCode) || []).flatMap((base) => {
     const destination = catalog.destinationById.get(base.destinationId);
     if (!destination || destination.countryCode !== countryCode) return [];
-    if (BUDGET[quiz.budgetLevel] && BUDGET[destination.budget] > BUDGET[quiz.budgetLevel]) return [];
     if (quiz.highRiskDestWillingness === false && (typeof destination.safety !== 'number' || destination.safety > 1)) return [];
     return [{ ...destination, ...base }];
   });
 }
 
 function baseScore(base, quiz) { return scoreDestination(base, quiz).score / 10; }
+
+// Product rules for new route selection, not claims about tourism capacity.
+// Count actual connected overnight bases, never nearby excursions.
+function routeBaseLimits(days, quiz = {}) {
+  const relaxed = isRelaxed(quiz);
+  const min = relaxed ? (days > TRIP_POLICY.relaxedSingleBaseMaxDays ? 2 : 1)
+    : wantsVariety(quiz) && days >= TRIP_POLICY.varietyRequiresMultipleBasesFromDays ? 2 : 1;
+  const max = relaxed ? (days > TRIP_POLICY.relaxedSingleBaseMaxDays ? TRIP_POLICY.maxRelaxedBases : 1)
+    : maxBasesForDays(days);
+  return {min, max};
+}
 
 let indexedConnections;
 let edgesByPair;
@@ -73,7 +82,12 @@ function countryCandidates(quiz = {}, visaFreeCountryCodes = null) {
     if (visaFreeCountryCodes && !visaFreeCountryCodes.has(country.countryCode)) return [];
     const bases = supportedBases(country.countryCode, quiz).filter((base) => minimumNights(base, days) <= days - 1);
     if (!bases.length) return [];
-    const outline = buildOutline({ countryId: country.id, quiz, startDate: quiz.startDate });
+    let outline;
+    try { outline = buildOutline({ countryId: country.id, quiz, startDate: quiz.startDate }); }
+    catch (error) {
+      if (error.code === 'NO_FEASIBLE_ROUTE') return [];
+      throw error;
+    }
     return [{
       ...country, type: "country", country: country.name,
       suggestedRoute: {
@@ -96,7 +110,7 @@ function countryCandidates(quiz = {}, visaFreeCountryCodes = null) {
 // Enumerate small domestic paths before choosing a starting city. This also
 // exposes route coverage for tests and maintenance without using an LLM.
 function enumerateRoutes(bases, quiz, days, connect = connectionBetween) {
-  const maxBases = isRelaxed(quiz) ? 1 : maxBasesForDays(days);
+  const maxBases = routeBaseLimits(days, quiz).max;
   const scores=new Map(bases.map(base=>[base.id,baseScore(base,quiz)]));
   const grades=new WeakMap();
   const grade=route=>{
@@ -152,10 +166,9 @@ function chooseExcursions(stops, countryCode, quiz) {
       const destination = destinations.find((destination) => destination.id === item.destinationId);
       return item.fromDestinationId === stop.destinationId && item.domesticOnly === true &&
         item.roundTripPlanningMinutes <= TRIP_POLICY.maxExcursionMinutes && destination?.countryCode === countryCode &&
-        (!BUDGET[quiz.budgetLevel] || BUDGET[destination.budget] <= BUDGET[quiz.budgetLevel]) &&
         (quiz.highRiskDestWillingness !== false || (typeof destination.safety==='number' && destination.safety <= 1)) &&
         (!modes?.length || modes.includes(item.mode));
-    }).sort((a, b) => a.destinationId.localeCompare(b.destinationId))[0];
+    }).sort((a, b) => baseScore(catalog.destinationById.get(b.destinationId),quiz)-baseScore(catalog.destinationById.get(a.destinationId),quiz) || a.destinationId.localeCompare(b.destinationId))[0];
     if (!excursion) return [];
     const destination = destinations.find((item) => item.id === excursion.destinationId);
     return [{ ...excursion, name: destination.name, countryCode, stopId: stop.stopId, day: stop.startDay + 2 }];
@@ -173,7 +186,7 @@ function selectOutline({ countryId, quiz = {}, numberOfDays, numberOfNights, sta
   const arrivalDate = startDate ?? quiz.startDate;
   if (arrivalDate != null) validateStartDate(arrivalDate);
   const effectiveQuiz = arrivalDate
-    ? { ...quiz, startDate:arrivalDate, months: [new Date(`${arrivalDate}T12:00:00Z`).toLocaleString("en-US", { month: "short", timeZone: "UTC" })] }
+    ? { ...quiz, startDate:arrivalDate, preferredMonths: [new Date(`${arrivalDate}T12:00:00Z`).toLocaleString("en-US", { month: "short", timeZone: "UTC" })] }
     : quiz;
   const days = resolveDuration(quiz, numberOfDays, numberOfNights);
   const nights = days - 1;
@@ -181,8 +194,11 @@ function selectOutline({ countryId, quiz = {}, numberOfDays, numberOfNights, sta
   const routes = enumerateRoutes(bases, effectiveQuiz, days).sort((a, b) =>
     routeScore(b, effectiveQuiz) - routeScore(a, effectiveQuiz) ||
     a.map((base) => base.id).join(",").localeCompare(b.map((base) => base.id).join(",")));
-  if (!routes.length) throw apiError('NO_FEASIBLE_ROUTE', "No supported route fits these constraints", 422);
-  const selected = routes[0];
+  const requiredBases = routeBaseLimits(days, quiz).min;
+  const selected = routes.find(route => route.length >= requiredBases);
+  if (!selected) throw apiError('NO_FEASIBLE_ROUTE', requiredBases > 1
+    ? 'This trip duration and pace require at least two connected overnight bases compatible with your risk and transport preferences.'
+    : 'No supported route fits these constraints', 422);
   const allocations = allocateNights(selected, nights, effectiveQuiz);
   let startDay = 1;
   const stops = selected.map((base, index) => {
@@ -226,8 +242,8 @@ function validateOutline(outline, quiz = {}) {
   if(outline.startDate != null) validateStartDate(outline.startDate);
   const bases = supportedBases(country?.countryCode, quiz);
   if (!country || outline.countryCode !== country.countryCode ||
-      !Array.isArray(outline.stops) || !outline.stops.length || outline.stops.length > maxBasesForDays(days) ||
-      (isRelaxed(quiz) && outline.stops.length > 1)) {
+      !Array.isArray(outline.stops) || outline.stops.length < routeBaseLimits(days, quiz).min ||
+      outline.stops.length > routeBaseLimits(days, quiz).max) {
     throw planningError("Invalid country trip outline");
   }
   const seen = new Set();
@@ -275,7 +291,6 @@ function validateOutline(outline, quiz = {}) {
         excursionDays.has(excursion.day) || excursionStops.has(excursion.stopId) || excursion.roundTripPlanningMinutes !== supported.roundTripPlanningMinutes ||
         excursion.mode !== supported.mode || excursion.sourceUrl !== supported.sourceUrl ||
         (modes?.length && !modes.includes(excursion.mode)) ||
-        (BUDGET[quiz.budgetLevel] && BUDGET[destination.budget] > BUDGET[quiz.budgetLevel]) ||
         (quiz.highRiskDestWillingness === false && (typeof destination.safety!=='number' || destination.safety > 1))) {
       throw planningError("Unsupported excursion, day allocation, or transport preference");
     }
@@ -285,4 +300,4 @@ function validateOutline(outline, quiz = {}) {
   return outline;
 }
 
-module.exports = { planningError, isCountryTrip, resolveDuration, supportedBases, countryCandidates, buildOutline, validateOutline, enumerateRoutes, baseScore, routeScore };
+module.exports = { planningError, isCountryTrip, resolveDuration, supportedBases, countryCandidates, buildOutline, validateOutline, enumerateRoutes, baseScore, routeScore, routeBaseLimits };

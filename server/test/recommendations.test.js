@@ -55,5 +55,14 @@ describe('Deterministic country recommendations',()=>{
   const {req,res}=pair({quiz:{...quiz,visaWillingness:false}});await createRecommendations(req,res);assert.equal(res.statusCode,201);assert.deepEqual(new Set(saved.recommendations.map(item=>item.countryCode)),new Set(['PT','JP','IT']));
  });
  it('does not call visa lookup when the traveler is willing to apply',async()=>{visa.getVisaFreeCountries=async()=>assert.fail('Unexpected visa call');const {req,res}=pair({quiz:{...quiz,visaWillingness:true}});await createRecommendations(req,res);assert.equal(res.statusCode,201);});
- it('does not substitute over-budget countries',async()=>{const profile={...quiz,budgetLevel:'$',highRiskDestWillingness:false};const {req,res}=pair({quiz:profile});await createRecommendations(req,res);assert.equal(res.statusCode,201);assert.deepEqual(saved.recommendations.map(item=>item.destinationId),expected(profile));assert.ok(!saved.recommendations.some(item=>item.countryCode==='PT'));});
+ for(const narrative of ['gemini','fallback'])it(`keeps higher-budget good fits in a strict visa pool and explains the tradeoff with ${narrative} text`,async()=>{
+  const allowed=new Set(['PT','JP','IT']);
+  visa.getVisaFreeCountries=async()=>allowed;
+  if(narrative==='fallback')llm.generateStructured=async()=>{throw Object.assign(new Error('offline fixture'),{statusCode:503});};
+  const profile={...quiz,budgetLevel:'$',highRiskDestWillingness:true,visaWillingness:false};
+  const {req,res}=pair({quiz:profile});await createRecommendations(req,res);
+  assert.equal(res.statusCode,201);
+  assert.deepEqual(new Set(saved.recommendations.map(item=>item.countryCode)),allowed);
+  for(const item of saved.recommendations)assert.match(item.reason,/higher budget tier than your preference/);
+ });
 });

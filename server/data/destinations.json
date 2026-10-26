@@ -944,8 +944,11 @@
         "limitation": "Coarse catalog tier; not verified current prices"
       },
       "safety": {
-        "status": "editorial_legacy",
-        "limitation": "Legacy editorial tier; not a current advisory or guarantee"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/ireland.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot used as a conservative screening floor; any higher existing editorial tier is retained. Not a city-specific safety guarantee or future advisory."
       },
       "geography": {
         "status": "verified_gazetteer",
@@ -1071,7 +1074,7 @@
       "Aug"
     ],
     "climate": "cool",
-    "safety": 1,
+    "safety": 2,
     "description": "Design-forward city with great food, harbor swimming in summer and bikes everywhere.",
     "languages": [
       "Danish (official)",
@@ -1120,8 +1123,11 @@
         "limitation": "Coarse catalog tier; not verified current prices"
       },
       "safety": {
-        "status": "editorial_legacy",
-        "limitation": "Legacy editorial tier; not a current advisory or guarantee"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/denmark.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 2,
+        "limitation": "Country-level U.S. advisory snapshot used as a conservative screening floor; any higher existing editorial tier is retained. Not a city-specific safety guarantee or future advisory."
       },
       "geography": {
         "status": "verified_gazetteer",
@@ -1294,8 +1300,11 @@
         "limitation": "Coarse catalog tier; not verified current prices"
       },
       "safety": {
-        "status": "editorial_legacy",
-        "limitation": "Legacy editorial tier; not a current advisory or guarantee"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/czechia.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot used as a conservative screening floor; any higher existing editorial tier is retained. Not a city-specific safety guarantee or future advisory."
       },
       "geography": {
         "status": "verified_gazetteer",
@@ -1471,8 +1480,11 @@
         "limitation": "Coarse catalog tier; not verified current prices"
       },
       "safety": {
-        "status": "editorial_legacy",
-        "limitation": "Legacy editorial tier; not a current advisory or guarantee"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/hungary.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot used as a conservative screening floor; any higher existing editorial tier is retained. Not a city-specific safety guarantee or future advisory."
       },
       "geography": {
         "status": "verified_gazetteer",
@@ -2186,8 +2198,11 @@
         "limitation": "Coarse catalog tier; not verified current prices"
       },
       "safety": {
-        "status": "editorial_legacy",
-        "limitation": "Legacy editorial tier; not a current advisory or guarantee"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/morocco.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 2,
+        "limitation": "Country-level U.S. advisory snapshot used as a conservative screening floor; any higher existing editorial tier is retained. Not a city-specific safety guarantee or future advisory."
       },
       "geography": {
         "status": "verified_gazetteer",
@@ -2951,8 +2966,11 @@
         "limitation": "Coarse catalog tier; not verified current prices"
       },
       "safety": {
-        "status": "editorial_legacy",
-        "limitation": "Legacy editorial tier; not a current advisory or guarantee"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/south-korea.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot used as a conservative screening floor; any higher existing editorial tier is retained. Not a city-specific safety guarantee or future advisory."
       },
       "geography": {
         "status": "verified_gazetteer",
@@ -8045,8 +8063,11 @@
         "limitation": "Coarse catalog tier; not verified current prices"
       },
       "safety": {
-        "status": "editorial_legacy",
-        "limitation": "Legacy editorial tier; not a current advisory or guarantee"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/slovenia.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot used as a conservative screening floor; any higher existing editorial tier is retained. Not a city-specific safety guarantee or future advisory."
       },
       "geography": {
         "status": "verified_gazetteer",
@@ -8155,7 +8176,7 @@
       "Sep"
     ],
     "climate": "cool",
-    "safety": 1,
+    "safety": 2,
     "description": "Sweden's waterfront capital spreads across islands, with medieval Gamla Stan, contemporary Nordic design, museums, and access to a scenic archipelago.",
     "languages": [
       "Swedish (official)",
@@ -8204,8 +8225,11 @@
         "limitation": "Coarse catalog tier; not verified current prices"
       },
       "safety": {
-        "status": "editorial_legacy",
-        "limitation": "Legacy editorial tier; not a current advisory or guarantee"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/sweden.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 2,
+        "limitation": "Country-level U.S. advisory snapshot used as a conservative screening floor; any higher existing editorial tier is retained. Not a city-specific safety guarantee or future advisory."
       },
       "geography": {
         "status": "verified_gazetteer",
@@ -9919,7 +9943,7 @@
     ],
     "climate": "mild",
     "safety": 1,
-    "description": "South Korea's coastal metropolis combines beaches, colorful hillside neighborhoods, seafood markets, mountain temples, and vibrant waterfront districts.",
+    "description": "Busan: an urban base for a domestic route, with individual venues selected from Google Places after route selection.",
     "languages": [
       "Korean (official Hangul)",
       "English (subway signage in English, varying spoken fluency)"
@@ -9954,12 +9978,16 @@
     ],
     "provenance": {
       "budget": {
-        "status": "editorial_legacy",
-        "limitation": "Coarse catalog tier; not verified current prices"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Coarse product screening tier assigned conservatively for this route review; not a sourced daily price, accommodation quote or guarantee of affordability."
       },
       "safety": {
-        "status": "editorial_legacy",
-        "limitation": "Legacy editorial tier; not a current advisory or guarantee"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/south-korea.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot used as a conservative screening floor; any higher existing editorial tier is retained. Not a city-specific safety guarantee or future advisory."
       },
       "geography": {
         "status": "verified_gazetteer",
@@ -9970,11 +9998,37 @@
         "snapshotDate": "2026-10-23",
         "license": "CC-BY-4.0",
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
+      },
+      "interests": {
+        "status": "editorial_from_official_tourism",
+        "sourceUrl": "https://english.visitkorea.or.kr/svc/contents/contentsView.do?vcontsId=1589997",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://english.visitkorea.or.kr/svc/contents/contentsView.do?vcontsId=1589997",
+          "https://travel.state.gov/en/international-travel/travel-advisories/south-korea.html"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget tier, minimum nights, search radius and transfer allowances are editorial product rules. No venue, hotel, fare or departure is verified by this review."
       }
     },
     "coordinates": {
       "lat": 35.10168,
       "lng": 129.03004
+    },
+    "planning": {
+      "enabled": true,
+      "potentialOvernightBase": true,
+      "lat": 35.10168,
+      "lng": 129.03004,
+      "region": "Busan",
+      "minNights": 2,
+      "radiusKm": 15,
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -10389,10 +10443,9 @@
     "countryCode": "MA",
     "tags": [
       "coastal",
+      "history",
       "culture",
-      "food",
-      "architecture",
-      "relaxation"
+      "food"
     ],
     "budget": "$$",
     "bestMonths": [
@@ -10404,7 +10457,7 @@
     ],
     "climate": "mild",
     "safety": 2,
-    "description": "Relaxed Atlantic port city with whitewashed buildings, historic ramparts, artisan workshops, seafood markets, and a windswept beach.",
+    "description": "Essaouira: an urban base for a domestic route, with individual venues selected from Google Places after route selection.",
     "languages": [
       "Arabic (official Moroccan Darija)",
       "Berber / Tamazight (official)",
@@ -10438,12 +10491,16 @@
     ],
     "provenance": {
       "budget": {
-        "status": "editorial_legacy",
-        "limitation": "Coarse catalog tier; not verified current prices"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Coarse product screening tier assigned conservatively for this route review; not a sourced daily price, accommodation quote or guarantee of affordability."
       },
       "safety": {
-        "status": "editorial_legacy",
-        "limitation": "Legacy editorial tier; not a current advisory or guarantee"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/morocco.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 2,
+        "limitation": "Country-level U.S. advisory snapshot used as a conservative screening floor; any higher existing editorial tier is retained. Not a city-specific safety guarantee or future advisory."
       },
       "geography": {
         "status": "verified_gazetteer",
@@ -10454,11 +10511,37 @@
         "snapshotDate": "2026-10-23",
         "license": "CC-BY-4.0",
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
+      },
+      "interests": {
+        "status": "editorial_from_official_tourism",
+        "sourceUrl": "https://visitmorocco.com/en/travel/essaouira-mogador",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://visitmorocco.com/en/travel/essaouira-mogador",
+          "https://travel.state.gov/en/international-travel/travel-advisories/morocco.html"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget tier, minimum nights, search radius and transfer allowances are editorial product rules. No venue, hotel, fare or departure is verified by this review."
       }
     },
     "coordinates": {
       "lat": 31.5125,
       "lng": -9.77
+    },
+    "planning": {
+      "enabled": true,
+      "potentialOvernightBase": true,
+      "lat": 31.5125,
+      "lng": -9.77,
+      "region": "Atlantic coast",
+      "minNights": 2,
+      "radiusKm": 10,
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -13623,7 +13706,7 @@
     "type": "city",
     "coordinates": {
       "lat": 18.23333,
-      "lng": -63.0
+      "lng": -63
     },
     "region": "East End",
     "tags": [],
@@ -13655,7 +13738,7 @@
       "enabled": false,
       "potentialOvernightBase": true,
       "lat": 18.23333,
-      "lng": -63.0,
+      "lng": -63,
       "region": "East End",
       "minNights": 2,
       "radiusKm": 15,
@@ -17034,12 +17117,18 @@
       "lng": 25.64262
     },
     "region": "Stara Zagora",
-    "tags": [],
-    "budget": null,
+    "tags": [
+      "city",
+      "history",
+      "museums",
+      "art",
+      "parks"
+    ],
+    "budget": "$",
     "bestMonths": [],
     "climate": null,
-    "safety": null,
-    "description": "",
+    "safety": 1,
+    "description": "Stara Zagora: a base for a domestic regional trip; activities and restaurants are selected from Google Places after route selection.",
     "provenance": {
       "geography": {
         "status": "verified_gazetteer",
@@ -17052,23 +17141,45 @@
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
       },
       "budget": {
-        "status": "unknown"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Budget-oriented city-break planning tier, informed by national comparative price levels and city tourism options; national household price levels are not tourist daily-spend quotes. Seasonal accommodation, international travel and dietary needs can change costs.",
+        "sourceUrl": "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20260618-2"
       },
       "safety": {
-        "status": "unreviewed",
-        "limitation": "Gazetteer presence does not establish safe or feasible travel"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/bulgaria.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot for screening, not a city-specific safety guarantee or future advisory."
+      },
+      "interests": {
+        "status": "editorial_from_tourism_source",
+        "sourceUrl": "https://visitbulgaria.com/stara-zagora/",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://visitbulgaria.com/stara-zagora/",
+          "https://travel.state.gov/en/international-travel/travel-advisories/bulgaria.html",
+          "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20260618-2"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget, minimum stays and search radius are editorial product rules. No individual venues, accommodation quotes or future departures verified."
       }
     },
     "planning": {
-      "enabled": false,
+      "enabled": true,
       "potentialOvernightBase": true,
       "lat": 42.43205,
       "lng": 25.64262,
       "region": "Stara Zagora",
       "minNights": 2,
-      "radiusKm": 15,
-      "reviewStatus": "pending_travel_review",
-      "locationPrecision": "gazetteer_point"
+      "radiusKm": 10,
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -17082,12 +17193,18 @@
       "lng": 23.32415
     },
     "region": "Sofia-Capital",
-    "tags": [],
-    "budget": null,
+    "tags": [
+      "city",
+      "history",
+      "museums",
+      "parks",
+      "nature"
+    ],
+    "budget": "$",
     "bestMonths": [],
     "climate": null,
-    "safety": null,
-    "description": "",
+    "safety": 1,
+    "description": "Sofia: a base for a domestic regional trip; activities and restaurants are selected from Google Places after route selection.",
     "provenance": {
       "geography": {
         "status": "verified_gazetteer",
@@ -17100,23 +17217,45 @@
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
       },
       "budget": {
-        "status": "unknown"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Budget-oriented city-break planning tier, informed by national comparative price levels and city tourism options; national household price levels are not tourist daily-spend quotes. Seasonal accommodation, international travel and dietary needs can change costs.",
+        "sourceUrl": "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20260618-2"
       },
       "safety": {
-        "status": "unreviewed",
-        "limitation": "Gazetteer presence does not establish safe or feasible travel"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/bulgaria.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot for screening, not a city-specific safety guarantee or future advisory."
+      },
+      "interests": {
+        "status": "editorial_from_tourism_source",
+        "sourceUrl": "https://visitbulgaria.com/sofia/",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://visitbulgaria.com/sofia/",
+          "https://travel.state.gov/en/international-travel/travel-advisories/bulgaria.html",
+          "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20260618-2"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget, minimum stays and search radius are editorial product rules. No individual venues, accommodation quotes or future departures verified."
       }
     },
     "planning": {
-      "enabled": false,
+      "enabled": true,
       "potentialOvernightBase": true,
       "lat": 42.69751,
       "lng": 23.32415,
       "region": "Sofia-Capital",
       "minNights": 2,
-      "radiusKm": 15,
-      "reviewStatus": "pending_travel_review",
-      "locationPrecision": "gazetteer_point"
+      "radiusKm": 12,
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -17130,12 +17269,18 @@
       "lng": 24.75001
     },
     "region": "Plovdiv",
-    "tags": [],
-    "budget": null,
+    "tags": [
+      "city",
+      "history",
+      "architecture",
+      "art",
+      "culture"
+    ],
+    "budget": "$",
     "bestMonths": [],
     "climate": null,
-    "safety": null,
-    "description": "",
+    "safety": 1,
+    "description": "Plovdiv: a base for a domestic regional trip; activities and restaurants are selected from Google Places after route selection.",
     "provenance": {
       "geography": {
         "status": "verified_gazetteer",
@@ -17148,23 +17293,45 @@
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
       },
       "budget": {
-        "status": "unknown"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Budget-oriented city-break planning tier, informed by national comparative price levels and city tourism options; national household price levels are not tourist daily-spend quotes. Seasonal accommodation, international travel and dietary needs can change costs.",
+        "sourceUrl": "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20260618-2"
       },
       "safety": {
-        "status": "unreviewed",
-        "limitation": "Gazetteer presence does not establish safe or feasible travel"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/bulgaria.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot for screening, not a city-specific safety guarantee or future advisory."
+      },
+      "interests": {
+        "status": "editorial_from_tourism_source",
+        "sourceUrl": "https://visitbulgaria.com/plovdiv-city/",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://visitbulgaria.com/plovdiv-city/",
+          "https://travel.state.gov/en/international-travel/travel-advisories/bulgaria.html",
+          "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20260618-2"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget, minimum stays and search radius are editorial product rules. No individual venues, accommodation quotes or future departures verified."
       }
     },
     "planning": {
-      "enabled": false,
+      "enabled": true,
       "potentialOvernightBase": true,
       "lat": 42.15387,
       "lng": 24.75001,
       "region": "Plovdiv",
       "minNights": 2,
-      "radiusKm": 15,
-      "reviewStatus": "pending_travel_review",
-      "locationPrecision": "gazetteer_point"
+      "radiusKm": 10,
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -23790,12 +23957,16 @@
       "lng": 13.37759
     },
     "region": "Plzeň Region",
-    "tags": [],
-    "budget": null,
+    "tags": [
+      "history",
+      "culture",
+      "food"
+    ],
+    "budget": "$$",
     "bestMonths": [],
     "climate": null,
-    "safety": null,
-    "description": "",
+    "safety": 1,
+    "description": "Pilsen: an urban base for a domestic route, with individual venues selected from Google Places after route selection.",
     "provenance": {
       "geography": {
         "status": "verified_gazetteer",
@@ -23808,23 +23979,43 @@
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
       },
       "budget": {
-        "status": "unknown"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Coarse product screening tier assigned conservatively for this route review; not a sourced daily price, accommodation quote or guarantee of affordability."
       },
       "safety": {
-        "status": "unreviewed",
-        "limitation": "Gazetteer presence does not establish safe or feasible travel"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/czechia.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot used as a conservative screening floor; any higher existing editorial tier is retained. Not a city-specific safety guarantee or future advisory."
+      },
+      "interests": {
+        "status": "editorial_from_official_tourism",
+        "sourceUrl": "https://www.visitczechia.com/en-us/campaigns/2025/expo/pilsen-region",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://www.visitczechia.com/en-us/campaigns/2025/expo/pilsen-region",
+          "https://travel.state.gov/en/international-travel/travel-advisories/czechia.html"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget tier, minimum nights, search radius and transfer allowances are editorial product rules. No venue, hotel, fare or departure is verified by this review."
       }
     },
     "planning": {
-      "enabled": false,
+      "enabled": true,
       "potentialOvernightBase": true,
       "lat": 49.74747,
       "lng": 13.37759,
-      "region": "Plzeň Region",
+      "region": "Pilsen region",
       "minNights": 2,
-      "radiusKm": 15,
-      "reviewStatus": "pending_travel_review",
-      "locationPrecision": "gazetteer_point"
+      "radiusKm": 10,
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -23934,12 +24125,17 @@
       "lng": 16.60796
     },
     "region": "South Moravian",
-    "tags": [],
-    "budget": null,
+    "tags": [
+      "history",
+      "culture",
+      "architecture",
+      "food"
+    ],
+    "budget": "$$",
     "bestMonths": [],
     "climate": null,
-    "safety": null,
-    "description": "",
+    "safety": 1,
+    "description": "Brno: an urban base for a domestic route, with individual venues selected from Google Places after route selection.",
     "provenance": {
       "geography": {
         "status": "verified_gazetteer",
@@ -23952,23 +24148,43 @@
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
       },
       "budget": {
-        "status": "unknown"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Coarse product screening tier assigned conservatively for this route review; not a sourced daily price, accommodation quote or guarantee of affordability."
       },
       "safety": {
-        "status": "unreviewed",
-        "limitation": "Gazetteer presence does not establish safe or feasible travel"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/czechia.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot used as a conservative screening floor; any higher existing editorial tier is retained. Not a city-specific safety guarantee or future advisory."
+      },
+      "interests": {
+        "status": "editorial_from_official_tourism",
+        "sourceUrl": "https://www.visitczechia.com/en-us/things-to-do/places/landmarks/cities/t-brno",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://www.visitczechia.com/en-us/things-to-do/places/landmarks/cities/t-brno",
+          "https://travel.state.gov/en/international-travel/travel-advisories/czechia.html"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget tier, minimum nights, search radius and transfer allowances are editorial product rules. No venue, hotel, fare or departure is verified by this review."
       }
     },
     "planning": {
-      "enabled": false,
+      "enabled": true,
       "potentialOvernightBase": true,
       "lat": 49.19522,
       "lng": 16.60796,
-      "region": "South Moravian",
+      "region": "South Moravia",
       "minNights": 2,
-      "radiusKm": 15,
-      "reviewStatus": "pending_travel_review",
-      "locationPrecision": "gazetteer_point"
+      "radiusKm": 12,
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -24414,12 +24630,16 @@
       "lng": 10.38831
     },
     "region": "South Denmark",
-    "tags": [],
-    "budget": null,
+    "tags": [
+      "history",
+      "culture",
+      "architecture"
+    ],
+    "budget": "$$$",
     "bestMonths": [],
     "climate": null,
-    "safety": null,
-    "description": "",
+    "safety": 2,
+    "description": "Odense: an urban base for a domestic route, with individual venues selected from Google Places after route selection.",
     "provenance": {
       "geography": {
         "status": "verified_gazetteer",
@@ -24432,23 +24652,43 @@
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
       },
       "budget": {
-        "status": "unknown"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Coarse product screening tier assigned conservatively for this route review; not a sourced daily price, accommodation quote or guarantee of affordability."
       },
       "safety": {
-        "status": "unreviewed",
-        "limitation": "Gazetteer presence does not establish safe or feasible travel"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/denmark.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 2,
+        "limitation": "Country-level U.S. advisory snapshot used as a conservative screening floor; any higher existing editorial tier is retained. Not a city-specific safety guarantee or future advisory."
+      },
+      "interests": {
+        "status": "editorial_from_official_tourism",
+        "sourceUrl": "https://www.visitdenmark.com/denmark/destinations/fyn/odense",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://www.visitdenmark.com/denmark/destinations/fyn/odense",
+          "https://travel.state.gov/en/international-travel/travel-advisories/denmark.html"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget tier, minimum nights, search radius and transfer allowances are editorial product rules. No venue, hotel, fare or departure is verified by this review."
       }
     },
     "planning": {
-      "enabled": false,
+      "enabled": true,
       "potentialOvernightBase": true,
       "lat": 55.39594,
       "lng": 10.38831,
-      "region": "South Denmark",
+      "region": "Funen",
       "minNights": 2,
-      "radiusKm": 15,
-      "reviewStatus": "pending_travel_review",
-      "locationPrecision": "gazetteer_point"
+      "radiusKm": 10,
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -24510,12 +24750,16 @@
       "lng": 10.21076
     },
     "region": "Central Jutland",
-    "tags": [],
-    "budget": null,
+    "tags": [
+      "culture",
+      "food",
+      "architecture"
+    ],
+    "budget": "$$$",
     "bestMonths": [],
     "climate": null,
-    "safety": null,
-    "description": "",
+    "safety": 2,
+    "description": "Århus: an urban base for a domestic route, with individual venues selected from Google Places after route selection.",
     "provenance": {
       "geography": {
         "status": "verified_gazetteer",
@@ -24528,23 +24772,43 @@
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
       },
       "budget": {
-        "status": "unknown"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Coarse product screening tier assigned conservatively for this route review; not a sourced daily price, accommodation quote or guarantee of affordability."
       },
       "safety": {
-        "status": "unreviewed",
-        "limitation": "Gazetteer presence does not establish safe or feasible travel"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/denmark.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 2,
+        "limitation": "Country-level U.S. advisory snapshot used as a conservative screening floor; any higher existing editorial tier is retained. Not a city-specific safety guarantee or future advisory."
+      },
+      "interests": {
+        "status": "editorial_from_official_tourism",
+        "sourceUrl": "https://www.visitdenmark.com/denmark/destinations/jutland/aarhus",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://www.visitdenmark.com/denmark/destinations/jutland/aarhus",
+          "https://travel.state.gov/en/international-travel/travel-advisories/denmark.html"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget tier, minimum nights, search radius and transfer allowances are editorial product rules. No venue, hotel, fare or departure is verified by this review."
       }
     },
     "planning": {
-      "enabled": false,
+      "enabled": true,
       "potentialOvernightBase": true,
       "lat": 56.15674,
       "lng": 10.21076,
-      "region": "Central Jutland",
+      "region": "Central Denmark",
       "minNights": 2,
-      "radiusKm": 15,
-      "reviewStatus": "pending_travel_review",
-      "locationPrecision": "gazetteer_point"
+      "radiusKm": 12,
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -24987,7 +25251,7 @@
     "type": "town",
     "coordinates": {
       "lat": 18.5,
-      "lng": -70.0
+      "lng": -70
     },
     "region": "Santo Domingo Province",
     "tags": [],
@@ -25019,7 +25283,7 @@
       "enabled": false,
       "potentialOvernightBase": true,
       "lat": 18.5,
-      "lng": -70.0,
+      "lng": -70,
       "region": "Santo Domingo Province",
       "minNights": 2,
       "radiusKm": 15,
@@ -32793,12 +33057,16 @@
       "lng": 18.22814
     },
     "region": "Baranya",
-    "tags": [],
-    "budget": null,
+    "tags": [
+      "history",
+      "culture",
+      "architecture"
+    ],
+    "budget": "$$",
     "bestMonths": [],
     "climate": null,
-    "safety": null,
-    "description": "",
+    "safety": 1,
+    "description": "Pécs: an urban base for a domestic route, with individual venues selected from Google Places after route selection.",
     "provenance": {
       "geography": {
         "status": "verified_gazetteer",
@@ -32811,23 +33079,43 @@
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
       },
       "budget": {
-        "status": "unknown"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Coarse product screening tier assigned conservatively for this route review; not a sourced daily price, accommodation quote or guarantee of affordability."
       },
       "safety": {
-        "status": "unreviewed",
-        "limitation": "Gazetteer presence does not establish safe or feasible travel"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/hungary.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot used as a conservative screening floor; any higher existing editorial tier is retained. Not a city-specific safety guarantee or future advisory."
+      },
+      "interests": {
+        "status": "editorial_from_official_tourism",
+        "sourceUrl": "https://visithungary.com/destination/pecs",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://visithungary.com/destination/pecs",
+          "https://travel.state.gov/en/international-travel/travel-advisories/hungary.html"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget tier, minimum nights, search radius and transfer allowances are editorial product rules. No venue, hotel, fare or departure is verified by this review."
       }
     },
     "planning": {
-      "enabled": false,
+      "enabled": true,
       "potentialOvernightBase": true,
       "lat": 46.07617,
       "lng": 18.22814,
       "region": "Baranya",
       "minNights": 2,
-      "radiusKm": 15,
-      "reviewStatus": "pending_travel_review",
-      "locationPrecision": "gazetteer_point"
+      "radiusKm": 10,
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -32841,12 +33129,16 @@
       "lng": 20.14824
     },
     "region": "Csongrád",
-    "tags": [],
-    "budget": null,
+    "tags": [
+      "history",
+      "architecture",
+      "food"
+    ],
+    "budget": "$$",
     "bestMonths": [],
     "climate": null,
-    "safety": null,
-    "description": "",
+    "safety": 1,
+    "description": "Szeged: an urban base for a domestic route, with individual venues selected from Google Places after route selection.",
     "provenance": {
       "geography": {
         "status": "verified_gazetteer",
@@ -32859,23 +33151,43 @@
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
       },
       "budget": {
-        "status": "unknown"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Coarse product screening tier assigned conservatively for this route review; not a sourced daily price, accommodation quote or guarantee of affordability."
       },
       "safety": {
-        "status": "unreviewed",
-        "limitation": "Gazetteer presence does not establish safe or feasible travel"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/hungary.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot used as a conservative screening floor; any higher existing editorial tier is retained. Not a city-specific safety guarantee or future advisory."
+      },
+      "interests": {
+        "status": "editorial_from_official_tourism",
+        "sourceUrl": "https://visithungary.com/destination/szeged-region",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://visithungary.com/destination/szeged-region",
+          "https://travel.state.gov/en/international-travel/travel-advisories/hungary.html"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget tier, minimum nights, search radius and transfer allowances are editorial product rules. No venue, hotel, fare or departure is verified by this review."
       }
     },
     "planning": {
-      "enabled": false,
+      "enabled": true,
       "potentialOvernightBase": true,
       "lat": 46.253,
       "lng": 20.14824,
-      "region": "Csongrád",
+      "region": "Southern Great Plain",
       "minNights": 2,
-      "radiusKm": 15,
-      "reviewStatus": "pending_travel_review",
-      "locationPrecision": "gazetteer_point"
+      "radiusKm": 10,
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -33321,12 +33633,16 @@
       "lng": -9.05095
     },
     "region": "Connacht",
-    "tags": [],
-    "budget": null,
+    "tags": [
+      "culture",
+      "food",
+      "coastal"
+    ],
+    "budget": "$$$",
     "bestMonths": [],
     "climate": null,
-    "safety": null,
-    "description": "",
+    "safety": 1,
+    "description": "Galway: an urban base for a domestic route, with individual venues selected from Google Places after route selection.",
     "provenance": {
       "geography": {
         "status": "verified_gazetteer",
@@ -33339,23 +33655,43 @@
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
       },
       "budget": {
-        "status": "unknown"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Coarse product screening tier assigned conservatively for this route review; not a sourced daily price, accommodation quote or guarantee of affordability."
       },
       "safety": {
-        "status": "unreviewed",
-        "limitation": "Gazetteer presence does not establish safe or feasible travel"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/ireland.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot used as a conservative screening floor; any higher existing editorial tier is retained. Not a city-specific safety guarantee or future advisory."
+      },
+      "interests": {
+        "status": "editorial_from_official_tourism",
+        "sourceUrl": "https://www.ireland.com/en-gb/destinations/county/galway/galway-city/",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://www.ireland.com/en-gb/destinations/county/galway/galway-city/",
+          "https://travel.state.gov/en/international-travel/travel-advisories/ireland.html"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget tier, minimum nights, search radius and transfer allowances are editorial product rules. No venue, hotel, fare or departure is verified by this review."
       }
     },
     "planning": {
-      "enabled": false,
+      "enabled": true,
       "potentialOvernightBase": true,
       "lat": 53.27245,
       "lng": -9.05095,
-      "region": "Connacht",
+      "region": "County Galway",
       "minNights": 2,
-      "radiusKm": 15,
-      "reviewStatus": "pending_travel_review",
-      "locationPrecision": "gazetteer_point"
+      "radiusKm": 10,
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -33369,12 +33705,16 @@
       "lng": -8.47061
     },
     "region": "Munster",
-    "tags": [],
-    "budget": null,
+    "tags": [
+      "history",
+      "culture",
+      "food"
+    ],
+    "budget": "$$$",
     "bestMonths": [],
     "climate": null,
-    "safety": null,
-    "description": "",
+    "safety": 1,
+    "description": "Cork: an urban base for a domestic route, with individual venues selected from Google Places after route selection.",
     "provenance": {
       "geography": {
         "status": "verified_gazetteer",
@@ -33387,23 +33727,43 @@
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
       },
       "budget": {
-        "status": "unknown"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Coarse product screening tier assigned conservatively for this route review; not a sourced daily price, accommodation quote or guarantee of affordability."
       },
       "safety": {
-        "status": "unreviewed",
-        "limitation": "Gazetteer presence does not establish safe or feasible travel"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/ireland.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot used as a conservative screening floor; any higher existing editorial tier is retained. Not a city-specific safety guarantee or future advisory."
+      },
+      "interests": {
+        "status": "editorial_from_official_tourism",
+        "sourceUrl": "https://www.ireland.com/en-gb/home/destinations/county/cork/cork-city/",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://www.ireland.com/en-gb/home/destinations/county/cork/cork-city/",
+          "https://travel.state.gov/en/international-travel/travel-advisories/ireland.html"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget tier, minimum nights, search radius and transfer allowances are editorial product rules. No venue, hotel, fare or departure is verified by this review."
       }
     },
     "planning": {
-      "enabled": false,
+      "enabled": true,
       "potentialOvernightBase": true,
       "lat": 51.89797,
       "lng": -8.47061,
-      "region": "Munster",
+      "region": "County Cork",
       "minNights": 2,
-      "radiusKm": 15,
-      "reviewStatus": "pending_travel_review",
-      "locationPrecision": "gazetteer_point"
+      "radiusKm": 12,
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -37305,12 +37665,17 @@
       "lng": 128.60121
     },
     "region": "Daegu",
-    "tags": [],
-    "budget": null,
+    "tags": [
+      "culture",
+      "history",
+      "food",
+      "nature"
+    ],
+    "budget": "$$",
     "bestMonths": [],
     "climate": null,
-    "safety": null,
-    "description": "",
+    "safety": 1,
+    "description": "Daegu: an urban base for a domestic route, with individual venues selected from Google Places after route selection.",
     "provenance": {
       "geography": {
         "status": "verified_gazetteer",
@@ -37323,23 +37688,43 @@
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
       },
       "budget": {
-        "status": "unknown"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Coarse product screening tier assigned conservatively for this route review; not a sourced daily price, accommodation quote or guarantee of affordability."
       },
       "safety": {
-        "status": "unreviewed",
-        "limitation": "Gazetteer presence does not establish safe or feasible travel"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/south-korea.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot used as a conservative screening floor; any higher existing editorial tier is retained. Not a city-specific safety guarantee or future advisory."
+      },
+      "interests": {
+        "status": "editorial_from_official_tourism",
+        "sourceUrl": "https://english.visitkorea.or.kr/svc/contents/contentsView.do?menuSn=219&vcontsId=1590230",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://english.visitkorea.or.kr/svc/contents/contentsView.do?menuSn=219&vcontsId=1590230",
+          "https://travel.state.gov/en/international-travel/travel-advisories/south-korea.html"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget tier, minimum nights, search radius and transfer allowances are editorial product rules. No venue, hotel, fare or departure is verified by this review."
       }
     },
     "planning": {
-      "enabled": false,
+      "enabled": true,
       "potentialOvernightBase": true,
       "lat": 35.87102,
       "lng": 128.60121,
       "region": "Daegu",
       "minNights": 2,
-      "radiusKm": 15,
-      "reviewStatus": "pending_travel_review",
-      "locationPrecision": "gazetteer_point"
+      "radiusKm": 12,
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -39801,12 +40186,17 @@
       "lng": 25.2798
     },
     "region": "Vilnius",
-    "tags": [],
-    "budget": null,
+    "tags": [
+      "city",
+      "history",
+      "architecture",
+      "culture"
+    ],
+    "budget": "$$",
     "bestMonths": [],
     "climate": null,
-    "safety": null,
-    "description": "",
+    "safety": 1,
+    "description": "Vilnius: a base for a domestic regional trip; activities and restaurants are selected from Google Places after route selection.",
     "provenance": {
       "geography": {
         "status": "verified_gazetteer",
@@ -39819,23 +40209,43 @@
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
       },
       "budget": {
-        "status": "unknown"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Conservative moderate editorial screening tier; not a sourced daily-spend amount or guarantee of accommodation affordability."
       },
       "safety": {
-        "status": "unreviewed",
-        "limitation": "Gazetteer presence does not establish safe or feasible travel"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/lithuania.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot for screening, not a city-specific safety guarantee or future advisory."
+      },
+      "interests": {
+        "status": "editorial_from_tourism_source",
+        "sourceUrl": "https://lithuania.travel/en/where-to-visit/major-cities/vilnius",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://lithuania.travel/en/where-to-visit/major-cities/vilnius",
+          "https://travel.state.gov/en/international-travel/travel-advisories/lithuania.html"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget, minimum stays and search radius are editorial product rules. No individual venues, accommodation quotes or future departures verified."
       }
     },
     "planning": {
-      "enabled": false,
+      "enabled": true,
       "potentialOvernightBase": true,
       "lat": 54.68916,
       "lng": 25.2798,
       "region": "Vilnius",
       "minNights": 2,
-      "radiusKm": 15,
-      "reviewStatus": "pending_travel_review",
-      "locationPrecision": "gazetteer_point"
+      "radiusKm": 12,
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -39945,12 +40355,17 @@
       "lng": 21.13912
     },
     "region": "Klaipėda County",
-    "tags": [],
-    "budget": null,
+    "tags": [
+      "city",
+      "history",
+      "coastal",
+      "culture"
+    ],
+    "budget": "$$",
     "bestMonths": [],
     "climate": null,
-    "safety": null,
-    "description": "",
+    "safety": 1,
+    "description": "Klaipėda: a base for a domestic regional trip; activities and restaurants are selected from Google Places after route selection.",
     "provenance": {
       "geography": {
         "status": "verified_gazetteer",
@@ -39963,23 +40378,43 @@
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
       },
       "budget": {
-        "status": "unknown"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Conservative moderate editorial screening tier; not a sourced daily-spend amount or guarantee of accommodation affordability."
       },
       "safety": {
-        "status": "unreviewed",
-        "limitation": "Gazetteer presence does not establish safe or feasible travel"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/lithuania.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot for screening, not a city-specific safety guarantee or future advisory."
+      },
+      "interests": {
+        "status": "editorial_from_tourism_source",
+        "sourceUrl": "https://lithuania.travel/en/where-to-visit/major-cities/klaipeda-major-cities",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://lithuania.travel/en/where-to-visit/major-cities/klaipeda-major-cities",
+          "https://travel.state.gov/en/international-travel/travel-advisories/lithuania.html"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget, minimum stays and search radius are editorial product rules. No individual venues, accommodation quotes or future departures verified."
       }
     },
     "planning": {
-      "enabled": false,
+      "enabled": true,
       "potentialOvernightBase": true,
       "lat": 55.7068,
       "lng": 21.13912,
       "region": "Klaipėda County",
       "minNights": 2,
-      "radiusKm": 15,
-      "reviewStatus": "pending_travel_review",
-      "locationPrecision": "gazetteer_point"
+      "radiusKm": 12,
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -39993,12 +40428,18 @@
       "lng": 23.90909
     },
     "region": "Kaunas",
-    "tags": [],
-    "budget": null,
+    "tags": [
+      "city",
+      "architecture",
+      "museums",
+      "art",
+      "culture"
+    ],
+    "budget": "$$",
     "bestMonths": [],
     "climate": null,
-    "safety": null,
-    "description": "",
+    "safety": 1,
+    "description": "Kaunas: a base for a domestic regional trip; activities and restaurants are selected from Google Places after route selection.",
     "provenance": {
       "geography": {
         "status": "verified_gazetteer",
@@ -40011,23 +40452,43 @@
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
       },
       "budget": {
-        "status": "unknown"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Conservative moderate editorial screening tier; not a sourced daily-spend amount or guarantee of accommodation affordability."
       },
       "safety": {
-        "status": "unreviewed",
-        "limitation": "Gazetteer presence does not establish safe or feasible travel"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/lithuania.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot for screening, not a city-specific safety guarantee or future advisory."
+      },
+      "interests": {
+        "status": "editorial_from_tourism_source",
+        "sourceUrl": "https://lithuania.travel/en/where-to-visit/major-cities/kaunas",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://lithuania.travel/en/where-to-visit/major-cities/kaunas",
+          "https://travel.state.gov/en/international-travel/travel-advisories/lithuania.html"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget, minimum stays and search radius are editorial product rules. No individual venues, accommodation quotes or future departures verified."
       }
     },
     "planning": {
-      "enabled": false,
+      "enabled": true,
       "potentialOvernightBase": true,
       "lat": 54.90156,
       "lng": 23.90909,
       "region": "Kaunas",
       "minNights": 2,
-      "radiusKm": 15,
-      "reviewStatus": "pending_travel_review",
-      "locationPrecision": "gazetteer_point"
+      "radiusKm": 12,
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -49545,12 +50006,18 @@
       "lng": 17.03006
     },
     "region": "Lower Silesia",
-    "tags": [],
-    "budget": null,
+    "tags": [
+      "city",
+      "history",
+      "architecture",
+      "culture",
+      "food"
+    ],
+    "budget": "$",
     "bestMonths": [],
     "climate": null,
-    "safety": null,
-    "description": "",
+    "safety": 1,
+    "description": "Wrocław: a base for a domestic regional trip; activities and restaurants are selected from Google Places after route selection.",
     "provenance": {
       "geography": {
         "status": "verified_gazetteer",
@@ -49563,23 +50030,45 @@
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
       },
       "budget": {
-        "status": "unknown"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Budget-oriented city-break planning tier, informed by national comparative price levels and city tourism options; national household price levels are not tourist daily-spend quotes. Seasonal accommodation, international travel and dietary needs can change costs.",
+        "sourceUrl": "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20260618-2"
       },
       "safety": {
-        "status": "unreviewed",
-        "limitation": "Gazetteer presence does not establish safe or feasible travel"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/poland.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot for screening, not a city-specific safety guarantee or future advisory."
+      },
+      "interests": {
+        "status": "editorial_from_tourism_source",
+        "sourceUrl": "https://visitwroclaw.eu/en/",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://visitwroclaw.eu/en/",
+          "https://travel.state.gov/en/international-travel/travel-advisories/poland.html",
+          "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20260618-2"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget, minimum stays and search radius are editorial product rules. No individual venues, accommodation quotes or future departures verified."
       }
     },
     "planning": {
-      "enabled": false,
+      "enabled": true,
       "potentialOvernightBase": true,
       "lat": 51.10286,
       "lng": 17.03006,
       "region": "Lower Silesia",
       "minNights": 2,
-      "radiusKm": 15,
-      "reviewStatus": "pending_travel_review",
-      "locationPrecision": "gazetteer_point"
+      "radiusKm": 12,
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -49593,12 +50082,18 @@
       "lng": 16.92993
     },
     "region": "Greater Poland",
-    "tags": [],
-    "budget": null,
+    "tags": [
+      "city",
+      "history",
+      "architecture",
+      "museums",
+      "food"
+    ],
+    "budget": "$",
     "bestMonths": [],
     "climate": null,
-    "safety": null,
-    "description": "",
+    "safety": 1,
+    "description": "Poznań: a base for a domestic regional trip; activities and restaurants are selected from Google Places after route selection.",
     "provenance": {
       "geography": {
         "status": "verified_gazetteer",
@@ -49611,23 +50106,45 @@
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
       },
       "budget": {
-        "status": "unknown"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Budget-oriented city-break planning tier, informed by national comparative price levels and city tourism options; national household price levels are not tourist daily-spend quotes. Seasonal accommodation, international travel and dietary needs can change costs.",
+        "sourceUrl": "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20260618-2"
       },
       "safety": {
-        "status": "unreviewed",
-        "limitation": "Gazetteer presence does not establish safe or feasible travel"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/poland.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot for screening, not a city-specific safety guarantee or future advisory."
+      },
+      "interests": {
+        "status": "editorial_from_tourism_source",
+        "sourceUrl": "https://visitpoznan.pl/en/poznan-top-10",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://visitpoznan.pl/en/poznan-top-10",
+          "https://travel.state.gov/en/international-travel/travel-advisories/poland.html",
+          "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20260618-2"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget, minimum stays and search radius are editorial product rules. No individual venues, accommodation quotes or future departures verified."
       }
     },
     "planning": {
-      "enabled": false,
+      "enabled": true,
       "potentialOvernightBase": true,
       "lat": 52.40692,
       "lng": 16.92993,
       "region": "Greater Poland",
       "minNights": 2,
-      "radiusKm": 15,
-      "reviewStatus": "pending_travel_review",
-      "locationPrecision": "gazetteer_point"
+      "radiusKm": 12,
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -51465,12 +51982,18 @@
       "lng": 28.63432
     },
     "region": "Constanța County",
-    "tags": [],
-    "budget": null,
+    "tags": [
+      "city",
+      "history",
+      "museums",
+      "coastal",
+      "beach"
+    ],
+    "budget": "$",
     "bestMonths": [],
     "climate": null,
-    "safety": null,
-    "description": "",
+    "safety": 1,
+    "description": "Constanţa: a base for a domestic regional trip; activities and restaurants are selected from Google Places after route selection.",
     "provenance": {
       "geography": {
         "status": "verified_gazetteer",
@@ -51483,23 +52006,45 @@
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
       },
       "budget": {
-        "status": "unknown"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Budget-oriented city-break planning tier, informed by national comparative price levels and city tourism options; national household price levels are not tourist daily-spend quotes. Seasonal accommodation, international travel and dietary needs can change costs.",
+        "sourceUrl": "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20260618-2"
       },
       "safety": {
-        "status": "unreviewed",
-        "limitation": "Gazetteer presence does not establish safe or feasible travel"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/romania.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot for screening, not a city-specific safety guarantee or future advisory."
+      },
+      "interests": {
+        "status": "editorial_from_tourism_source",
+        "sourceUrl": "https://romaniatourism.com/constanta.html",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://romaniatourism.com/constanta.html",
+          "https://travel.state.gov/en/international-travel/travel-advisories/romania.html",
+          "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20260618-2"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget, minimum stays and search radius are editorial product rules. No individual venues, accommodation quotes or future departures verified. RomaniaTourism is a tourism publisher, not a government advisory source."
       }
     },
     "planning": {
-      "enabled": false,
+      "enabled": true,
       "potentialOvernightBase": true,
       "lat": 44.18073,
       "lng": 28.63432,
       "region": "Constanța County",
       "minNights": 2,
-      "radiusKm": 15,
-      "reviewStatus": "pending_travel_review",
-      "locationPrecision": "gazetteer_point"
+      "radiusKm": 12,
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -51561,12 +52106,18 @@
       "lng": 26.10626
     },
     "region": "Bucharest",
-    "tags": [],
-    "budget": null,
+    "tags": [
+      "city",
+      "history",
+      "architecture",
+      "museums",
+      "food"
+    ],
+    "budget": "$",
     "bestMonths": [],
     "climate": null,
-    "safety": null,
-    "description": "",
+    "safety": 1,
+    "description": "Bucharest: a base for a domestic regional trip; activities and restaurants are selected from Google Places after route selection.",
     "provenance": {
       "geography": {
         "status": "verified_gazetteer",
@@ -51579,23 +52130,45 @@
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
       },
       "budget": {
-        "status": "unknown"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Budget-oriented city-break planning tier, informed by national comparative price levels and city tourism options; national household price levels are not tourist daily-spend quotes. Seasonal accommodation, international travel and dietary needs can change costs.",
+        "sourceUrl": "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20260618-2"
       },
       "safety": {
-        "status": "unreviewed",
-        "limitation": "Gazetteer presence does not establish safe or feasible travel"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/romania.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot for screening, not a city-specific safety guarantee or future advisory."
+      },
+      "interests": {
+        "status": "editorial_from_tourism_source",
+        "sourceUrl": "https://romaniatourism.com/bucharest.html",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://romaniatourism.com/bucharest.html",
+          "https://travel.state.gov/en/international-travel/travel-advisories/romania.html",
+          "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20260618-2"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget, minimum stays and search radius are editorial product rules. No individual venues, accommodation quotes or future departures verified. RomaniaTourism is a tourism publisher, not a government advisory source."
       }
     },
     "planning": {
-      "enabled": false,
+      "enabled": true,
       "potentialOvernightBase": true,
       "lat": 44.43225,
       "lng": 26.10626,
       "region": "Bucharest",
       "minNights": 2,
       "radiusKm": 15,
-      "reviewStatus": "pending_travel_review",
-      "locationPrecision": "gazetteer_point"
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -51609,12 +52182,18 @@
       "lng": 25.60613
     },
     "region": "Brașov County",
-    "tags": [],
-    "budget": null,
+    "tags": [
+      "city",
+      "history",
+      "architecture",
+      "nature",
+      "mountains"
+    ],
+    "budget": "$",
     "bestMonths": [],
     "climate": null,
-    "safety": null,
-    "description": "",
+    "safety": 1,
+    "description": "Braşov: a base for a domestic regional trip; activities and restaurants are selected from Google Places after route selection.",
     "provenance": {
       "geography": {
         "status": "verified_gazetteer",
@@ -51627,23 +52206,45 @@
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
       },
       "budget": {
-        "status": "unknown"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Budget-oriented city-break planning tier, informed by national comparative price levels and city tourism options; national household price levels are not tourist daily-spend quotes. Seasonal accommodation, international travel and dietary needs can change costs.",
+        "sourceUrl": "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20260618-2"
       },
       "safety": {
-        "status": "unreviewed",
-        "limitation": "Gazetteer presence does not establish safe or feasible travel"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/romania.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot for screening, not a city-specific safety guarantee or future advisory."
+      },
+      "interests": {
+        "status": "editorial_from_tourism_source",
+        "sourceUrl": "https://romaniatourism.com/brasov.html",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://romaniatourism.com/brasov.html",
+          "https://travel.state.gov/en/international-travel/travel-advisories/romania.html",
+          "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20260618-2"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget, minimum stays and search radius are editorial product rules. No individual venues, accommodation quotes or future departures verified. RomaniaTourism is a tourism publisher, not a government advisory source."
       }
     },
     "planning": {
-      "enabled": false,
+      "enabled": true,
       "potentialOvernightBase": true,
       "lat": 45.64861,
       "lng": 25.60613,
       "region": "Brașov County",
       "minNights": 2,
-      "radiusKm": 15,
-      "reviewStatus": "pending_travel_review",
-      "locationPrecision": "gazetteer_point"
+      "radiusKm": 12,
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -53337,12 +53938,17 @@
       "lng": 13.00073
     },
     "region": "Skåne",
-    "tags": [],
-    "budget": null,
+    "tags": [
+      "culture",
+      "architecture",
+      "food",
+      "coastal"
+    ],
+    "budget": "$$$",
     "bestMonths": [],
     "climate": null,
-    "safety": null,
-    "description": "",
+    "safety": 2,
+    "description": "Malmö: an urban base for a domestic route, with individual venues selected from Google Places after route selection.",
     "provenance": {
       "geography": {
         "status": "verified_gazetteer",
@@ -53355,23 +53961,43 @@
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
       },
       "budget": {
-        "status": "unknown"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Coarse product screening tier assigned conservatively for this route review; not a sourced daily price, accommodation quote or guarantee of affordability."
       },
       "safety": {
-        "status": "unreviewed",
-        "limitation": "Gazetteer presence does not establish safe or feasible travel"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/sweden.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 2,
+        "limitation": "Country-level U.S. advisory snapshot used as a conservative screening floor; any higher existing editorial tier is retained. Not a city-specific safety guarantee or future advisory."
+      },
+      "interests": {
+        "status": "editorial_from_official_tourism",
+        "sourceUrl": "https://visitsweden.com/where-to-go/southern-sweden/malmo/",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://visitsweden.com/where-to-go/southern-sweden/malmo/",
+          "https://travel.state.gov/en/international-travel/travel-advisories/sweden.html"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget tier, minimum nights, search radius and transfer allowances are editorial product rules. No venue, hotel, fare or departure is verified by this review."
       }
     },
     "planning": {
-      "enabled": false,
+      "enabled": true,
       "potentialOvernightBase": true,
       "lat": 55.60587,
       "lng": 13.00073,
       "region": "Skåne",
       "minNights": 2,
-      "radiusKm": 15,
-      "reviewStatus": "pending_travel_review",
-      "locationPrecision": "gazetteer_point"
+      "radiusKm": 12,
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -53433,12 +54059,17 @@
       "lng": 11.96679
     },
     "region": "Västra Götaland",
-    "tags": [],
-    "budget": null,
+    "tags": [
+      "culture",
+      "food",
+      "coastal",
+      "nature"
+    ],
+    "budget": "$$$",
     "bestMonths": [],
     "climate": null,
-    "safety": null,
-    "description": "",
+    "safety": 2,
+    "description": "Gothenburg: an urban base for a domestic route, with individual venues selected from Google Places after route selection.",
     "provenance": {
       "geography": {
         "status": "verified_gazetteer",
@@ -53451,23 +54082,43 @@
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
       },
       "budget": {
-        "status": "unknown"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Coarse product screening tier assigned conservatively for this route review; not a sourced daily price, accommodation quote or guarantee of affordability."
       },
       "safety": {
-        "status": "unreviewed",
-        "limitation": "Gazetteer presence does not establish safe or feasible travel"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/sweden.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 2,
+        "limitation": "Country-level U.S. advisory snapshot used as a conservative screening floor; any higher existing editorial tier is retained. Not a city-specific safety guarantee or future advisory."
+      },
+      "interests": {
+        "status": "editorial_from_official_tourism",
+        "sourceUrl": "https://visitsweden.com/where-to-go/southern-sweden/goteborg/",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://visitsweden.com/where-to-go/southern-sweden/goteborg/",
+          "https://travel.state.gov/en/international-travel/travel-advisories/sweden.html"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget tier, minimum nights, search radius and transfer allowances are editorial product rules. No venue, hotel, fare or departure is verified by this review."
       }
     },
     "planning": {
-      "enabled": false,
+      "enabled": true,
       "potentialOvernightBase": true,
       "lat": 57.70716,
       "lng": 11.96679,
       "region": "Västra Götaland",
       "minNights": 2,
       "radiusKm": 15,
-      "reviewStatus": "pending_travel_review",
-      "locationPrecision": "gazetteer_point"
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -53721,12 +54372,17 @@
       "lng": 15.64593
     },
     "region": "Urban Municipality of Maribor",
-    "tags": [],
-    "budget": null,
+    "tags": [
+      "culture",
+      "history",
+      "nature",
+      "food"
+    ],
+    "budget": "$$",
     "bestMonths": [],
     "climate": null,
-    "safety": null,
-    "description": "",
+    "safety": 1,
+    "description": "Maribor: an urban base for a domestic route, with individual venues selected from Google Places after route selection.",
     "provenance": {
       "geography": {
         "status": "verified_gazetteer",
@@ -53739,23 +54395,43 @@
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
       },
       "budget": {
-        "status": "unknown"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Coarse product screening tier assigned conservatively for this route review; not a sourced daily price, accommodation quote or guarantee of affordability."
       },
       "safety": {
-        "status": "unreviewed",
-        "limitation": "Gazetteer presence does not establish safe or feasible travel"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/slovenia.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot used as a conservative screening floor; any higher existing editorial tier is retained. Not a city-specific safety guarantee or future advisory."
+      },
+      "interests": {
+        "status": "editorial_from_official_tourism",
+        "sourceUrl": "https://www.slovenia.info/en/places-to-go/cities-and-destinations",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://www.slovenia.info/en/places-to-go/cities-and-destinations",
+          "https://travel.state.gov/en/international-travel/travel-advisories/slovenia.html"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget tier, minimum nights, search radius and transfer allowances are editorial product rules. No venue, hotel, fare or departure is verified by this review."
       }
     },
     "planning": {
-      "enabled": false,
+      "enabled": true,
       "potentialOvernightBase": true,
       "lat": 46.55583,
       "lng": 15.64593,
-      "region": "Urban Municipality of Maribor",
+      "region": "Slovenian Styria",
       "minNights": 2,
-      "radiusKm": 15,
-      "reviewStatus": "pending_travel_review",
-      "locationPrecision": "gazetteer_point"
+      "radiusKm": 12,
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {
@@ -53817,12 +54493,16 @@
       "lng": 13.72963
     },
     "region": "Urban Municipality of Koper",
-    "tags": [],
-    "budget": null,
+    "tags": [
+      "coastal",
+      "history",
+      "culture"
+    ],
+    "budget": "$$",
     "bestMonths": [],
     "climate": null,
-    "safety": null,
-    "description": "",
+    "safety": 1,
+    "description": "Koper: an urban base for a domestic route, with individual venues selected from Google Places after route selection.",
     "provenance": {
       "geography": {
         "status": "verified_gazetteer",
@@ -53835,23 +54515,43 @@
         "verificationScope": "Named populated place and country assignment in GeoNames; not travel/safety approval"
       },
       "budget": {
-        "status": "unknown"
+        "status": "editorial_planning_tier",
+        "reviewedOn": "2026-10-25",
+        "limitation": "Coarse product screening tier assigned conservatively for this route review; not a sourced daily price, accommodation quote or guarantee of affordability."
       },
       "safety": {
-        "status": "unreviewed",
-        "limitation": "Gazetteer presence does not establish safe or feasible travel"
+        "status": "country_advisory_snapshot",
+        "sourceUrl": "https://travel.state.gov/en/international-travel/travel-advisories/slovenia.html",
+        "reviewedOn": "2026-10-25",
+        "advisoryLevel": 1,
+        "limitation": "Country-level U.S. advisory snapshot used as a conservative screening floor; any higher existing editorial tier is retained. Not a city-specific safety guarantee or future advisory."
+      },
+      "interests": {
+        "status": "editorial_from_official_tourism",
+        "sourceUrl": "https://www.slovenia.info/en/places-to-go/cities-and-destinations",
+        "reviewedOn": "2026-10-25"
+      },
+      "travelReview": {
+        "status": "reviewed",
+        "reviewedOn": "2026-10-25",
+        "sourceUrls": [
+          "https://www.slovenia.info/en/places-to-go/cities-and-destinations",
+          "https://travel.state.gov/en/international-travel/travel-advisories/slovenia.html"
+        ],
+        "scope": "Urban overnight-base suitability and broad interests. Budget tier, minimum nights, search radius and transfer allowances are editorial product rules. No venue, hotel, fare or departure is verified by this review."
       }
     },
     "planning": {
-      "enabled": false,
+      "enabled": true,
       "potentialOvernightBase": true,
       "lat": 45.5482,
       "lng": 13.72963,
-      "region": "Urban Municipality of Koper",
+      "region": "Slovenian Istria",
       "minNights": 2,
-      "radiusKm": 15,
-      "reviewStatus": "pending_travel_review",
-      "locationPrecision": "gazetteer_point"
+      "radiusKm": 10,
+      "reviewStatus": "reviewed",
+      "locationPrecision": "gazetteer_point",
+      "reviewedOn": "2026-10-25"
     }
   },
   {

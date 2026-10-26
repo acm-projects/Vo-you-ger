@@ -13,6 +13,15 @@ const slots = ['morning', 'afternoon', 'evening'];
 const outline = code => buildOutline({countryId: `country-${code}`, numberOfDays: 1, startDate: '2027-06-05', quiz: {}});
 
 describe('Country practical information', () => {
+  it('uses the reviewed euro correction for newly enabled Bulgaria in both itinerary and country information', () => {
+    const info=practicalInfoForOutline(outline('bg'));
+    assert.equal(info.currency.code,'EUR');
+    assert.equal(info.provenance.currency.status,'source_reviewed');
+    assert.ok(info.provenance.currency.sources[0].startsWith('https://www.ecb.europa.eu/'));
+    const card=require('../services/countryInfoService').countryDetails('BG');
+    assert.equal(card.facts.currencyCode,'EUR');
+    assert.deepEqual(card.source.currency,info.provenance.currency);
+  });
   it('uses the sourced currency code and returns reviewed payment guidance with citations', () => {
     const info = practicalInfoForOutline(outline('jp'));
     assert.equal(info.currency.code, 'JPY'); assert.equal(info.currency.symbol, '¥');
@@ -78,6 +87,10 @@ describe('Country practical information', () => {
 });
 
 describe('Activity travel tips and persistence', () => {
+  for(const diet of ['None','Vegetarian','Vegetarian, Gluten free'])it(`handles frontend dietary text in activity guidance: ${diet}`,()=>{
+    const tip=activityTravelTip({category:'food'},{type:'full',dayOfWeek:'Saturday'},'evening',{dietaryRestrictions:diet});
+    assert.equal(tip.includes('cross-contact have not been verified'),diet!=='None');
+  });
   it('explains unknown hours, dietary uncertainty and reserved travel time without inventing venue rules', () => {
     const tip = activityTravelTip({category: 'food'}, {type: 'arrival', dayOfWeek: 'Saturday'}, 'evening', {dietaryRestrictions: ['Vegetarian']});
     assert.match(tip, /could not be verified/); assert.match(tip, /cross-contact have not been verified/);

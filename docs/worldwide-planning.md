@@ -21,7 +21,7 @@ frontend has been restored; the added globe/test dependencies were removed.
 Geographic coverage and planning readiness are independent. There are 1,227
 destination records, 1,186 gazetteer-verified records and 224 registry entries with
 five verified settlements. There are 25 explicit exceptions/source gaps.
-There are 62 countries with enabled bases (88 total); 187 remain unavailable.
+There are 65 countries with enabled bases (114 total); 184 remain unavailable.
 Most existing bases retain legacy editorial safety/budget tiers. Six newly
 reviewed bases in Switzerland and France have explicit travel-review sources,
 conservative high budget tiers and country-advisory snapshots with limitations.
@@ -49,7 +49,9 @@ Nights equal days minus one. A one-day visit has a `stopType: "visit"`, zero
 nights and no accommodation entry. A two-day trip may use one night despite a
 base's ordinary minimum. Longer trips must meet curated minimum stays; a country
 can be unsuitable for a particular short duration. Relaxed (`deeply`) trips keep
-one overnight base. Limits are maxima, not quotas. Transfer days reserve the day
+one overnight base through seven days and use two connected bases from eight
+days. Explicit see-all trips of seven or more days require at least two bases.
+See [route coverage rules](route-coverage-and-variety.md). Transfer days reserve the day
 until evening; arrival is light and departure only allows a morning suggestion.
 International travel and flight times are outside destination-day calculations.
 
@@ -60,10 +62,14 @@ International travel and flight times are outside destination-day calculations.
    through TravelBuddy and union confirmed green/visa-free results. Unknown or
    unavailable eligibility fails closed. A willingness to apply does not promise
    admission. Transit permissions remain outside this filter.
-3. Exclude countries without feasible enabled bases, incompatible known budgets
-   or safety tiers, insufficient stays, or usable transport under stated modes.
+3. Exclude countries without feasible enabled bases, incompatible safety tiers
+   when risk is explicitly declined, insufficient stays, or usable transport
+   under stated modes. Openness to risk retains all lower-risk choices.
 4. Score destinations using normalized interest overlap (45), seasonal fit (15),
    budget fit (10), safety suitability (10) and optional preferences (20).
+   Budget never excludes a country, base or excursion. At/below the preferred
+   tier earns ten points; one tier above earns five; two tiers above earns zero.
+   Higher-tier selected bases get a cost-tradeoff note in recommendation reasons.
    `interestTags.js` validates aliases and maps the existing four assessment
    personas. Unknown information receives neutral scoring and never establishes
    hard eligibility. Dietary restrictions influence venue searches, not admission
@@ -90,8 +96,8 @@ Nights are allocated to curated minima then balanced by traveler fit. An
 independent validator rechecks country, distinct bases, duration tiers, night
 totals, dates/day allocation, exact supported transfers and excursion rules.
 Supported day trips retain their parent overnight base and reserve return travel
-time. Current coverage is 26 two-base, 11 three-base, five four-base and two
-five-base combinations: 44 combinations across 15 countries. Reversing a route
+time. Current coverage is 55 two-base, 25 three-base, six four-base and two
+five-base combinations: 88 combinations across 26 countries. Reversing a route
 is not counted twice. Real five-base routes include Paris–Lyon–Avignon–Marseille–Nice
 and Zürich–Basel–Bern–Lausanne–Geneva, in either direction when permitted. They
 fit 21 days with four nights per base. Shorter or relaxed trips use fewer bases.
