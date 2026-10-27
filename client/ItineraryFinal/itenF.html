@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itinerary: Penang 2026</title>
+    <link rel="stylesheet" href="itenF.css">
+    <script src="itenF.jsx" defer></script>
+</head>
+
+<body>
+<main class="trip-container">
+
+    <!-- Journal cover -->
+    <div class="trip-cover" id="journalCover"
+         role="button" tabindex="0" aria-label="Open Penang 2026 journal">
+        <img src="journalCover-Picsart-AiImageEnhancer.png"
+             alt="Penang 2026 trip cover">
+        <h1>Penang 2026</h1>
+    </div>
+
+    <!-- Main itinerary journal -->
+    <div class="journal-open hidden" id="journalOpen">
+        <div class="journal-book">
+
+            <div class="journal-page left-page"></div>
+            <div class="journal-page right-page"></div>
+            <div class="journal-spiral"></div>
+
+            <div class="polaroid polaroid-1"
+                 role="button" tabindex="0" aria-label="Open Morning itinerary">
+                <img src="pinangperanakanmansionPol1.jpg"
+                     class="polaroid-photo" alt="Morning">
+                <img src="pol1.png" class="polaroid-frame" alt="">
+            </div>
+
+            <div class="polaroid polaroid-2"
+                 role="button" tabindex="0" aria-label="Open Evening journal">
+                <img src="pinangperanakanmansionPol1.jpg"
+                     class="polaroid-photo" alt="Evening">
+                <img src="pol1.png" class="polaroid-frame" alt="">
+            </div>
+
+            <div class="polaroid polaroid-3"
+                 role="button" tabindex="0" aria-label="Open Dinner journal">
+                <img src="pinangperanakanmansionPol1.jpg"
+                     class="polaroid-photo" alt="Dinner">
+                <img src="pol1.png" class="polaroid-frame" alt="">
+            </div>
+
+            <div class="polaroid polaroid-4"
+                 role="button" tabindex="0" aria-label="Open Night journal">
+                <img src="pinangperanakanmansionPol1.jpg"
+                     class="polaroid-photo" alt="Night">
+                <img src="pol1.png" class="polaroid-frame" alt="">
+            </div>
+
+            <div class="journal-note note-morning">
+                <h2>Morning</h2>
+            </div>
+
+            <div class="journal-note note-evening">
+                <h2>Evening</h2>
+            </div>
+
+            <div class="journal-note note-dinner">
+                <h2>Dinner</h2>
+            </div>
+
+            <div class="journal-note note-night">
+                <h2>Night</h2>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Morning itinerary -->
+    <section class="detail-journal hidden" id="morningJournal">
+        <div class="journal-book morning-book">
+
+            <button class="morning-back" type="button" data-back>
+                ← Back to itinerary
+            </button>
+
+            <div class="journal-page left-page"></div>
+            <div class="journal-page right-page"></div>
+            <div class="journal-spiral"></div>
+
+            <section class="morning-left">
+                <h1>A Morning in Penang</h1>
+                <p class="morning-subtitle">Culture, color &amp; heritage</p>
+            </section>
+
+            <section class="morning-right">
+
+                <article class="morning-place-card">
+                    <img
+                        src="pinangperanakanmansionPol1.jpg"
+                        class="morning-place-photo"
+                        alt="Interior of Pinang Peranakan Mansion">
+
+                    <div class="morning-place-info">
+                        <h2>Pinang Peranakan Mansion</h2>
+                        <p class="place-hours">9:30 AM - 5:30 PM</p>
+                        <p class="place-meta">★ 4.5 · Estimated $10</p>
+
+                        <button class="details-btn" type="button"
+                                data-place="Pinang Peranakan Mansion">
+                            Details
+                        </button>
+                    </div>
+                </article>
+
+                <article class="morning-place-card">
+                    <img
+                        src="LeongSanTong.jpg"
+                        class="morning-place-photo"
+                        alt="Leong San Tong Khoo Kongsi">
+
+                    <div class="morning-place-info">
+                        <h2>Leong San Tong Khoo Kongsi</h2>
+                        <p class="place-hours">9:00 AM - 5:00 PM</p>
+                        <p class="place-meta">★ 4.4 · Estimated $5</p>
+
+                        <button class="details-btn" type="button"
+                                data-place="Leong San Tong Khoo Kongsi">
+                            Details
+                        </button>
+                    </div>
+                </article>
+
+            </section>
+        </div>
+    </section>
+
+    <!-- Evening journal -->
+    <section class="detail-journal hidden" id="eveningJournal">
+        <div class="journal-book blank-book">
+            <button class="morning-back" type="button" data-back>
+                ← Back to itinerary
+            </button>
+            <div class="journal-page left-page"></div>
+            <div class="journal-page right-page"></div>
+            <div class="journal-spiral"></div>
+        </div>
+    </section>
+
+    <!-- Dinner journal -->
+    <section class="detail-journal hidden" id="dinnerJournal">
+        <div class="journal-book blank-book">
+            <button class="morning-back" type="button" data-back>
+                ← Back to itinerary
+            </button>
+            <div class="journal-page left-page"></div>
+            <div class="journal-page right-page"></div>
+            <div class="journal-spiral"></div>
+        </div>
+    </section>
+
+    <!-- Night journal -->
+    <section class="detail-journal hidden" id="nightJournal">
+        <div class="journal-book blank-book">
+            <button class="morning-back" type="button" data-back>
+                ← Back to itinerary
+            </button>
+            <div class="journal-page left-page"></div>
+            <div class="journal-page right-page"></div>
+            <div class="journal-spiral"></div>
+        </div>
+    </section>
+
+    <!-- Destination details pop-up -->
+    <div class="details-modal hidden"
+         id="details-modal"
+         role="dialog"
+         aria-modal="true"
+         aria-hidden="true"
+         aria-labelledby="details-title">
+
+        <div class="details-modal-content">
+
+            <button class="modal-close"
+                    id="close-details"
+                    type="button"
+                    aria-label="Close details">
+                &times;
+            </button>
+
+            <p class="modal-eyebrow">YOUR PENANG JOURNAL</p>
+
+            <h2 id="details-title">Destination details</h2>
+
+            <div class="modal-divider"></div>
+
+            <div id="details-content"></div>
+
+            <button class="modal-done"
+                    id="modal-done"
+                    type="button">
+                Close
+            </button>
+
+        </div>
+    </div>
+
+</main>
+</body>
+</html>
