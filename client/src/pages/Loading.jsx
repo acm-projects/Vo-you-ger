@@ -12,7 +12,7 @@ const facts = [
   "Iceland has no native mosquito population."
 ];
 
-function Loading() {
+function Loading({ error, onRetry }) {
   const [currentFact, setCurrentFact] = useState(0);
 
   useEffect(() => {
@@ -48,6 +48,62 @@ function Loading() {
             </div>
           </div>
         </section>
+
+        {error && (
+          <div
+            className="loading-error-box"
+            style={{
+              position: "absolute",
+              top: "580px",
+              left: "50%",
+              transform: "translateX(-50%)",
+              zIndex: 3,
+              padding: "16px 20px",
+              background: "#fffaf0",
+              border: "1px solid #e6d7bd",
+              borderRadius: "12px",
+              textAlign: "center",
+              width: "min(90%, 460px)",
+              boxShadow: "0 8px 24px rgba(70, 55, 47, 0.12)",
+            }}
+          >
+            <p style={{ color: "#b2533e", fontWeight: "600", margin: "0 0 14px" }}>
+              {error}
+            </p>
+            <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
+              {onRetry && (
+                <button
+                  type="button"
+                  onClick={onRetry}
+                  style={{
+                    padding: "8px 16px",
+                    borderRadius: "6px",
+                    background: "#5c4033",
+                    color: "#fff",
+                    border: "none",
+                    fontWeight: "600",
+                    cursor: "pointer",
+                  }}
+                >
+                  Try Again
+                </button>
+              )}
+              <a
+                href="/Assessments/assessments.html"
+                style={{
+                  padding: "8px 16px",
+                  borderRadius: "6px",
+                  background: "#e9dfcd",
+                  color: "#46372f",
+                  textDecoration: "none",
+                  fontWeight: "600",
+                }}
+              >
+                Back to Quiz
+              </a>
+            </div>
+          </div>
+        )}
       </div>
     </main>
   );
