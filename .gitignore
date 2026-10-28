@@ -33,3 +33,5 @@ repomix-output.xml
 # Offline geographic importer test artifacts
 __pycache__/
 *.pyc
+
+/docs/
