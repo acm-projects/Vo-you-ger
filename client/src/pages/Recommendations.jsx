@@ -10,7 +10,7 @@ const fallbackDestinations = [
     location: "POSITANO & ROME, ITALY",
     category: "EUROPEAN GETAWAY",
     reason:
-      "A culinary and cultural wonderland, Italy offers legendary flavors from handmade cacio e pepe to crisp wood-fired Neapolitan pizza. And while you're not savoring local trattorias, immerse yourself in world-renowned Renaissance art, dramatic cliffside coastal views, and ancient Roman history.",
+      "Every corner of Italy tells a story of passion and flavor, from handmade al dente pasta and creamy gelato to wood-fired Neapolitan pizza. When stepping away from cozy trattorias, lose yourself in timeless Renaissance galleries, ancient Roman ruins, and postcard-perfect Mediterranean cliffside vistas.",
     imageUrl:
       "https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?auto=format&fit=crop&w=1400&q=85",
   },
@@ -22,7 +22,7 @@ const fallbackDestinations = [
     location: "KUALA LUMPUR & PENANG, MALAYSIA",
     category: "SOUTHEAST ASIAN GEM",
     reason:
-      "A foodie's paradise, Malaysia offers a unique, tasty blend of cuisines owing to its rich history. And while you're not gorging on delicious Hainanese chicken rice, feel free to enjoy the rich colonial history and breathtaking sceneries that make up this highly budget-friendly country.",
+      "A vibrant crossroads of Asian cultures, Malaysia delights the palate with fragrant bowls of curry laksa, authentic Hainanese chicken rice, and sizzling night-market satay. Between hawker feasts in Kuala Lumpur and Penang, explore ornate heritage architecture, tranquil tea plantations, and ancient rainforest canopies.",
     imageUrl:
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Kuala_Lumpur_Skyline_at_Dusk.jpg/1280px-Kuala_Lumpur_Skyline_at_Dusk.jpg",
   },
@@ -34,15 +34,22 @@ const fallbackDestinations = [
     location: "TOKYO & KYOTO, JAPAN",
     category: "PACIFIC PARADISE",
     reason:
-      "Renowned for unmatched culinary craftsmanship, Japan invites you to savor steaming bowls of rich tonkotsu ramen and delicate matcha treats. Between meals, marvel at the contrast of hyper-modern neon skylines and serene thousand-year-old Shinto shrines connected by effortless bullet trains.",
+      "Precision craftsmanship defines Japanese cuisine, inviting travelers to savor steaming tonkotsu ramen, melt-in-your-mouth sushi, and delicate matcha treats. Effortless bullet trains connect futuristic neon skylines with tranquil mountain onsens and thousand-year-old Shinto shrines tucked into bamboo groves.",
     imageUrl:
       "https://images.unsplash.com/photo-1542259009477-d625272157b7?auto=format&fit=crop&w=1400&q=85",
   },
 ];
 
-function Recommendations({ recommendations: propRecs, trip: propTrip, onRefreshPicks }) {
+function Recommendations({
+  recommendations: propRecs,
+  trip: propTrip,
+  onRefreshPicks,
+  onSelectDestination,
+}) {
   const [index, setIndex] = useState(0);
 
+  // Chunk A: Resolve Destination Recommendations List
+  // Prefers props, falls back to sessionStorage cache, and lastly to static curated fallback countries.
   const destinationsList = useMemo(() => {
     if (Array.isArray(propRecs) && propRecs.length > 0) {
       return propRecs;
@@ -61,6 +68,8 @@ function Recommendations({ recommendations: propRecs, trip: propTrip, onRefreshP
     return fallbackDestinations;
   }, [propRecs]);
 
+  // Chunk B: Resolve Current Trip Metadata
+  // Retrieves tripId and saved quiz assessment snapshot.
   const tripData = useMemo(() => {
     if (propTrip) return propTrip;
     try {
@@ -86,6 +95,9 @@ function Recommendations({ recommendations: propRecs, trip: propTrip, onRefreshP
     );
   }
 
+  // Chunk C: Country Selection & Itinerary Flow Transition
+  // Caches selected country and initiates background POST /api/itinerary/generate
+  // via the Loading screen.
   function createItinerary() {
     try {
       sessionStorage.setItem("selectedDestination", JSON.stringify(destination));
@@ -96,11 +108,14 @@ function Recommendations({ recommendations: propRecs, trip: propTrip, onRefreshP
       console.warn("Could not cache selected destination:", e);
     }
 
-    const countryParam = encodeURIComponent(
-      destination.countryCode || destination.name || destination.country || ""
-    );
-    const destIdParam = encodeURIComponent(destination.destinationId || "");
-    window.location.href = `/ItineraryNew/itenNew.html?country=${countryParam}&destinationId=${destIdParam}`;
+    // Delegate to parent App component to transition to loading screen in 'itinerary' mode
+    if (typeof onSelectDestination === "function") {
+      onSelectDestination(destination, tripData);
+      return;
+    }
+
+    // Direct fallback navigation to loading screen if rendered outside App container
+    window.location.href = "/?page=loading&mode=itinerary";
   }
 
   const photoSrc =

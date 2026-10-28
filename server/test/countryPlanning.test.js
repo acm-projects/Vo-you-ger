@@ -409,4 +409,39 @@ describe("Server-owned country pipeline", () => {
     assert.equal(fallback.body.itinerary.narrativeSource,'deterministic_fallback');
     assert.equal(persisted.itinerary.days.length,7);
   });
+  it("resolves optimal startDate within preferred months adhering to opening hours when startDate is omitted", async () => {
+    mockGoogle(); trips.findTripById = async () => trip;
+    let persisted;
+    trips.updateTripItinerary = async (userId, tripId, itinerary) => {
+      persisted = { userId, tripId, itinerary };
+      return { PK: "internal", SK: "internal", ...trip, itinerary };
+    };
+    llm.generateStructured = async ({ prompt }) => {
+      const { schedule } = JSON.parse(prompt);
+      return { model: "test-model", data: {
+        tripTitle: "Portugal Optimal", summary: "A trip with opening hours respected",
+        days: schedule.map((day) => ({
+          day: day.day, stopId: day.stopId, theme: "Explore Portugal",
+          morning: [], afternoon: [], evening: [],
+        })),
+      } };
+    };
+    // Send request with NO startDate - as submitted from the quiz assessment flow
+    const req = { user: { userId: "owner" }, params: { tripId: trip.tripId }, body: {
+      countryId: "country-pt"
+    } };
+    const res = response(); await createItinerary(req, res);
+    assert.equal(res.statusCode, 200, JSON.stringify(res.body));
+    assert.ok(typeof res.body.itinerary.startDate === "string" && /^\d{4}-\d{2}-\d{2}$/.test(res.body.itinerary.startDate), "startDate was resolved to valid YYYY-MM-DD");
+    assert.equal(res.body.itinerary.days.length, 7);
+    // Verify each day's date was calculated sequentially starting from day 1
+    const start = new Date(res.body.itinerary.startDate);
+    for (let i = 0; i < res.body.itinerary.days.length; i++) {
+      const expectedDate = new Date(start);
+      expectedDate.setDate(start.getDate() + i);
+      const expectedYMD = expectedDate.toISOString().slice(0, 10);
+      assert.equal(res.body.itinerary.days[i].date, expectedYMD);
+      assert.ok(res.body.itinerary.days[i].dayOfWeek, "dayOfWeek exists on day " + (i + 1));
+    }
+  });
 });

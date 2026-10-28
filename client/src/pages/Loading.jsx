@@ -1,9 +1,14 @@
+// client/src/pages/Loading.jsx
+// Dedicated full-screen loading component featuring a rotating globe animation and rotating fun facts.
+// Used both during initial recommendation generation after the quiz and during itinerary generation after country selection.
+
 import { useEffect, useState } from "react";
 import "./Loading.css";
 
 import globeImage from "../../loading/globe (2).png";
 import lightbulbImage from "../../loading/lightbulb-removebg-preview.png";
 
+// Curated collection of global travel trivia cycled while waiting for AI generation
 const facts = [
   "Chewing gum is heavily restricted in Singapore, with exceptions for approved dental and medicinal gum.",
   "Japan has vending machines that sell everything from drinks to hot meals.",
@@ -12,9 +17,20 @@ const facts = [
   "Iceland has no native mosquito population."
 ];
 
-function Loading({ error, onRetry }) {
+/**
+ * Loading component rendered during asynchronous AI calls.
+ * 
+ * Props:
+ * - error: Optional string error message if API call fails.
+ * - onRetry: Callback to trigger the failed operation again.
+ * - backLink: Target URL for the navigation escape button (defaults to Quiz, configurable for Recommendations).
+ * - backText: Label for the navigation escape button (defaults to "Back to Quiz").
+ */
+function Loading({ error, onRetry, backLink = "/Assessments/assessments.html", backText = "Back to Quiz" }) {
+  // Step 1: Track index of currently displayed travel fun fact
   const [currentFact, setCurrentFact] = useState(0);
 
+  // Step 2: Set up a 5-second interval timer to smoothly cycle through travel trivia
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentFact((previousFact) => (previousFact + 1) % facts.length);
@@ -26,6 +42,7 @@ function Loading({ error, onRetry }) {
   return (
     <main className="loading-page">
       <div className="loading-container">
+        {/* Step 3: Spinning globe graphic demonstrating active background processing */}
         <div className="globe-container">
           <img
             src={globeImage}
@@ -34,6 +51,7 @@ function Loading({ error, onRetry }) {
           />
         </div>
 
+        {/* Step 4: Card presenting rotating fun facts to keep the user engaged */}
         <section className="funFact-card">
           <div className="card-content">
             <img
@@ -49,6 +67,7 @@ function Loading({ error, onRetry }) {
           </div>
         </section>
 
+        {/* Step 5: Graceful error overlay offering Retry and Back navigation options if API fails */}
         {error && (
           <div
             className="loading-error-box"
@@ -89,7 +108,7 @@ function Loading({ error, onRetry }) {
                 </button>
               )}
               <a
-                href="/Assessments/assessments.html"
+                href={backLink}
                 style={{
                   padding: "8px 16px",
                   borderRadius: "6px",
@@ -99,7 +118,7 @@ function Loading({ error, onRetry }) {
                   fontWeight: "600",
                 }}
               >
-                Back to Quiz
+                {backText}
               </a>
             </div>
           </div>
