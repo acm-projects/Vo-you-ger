@@ -1,60 +1,142 @@
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
-const destinations = [
+const fallbackDestinations = [
   {
-    id: 1,
-    name: "Amalfi Coast",
-    location: "POSITANO, ITALY",
+    destinationId: "country-it",
+    name: "Italy",
+    country: "Italy",
+    countryCode: "IT",
+    location: "POSITANO & ROME, ITALY",
     category: "EUROPEAN GETAWAY",
-    description:
-      "Colorful cliffside villages, crystal-clear waters, and unforgettable views. The Amalfi Coast is a dream for food lovers, explorers, and romantics alike.",
-    image:
+    reason:
+      "Every corner of Italy tells a story of passion and flavor, from handmade al dente pasta and creamy gelato to wood-fired Neapolitan pizza. When stepping away from cozy trattorias, lose yourself in timeless Renaissance galleries, ancient Roman ruins, and postcard-perfect Mediterranean cliffside vistas.",
+    imageUrl:
       "https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?auto=format&fit=crop&w=1400&q=85",
   },
   {
-    id: 2,
-    name: "The Bahamas",
-    location: "NASSAU, BAHAMAS",
-    category: "CARIBBEAN ESCAPE",
-    description:
-      "Discover turquoise waters, peaceful beaches, and colorful island towns perfect for a relaxing getaway.",
-    image:
-      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1400&q=85",
+    destinationId: "country-my",
+    name: "Malaysia",
+    country: "Malaysia",
+    countryCode: "MY",
+    location: "KUALA LUMPUR & PENANG, MALAYSIA",
+    category: "SOUTHEAST ASIAN GEM",
+    reason:
+      "A vibrant crossroads of Asian cultures, Malaysia delights the palate with fragrant bowls of curry laksa, authentic Hainanese chicken rice, and sizzling night-market satay. Between hawker feasts in Kuala Lumpur and Penang, explore ornate heritage architecture, tranquil tea plantations, and ancient rainforest canopies.",
+    imageUrl:
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Kuala_Lumpur_Skyline_at_Dusk.jpg/1280px-Kuala_Lumpur_Skyline_at_Dusk.jpg",
   },
   {
-    id: 3,
-    name: "Hawaii",
-    location: "MAUI, HAWAII",
+    destinationId: "country-jp",
+    name: "Japan",
+    country: "Japan",
+    countryCode: "JP",
+    location: "TOKYO & KYOTO, JAPAN",
     category: "PACIFIC PARADISE",
-    description:
-      "Explore lush tropical landscapes, scenic coastlines, and unforgettable outdoor adventures.",
-    image:
+    reason:
+      "Precision craftsmanship defines Japanese cuisine, inviting travelers to savor steaming tonkotsu ramen, melt-in-your-mouth sushi, and delicate matcha treats. Effortless bullet trains connect futuristic neon skylines with tranquil mountain onsens and thousand-year-old Shinto shrines tucked into bamboo groves.",
+    imageUrl:
       "https://images.unsplash.com/photo-1542259009477-d625272157b7?auto=format&fit=crop&w=1400&q=85",
   },
 ];
 
-function Recommendations() {
+function Recommendations({
+  recommendations: propRecs,
+  trip: propTrip,
+  onRefreshPicks,
+  onSelectDestination,
+}) {
   const [index, setIndex] = useState(0);
 
-  const destination = destinations[index];
+  // Chunk A: Resolve Destination Recommendations List
+  // Prefers props, falls back to sessionStorage cache, and lastly to static curated fallback countries.
+  const destinationsList = useMemo(() => {
+    if (Array.isArray(propRecs) && propRecs.length > 0) {
+      return propRecs;
+    }
+    try {
+      const cached = sessionStorage.getItem("voyager_recommendations");
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed;
+        }
+      }
+    } catch (e) {
+      console.warn("Could not read cached recommendations:", e);
+    }
+    return fallbackDestinations;
+  }, [propRecs]);
+
+  // Chunk B: Resolve Current Trip Metadata
+  // Retrieves tripId and saved quiz assessment snapshot.
+  const tripData = useMemo(() => {
+    if (propTrip) return propTrip;
+    try {
+      const cached = sessionStorage.getItem("voyager_trip");
+      if (cached) return JSON.parse(cached);
+    } catch {}
+    return null;
+  }, [propTrip]);
+
+  const activeIndex = index >= destinationsList.length ? 0 : index;
+  const destination = destinationsList[activeIndex] || fallbackDestinations[0];
 
   function showPreviousPick() {
     setIndex(
       (current) =>
-        (current - 1 + destinations.length) % destinations.length
+        (current - 1 + destinationsList.length) % destinationsList.length
     );
   }
 
   function showNextPick() {
     setIndex(
-      (current) => (current + 1) % destinations.length
+      (current) => (current + 1) % destinationsList.length
     );
   }
 
+  // Chunk C: Country Selection & Itinerary Flow Transition
+  // Caches selected country and initiates background POST /api/itinerary/generate
+  // via the Loading screen.
   function createItinerary() {
-    window.location.href = "/ItineraryNew/itenNew.html";
+    try {
+      sessionStorage.setItem("selectedDestination", JSON.stringify(destination));
+      if (tripData?.tripId) {
+        sessionStorage.setItem("currentTripId", tripData.tripId);
+      }
+    } catch (e) {
+      console.warn("Could not cache selected destination:", e);
+    }
+
+    // Delegate to parent App component to transition to loading screen in 'itinerary' mode
+    if (typeof onSelectDestination === "function") {
+      onSelectDestination(destination, tripData);
+      return;
+    }
+
+    // Direct fallback navigation to loading screen if rendered outside App container
+    window.location.href = "/?page=loading&mode=itinerary";
   }
+
+  const photoSrc =
+    destination.imageUrl ||
+    destination.photo?.url ||
+    destination.image ||
+    "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1400&q=85";
+
+  const countryDisplayName =
+    destination.name || destination.country || "Explore Destination";
+
+  const categoryLabel = destination.category || "CURATED DESTINATION";
+
+  const eyebrowLabel = destination.countryCode
+    ? `${destination.countryCode} • PICK ${activeIndex + 1} OF ${destinationsList.length}`
+    : destination.location || `DESTINATION ${activeIndex + 1} OF ${destinationsList.length}`;
+
+  const reasonDescription =
+    destination.reason ||
+    destination.description ||
+    "A destination tailored to your quiz preferences.";
 
   return (
     <main className="postcard-page">
@@ -63,15 +145,19 @@ function Recommendations() {
       <section className="postcard-intro">
         <div>
           <p className="postcard-eyebrow">CURATED FOR YOU</p>
-          <h1>Your Next Destination</h1>
-          <p>Recommended places to begin your next adventure.</p>
+          <h1>{tripData?.title || "Your Next Destination"}</h1>
+          <p>
+            {tripData?.summary ||
+              "Recommended places to begin your next adventure based on your quiz answers."}
+          </p>
         </div>
 
         <button
           className="postcard-refresh"
           onClick={showNextPick}
+          title="Cycle to next recommendation"
         >
-          ↻ &nbsp; View New Picks
+          ↻ &nbsp; View Next Pick ({activeIndex + 1}/{destinationsList.length})
         </button>
       </section>
 
@@ -89,12 +175,18 @@ function Recommendations() {
         <article className="travel-postcard">
           <div className="travel-postcard__photo">
             <img
-              src={destination.image}
-              alt={destination.name}
+              src={photoSrc}
+              alt={destination.photo?.alt || countryDisplayName}
+              loading="lazy"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src =
+                  "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1400&q=85";
+              }}
             />
 
             <span className="travel-postcard__category">
-              {destination.category}
+              {categoryLabel}
             </span>
           </div>
 
@@ -104,13 +196,13 @@ function Recommendations() {
             </div>
 
             <p className="postcard-eyebrow">
-              {destination.location}
+              {eyebrowLabel}
             </p>
 
-            <h2>{destination.name}</h2>
+            <h2>{countryDisplayName}</h2>
 
             <p className="travel-postcard__description">
-              {destination.description}
+              {reasonDescription}
             </p>
 
             <div className="postcard-divider" />
@@ -122,17 +214,6 @@ function Recommendations() {
               >
                 Create Itinerary
               </button>
-
-              <div className="discover-more-wrapper">
-                <button className="postcard-details-button">
-                  Discover More <span>✦</span>
-                </button>
-
-                <div className="discover-more-popup">
-                  <h3>Explore This Destination</h3>
-                  <p>More destination info will be added later.</p>
-                </div>
-              </div>
             </div>
           </div>
         </article>
@@ -149,13 +230,13 @@ function Recommendations() {
       </section>
 
       <div className="postcard-pagination">
-        {destinations.map((item, itemIndex) => (
+        {destinationsList.map((item, itemIndex) => (
           <button
-            key={item.id}
-            className={itemIndex === index ? "active" : ""}
+            key={item.destinationId || item.id || itemIndex}
+            className={itemIndex === activeIndex ? "active" : ""}
             onClick={() => setIndex(itemIndex)}
-            aria-label={`Show ${item.name}`}
-            aria-current={itemIndex === index ? "true" : undefined}
+            aria-label={`Show ${item.name || item.country || "destination"}`}
+            aria-current={itemIndex === activeIndex ? "true" : undefined}
           />
         ))}
       </div>
