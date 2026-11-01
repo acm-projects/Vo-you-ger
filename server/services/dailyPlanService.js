@@ -8,6 +8,7 @@ const { apiError } = require('./apiError');
 const SLOTS = ['morning', 'afternoon', 'evening'];
 const isSightseeing = day => ['full', 'visit', 'excursion'].includes(day.type);
 const activities = day => SLOTS.flatMap(slot => day[slot]);
+const mealLimit = (quiz = {}) => personaTags(quiz.travelAlterEgo).includes('food') && !isRelaxed(quiz) ? 2 : 1;
 
 function openSlots(place, day) {
   return day.allowedSlots.filter(slot => {
@@ -118,10 +119,13 @@ function buildDailyPlan({ outline, schedule, discovered, quiz = {} }) {
       const max = ['full','visit'].includes(expected.type) && isRelaxed(quiz) ? TRIP_POLICY.maxActivitiesPerRelaxedDay : expected.maxActivities;
       if (selected.length >= max) continue;
       const foodCount = selected.filter(place => place.category === 'food').length;
-      const wantedMeals = personaTags(quiz.travelAlterEgo).includes('food') && !isRelaxed(quiz) ? 2 : 1;
+      const wantedMeals = mealLimit(quiz);
       const options = available.filter(choice => !used.has(choice.place.placeId) &&
+        (choice.place.category !== 'food' || foodCount < wantedMeals) &&
         selected.every(place => distanceKm(place, choice.place) <= TRIP_POLICY.maxDailyActivitySpreadKm))
-        .flatMap(choice => choice.slots.filter(slot => day[slot].length < 2).map(slot => ({
+        .flatMap(choice => choice.slots.filter(slot => day[slot].length < 2 &&
+          (choice.place.category !== 'food' || !day[slot].some(activity =>
+            available.find(item=>item.place.placeId===activity.placeId)?.place.category === 'food'))).map(slot => ({
           choice, slot,
           score:preferenceScore(choice.place, quiz) + (day[slot].length===0 ? 20 : 0) +
             (choice.place.category==='food' && foodCount<wantedMeals ? 15 : 0) +
@@ -138,4 +142,4 @@ function buildDailyPlan({ outline, schedule, discovered, quiz = {} }) {
   };
 }
 
-module.exports = { buildDailyPlan };
+module.exports = { buildDailyPlan, mealLimit };

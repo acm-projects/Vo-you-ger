@@ -2,7 +2,7 @@ const google=require('./googlePlacesService');
 const data=require('./planningDataService');
 const {normalizePlace}=require('./placeNormalizer');
 const {distanceKm}=require('./placeGroupingService');
-const {recommendNeighborhoods}=require('./neighborhoodRecommendationService');
+const {recommendStayAreas}=require('./stayAreaService');
 const {mapLimit}=require('./telemetryService');
 const {TRIP_POLICY}=require('../config/tripPolicy');
 const {apiError}=require('./apiError');
@@ -36,6 +36,6 @@ async function refreshDay(trip,dayNumber) {
   });
   if(places.some(a=>places.some(b=>distanceKm(a,b)>TRIP_POLICY.maxDailyActivitySpreadKm))) throw apiError('VENUE_NO_LONGER_ELIGIBLE','The refreshed venues are too far apart for this day. Generate a new itinerary.',502);
   const grouped=Object.fromEntries(['attractions','food','experiences'].map(category=>[category,places.filter(place=>place.category===category)]));
-  return {day:dayNumber,places,recommendedNeighborhoods:day.excursion?[]:recommendNeighborhoods(grouped),attribution:{provider:'Google Maps',requiresDisplay:true},persisted:false};
+  return {day:dayNumber,places,recommendedNeighborhoods:excursion?[]:recommendStayAreas(locationId,grouped),attribution:{provider:'Google Maps',requiresDisplay:true},persisted:false};
 }
 module.exports={refreshDay};

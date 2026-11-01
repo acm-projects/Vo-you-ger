@@ -31,6 +31,8 @@ function globeResponse(trips) {
     const item = {
       tripId: trip.tripId, ...summary,
       title: trip.itinerary?.tripTitle || trip.title, savedAt: trip.savedAt || null,
+      description: trip.itinerary?.summary || null,
+      ...startingLocation(trip.itinerary || {}, summary),
     };
     if (!summary.countryCode) { unmappedTrips.push(item); continue; }
     const country = catalog.countries.find((country) => country.countryCode === summary.countryCode);
@@ -43,6 +45,31 @@ function globeResponse(trips) {
   return {
     countries: [...grouped.values()].sort((a, b) => a.countryCode.localeCompare(b.countryCode)),
     unmappedTrips, tripCount: trips.length,
+  };
+}
+
+function point(value) {
+  return value && Number.isFinite(value.lat) && Math.abs(value.lat) <= 90 &&
+    Number.isFinite(value.lng) && Math.abs(value.lng) <= 180
+    ? { lat: value.lat, lng: value.lng } : null;
+}
+
+// Resolve old saved trips at read time too; no regeneration or data migration.
+function startingLocation(itinerary, summary) {
+  const firstStop = itinerary.outline?.stops?.[0];
+  const firstName = firstStop?.name || summary.baseNames?.[0] ||
+    (typeof itinerary.destination === 'string' ? itinerary.destination.split(',')[0].trim() : null);
+  let destination = catalog.destinationById.get(firstStop?.destinationId || itinerary.outline?.arrivalDestinationId);
+  if (destination?.countryCode !== summary.countryCode) destination = null;
+  destination ||= destinations.find(item => item.countryCode === summary.countryCode &&
+    firstName && item.name.toLowerCase() === firstName.toLowerCase());
+  const cityPoint = point(destination?.planning) || point(destination?.coordinates);
+  const country = catalog.countries.find(item => item.countryCode === summary.countryCode);
+  const countryPoint = point(country?.pin) || point(require('../data/countryInfo.json').countries[summary.countryCode]?.displayPin);
+  return {
+    startCity: destination?.name || firstName || null,
+    pin: cityPoint || countryPoint,
+    pinSource: cityPoint ? 'starting_city' : countryPoint ? 'country' : null,
   };
 }
 

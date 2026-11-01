@@ -1,36 +1,32 @@
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { clearPlanningSession, paths } from "../services/navigation";
 
 function Navbar() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const savedUser = localStorage.getItem("user");
-
-    if (savedUser) {
-      try {
-        setUser(JSON.parse(savedUser));
-      } catch (e) {
-        console.error("Failed to parse user from localStorage", e);
-      }
+  const [user] = useState(() => {
+    try {
+      return localStorage.getItem("token") ? JSON.parse(localStorage.getItem("user") || "null") : null;
+    } catch {
+      return null;
     }
-  }, []);
+  });
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    setUser(null);
-    window.location.reload();
+    localStorage.removeItem("quizResponse");
+    clearPlanningSession(sessionStorage);
+    window.location.href = paths.landing;
   };
 
   return (
     <nav className="navbar">
-      <a href="/#home" className="navbar-logo">
+      <a href={user ? paths.globe : "/#home"} className="navbar-logo">
         LOGO
       </a>
 
       <div className="navbar-links">
-        <a href="/#home">Home</a>
+        <a href={user ? paths.globe : "/#home"}>Home</a>
         <a href="/#about">About</a>
         <a href="/#how-it-works">How It Works</a>
 

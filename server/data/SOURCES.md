@@ -337,3 +337,19 @@ application illustration. Use only according to the
 [Places attribution policy](https://developers.google.com/maps/documentation/places/web-service/policies).
 The UI also displays returned third-party attribution. Review deployed Terms of
 Use, Privacy Policy and any billing-region-specific terms before launch.
+# Accommodation search areas (2026-10-31)
+
+`stayAreas.json` supplies one editorial accommodation-search area for each of
+the 114 enabled bases. Each entry links to a city travel guide or official
+tourism/heritage source checked for the named area. Generic city-centre entries
+are explicitly marked `central_area`, not specific neighborhoods. The source
+review establishes the named area's presence; it does not establish hotel
+availability, prices, safety, accessibility, optimality for a traveler, or actual
+journey times. No source prose or hotel listings are copied. Wikivoyage entries
+link to the community guide; other entries identify the relevant authority.
+
+Google-derived neighborhood suggestions remain preferred when available and
+are ranked using the existing straight-line proximity calculation. Catalog
+defaults are used when Google supplies no usable neighborhood and do not claim
+measured proximity. Only editorial defaults and their provenance are persisted;
+Google neighborhood metadata remains display-time data.
