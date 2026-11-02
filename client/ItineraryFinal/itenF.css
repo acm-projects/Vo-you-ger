@@ -23,7 +23,7 @@ body {
 
   background:
     linear-gradient(rgba(255, 250, 240, 0.18), rgba(255, 250, 240, 0.18)),
-    url("./itenBG.png") center center / cover fixed no-repeat;
+    url("./image.png") center center / cover fixed no-repeat;
     /* radial-gradient(circle at 15% 15%, rgba(255,255,255,.8), transparent 30%),#e8dcc9; */
 }
 
