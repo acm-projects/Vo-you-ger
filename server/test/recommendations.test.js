@@ -24,6 +24,11 @@ describe('Deterministic country recommendations',()=>{
  it('selects exactly three ranked countries and records reproducibility metadata',async()=>{
   const {req,res}=pair({quiz});await createRecommendations(req,res);
   assert.equal(res.statusCode,201);assert.deepEqual(res.body.trip.recommendations.map(item=>item.destinationId),expected());
+  for(const item of res.body.trip.recommendations){
+    assert.ok(item.imageUrl,`Recommendation ${item.name} should include an imageUrl`);
+    assert.match(item.imageUrl,/^https:\/\//);
+    assert.ok(item.photo,`Recommendation ${item.name} should include photo metadata`);
+  }
   assert.equal(res.body.trip.PK,undefined);assert.equal(saved.userId,'owner');assert.equal(saved.model,'test');
   assert.ok(saved.selectionMetadata.catalogVersion);assert.ok(saved.selectionMetadata.policyVersion);
   assert.deepEqual(saved.selectionMetadata.countryIds,expected());

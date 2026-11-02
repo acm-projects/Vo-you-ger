@@ -14,7 +14,8 @@ function countrySummary(country) {
   return {countryCode:country.countryCode,name:country.name,
     flag:String.fromCodePoint(...[...country.countryCode].map(letter=>127397+letter.charCodeAt(0))),
     pin:info.displayPin||country.pin,planningAvailable:country.planningAvailable,
-    supportedOvernightBases:country.supportedBaseCount,photo:info.photo||null};
+    supportedOvernightBases:country.supportedBaseCount,photo:info.photo||null,
+    imageUrl:info.photo?.url||null};
 }
 
 function countryDetails(code) {

@@ -66,6 +66,25 @@ const recommendationItemSchema = z.object({
     .length(2)
     .optional()
     .describe("The 2-letter capitalized ISO country code (e.g. 'FR', 'JP')"),
+  imageUrl: z
+    .string()
+    .url()
+    .nullable()
+    .optional()
+    .describe("High quality landscape photo url of the country or destination"),
+  photo: z
+    .object({
+      url: z.string(),
+      sourceUrl: z.string().optional(),
+      credit: z.string().optional(),
+      license: z.string().optional(),
+      licenseUrl: z.string().optional(),
+      alt: z.string().optional(),
+      contextUrl: z.string().optional(),
+    })
+    .nullable()
+    .optional()
+    .describe("Attributed photo metadata for display and licensing compliance"),
   matchScore: z
     .number()
     .min(0)

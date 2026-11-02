@@ -856,7 +856,12 @@ function showScore() {
                 throw new Error(data.message || data.error || "Failed to save quiz responses");
             }
 
-            // Successfully saved to DynamoDB! Redirect to loading/recommendations page
+            // Successfully saved to DynamoDB! Cache locally and clear stale recommendations
+            localStorage.setItem("quizResponse", JSON.stringify(payload));
+            sessionStorage.removeItem("voyager_recommendations");
+            sessionStorage.removeItem("voyager_trip");
+
+            // Redirect to loading/recommendations page
             window.location.href = "/?page=loading";
         } catch (err) {
             console.error("Error saving quiz responses:", err);

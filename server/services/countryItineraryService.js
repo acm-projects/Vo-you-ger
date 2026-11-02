@@ -132,17 +132,185 @@ function matchesFixedPlan(data,plan) {
   });
 }
 
+/**
+ * Resolves the optimal start date within the traveler's preferred months (or best reviewed
+ * months for the destination if "any month" was selected) that adheres to attraction opening
+ * days and hours across the entire trip length.
+ *
+ * Subsequent days of the itinerary are calculated starting from this first day.
+ */
+function resolveOptimalStartDate({ outline, quiz = {}, discovered = [] }) {
+  const MONTH_MAP = {
+    january: 0, jan: 0,
+    february: 1, feb: 1,
+    march: 2, mar: 2,
+    april: 3, apr: 3,
+    may: 4,
+    june: 5, jun: 5,
+    july: 6, jul: 6,
+    august: 7, aug: 7,
+    september: 8, sep: 8, sept: 8,
+    october: 9, oct: 9,
+    november: 10, nov: 10,
+    december: 11, dec: 11,
+  };
+
+  const targetMonths = [];
+
+  // Step 1: Parse traveler's preferred months from quiz profile
+  const preferred = Array.isArray(quiz.preferredMonths)
+    ? quiz.preferredMonths
+    : (quiz.preferredMonths ? [quiz.preferredMonths] : []);
+
+  for (const m of preferred) {
+    if (!m) continue;
+    const clean = String(m).trim().toLowerCase();
+    if (clean === "any" || clean === "any month" || clean === "anytime" || clean.includes("not sure")) {
+      continue;
+    }
+    if (MONTH_MAP[clean] !== undefined) {
+      if (!targetMonths.includes(MONTH_MAP[clean])) targetMonths.push(MONTH_MAP[clean]);
+    } else {
+      const prefix = clean.slice(0, 3);
+      if (MONTH_MAP[prefix] !== undefined) {
+        if (!targetMonths.includes(MONTH_MAP[prefix])) targetMonths.push(MONTH_MAP[prefix]);
+      }
+    }
+  }
+
+  // Step 2: If "any month" or no specific month provided, resolve the destination's best reviewed months
+  if (targetMonths.length === 0) {
+    const catalog = require("./planningDataService");
+    const stops = outline.stops || [];
+    for (const stop of stops) {
+      const base = catalog.destinationById?.get(stop.destinationId);
+      if (base && Array.isArray(base.bestMonths)) {
+        for (const bm of base.bestMonths) {
+          const clean = String(bm).trim().toLowerCase().slice(0, 3);
+          if (MONTH_MAP[clean] !== undefined && !targetMonths.includes(MONTH_MAP[clean])) {
+            targetMonths.push(MONTH_MAP[clean]);
+          }
+        }
+      }
+    }
+  }
+
+  // Fallback: Default to next month if no preferred or catalog months are available
+  if (targetMonths.length === 0) {
+    const now = new Date();
+    targetMonths.push((now.getMonth() + 1) % 12);
+  }
+
+  // Step 3: Determine target planning year (e.g. 2026/2027)
+  const now = new Date();
+  const currentYear = Math.max(now.getFullYear(), 2026);
+
+  const formatDate = (y, m, d) =>
+    `${y}-${String(m + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+
+  let bestCandidateDate = null;
+  let highestScore = -Infinity;
+
+  // Step 4: Evaluate candidate dates across the target months adhering to venue opening hours
+  for (const targetMonth of targetMonths) {
+    const year = targetMonth < now.getMonth() && currentYear === now.getFullYear()
+      ? currentYear + 1
+      : currentYear;
+
+    const daysInMonth = new Date(year, targetMonth + 1, 0).getDate();
+
+    // Prioritize weekend departures (Saturdays, Fridays, Sundays) followed by mid-month departures
+    const candidateDays = [];
+    for (let d = 1; d <= daysInMonth; d++) {
+      if (new Date(year, targetMonth, d).getDay() === 6) candidateDays.push(d); // Saturday
+    }
+    for (let d = 1; d <= daysInMonth; d++) {
+      if (new Date(year, targetMonth, d).getDay() === 5 && !candidateDays.includes(d)) candidateDays.push(d); // Friday
+    }
+    for (let d = 1; d <= daysInMonth; d++) {
+      if (new Date(year, targetMonth, d).getDay() === 0 && !candidateDays.includes(d)) candidateDays.push(d); // Sunday
+    }
+    for (let d = 1; d <= Math.min(daysInMonth, 15); d++) {
+      if (!candidateDays.includes(d)) candidateDays.push(d);
+    }
+
+    for (const d of candidateDays) {
+      const candidateDateStr = formatDate(year, targetMonth, d);
+      try {
+        const candidateSchedule = buildSchedule(outline, candidateDateStr);
+        // Test whether candidate schedule satisfies all attraction opening hours
+        const testPlan = buildDailyPlan({
+          outline,
+          schedule: candidateSchedule,
+          discovered,
+          quiz
+        });
+
+        // Score based on number of scheduled activities + preferred weekend departure bonus
+        let score = 0;
+        for (const day of testPlan.days) {
+          score += (day.morning?.length || 0) + (day.afternoon?.length || 0) + (day.evening?.length || 0);
+        }
+        const startDayOfWeek = new Date(year, targetMonth, d).getDay();
+        if (startDayOfWeek === 6) score += 5; // Saturday departure bonus
+        if (startDayOfWeek === 5) score += 3; // Friday departure bonus
+
+        if (score > highestScore) {
+          highestScore = score;
+          bestCandidateDate = candidateDateStr;
+        }
+      } catch (err) {
+        // If a candidate date encounters venue closure conflicts (e.g. INSUFFICIENT_VENUES), skip it
+        continue;
+      }
+    }
+
+    if (bestCandidateDate) {
+      break; // Feasible date adhering to opening hours found
+    }
+  }
+
+  // Fallback safe date if all candidates encountered strict opening hour collisions
+  if (!bestCandidateDate) {
+    const primaryMonth = targetMonths[0];
+    const year = primaryMonth < now.getMonth() && currentYear === now.getFullYear()
+      ? currentYear + 1
+      : currentYear;
+    let d = 1;
+    while (new Date(year, primaryMonth, d).getDay() !== 6 && d < 28) d++;
+    bestCandidateDate = formatDate(year, primaryMonth, d);
+  }
+
+  return bestCandidateDate;
+}
+
 async function generate({ outline, quiz, startDate }) {
   validateOutline(outline, quiz);
-  if (outline.startDate && outline.startDate !== startDate) {
-    throw planningError("Itinerary startDate does not match the selected outline");
-  }
-  const schedule = buildSchedule(outline, startDate);
+
+  // 1. Discover places first (this does not depend on a calendar start date)
   const discovered = await measured("placesDiscovery",()=>discovery.discoverStops(outline, quiz));
-  // The backend owns every scheduling decision. Validate that plan before any
-  // narrative request so model mistakes cannot create invalid or empty days.
+
+  // 2. Resolve start date: if traveler didn't supply a fixed startDate (only preferred months),
+  // pick the optimal start date within those months (or best month) adhering to attraction opening hours
+  let effectiveStartDate = startDate ?? outline.startDate;
+  if (!effectiveStartDate) {
+    effectiveStartDate = resolveOptimalStartDate({ outline, quiz, discovered });
+    outline.startDate = effectiveStartDate;
+  } else {
+    validateStartDate(effectiveStartDate);
+    if (outline.startDate && outline.startDate !== effectiveStartDate) {
+      throw planningError("Itinerary startDate does not match the selected outline");
+    }
+    outline.startDate = effectiveStartDate;
+  }
+
+  // 3. Calculate subsequent days from that first day
+  const schedule = buildSchedule(outline, effectiveStartDate);
+
+  // 4. Build daily plan verifying every attraction's opening days and hours
   const plan = buildDailyPlan({outline,schedule,discovered,quiz});
   const itinerary = validateAndEnrich(plan,outline,schedule,discovered,quiz);
+  itinerary.startDate = effectiveStartDate;
   const template = require('../prompts/itineraryPrompt');
   const selectedIds = new Set(plan.days.flatMap(day => ['morning','afternoon','evening'].flatMap(slot => day[slot].map(activity => activity.placeId))));
   const payload = {

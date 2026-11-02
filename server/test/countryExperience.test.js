@@ -22,6 +22,7 @@ describe('Country browsing independent of trip planning',()=>{
    assert.equal(country.supportedOvernightBases,source.supportedBaseCount);
    assert.ok(country.flag&&country.name);
    assert.ok(country.photo,`${country.countryCode} needs informational media`);
+   assert.ok(country.imageUrl,`${country.countryCode} needs an imageUrl at root level`);
   }
  });
  it('returns the same informational structure for supported and unsupported countries',()=>{
