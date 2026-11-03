@@ -1,268 +1,662 @@
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Caveat:wght@500;600;700&display=swap');
 
-/* Basic styles | color choices | Universal */
+/* =========================
+   COLORS AND DEFAULTS
+========================= */
+
 :root {
-    --accent-color: #5c4033; /* Matches --primary */
-    --base-color: #d5cebf;   /* Matches --bg-paper */
-    --text-color: #2c2825;   /* Matches --text-main */
-    --input-color: #f3efe6;  /* Matches --hover-bg */
+    --brown: #5c4033;
+    --brown-soft: #80634f;
+    --ink: #4e372c;
+    --line: #b99b80;
+    --paper: #f8edcf;
+    --red: #b84b3e;
 }
 
-
-/*Boxing styles for all elements*/
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
-/* style choices | default fonts */
 html {
+    min-height: 100%;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
-    font-size: 12pt;
-    color: var(--text-color);
+    color: var(--ink);
+}
+
+/* =========================
+   PAGE BACKGROUND
+========================= */
+
+body {
+    min-height: 100vh;
+    padding: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #F6F2E7;
+
+    overflow-x: hidden;
+    position: relative;
+    isolation: isolate;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background-image: url("signUpLoginBG.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    opacity: 0.2; /* Change transparency here */
+
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* =========================
+   MAIN POSTCARD
+========================= */
+
+.postcard {
+    position: relative;
+    isolation: isolate;
+
+    width: min(1120px, 96vw);
+    min-height: 680px;
+
+    padding: 72px 8.5% 62px 7.5%;
+
+    display: grid;
+    grid-template-columns: minmax(250px, 0.82fr) minmax(390px, 1.18fr);
+    align-items: center;
+
+    gap: clamp(28px, 5vw, 72px);
+
+    background: url("NewPostcardImage.png") center / 80% 80% no-repeat;
+
+    filter: drop-shadow(0 16px 22px rgba(64, 43, 25, 0.22));
+}
+
+/* =========================
+   LEFT SIDE: AIRPLANE WINDOW
+========================= */
+
+.postcard-art {
+    min-width: 0;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    padding: 18px 0 8px;
+}
+
+.travel-note {
+    margin: 0 0 4px;
+
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+    font-size: clamp(2rem, 3.3vw, 3rem);
+    line-height: 0.98;
+
+    color: #624632;
+    transform: rotate(-4deg);
+}
+
+.travel-note span {
+    color: #ad5144;
+}
+
+.airplane-window {
+    display: block;
+
+    width: min(100%, 400px);
+    max-height: 550px;
+    height: auto;
+
+    object-fit: contain;
+
+    margin: 0 auto;
+    transform: translateX(40px);
+}
+
+.art-caption {
+    margin-top: 5px;
+
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.19em;
+
+    color: #84664b;
+}
+
+/* =========================
+   RIGHT SIDE: SIGNUP FORM
+========================= */
+
+.postcard-form {
+    position: relative;
+    width: 100%;
+    max-width: 510px;
+    justify-self: end;
+    padding: 8px 0 0;
     text-align: center;
 }
 
-/* Fullscreen background | centered content */
-body {
-    min-height: 100vh;
-    background-image: url(pexels-adem-komurcu-2160553523-39803006.png);
-    background-size: cover;
-    background-position: center;
-    overflow-x: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+/* Postage stamp */
 
-/* White centered card box holding all form content */
-.wrapper {
-    background-color: var(--base-color);
-    height: auto;
-    width: min(500px, 90%);
-    padding: 40px;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+.postmark {
+    position: absolute;
+    top: -27px;
+    right: 2px;
 
-/*Heading one i.e. main heading */
-h1 {
-    font-size: 3rem;
-    font-weight: 900;
-    text-transform: uppercase;
-}
+    width: 66px;
+    height: 66px;
 
-/*Form layout*/
-form {
-    width: min(400px, 100%);
-    margin-top: 20px;
-    margin-bottom: 15px;
+    border: 1px solid rgba(105, 75, 51, 0.55);
+    border-radius: 50%;
+
+    outline: 1px dashed rgba(105, 75, 51, 0.5);
+    outline-offset: 4px;
+
+    color: rgba(92, 64, 51, 0.75);
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+
+    transform: rotate(10deg);
 }
 
-/* Flex wrapper placing input label and field side-by-side */
-form > div {
+.postmark span {
+    font-size: 1.65rem;
+    line-height: 1;
+}
+
+.postmark small {
+    margin-top: 3px;
+
+    font-size: 0.48rem;
+    letter-spacing: 0.13em;
+    font-weight: 800;
+}
+
+/* Heading */
+
+.eyebrow {
+    margin-bottom: 1px;
+
+    color: #967657;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.19em;
+}
+
+.postcard-form h1 {
+    color: var(--brown);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+    font-size: clamp(3.2rem, 5vw, 4.4rem);
+    line-height: 0.98;
+    font-weight: 700;
+}
+
+.form-subtitle {
+    margin: 6px 0 18px;
+
+    color: #806c5d;
+
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+    font-size: 1.3rem;
+}
+
+/* Error message */
+
+#error-message {
+    min-height: 16px;
+    margin-bottom: 4px;
+
+    color: #a8322a;
+    font-size: 0.78rem;
+    text-align: left;
+}
+
+/* =========================
+   FORM INPUTS
+========================= */
+
+#form {
+    width: 85%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+/* Individual input rows */
+
+#form > .field-row {
     width: 100%;
+    min-height: 42px;
+
     display: flex;
-    align-items: stretch;
-}
-/*for the icons on the left side of the input fields*/
-form label {
-    flex-shrink: 0;
-    min-height: 50px;
-    height: auto;
-    width: 50px;
-    background-color: var(--accent-color);
-    fill: var(--base-color);
-    color: var(--base-color);
-    border-radius: 10px 0 0 10px;
-    display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
-    font-weight: 500;
+
+    border-bottom: 1px solid rgba(111, 78, 53, 0.52);
+
+    transition: border-color 150ms ease;
 }
 
-/* Standard text inputs and dropdowns with right-side rounded corners */
-form input:not(.country-wrapper input), 
-form select:not(.country-wrapper select) {
-    flex-grow: 1;
+#form > .field-row:focus-within {
+    border-bottom: 2px solid var(--brown);
+}
+
+/* Input icons */
+
+#form label {
+    flex: 0 0 34px;
+    width: 34px;
+    min-height: 38px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    color: #846448;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+#form label svg {
+    width: 19px;
+    height: 19px;
+    fill: currentColor;
+}
+
+/* Text inputs */
+
+#form input:not(.country-wrapper input) {
+    flex: 1;
     min-width: 0;
-    width: 100%; 
-    height: 50px;
-    padding: 0 1em;
+    height: 38px;
+
+    padding: 0 5px;
+
+    border: 0;
+    outline: 0;
+    border-radius: 0;
+
+    background: transparent;
+    color: var(--ink);
+
     font: inherit;
-    border-radius: 0 10px 10px 0;
-    border: 2px solid var(--input-color);
-    border-left: none;
-    background-color: var(--input-color);
-    transition: 150ms ease;
+    font-size: 0.9rem;
+
     appearance: none;
 }
-/* multi-select countries */
+
+#form input::placeholder {
+    color: #806c5d;
+    opacity: 1;
+}
+
+#form input:focus {
+    outline: 0;
+}
+
+/* =========================
+   COUNTRY SELECTOR
+========================= */
+
 .country-wrapper {
     flex: 1;
     min-width: 0;
-    min-height: 50px;
-    height: auto;
-    background-color: var(--input-color);
-    border: 2px solid var(--input-color);
-    border-left: none;
-    border-radius: 0 10px 10px 0;
+    min-height: 40px;
+
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    padding: 6px 8px;
-    gap: 6px;
-    overflow: hidden;
+
+    gap: 5px;
+    padding: 2px 4px;
+
+    background: transparent;
+    border: 0;
+    border-radius: 0;
 }
 
-/* Hides scrollbars in browser for the country wrapper */
-.country-wrapper::-webkit-scrollbar {
-    display: none;
-}
-
-/* Flex container holding selected country tag pills */
 #selected-countries-container {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 6px;
+
+    gap: 5px;
     max-width: 100%;
 }
 
-/* Individual blue tag pill showing a selected country */
 .country-tag {
     display: inline-flex;
     align-items: center;
+
     gap: 4px;
-    background-color: var(--accent-color);
-    color: var(--base-color);
-    padding: 2px 6px;
-    border-radius: 6px;
-    font-size: 0.75rem;
+
+    height: 23px;
+    padding: 2px 7px;
+
+    border: 0;
+    border-radius: 12px;
+
+    background: var(--brown-soft);
+    color: white;
+
+    font-size: 0.7rem;
     font-weight: 600;
     white-space: nowrap;
-    height: 24px;
-    border: 1px solid #000000;
 }
 
-/* Close 'x' button inside country tags to remove them */
 .country-tag button {
-    background: transparent;
-    border: none;
-    color: var(--base-color);
-    font-size: 0.85rem;
-    cursor: pointer;
-    line-height: 1;
     padding: 0;
     margin-left: 2px;
-    transform: translateY(-1px);
+
+    border: 0;
+    background: transparent;
+
+    color: white;
+    font-size: 0.65rem;
+    line-height: 1;
+
+    width: 12px;
+    height: 12px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
 }
 
-/* Transparent text typing area inside the country tag selector */
 #country-input {
-    order: -1 !important;
-    border: none !important;
-    background: transparent !important;
-    outline: none !important;
-    height: 38px !important;
-    padding: 0 !important;
-    font: inherit !important;
-    font-size: 0.85rem !important;
-    flex: 1 1 120px !important;
-    min-width: 80px !important;
-    max-width: 100% !important;
-    color: var(--text-color) !important;
+    order: -1;
+
+    flex: 1 1 130px;
+    min-width: 90px;
+    max-width: 100%;
+    height: 36px;
+
+    padding: 0 4px;
+
+    border: 0;
+    outline: 0;
+
+    background: transparent;
+    color: var(--ink);
+
+    font: inherit;
+    font-size: 0.85rem;
 }
 
-/* Blue border highlight when hovering over input fields */
-form input:hover,
-form select:hover {
-    border-color: var(--accent-color);
-}
-
-/* Dark border highlight when clicking/typing inside input fields */
-form input:focus,
-form select:focus {
-    outline: none;
-    border-color: var(--text-color);
-}
-
-/*changes icon color when its selected*/
-div:has(input:focus) > label, 
-div:has(select:focus) > label,
-div:has(.country-wrapper:focus-within) > label {
-    background-color: var(--text-color);
-}
-
-/* Placeholder text color inside inputs */
-form input::placeholder {
-    color: var(--text-color);
+#country-input::placeholder {
+    color: #806c5d;
     opacity: 1;
 }
 
-/*button styling */
-form button {
-    margin-top: 10px;
-    border: none;
-    border-radius: 1000px;
-    padding: 0.85em 4em;
-    background-color: var(--accent-color);
-    color: var(--base-color);
+/* =========================
+   SIGNUP BUTTON
+========================= */
+
+#form button {
+    align-self: center;
+
+    min-width: 220px;
+    margin-top: 17px;
+    padding: 12px 25px;
+
+    border: 1px solid #503629;
+    border-radius: 3px;
+
+    background: var(--brown);
+    color: #fffaf0;
+
     font: inherit;
-    font-weight: 600;
-    text-transform: uppercase;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+
     cursor: pointer;
-    transition: 150ms ease;
+
+    transition: transform 150ms ease, background 150ms ease;
 }
 
-/*what happens when you hover over the button or click on it*/
-form button:hover,
-form button:focus {
-    outline: none;
-    background-color: var(--text-color);
+#form button span {
+    margin-left: 12px;
+    font-size: 1.05rem;
 }
 
-/* Standard hyperlink color without default underline */
-a {
-    text-decoration: none;
-    color: var(--accent-color);
+#form button:hover,
+#form button:focus-visible {
+    background: #795640;
+    transform: translateY(-2px);
+
+    outline: 2px solid rgba(92, 64, 51, 0.25);
+    outline-offset: 3px;
 }
 
-/* Adds underline back to hyperlinks on hover */
-a:hover {
+#form button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+/* =========================
+   LOGIN LINK
+========================= */
+
+.login-text {
+    margin-top: 14px;
+
+    color: #715b4a;
+    font-size: 0.78rem;
+}
+
+.login-text a {
+    color: var(--brown);
+    font-weight: 800;
+
     text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
-/* Error message styling for invalid inputs */
-form div.incorrect > label {
-    background-color: red;
+.login-text a:hover {
+    color: #9a6046;
 }
 
-form div.incorrect input {
-    border-color: red;
+
+
+#form > .incorrect {
+    border-bottom: 2px solid #b8322a;
 }
 
-form label span {
-    color: #1f1f1f;
+#form > .incorrect label {
+    color: #b8322a;
 }
 
-#error-message {
-    color: red;
-}
 
-/*for the layout | what happens when the screen is small */
-@media (max-width: 600px) {
-    .wrapper {
-        width: 100%;
-        border-radius: 0;
+
+@media (max-width: 850px) {
+
+
+    .postcard {
+        width: min(620px, 100%);
+        min-height: 0;
+
+        padding: 65px 11% 55px;
+
+        grid-template-columns: 1fr;
+        gap: 14px;
+
+        background-size: 100% 100%;
     }
+
+    .postcard-art {
+        height: auto;
+        padding: 0;
+    }
+
+    .travel-note {
+        font-size: 2.2rem;
+    }
+
+    .airplane-window {
+        width: 155px;
+        max-height: 205px;
+    }
+
+    .art-caption {
+        margin-top: 0;
+    }
+
+    .postcard-form {
+        max-width: 510px;
+        justify-self: center;
+        padding-top: 15px;
+    }
+
+    .postmark {
+        top: -5px;
+        right: -8px;
+        transform: scale(0.8) rotate(10deg);
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .postcard {
+        padding: 48px 10% 42px;
+    }
+
+    .airplane-window {
+        width: 700px;
+        max-height: 700px;
+    }
+
+    .travel-note {
+        font-size: 1.8rem;
+    }
+
+    .postcard-form h1 {
+        font-size: 3.2rem;
+    }
+
+    .postmark {
+        width: 48px;
+        height: 48px;
+
+        top: -2px;
+        right: -5px;
+    }
+
+    .postmark span {
+        font-size: 1.2rem;
+    }
+
+    .postmark small {
+        font-size: 0.38rem;
+    }
+
+    #form button {
+        min-width: 190px;
+    }
+}
+
+
+.name-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.name-row .field-row {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+}
+
+.name-row .field-row label {
+    flex: 0 0 28px;
+    width: 28px;
+}
+
+.name-row .field-row label {
+    flex: 0 0 28px;
+    width: 28px;
+}
+
+.name-row .field-row input {
+    width: 100%;
+    min-width: 0;
+}
+#form .name-row .field-row {
+    border-bottom: 1px solid rgba(111, 78, 53, 0.52);
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    transition: border-color 150ms ease;
+}
+
+#form .name-row .field-row:focus-within {
+    border-bottom: 2px solid var(--brown);
+}
+
+/* Fix country tag remove button */
+#form .country-tag button {
+    all: unset;
+    box-sizing: border-box;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 14px;
+    width: 14px;
+    height: 14px;
+    min-width: 14px;
+
+    margin: 0 0 0 4px;
+    padding: 0;
+
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+
+    color: white;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+#form .country-tag button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    transform: none;
 }
