@@ -1,33 +1,36 @@
 /*API for Q1 + Q2: */ 
 const questions = [
     {
-        id: "startingLocation",
-        questions: "Where are you starting from?",
-        type: "text",
-        answers: [
-            { text: "Text entry" }
-        ]
-    },
-    {
         id: "preferredCountries",
-        questions: "What is one country you would like to visit: ",
-        type: "text",
-        answers: [
-            { text: "Countries (or any)" }
-        ]
+        questions: "What are some countries you would like to visit: ",
+        type: "multiple-places",
+        answers: []
     },
     {
         id: "preferredMonths",
-        questions: "What months would you perfer traveling in? ",
-        type: "select",
+        questions: "What months would you prefer traveling in? ",
+        type: "dropdown",
         answers: [
-            { text: "Months (or any)" }
+            { text: "January" },
+            { text: "February" },
+            { text: "March" },
+            { text: "April" },
+            { text: "May" },
+            { text: "June" },
+            { text: "July" },
+            { text: "August" },
+            { text: "September" },
+            { text: "October" },
+            { text: "November" },
+            { text: "December" },
         ]
     },
     {
         id: "tripDuration",
         questions: "How many nights would you like this trip to last?",
+        type: "single-dropdown",
         answers: [
+            { text: "0 nights (Day Trip)" },
             { text: "1 - 3 nights (Weekend Getaway)" },
             { text: "4 - 6 nights (Short Trip)" },
             { text: "7 - 9 nights (One Week)" },
@@ -38,6 +41,7 @@ const questions = [
     {
         id: "preferredWeather",
         questions: "What kind of weather do you prefer?",
+        type: "single-dropdown",
         answers: [
             { text: "Warm" },
             { text: "Cool" },
@@ -48,62 +52,23 @@ const questions = [
         ]
     },
     {
-        id: "visaWillingness",
-        questions: "Are you willing to get a visa for traveling?",
+        id: "preferredTemp",
+        questions: "What kind of temperature do you prefer?",
+        type: "single-dropdown",
         answers: [
-            { text: "Yes" },
-            { text: "No" },
-            { text: "Maybe. Not too sure."}
+            { text: "30C+ | 85F+" },
+            { text: "20-29C | 68F-84F" },
+            { text: "10C-19C | 50F-67F" },
+            { text: "Under 10C | 50F" },
+            { text: "No Preference | Any Weather" }
         ]
     },
     {
         id: "highRiskDestWillingness",
-        questions: "How willing are you to go to high risk travel destinations?",
+        questions: "Are you willing to go to a high risk travel destinations?",
         answers: [
             { text: "Yes" },
             { text: "No" },
-            { text: "Maybe. Not too sure."}
-        ]
-    },
-    {
-        id: "preferredAccomodation",
-        questions: "What kind of accommodation would you find yourself in?",
-        answers: [
-            { text: "All inclusive resort" },
-            { text: "5 star hotel" },
-            { text: "3 star chain hotel" },
-            { text: "Local rental" },
-            { text: "Local boutique hotel" },
-            { text: "Cabin in the woods" }
-        ]
-    },
-    {
-        id: "travelAlterEgo",
-        questions: "What is your travel alter ego?",
-        answers: [
-            { text: "The Explorer" },
-            { text: "The Historian" },
-            { text: "The Foodie" },
-            { text: "The Spa Lover" }
-        ]
-    },
-    {
-        id: "preferredViews",
-        questions: "Which view would make you stop and take a picture?",
-        answers: [
-            { text: "Sunset by the beach" },
-            { text: "City skyline at night" },
-            { text: "Mountains above the clouds" }
-        ]
-    },
-    {
-        id: "photosToPost",
-        questions: "What kind of trip pics would you post after you get back home?",
-        answers: [
-            { text: "Cool historical/cultural stuff" },
-            { text: "Food" },
-            { text: "The streets" },
-            { text: "Good natural scenery/cityscapes" }
         ]
     },
     {
@@ -113,6 +78,99 @@ const questions = [
             { text: "See it all" },
             { text: "See it deeply" }
         ]
+    },
+    {
+        id: "visaWillingness",
+        questions: "Are you willing to get a visa for traveling?",
+        type: "image-choice",
+        answers: [
+        { 
+            text: "Yes", 
+            image: "visa.jpg", 
+            caption: "Yes! I'm willing to get a travel visa"
+        },
+        { 
+            text: "No", 
+            image: "NoVisa.png", 
+            caption: "No! I'm not willing to get a travel visa"
+        }
+    ]
+    },
+    {
+        id: "travelAlterEgo",
+        questions: "What is your travel alter ego?",
+        type: "image-choice",
+        answers: [
+        { 
+            text: "The Explorer", 
+            image: "theAdventurer.jpg", 
+            caption: "Always searching for an adventure"
+        },
+        { 
+            text: "The Historian", 
+            image: "theHistorian.jpg", 
+            caption: "Facinated by local culture museums"
+        },
+        { 
+            text: "The Foodie", 
+            image: "TheFoodie.png", 
+            caption: "Planning my trip around good food"
+        },
+        { 
+            text: "The Spa Lover", 
+            image: "spaLover.jpg", 
+            caption: "Prioritizing ultimate relaxation"
+        }
+    ]
+    },
+    {
+        id: "preferredViews",
+        questions: "Which view would make you stop and take a picture?",
+        type: "image-choice",
+        answers: [
+        { 
+            text: "Sunset by the beach", 
+            image: "sunsetByBeach.jpg", 
+            caption: "Coastal golden hour"
+        },
+        { 
+            text: "City skyline at night", 
+            image: "citySkylineNight.jpg", 
+            caption: "Bright lights & high rises"
+        },
+        { 
+            text: "Mountains above the clouds", 
+            image: "mountainsAboveCloud.jpg", 
+            caption: "Top-of-the-world views"
+        },
+    ]
+    },
+    {
+        id: "photosToPost",
+        questions: "What kind of trip pics would you post after you get back home?",
+        type: "image-choice",
+        answers: [
+        { 
+            text: "Unique historical and cultural experiences", 
+            image: "uniqueExperiences.jpg", 
+            caption: "Local heritage & hidden history"
+        },
+        { 
+            text: "Food dumps", 
+            image: "foodDumps.jpg", 
+            caption: "Mouthwatering meals & street eats"
+        },
+        { 
+            text: "The streets", 
+            image: "streetsInNY.jpg", 
+            caption: "City vibes & candid street shots"
+        },
+        { 
+            text: "Good natural scenery", 
+            image: "southAmericaNature.jpg", 
+            caption: "No filter needed"
+        }
+    ]
     },
     {
         id: "sleepInOrEarly",
@@ -177,12 +235,13 @@ const questions = [
     {
         id: "peopleOnTrip",
         questions: "How many people will be on this trip?",
+        type: "single-dropdown",
         answers: [
             { text: "1" },
             { text: "2" },
             { text: "3-5" },
             { text: "6-9" },
-            { text: "+10" }
+            { text: "10+" }
         ]
     },
     {
@@ -190,7 +249,8 @@ const questions = [
         questions: "What is your budget per person, per day for food and activities?",
         answers: [
             { text: "$" },
-            { text: "$$" }, { text: "$$$" }
+            { text: "$$" }, 
+            { text: "$$$" }
         ]
     },
     {
@@ -251,6 +311,111 @@ const questionElement = document.getElementById("question");
 const answerButton = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
 const backButton = document.getElementById("back-btn");
+const progressText = document.getElementById("progress-text");
+const progressPercent = document.getElementById("progress-percent");
+const progressFill = document.getElementById("progress-fill");
+const progressPlane = document.getElementById("progress-plane");
+const progressTrack = document.querySelector(".progress-track");
+
+// =============================
+// UPDATE ASSESSMENT PROGRESS
+// =============================
+
+function updateProgress() {
+
+    let answeredQuestions = 0;
+
+    questions.forEach(question => {
+
+        const answer = selectedAnswers[question.id];
+
+        if (answer === undefined || answer === null) {
+            return;
+        }
+
+        // Check multiple selections
+        if (Array.isArray(answer)) {
+
+            if (answer.length > 0) {
+                answeredQuestions++;
+            }
+
+        }
+
+        // Check objects (e.g. countries)
+        else if (typeof answer === "object") {
+
+            if (Object.keys(answer).length > 0) {
+                answeredQuestions++;
+            }
+
+        }
+
+        // Check regular single answers
+        else {
+
+            answeredQuestions++;
+
+        }
+
+    });
+
+    const totalQuestions = questions.length;
+
+    const percentage = Math.round(
+        (answeredQuestions / totalQuestions) * 100
+    );
+
+    
+    progressText.textContent =
+        `${answeredQuestions} of ${totalQuestions} questions answered`;
+
+    progressPercent.textContent = `${percentage}%`;
+
+    // Move the airplane
+    progressPlane.style.left = `${percentage}%`;
+
+    // Update completed flight path
+    progressFill.style.width = `${percentage}%`;
+
+    // Update accessibility information
+    progressTrack.setAttribute("aria-valuenow", percentage);
+
+    // Update milestone markers
+    document.querySelectorAll(".route-marker").forEach(marker => {
+        const milestone = parseInt(
+            marker.classList[1].replace("marker-", ""),
+            10
+        );
+
+        marker.classList.toggle(
+            "completed",
+            percentage >= milestone
+        );
+    });
+
+    // Change airplane color based on progress
+    progressPlane.classList.remove(
+        "milestone-25",
+        "milestone-50",
+        "milestone-75",
+        "milestone-100"
+    );
+
+    if (percentage >= 100) {
+        progressPlane.classList.add("milestone-100");
+    } else if (percentage >= 75) {
+        progressPlane.classList.add("milestone-75");
+    } else if (percentage >= 50) {
+        progressPlane.classList.add("milestone-50");
+    } else if (percentage >= 25) {
+        progressPlane.classList.add("milestone-25");
+    }
+
+}
+
+answerButton.addEventListener("click", updateProgress);
+answerButton.addEventListener("change", updateProgress);
 
 let currentQuestionIndex = 0;
 let selectedAnswers = {};
@@ -269,30 +434,40 @@ function showQuestion() {
     let currentQuestion = questions[currentQuestionIndex];
     const qId = currentQuestion.id || currentQuestionIndex;
     let questionNo = currentQuestionIndex + 1;
-    questionElement.innerHTML = `QUESTION ${questionNo} OF ${questions.length}<br><span style="font-size: 22px; font-weight: 700;">${currentQuestion.questions}</span>`;
-
+    questionElement.innerHTML = `<span style="font-size: 22px; font-weight: 700;">${currentQuestion.questions}</span>`;
     // Show Back button if we are past the first question
     if (currentQuestionIndex > 0) {
         backButton.style.display = "block";
     }
 
     // Check if it's a text input question
-    if (currentQuestion.type === "text") {
+    
+    if (currentQuestion.type === "multiple-places") {
+
         const container = document.createElement("div");
         container.style.display = "flex";
         container.style.flexDirection = "column";
-        container.style.gap = "10px";
+        container.style.gap = "12px";
 
+        // Country search input
         const input = document.createElement("input");
         input.type = "text";
-        input.placeholder = "e.g., New York, NY or Paris, France";
+        input.placeholder = "Search a country (e.g. Japan)";
         input.className = "text-input-field";
 
+        // Feedback message
         const feedback = document.createElement("div");
         feedback.style.fontSize = "13px";
-        feedback.style.marginTop = "2px";
         feedback.style.color = "#7a7265";
 
+        // Search result container
+        const resultContainer = document.createElement("div");
+
+        // Selected countries container
+        const selectedContainer = document.createElement("div");
+        selectedContainer.className = "selected-countries";
+
+        // Not sure button
         const divider = document.createElement("div");
         divider.style.textAlign = "center";
         divider.style.fontSize = "13px";
@@ -306,91 +481,219 @@ function showQuestion() {
         notSureBtn.style.textAlign = "center";
         notSureBtn.innerHTML = "Not sure / Open to anything";
 
-        container.appendChild(input);
-        container.appendChild(feedback);
-        container.appendChild(divider);
-        container.appendChild(notSureBtn);
-        answerButton.appendChild(container);
+        // Restore previous selections
+        if (!Array.isArray(selectedAnswers[qId])) {
+            selectedAnswers[qId] = [];
+        }
+
+        // Display selected countries
+        function updateSelectedPlaces() {
+
+            selectedContainer.innerHTML = "";
+
+            selectedAnswers[qId].forEach((place, index) => {
+
+                const tag = document.createElement("button");
+
+                tag.type = "button";
+                tag.className = "country-tag";
+
+                tag.textContent = place.name + " x";
+
+                tag.addEventListener("click", () => {
+
+                    selectedAnswers[qId].splice(index, 1);
+
+                    updateSelectedPlaces();
+
+                });
+
+                selectedContainer.appendChild(tag);
+
+            });
+
+            nextButton.style.display =
+                selectedAnswers[qId].length > 0 ||
+                selectedAnswers[qId].isNotSure
+                    ? "block"
+                    : "none";
+        }
+
+        // Restore Not sure selection
+        if (selectedAnswers[qId].isNotSure) {
+            notSureBtn.classList.add("selected");
+            input.disabled = true;
+        }
+
+        updateSelectedPlaces();
 
         let debounceTimer;
 
-        // Restore previously selected text or "not sure" answer when going back/forth
-        if (selectedAnswers[qId]) {
-            const saved = selectedAnswers[qId];
-            if (saved.isNotSure) {
-                notSureBtn.classList.add("selected");
-                nextButton.style.display = "block";
-            } else if (saved.query) {
-                input.value = saved.query;
-                feedback.innerHTML = `Verified: ${saved.displayName}`;
-                feedback.style.color = "#4a5d4e";
-                nextButton.style.display = "block";
-            }
-        }
+        // Search countries
+        input.addEventListener("input", () => {
 
-        // Search and validation on typing
-        input.addEventListener("input", (e) => {
-            const query = e.target.value.trim();
-            nextButton.style.display = "none";
-            notSureBtn.classList.remove("selected");
-            
+            const query = input.value.trim();
+
+            clearTimeout(debounceTimer);
+            resultContainer.innerHTML = "";
+
             if (query.length < 3) {
-                feedback.innerHTML = "Type at least 3 characters to search...";
-                feedback.style.color = "#7a7265";
+
+                feedback.textContent =
+                    "Type at least 3 characters to search...";
+
                 return;
             }
 
-            feedback.innerHTML = "Searching location...";
+            feedback.textContent = "Searching country...";
             feedback.style.color = "#7a7265";
 
-            clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(() => {
-                fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data && data.length > 0) {
-                            const validLocation = data[0];
-                            feedback.innerHTML = `Found: ${validLocation.display_name}`;
-                            feedback.style.color = "#4a5d4e";
-                            
-                            selectedAnswers[qId] = {
-                                query: query,
-                                displayName: validLocation.display_name,
-                                lat: validLocation.lat,
-                                lon: validLocation.lon,
-                                isNotSure: false
-                            };
-                            nextButton.style.display = "block";
-                        } else {
-                            feedback.innerHTML = "Location not found. Please try a different place.";
+            debounceTimer = setTimeout(async () => {
+
+                try {
+
+                    const response = await fetch(
+                        `https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&featuretype=country&limit=10&q=${encodeURIComponent(query)}`
+                    );
+
+                    const data = await response.json();
+
+                    if (data && data.length > 0) {
+
+                        const validLocation = data.find(item =>
+                            item.type === "administrative" &&
+                            item.addresstype === "country" &&
+                            item.address?.country_code
+                        );
+
+                        if (!validLocation) {
+                            feedback.textContent =
+                                "Please enter a valid country name. Cities and addresses are not accepted.";
+
                             feedback.style.color = "#b2533e";
+                            return;
                         }
-                    })
-                    .catch(err => {
-                        feedback.innerHTML = "Could not verify location (network error).";
-                        feedback.style.color = "#7a7265";
-                    });
+
+                        const countryCode =
+                            validLocation.address?.country_code?.toUpperCase();
+
+                        feedback.textContent =
+                            "Found: " + validLocation.display_name;
+
+                        feedback.style.color = "#4a5d4e";
+
+                        const addButton = document.createElement("button");
+
+                        addButton.type = "button";
+                        addButton.className = "btn";
+                        addButton.textContent = "+ Add country";
+
+                        addButton.addEventListener("click", () => {
+
+                            if (!countryCode) {
+                                feedback.textContent =
+                                    "Could not identify country code.";
+                                return;
+                            }
+
+                            const alreadyAdded =
+                                selectedAnswers[qId].some(
+                                    place => place.code === countryCode
+                                );
+
+                            if (!alreadyAdded) {
+
+                                selectedAnswers[qId].push({
+                                    name: validLocation.display_name,
+                                    code: countryCode,
+                                    lat: validLocation.lat,
+                                    lon: validLocation.lon
+                                });
+
+                            }
+
+                            input.value = "";
+                            feedback.textContent = "";
+                            resultContainer.innerHTML = "";
+
+                            updateSelectedPlaces();
+
+                        });
+
+                        resultContainer.appendChild(addButton);
+
+                    } else {
+
+                        feedback.textContent =
+                            "Country not found. Please try another.";
+
+                        feedback.style.color = "#b2533e";
+
+                    }
+
+                } catch (error) {
+
+                    feedback.textContent =
+                        "Could not verify country (network error).";
+
+                    feedback.style.color = "#7a7265";
+
+                }
+
             }, 500);
+
+            });
+
+            // Not sure button
+            notSureBtn.addEventListener("click", () => {
+
+                const isSelected = selectedAnswers[qId].isNotSure;
+
+                if (isSelected) {
+
+                    selectedAnswers[qId] = [];
+                    notSureBtn.classList.remove("selected");
+                    input.disabled = false;
+
+            } else {
+
+                selectedAnswers[qId] = {
+                    isNotSure: true
+                };
+
+                notSureBtn.classList.add("selected");
+                input.value = "";
+                input.disabled = true;
+
+                feedback.textContent = "";
+                resultContainer.innerHTML = "";
+                selectedContainer.innerHTML = "";
+
+            }
+
+            updateSelectedPlaces();
+
         });
 
-        // Click handler for "Not sure" button
-        notSureBtn.addEventListener("click", () => {
-            input.value = "";
-            feedback.innerHTML = "";
-            notSureBtn.classList.add("selected");
+        // Add elements to page
+        container.appendChild(input);
+        container.appendChild(feedback);
+        container.appendChild(resultContainer);
+        container.appendChild(selectedContainer);
+        container.appendChild(divider);
+        container.appendChild(notSureBtn);
 
-            selectedAnswers[qId] = {
-                isNotSure: true,
-                displayName: "Not sure / Any"
-            };
-            nextButton.style.display = "block";
-        });
+        answerButton.appendChild(container);
+
+
 
     } else if (currentQuestion.type === "image-choice") {
         const container = document.createElement("div");
         container.style.display = "grid";
-        container.style.gridTemplateColumns = "repeat(2, 1fr)";
-        container.style.gap = "20px";
+        container.style.gridTemplateColumns =
+            "repeat(2, minmax(0, 1fr))";
+        container.style.gap = "14px";
+        container.style.alignItems = "stretch";
         container.style.marginTop = "20px";
 
         currentQuestion.answers.forEach((answer, index) => {
@@ -419,6 +722,104 @@ function showQuestion() {
         });
 
         answerButton.appendChild(container);
+    } else if (currentQuestion.type === "single-dropdown") {
+
+    const container = document.createElement("div");
+    container.className = "custom-dropdown";
+
+    // Dropdown header
+    const trigger = document.createElement("button");
+    trigger.type = "button";
+    trigger.className = "dropdown-trigger";
+
+    // Dropdown text
+    const dropdownText = document.createElement("span");
+
+    // Dropdown arrow
+    const arrow = document.createElement("span");
+    arrow.textContent = "V";
+
+    trigger.appendChild(dropdownText);
+    trigger.appendChild(arrow);
+
+    // Options container
+    const optionsContainer = document.createElement("div");
+    optionsContainer.className = "dropdown-options";
+
+    // Restore previous selection
+    function updateDropdown() {
+
+        if (selectedAnswers[qId] !== undefined) {
+
+            dropdownText.textContent =
+                currentQuestion.answers[selectedAnswers[qId]].text;
+
+            nextButton.style.display = "block";
+
+        } else {
+
+            dropdownText.textContent = "Please select an option";
+
+            nextButton.style.display = "none";
+        }
+    }
+
+    // Open and close dropdown
+    trigger.addEventListener("click", () => {
+
+        const isOpen =
+            optionsContainer.classList.toggle("open");
+
+        arrow.textContent = isOpen ? "▲" : "▼";
+
+    });
+
+    // Generate options
+    currentQuestion.answers.forEach((answer, index) => {
+
+        const option = document.createElement("button");
+
+        option.type = "button";
+        option.className = "dropdown-option";
+
+        option.textContent = answer.text;
+
+        // Highlight previously selected option
+        if (selectedAnswers[qId] === index) {
+            option.classList.add("selected");
+        }
+
+        option.addEventListener("click", () => {
+
+            selectedAnswers[qId] = index;
+
+            // Update selected option
+            Array.from(optionsContainer.children).forEach(btn => {
+                btn.classList.remove("selected");
+            });
+
+            option.classList.add("selected");
+
+            // Update dropdown header
+            updateDropdown();
+
+            // Close dropdown
+            optionsContainer.classList.remove("open");
+            arrow.textContent = "V";
+
+        });
+
+        optionsContainer.appendChild(option);
+
+    });
+
+    container.appendChild(trigger);
+    container.appendChild(optionsContainer);
+
+    answerButton.appendChild(container);
+
+    updateDropdown();
+        ///////
         
     } else if (currentQuestion.type === "select") {
         // Multi-select month grid buttons
@@ -554,7 +955,128 @@ function showQuestion() {
         });
 
         answerButton.appendChild(container);
+     /*===================================================================*/
+      /*===================================================================*/
+       /*===================================================================*/
+    
+    } else if (currentQuestion.type === "dropdown") {
 
+        const container = document.createElement("div");
+        container.className = "months-dropdown";
+
+        // Store multiple selections
+        if (!Array.isArray(selectedAnswers[qId])) {
+            selectedAnswers[qId] = [];
+        }
+
+        // Dropdown header
+        const dropdownHeader = document.createElement("button");
+        dropdownHeader.type = "button";
+        dropdownHeader.className = "months-dropdown-header";
+
+        const dropdownText = document.createElement("span");
+
+        const arrow = document.createElement("span");
+        arrow.textContent = "▼";
+
+        dropdownHeader.appendChild(dropdownText);
+        dropdownHeader.appendChild(arrow);
+
+        // Dropdown options container
+        const optionsContainer = document.createElement("div");
+        optionsContainer.className = "months-dropdown-options";
+
+        // Update selected months
+        function updateDropdown() {
+
+            const selected = selectedAnswers[qId];
+
+            dropdownText.textContent = selected.length > 0
+                ? selected.join(", ")
+                : "Select your preferred months";
+
+            nextButton.style.display =
+                selected.length > 0 ? "block" : "none";
+        }
+
+        // Generate month grid
+        const monthsGrid = document.createElement("div");
+        monthsGrid.className = "months-grid";
+
+        currentQuestion.answers.forEach(answer => {
+
+            const month = answer.text;
+
+            const option = document.createElement("label");
+            option.className = "month-option";
+
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.value = month;
+
+            checkbox.checked =
+                selectedAnswers[qId].includes(month);
+
+            const monthText = document.createElement("span");
+            monthText.textContent = month;
+
+            if (checkbox.checked) {
+                option.classList.add("selected");
+            }
+
+            option.appendChild(checkbox);
+            option.appendChild(monthText);
+
+            checkbox.addEventListener("change", () => {
+
+                if (checkbox.checked) {
+
+                    if (!selectedAnswers[qId].includes(month)) {
+                        selectedAnswers[qId].push(month);
+                    }
+
+                    option.classList.add("selected");
+
+                } else {
+
+                    selectedAnswers[qId] =
+                        selectedAnswers[qId].filter(
+                            selectedMonth => selectedMonth !== month
+                        );
+
+                    option.classList.remove("selected");
+                }
+
+                updateDropdown();
+                updateProgress();
+            });
+
+            monthsGrid.appendChild(option);
+
+        });
+
+        optionsContainer.appendChild(monthsGrid);
+
+        // Open and close dropdown
+        dropdownHeader.addEventListener("click", () => {
+
+            const isOpen =
+                optionsContainer.classList.toggle("open");
+
+            arrow.textContent = isOpen ? "▲" : "▼";
+
+        });
+
+        container.appendChild(dropdownHeader);
+        container.appendChild(optionsContainer);
+
+        answerButton.appendChild(container);
+
+        updateDropdown();
+
+
+
+        //////
     } else {
         // Standard single-select buttons for regular questions
         currentQuestion.answers.forEach((answer, index) => {
@@ -571,6 +1093,8 @@ function showQuestion() {
             answerButton.appendChild(button);
         });
     }
+
+    updateProgress();
 }
 
 function resetState() {
@@ -616,31 +1140,19 @@ function formatFinalQuizPayload(answers) {
         }
     }
 
-    // Question 1: startingLocation: [“Portland, OR”]
-    let startingLocation = [];
-    const q1Ans = answers["startingLocation"];
-    if (q1Ans && !q1Ans.isNotSure) {
-        const loc = q1Ans.query || q1Ans.displayName || "";
-        if (loc.trim()) {
-            startingLocation = [loc.trim()];
-        }
-    }
-    if (startingLocation.length === 0) {
-        startingLocation = ["Portland, OR"];
-    }
-
     // Question 2: preferredCountries: [“MY”]
     let preferredCountries = [];
+
     const q2Ans = answers["preferredCountries"];
-    if (q2Ans && !q2Ans.isNotSure) {
-        const countryVal = q2Ans.query || q2Ans.displayName || "";
-        const code = countryVal ? lookupCountryCode(countryVal) : null;
-        if (code) {
-            preferredCountries = [code];
-        } else if (countryVal.trim()) {
-            preferredCountries = [countryVal.trim().toUpperCase()];
-        }
+
+    if (Array.isArray(q2Ans) && q2Ans.length > 0) {
+
+        preferredCountries = q2Ans
+            .map(place => place.code)
+            .filter(Boolean);
+
     }
+
     if (preferredCountries.length === 0) {
         preferredCountries = ["MY"];
     }
@@ -685,7 +1197,16 @@ function formatFinalQuizPayload(answers) {
     if (q5Idx !== undefined && qMap["preferredWeather"]?.answers[q5Idx]) {
         preferredWeather = qMap["preferredWeather"].answers[q5Idx].text;
     }
+    //Temp Q
+    let preferredTemp = "No Preference | Any Weather";
+    const qTempIdx = answers["preferredTemp"];
 
+    if (
+        qTempIdx !== undefined &&
+        qMap["preferredTemp"]?.answers[qTempIdx]
+    ) {
+        preferredTemp = qMap["preferredTemp"].answers[qTempIdx].text;
+    }
     // Question 6: visaWillingness: false
     let visaWillingness = false;
     const q6Idx = answers["visaWillingness"];
@@ -698,13 +1219,6 @@ function formatFinalQuizPayload(answers) {
     const q7Idx = answers["highRiskDestWillingness"];
     if (q7Idx !== undefined) {
         highRiskDestWillingness = q7Idx === 0; // 0: Yes, 1: No, 2: Maybe
-    }
-
-    // Question 8: preferredAccomodation: “5 star hotel”
-    let preferredAccomodation = "5 star hotel";
-    const q8Idx = answers["preferredAccomodation"];
-    if (q8Idx !== undefined && qMap["preferredAccomodation"]?.answers[q8Idx]) {
-        preferredAccomodation = qMap["preferredAccomodation"].answers[q8Idx].text;
     }
 
     // Question 9: travelAlterEgo: “The Explorer”
@@ -794,15 +1308,14 @@ function formatFinalQuizPayload(answers) {
     }
 
     return {
-        startingLocation,
         preferredCountries,
         preferredMonths,
         minNights,
         maxNights,
         preferredWeather,
+        preferredTemp,
         visaWillingness,
         highRiskDestWillingness,
-        preferredAccomodation,
         travelAlterEgo,
         preferredViews,
         photosToPost,

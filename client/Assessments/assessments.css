@@ -1,7 +1,8 @@
+
 :root {
     /* Backgrounds & Surfaces */
     --bg-paper: #f4f1ea;
-    --bg-dots: #e3decb; /* polka dots */
+    --bg-dots: #e3decb;
     --card-bg: #fcfbfa;
 
     /* Text Colors */
@@ -11,7 +12,7 @@
     --text-h2: #5c5244;
     --text-white: #fff;
 
-    /* Primary Interactive Colors (Vintage Olive) */
+    /* Primary Interactive Colors */
     --primary: #5c4033;
     --primary-hover: #432e24;
     --focus-ring: rgba(92, 64, 51, 0.2);
@@ -24,6 +25,10 @@
     --hover-bg: #f3efe6;
 }
 
+/* ============================= */
+/* GLOBAL STYLING */
+/* ============================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -31,66 +36,133 @@
     box-sizing: border-box;
 }
 
-body {
-    background-image: url('AssessmentBG.png'); /* Replace with your actual image file name */
-    background-size: cover;     /* Scales the image to cover the entire screen */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents the image from repeating like a tile */
-    background-attachment: fixed; /* Keeps the background stationary when scrolling */
+html {
+    min-height: 100%;
 }
+
+body {
+    min-height: 100vh;
+    margin: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url('AssessmentBG.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    padding: 20px;
+}
+
+/* ============================= */
+/* MAIN ASSESSMENT BOX */
+/* ============================= */
 
 .app {
     background-color: var(--card-bg);
-    width: 90%;
-    max-width: 800px;
-    margin: 60px auto 0;
-    border-radius: 8px;
-    padding: 40px;
+
+    width: 1000px;
+    max-width: 100%;
+
+    height: auto;
+    min-height: 0;
+    max-height: none;
+
+    margin: auto;
+    padding: 35px 45px;
+
+    border-radius: 10px;
     border: 1px solid var(--border-app);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: visible;
+
+    transition: height 0.25s ease;
 }
 
+/* ============================= */
+/* HEADING */
+/* ============================= */
+
 .app h1 {
-    font-size: 20px;
+    font-size: 24px;
     letter-spacing: 2px;
     color: var(--text-h1);
     font-weight: 600;
     text-transform: uppercase;
+
     border-bottom: 1px solid var(--border-light);
-    padding-bottom: 15px;
-    margin-bottom: 20px;
+
+    padding-bottom: 18px;
+    margin-bottom: 25px;
 }
 
+/* ============================= */
+/* QUIZ CONTENT */
+/* ============================= */
+
 .quiz {
-    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    width: 100%;
+    min-height: 0;
+    overflow: visible;
 }
 
 .quiz h2 {
-    font-size: 14px;
+    font-size: 15px;
     letter-spacing: 1px;
     color: var(--text-h2);
     font-weight: 600;
     text-transform: uppercase;
-    margin-bottom: 25px;
+
+    margin-bottom: 22px;
     line-height: 1.5;
 }
 
+/* ============================= */
+/* ANSWER CONTAINER */
+/* ============================= */
+
 #answer-buttons {
     display: grid;
-    gap: 12px;
+    gap: 15px;
+
+    width: 100%;
+    flex: none;
+    min-height: 0;
+
+    overflow: visible;
 }
+
+/* ============================= */
+/* STANDARD ANSWER BUTTONS */
+/* ============================= */
 
 .btn {
     background-color: var(--card-bg);
     color: var(--text-main);
+
     font-weight: 500;
-    padding: 14px 20px;
+    padding: 16px 20px;
+
     width: 100%;
+
     border: 1px solid var(--border-input);
     text-align: left;
     border-radius: 6px;
+
     cursor: pointer;
     transition: all 0.2s ease;
+
     font-size: 16px;
 }
 
@@ -105,36 +177,85 @@ body {
     border-color: var(--primary);
 }
 
-#next-btn {
-    background: var(--primary);
-    color: var(--text-white);
-    font-weight: 600;
-    width: 140px;
-    border: 0;
-    padding: 12px 20px;
-    margin: 30px 0 0 auto;
-    border-radius: 6px;
+/* ============================= */
+/* IMAGE CHOICES */
+/* ============================= */
+
+.image-card {
+    height: 190px;
+    min-height: 190px;
+
+    padding: 8px;
+
+    border: 1px solid var(--border-input);
+    border-radius: 8px;
+
     cursor: pointer;
-    display: none;
-    text-align: center;
-    float: right;
-    transition: background 0.2s;
+    overflow: hidden;
+
+    transition: all 0.2s ease;
 }
 
-#next-btn:hover {
-    background: var(--primary-hover);
+.image-card img {
+    width: 100%;
+
+    height: 135px;
+    min-height: 135px;
+
+    object-fit: cover;
+    border-radius: 6px;
 }
+
+.image-card-text {
+    font-size: 16px;
+    font-weight: 600;
+
+    color: var(--primary);
+
+    margin-top: 5px;
+    margin-bottom: 3px;
+}
+
+.image-card-caption {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.image-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+}
+
+.image-card.selected {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
+.image-card.selected .image-card-text,
+.image-card.selected .image-card-caption {
+    color: white;
+}
+
+/* ============================= */
+/* TEXT INPUTS & DROPDOWNS */
+/* ============================= */
 
 .text-input-field {
     background-color: var(--card-bg);
     color: var(--text-main);
+
     font-weight: 500;
     padding: 14px 20px;
+
     width: 100%;
+
     border: 1px solid var(--border-input);
     border-radius: 6px;
+
     font-size: 16px;
     outline: none;
+
     transition: all 0.2s ease;
 }
 
@@ -143,24 +264,37 @@ body {
     box-shadow: 0 0 0 2px var(--focus-ring);
 }
 
+/* ============================= */
+/* NAVIGATION BUTTONS */
+/* ============================= */
+
 .quiz-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 30px;
+
+    margin-top: auto;
+    padding-top: 25px;
+
+    flex-shrink: 0;
 }
 
 #back-btn {
     background: transparent;
     color: var(--primary);
+
     font-weight: 600;
-    width: 140px;
+    width: 175px;
+
     border: 1px solid var(--primary);
-    padding: 12px 20px;
+    padding: 14px 20px;
+
     border-radius: 6px;
     cursor: pointer;
+
     display: none;
     text-align: center;
+
     transition: all 0.2s;
 }
 
@@ -171,14 +305,19 @@ body {
 #next-btn {
     background: var(--primary);
     color: var(--text-white);
+
     font-weight: 600;
-    width: 140px;
+    width: 175px;
+
     border: 0;
-    padding: 12px 20px;
+    padding: 14px 20px;
+
     border-radius: 6px;
     cursor: pointer;
+
     display: none;
     text-align: center;
+
     transition: background 0.2s;
     margin: 0;
 }
@@ -187,12 +326,36 @@ body {
     background: var(--primary-hover);
 }
 
-/* Styling for the Not Sure option button */
+/* ============================= */
+/* RECOMMENDATIONS BUTTON */
+/* ============================= */
+
+#next-btn.recommendations-btn {
+    width: 320px;
+    padding: 16px 24px;
+    font-size: 16px;
+
+    margin: 0 auto;
+
+    float: none;
+    display: block;
+}
+
+.quiz-nav:has(.recommendations-btn) {
+    justify-content: center;
+}
+
+/* ============================= */
+/* NOT SURE BUTTON */
+/* ============================= */
+
 .not-sure-divider {
     text-align: center;
     margin: 15px 0 10px;
+
     font-size: 13px;
     color: var(--text-muted);
+
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -200,6 +363,7 @@ body {
 .not-sure-btn {
     background-color: var(--card-bg);
     color: var(--primary);
+
     border: 1px dashed var(--primary);
     font-weight: 600;
 }
@@ -215,64 +379,576 @@ body {
     border-style: solid;
 }
 
-.image-card {
-    background-color: var(--card-bg);
-    border: 2px solid var(--border-input);
-    border-radius: 12px;
-    padding: 15px;
+/* ============================= */
+/* COUNTRY GRID */
+/* ============================= */
+
+.country-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.country-grid .btn {
     text-align: center;
+}
+
+/* ============================= */
+/* SELECTED COUNTRIES BOX */
+/* ============================= */
+
+.selected-countries {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+
+    width: 100%;
+    min-height: 55px;
+
+    padding: 10px;
+
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-input);
+    border-radius: 6px;
+}
+
+/* Individual country tags */
+.country-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: auto;
+
+    padding: 8px 12px;
+
+    background-color: var(--card-bg);
+    color: var(--text-main);
+
+    border: 1px solid var(--border-input);
+    border-radius: 5px;
+
+    font-size: 14px;
+    font-weight: 500;
+
     cursor: pointer;
     transition: all 0.2s ease;
+}
+
+.country-tag:hover {
+    background-color: var(--hover-bg);
+    border-color: var(--border-hover);
+}
+
+/* ============================= */
+/* CHECKBOXES */
+/* ============================= */
+
+#answer-buttons label:hover {
+    background-color: var(--hover-bg);
+}
+
+#answer-buttons input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: var(--primary);
+}
+
+/* ============================= */
+/* TABLET & MOBILE */
+/* ============================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 12px;
+        align-items: center;
+    }
+
+    .app {
+        width: 100%;
+        max-width: 535px;
+
+        height: auto;
+        min-height: 0;
+        max-height: none;
+
+        padding: 20px;
+
+        overflow-y: visible;
+    }
+
+    .app h1 {
+        font-size: 19px;
+    }
+
+    .quiz h2 {
+        font-size: 12px;
+    }
+
+    .image-card {
+        height: 155px;
+        min-height: 155px;
+    }
+
+    .image-card img {
+        height: 100px;
+        min-height: 100px;
+    }
+
+    .image-card-text {
+        font-size: 13px;
+    }
+
+    .image-card-caption {
+        font-size: 11px;
+    }
+
+    .country-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #back-btn,
+    #next-btn {
+        width: 120px;
+        padding: 12px;
+    }
+}
+
+/* ============================= */
+/* SMALL MOBILE */
+/* ============================= */
+
+@media (max-width: 380px) {
+
+    .app {
+        padding: 15px;
+    }
+
+    .image-card {
+        height: 135px;
+        min-height: 135px;
+        padding: 5px;
+    }
+
+    .image-card img {
+        height: 85px;
+        min-height: 85px;
+    }
+
+    .image-card-text {
+        font-size: 11px;
+    }
+
+    .image-card-caption {
+        font-size: 9px;
+    }
+}
+
+/* ============================= */
+/* SHORT SCREENS */
+/* ============================= */
+
+@media (max-height: 600px) {
+
+    body {
+        align-items: flex-start;
+    }
+
+    .app {
+        margin: 0;
+    }
+}
+
+/* ============================= */
+/* CUSTOM EXPANDING DROPDOWN */
+/* ============================= */
+
+.custom-dropdown {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 5px;
 }
 
-.image-card img {
+/* Dropdown header */
+
+.dropdown-trigger {
     width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 12px;
+
+    background: var(--card-bg);
+    color: var(--text-main);
+
+    padding: 14px 20px;
+
+    border: 1px solid var(--border-input);
+    border-radius: 6px;
+
+    font-size: 16px;
+    text-align: left;
+
+    cursor: pointer;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.image-card-text {
+/* Dropdown options */
+
+.dropdown-options {
+    display: none;
+    flex-direction: column;
+
+    width: 100%;
+
+    background: var(--card-bg);
+
+    border: 1px solid var(--border-input);
+    border-radius: 6px;
+
+    overflow: hidden;
+}
+
+.dropdown-options.open {
+    display: flex;
+}
+
+/* Individual options */
+
+.dropdown-option {
+    background: var(--card-bg);
+    color: var(--text-main);
+
+    border: none;
+
+    padding: 10px 20px;
+
+    width: 100%;
+
+    text-align: left;
     font-size: 16px;
+
+    cursor: pointer;
+}
+
+.dropdown-option:hover {
+    background: var(--hover-bg);
+}
+
+.dropdown-option.selected {
+    background: var(--hover-bg);
     font-weight: 600;
-    color: var(--primary);
-    margin-bottom: 8px;
+}
+
+
+
+/* ================================= */
+/* VINTAGE FLIGHT PATH PROGRESS */
+/* ================================= */
+
+.progress-track {
+    position: relative;
+    width: calc(100% - 24px);
+    height: 30px;
+    margin: 0 12px;
+    overflow: visible;
+}
+
+/* Background dotted flight path */
+.progress-track::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 100%;
+    border-top: 2px dashed #d5cabb;
+}
+
+/* Completed flight path */
+#progress-fill {
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 0%;
+    height: 0;
+    border-top: 2px dashed var(--primary);
+    transition: width 0.7s ease;
+}
+
+/* Airplane */
+#progress-plane {
+    position: absolute;
+    left: 0%;
+    top: 2px;
+    font-size: 23px;
+    color: #c9bba8;
+    transform: translateX(-50%);
+    transition: left 0.7s ease, color 0.3s ease;
+    z-index: 2;
+    line-height: 1;
+}
+
+/* Milestone markers */
+.route-marker {
+    position: absolute;
+    top: 10px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #c9bba8;
+    border: 2px solid var(--card-bg);
+    transform: translateX(-50%);
+    z-index: 1;
+    transition: background 0.3s ease;
+}
+
+.marker-25 {
+    left: 25%;
+}
+
+.marker-50 {
+    left: 50%;
+}
+
+.marker-75 {
+    left: 75%;
+}
+
+.marker-100 {
+    left: 100%;
+}
+
+/* Completed milestones */
+.route-marker.completed {
+    background: var(--primary);
+}
+
+/* Airplane milestone colors */
+#progress-plane.milestone-25 {
+    color: #80604a;
+}
+
+#progress-plane.milestone-50 {
+    color: #70513d;
+}
+
+#progress-plane.milestone-75 {
+    color: #5c4033;
+}
+
+#progress-plane.milestone-100 {
+    color: #432e24;
+}
+
+
+/* Milestone markers */
+
+.route-marker {
+    position: absolute;
+
+    top: 10px;
+
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #c9bba8;
+    border: 2px solid var(--card-bg);
+
+    transform: translateX(-50%);
+
+    z-index: 1;
+
+    transition: background 0.3s ease;
+}
+
+.marker-25 {
+    left: 25%;
+}
+
+.marker-50 {
+    left: 50%;
+}
+
+.marker-75 {
+    left: 75%;
+}
+
+.marker-100 {
+    left: 100%;
+}
+
+/* Completed milestones */
+
+.route-marker.completed {
+    background: var(--primary);
+}
+
+/* Airplane default color */
+#progress-plane {
+    color: #c9bba8;
+    transition: left 0.7s ease, color 0.3s ease;
+}
+
+/* Airplane changes color after crossing a milestone */
+#progress-plane.milestone-25 {
+    color: #80604a;
+}
+
+#progress-plane.milestone-50 {
+    color: #70513d;
+}
+
+#progress-plane.milestone-75 {
+    color: #5c4033;
+}
+
+#progress-plane.milestone-100 {
+    color: #432e24;
+}
+
+
+/* ================================= */
+/* MONTH SELECTION DROPDOWN */
+/* ================================= */
+
+.months-dropdown {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+/* Dropdown header */
+
+.months-dropdown-header {
+    width: 100%;
+    background: var(--card-bg);
+    color: var(--text-main);
+
+    padding: 17px 22px;
+
+    border: 1px solid var(--border-input);
+    border-radius: 6px;
+
+    font-size: 16px;
+    font-family: inherit;
+    text-align: left;
+
+    cursor: pointer;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Dropdown panel */
+
+.months-dropdown-options {
+    display: none;
+
+    width: 100%;
+
+    background: var(--card-bg);
+
+    border: 1px solid var(--border-input);
+    border-radius: 6px;
+
+    overflow: hidden;
+}
+
+.months-dropdown-options.open {
+    display: block;
+}
+
+/* Three-column month grid */
+
+.months-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Individual month rectangle */
+
+.month-option {
+    min-height: 51px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px 17px;
+
+    border-bottom: 1px solid var(--border-light);
+    border-right: 1px solid var(--border-light);
+
+    cursor: pointer;
+
+    font-size: 16px;
+    color: var(--text-main);
+
+    transition: background 0.2s ease;
+}
+
+/* Remove unnecessary right borders */
+
+.month-option:nth-child(3n) {
+    border-right: none;
+}
+
+/* Hover effect */
+
+.month-option:hover {
+    background: var(--hover-bg);
+}
+
+/* Checkbox */
+
+.month-option input {
+    width: 18px;
+    height: 18px;
+
+    flex-shrink: 0;
+
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+/* Selected month */
+
+.month-option.selected {
+    background: #f0e9df;
+    font-weight: 600;
+}
+
+/* Mobile adjustments */
+
+@media (max-width: 600px) {
+
+    .months-option {
+        font-size: 13px;
+        padding: 10px 7px;
+    }
+
+    .month-option {
+        font-size: 13px;
+        gap: 7px;
+        padding: 10px 7px;
+        min-height: 45px;
+    }
+
+    .month-option input {
+        width: 15px;
+        height: 15px;
+    }
+
 }
 
 .image-card-caption {
-    font-size: 13px;
-    color: var(--text-muted);
-}
-
-.image-card:hover {
-    border-color: var(--border-hover);
-    transform: translateY(-2px);
-}
-
-.image-card.selected {
-    background-color: #5c4033; 
-    border-color: #5c4033;
-    color: white;
-}
-
-.image-card.selected .image-card-text,
-.image-card.selected .image-card-caption {
-    color: white;
-}
-
-#next-btn.recommendations-btn {
-    width: 320px;           
-    padding: 16px 24px;     
-    font-size: 16px;        
-    margin: 0 auto;         
-    float: none;            
-    display: block;         
-}
-
-.quiz-nav:has(.recommendations-btn) {
-    justify-content: center;
+    position: relative;
+    top: -5px;
 }
