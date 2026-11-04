@@ -6,17 +6,15 @@ const {instrument,measured}=require('./telemetryService');
 const { schema,buildExplanationRequest } = require('../prompts/countryExplanationPrompt');
 const {TRIP_POLICY}=require('../config/tripPolicy');
 const {BUDGET}=require('./destinationScoringService');
-const {countryDetails} = require('./countryInfoService');
-const { getCountryFallbackReason,naturalizeCountryReason } = require('./countryHighlights');
+const display = require('../data/countryInfo.json');
+const { getCountryFallbackReason } = require('./countryHighlights');
 async function recommend(user,quiz) {
   const eligible=await visaEligibility(user,quiz);
   const selected=await measured('countryRanking',()=>rankCountries(quiz,eligible).slice(0,3));
   if(selected.length<3) throw apiError('INSUFFICIENT_COUNTRIES','We could not find three countries with routes that fit your trip length, pace, risk preferences, transport preferences and visa eligibility. Try adjusting your preferences or trip length.',422);
   let explanations=new Map(), model=null, explanationFallbackReason='invalid_response';
   try {
-    const result=await llm.generateStructured({...buildExplanationRequest(selected,quiz),operation:'recommendations',maxAttempts:TRIP_POLICY.geminiMaxAttempts,timeoutMs:TRIP_POLICY.explanationTimeoutMs,maxOutputTokens:2400,
-      validateResponse:data=>data.explanations.length===3 && new Set(data.explanations.map(item=>item.countryId)).size===3 && data.explanations.every(item=>selected.some(country=>country.id===item.countryId)),
-    });
+    const result=await llm.generateStructured({...buildExplanationRequest(selected,quiz),maxAttempts:TRIP_POLICY.geminiMaxAttempts,timeoutMs:TRIP_POLICY.explanationTimeoutMs,maxOutputTokens:2400});
     const parsed=schema.safeParse(result.data);
     if(parsed.success) {
       for(const item of parsed.data.explanations) {
@@ -39,20 +37,19 @@ async function recommend(user,quiz) {
     if(![429,502,503,504].includes(error.statusCode))throw error;
     explanationFallbackReason=llm.fallbackReason(error);
   }
-  const recommendations=selected.map((country,index)=>{
+  const recommendations=selected.map(country=>{
     const budgetNote=BUDGET[quiz.budgetLevel] && country.supportedBases.some(base=>
       country.suggestedRoute.destinationIds.includes(base.destinationId) && BUDGET[base.budget]>BUDGET[quiz.budgetLevel])
-      ? ' Some stops may stretch your budget, so check accommodation and daily costs before booking.' : '';
-    const {photo:countryPhoto,fallbackPhoto} = countryDetails(country.countryCode);
+      ? ' Some suggested bases have a higher budget tier than your preference; check accommodation and daily costs before booking.' : '';
+    const countryPhoto = display.countries[country.countryCode]?.photo || null;
     const days = country.suggestedRoute.nights.reduce((a,b)=>a+b,0)+1;
-    const fallbackReason = getCountryFallbackReason(country, days, country.suggestedRoute.bases, quiz,index);
+    const fallbackReason = getCountryFallbackReason(country, days, country.suggestedRoute.bases);
     return {
       destinationId:country.id,name:country.name,type:'country',country:country.name,countryCode:country.countryCode,
       imageUrl:countryPhoto?.url || null,
       photo:countryPhoto,
-      fallbackPhoto,
       matchScore:country.matchScore,scoreBreakdown:country.scoreBreakdown,
-      reason:naturalizeCountryReason(explanations.get(country.id)?.reason || fallbackReason)+budgetNote,
+      reason:(explanations.get(country.id)?.reason || fallbackReason)+budgetNote,
       highlights:explanations.get(country.id)?.highlights || country.suggestedRoute.bases,
     };
   });
