@@ -1,55 +1,18 @@
 
 import { useState, useMemo } from "react";
+import RecommendationPhoto from "../components/RecommendationPhoto";
+import { paths } from "../services/navigation";
 
-const fallbackDestinations = [
-  {
-    destinationId: "country-it",
-    name: "Italy",
-    country: "Italy",
-    countryCode: "IT",
-    location: "POSITANO & ROME, ITALY",
-    category: "EUROPEAN GETAWAY",
-    reason:
-      "Every corner of Italy tells a story of passion and flavor, from handmade al dente pasta and creamy gelato to wood-fired Neapolitan pizza. When stepping away from cozy trattorias, lose yourself in timeless Renaissance galleries, ancient Roman ruins, and postcard-perfect Mediterranean cliffside vistas.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?auto=format&fit=crop&w=1400&q=85",
-  },
-  {
-    destinationId: "country-my",
-    name: "Malaysia",
-    country: "Malaysia",
-    countryCode: "MY",
-    location: "KUALA LUMPUR & PENANG, MALAYSIA",
-    category: "SOUTHEAST ASIAN GEM",
-    reason:
-      "A vibrant crossroads of Asian cultures, Malaysia delights the palate with fragrant bowls of curry laksa, authentic Hainanese chicken rice, and sizzling night-market satay. Between hawker feasts in Kuala Lumpur and Penang, explore ornate heritage architecture, tranquil tea plantations, and ancient rainforest canopies.",
-    imageUrl:
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Kuala_Lumpur_Skyline_at_Dusk.jpg/1280px-Kuala_Lumpur_Skyline_at_Dusk.jpg",
-  },
-  {
-    destinationId: "country-jp",
-    name: "Japan",
-    country: "Japan",
-    countryCode: "JP",
-    location: "TOKYO & KYOTO, JAPAN",
-    category: "PACIFIC PARADISE",
-    reason:
-      "Precision craftsmanship defines Japanese cuisine, inviting travelers to savor steaming tonkotsu ramen, melt-in-your-mouth sushi, and delicate matcha treats. Effortless bullet trains connect futuristic neon skylines with tranquil mountain onsens and thousand-year-old Shinto shrines tucked into bamboo groves.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1542259009477-d625272157b7?auto=format&fit=crop&w=1400&q=85",
-  },
-];
 
 function Recommendations({
   recommendations: propRecs,
   trip: propTrip,
-  onRefreshPicks,
   onSelectDestination,
 }) {
   const [index, setIndex] = useState(0);
 
   // Chunk A: Resolve Destination Recommendations List
-  // Prefers props, falls back to sessionStorage cache, and lastly to static curated fallback countries.
+  // Real results come from props or this tab's saved recommendation response.
   const destinationsList = useMemo(() => {
     if (Array.isArray(propRecs) && propRecs.length > 0) {
       return propRecs;
@@ -65,7 +28,7 @@ function Recommendations({
     } catch (e) {
       console.warn("Could not read cached recommendations:", e);
     }
-    return fallbackDestinations;
+    return [];
   }, [propRecs]);
 
   // Chunk B: Resolve Current Trip Metadata
@@ -75,12 +38,14 @@ function Recommendations({
     try {
       const cached = sessionStorage.getItem("voyager_trip");
       if (cached) return JSON.parse(cached);
-    } catch {}
+    } catch {
+      return null;
+    }
     return null;
   }, [propTrip]);
 
   const activeIndex = index >= destinationsList.length ? 0 : index;
-  const destination = destinationsList[activeIndex] || fallbackDestinations[0];
+  const destination = destinationsList[activeIndex];
 
   function showPreviousPick() {
     setIndex(
@@ -118,11 +83,17 @@ function Recommendations({
     window.location.href = "/?page=loading&mode=itinerary";
   }
 
-  const photoSrc =
-    destination.imageUrl ||
-    destination.photo?.url ||
-    destination.image ||
-    "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1400&q=85";
+  if (!destination || !tripData?.tripId) {
+    return (
+      <main className="postcard-page">
+        <h1>Find your next destination</h1>
+        <p>Complete your assessment to see your three personalized country recommendations.</p>
+        <a className="primary-button" href={localStorage.getItem("token") ? paths.assessment : paths.login}>
+          {localStorage.getItem("token") ? "Take the assessment" : "Sign in to get started"}
+        </a>
+      </main>
+    );
+  }
 
   const countryDisplayName =
     destination.name || destination.country || "Explore Destination";
@@ -174,15 +145,9 @@ function Recommendations({
 
         <article className="travel-postcard">
           <div className="travel-postcard__photo">
-            <img
-              src={photoSrc}
-              alt={destination.photo?.alt || countryDisplayName}
-              loading="lazy"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src =
-                  "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1400&q=85";
-              }}
+            <RecommendationPhoto
+              key={destination.countryCode || destination.destinationId || activeIndex}
+              destination={destination}
             />
 
             <span className="travel-postcard__category">

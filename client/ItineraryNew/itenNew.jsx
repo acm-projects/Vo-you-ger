@@ -16,7 +16,10 @@
  *    guide so standalone navigation, previews, and manual testing continue to function seamlessly.
  */
 
-document.addEventListener("DOMContentLoaded", () => {
+import { getTrip, getTripDayPlaces } from "../src/services/api";
+
+document.addEventListener("DOMContentLoaded", async () => {
+    const savedTripId = new URLSearchParams(window.location.search).get("tripId");
 
     // =========================================================================
     // Chunk 1: Modal DOM References & State
@@ -197,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        openModal(placeName, button);
+        openModal(place?.name || placeName, button);
     }
 
 
@@ -262,7 +265,42 @@ document.addEventListener("DOMContentLoaded", () => {
     let activeItinerary = null;
     let selectedDestData = null;
 
-    try {
+    if (savedTripId) {
+        const container = document.querySelector(".itinerary-inner");
+        const sidebar = document.querySelector(".travel-info-text");
+        const title = document.querySelector(".page-title");
+        if (title) title.textContent = "Loading saved itinerary…";
+        document.title = "Saved itinerary - Voyager";
+        if (container) container.textContent = "Loading your saved itinerary…";
+        if (sidebar) sidebar.replaceChildren();
+        try {
+            const { data } = await getTrip(savedTripId);
+            if (!data.trip?.itinerary?.days?.length) throw new Error("This trip has no saved itinerary.");
+            activeItinerary = data.trip.itinerary;
+        } catch (error) {
+            const title = document.querySelector(".page-title");
+            if (title) title.textContent = "Saved itinerary";
+            if (container) {
+                const message = document.createElement("p");
+                message.setAttribute("role", "alert");
+                const signInRequired = [401, 403].includes(error.response?.status);
+                message.textContent = signInRequired
+                    ? "Sign in to view this saved trip."
+                    : error.response?.status === 404
+                        ? "This trip was not found in your account."
+                        : "Couldn't load this saved itinerary. Please try again.";
+                const back = document.createElement("a");
+                back.href = signInRequired ? "/signUpAndLogin/login.html" : "/?page=trips";
+                back.textContent = signInRequired ? "Sign in" : "Back to your globe";
+                const retry = document.createElement("button");
+                retry.type = "button";
+                retry.textContent = "Try again";
+                retry.addEventListener("click", () => window.location.reload());
+                container.replaceChildren(message, back, retry);
+            }
+            return;
+        }
+    } else try {
         const cachedItinerary = sessionStorage.getItem("voyager_itinerary");
         if (cachedItinerary) {
             activeItinerary = JSON.parse(cachedItinerary);
@@ -370,6 +408,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const daySection = document.createElement("section");
                 daySection.className = "day-section";
+                daySection.dataset.day = dayData.day;
 
                 // Day dropdown accordion trigger
                 const dayButton = document.createElement("button");
@@ -433,20 +472,23 @@ document.addEventListener("DOMContentLoaded", () => {
                     activityGrid.className = "activity-grid";
 
                     activities.forEach((act) => {
-                        const venueName = act.placeName || act.name || "Featured Attraction";
+                        const venueName = act.placeName || act.name || (savedTripId ? "Saved activity" : "Featured Attraction");
+                        const detailsKey = savedTripId && act.placeId ? act.placeId : venueName;
 
                         // Register place details in the map for modal popups
-                        placeDetails[venueName] = {
+                        placeDetails[detailsKey] = {
+                            name: venueName,
                             activity: act.activityDescription || act.description || "Explore this highlight tailored to your trip style.",
-                            rating: act.rating ? `${act.rating} ★` : "4.5 ★",
-                            cost: act.estimatedCost || act.cost || "Varies",
+                            rating: act.rating ? `${act.rating} ★` : (savedTripId ? "Not available" : "4.5 ★"),
+                            cost: act.estimatedCost || act.cost || (savedTripId ? "Not available" : "Varies"),
                             hours: formatHours(act),
-                            tip: act.travelTip || act.tip || "Arrive early to make the most of your visit.",
+                            tip: act.travelTip || act.tip || (savedTripId ? "Check current venue guidance before your visit." : "Arrive early to make the most of your visit."),
                             address: act.address || (act.category ? `Category: ${act.category}` : "Destination base area")
                         };
 
                         const card = document.createElement("article");
                         card.className = "activity-card";
+                        if (act.placeId) card.dataset.placeId = act.placeId;
 
                         const img = document.createElement("img");
                         img.src = resolveActivityImage(act, selectedDestData?.imageUrl, slotKey);
@@ -460,18 +502,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         const metaP = document.createElement("p");
                         const hoursSnippet = formatHours(act);
-                        const costSnippet = act.estimatedCost || act.cost || "$10";
+                        const costSnippet = act.estimatedCost || act.cost || (savedTripId ? "Cost not available" : "$10");
                         metaP.textContent = `${hoursSnippet} · ${costSnippet}`;
 
                         const ratingP = document.createElement("p");
-                        ratingP.textContent = `Rating: ${act.rating ? act.rating + " ★" : "4.5 ★"}`;
+                        ratingP.textContent = `Rating: ${act.rating ? act.rating + " ★" : (savedTripId ? "Not available" : "4.5 ★")}`;
 
                         info.append(h3, metaP, ratingP);
 
                         const detailsBtn = document.createElement("button");
                         detailsBtn.type = "button";
                         detailsBtn.className = "place-details-button";
-                        detailsBtn.dataset.place = venueName;
+                        detailsBtn.dataset.place = detailsKey;
                         detailsBtn.textContent = "Details";
 
                         card.append(img, info, detailsBtn);
@@ -497,6 +539,83 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // A: Bind Accordion Day Dropdown Toggles
     const days = document.querySelectorAll(".day-section");
+    const refreshedDays = new Set();
+    const loadingDays = new Set();
+
+    async function refreshSavedDay(section) {
+        if (!savedTripId || activeItinerary?.placesStoredAs !== "ids_only") return;
+        const day = Number(section.dataset.day);
+        if (refreshedDays.has(day) || loadingDays.has(day)) return;
+        loadingDays.add(day);
+        const content = section.querySelector(".day-content");
+        const status = document.createElement("p");
+        status.setAttribute("role", "status");
+        status.textContent = "Loading current venue details…";
+        content.prepend(status);
+        try {
+            const { data } = await getTripDayPlaces(savedTripId, day);
+            const venues = new Map((data.places || []).map(place => [place.placeId, place]));
+            section.querySelectorAll(".activity-card").forEach(card => {
+                const venue = venues.get(card.dataset.placeId);
+                if (!venue) return;
+                const dayData = activeItinerary.days.find(item => item.day === day);
+                const activity = ["morning", "afternoon", "evening"].flatMap(slot => dayData[slot] || [])
+                    .find(item => item.placeId === venue.placeId);
+                const name = venue.placeName || venue.name || "Saved activity";
+                const hours = venue.hoursToday || formatHours(venue);
+                const rating = venue.rating != null ? `${venue.rating} ★` : "Not available";
+                const cost = venue.estimatedCost || venue.cost || "Not available";
+                card.querySelector("h3").textContent = name;
+                card.querySelector(".activity-info p").textContent = `${hours} · ${cost}`;
+                card.querySelector(".activity-info p:last-child").textContent = `Rating: ${rating}`;
+                card.querySelector("img").alt = `Destination illustration for ${name}`;
+                card.querySelector(".place-details-button").dataset.place = venue.placeId;
+                placeDetails[venue.placeId] = {
+                    name,
+                    activity: activity?.activityDescription || "Saved activity",
+                    rating, cost, hours,
+                    tip: activity?.travelTip || "Check current venue guidance before your visit.",
+                    address: venue.address || "Not available"
+                };
+            });
+            status.replaceChildren();
+            const credit = document.createElement("a");
+            credit.href = "https://maps.google.com/";
+            credit.textContent = "Venue details from Google Maps";
+            credit.target = "_blank";
+            credit.rel = "noopener noreferrer";
+            status.appendChild(credit);
+            const providers = new Map((data.places || []).flatMap(place => place.attributions || [])
+                .filter(item => item.provider).map(item => [item.provider, item.providerUri]));
+            for (const [provider, uri] of providers) {
+                status.append(" · ");
+                const attribution = document.createElement("span");
+                attribution.textContent = provider;
+                try {
+                    const url = new URL(uri);
+                    if (url.protocol === "https:") {
+                        const link = document.createElement("a");
+                        link.href = url.href;
+                        link.textContent = provider;
+                        link.target = "_blank";
+                        link.rel = "noopener noreferrer";
+                        attribution.replaceChildren(link);
+                    }
+                } catch { /* Keep the provider's plain-text credit. */ }
+                status.appendChild(attribution);
+            }
+            refreshedDays.add(day);
+        } catch (error) {
+            status.textContent = error.response?.data?.message || "Current venue details couldn't be loaded. Your saved plan is still shown.";
+            const retry = document.createElement("button");
+            retry.type = "button";
+            retry.textContent = "Retry venue details";
+            retry.addEventListener("click", () => { status.remove(); refreshSavedDay(section); });
+            status.append(" ", retry);
+        } finally {
+            loadingDays.delete(day);
+        }
+    }
     days.forEach((day) => {
         const dayButton = day.querySelector(".day-dropdown");
         const dayContent = day.querySelector(".day-content");
@@ -516,6 +635,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (!isExpanded) {
                     dayButton.setAttribute("aria-expanded", "true");
                     dayContent.hidden = false;
+                    refreshSavedDay(day);
                 }
             });
         }
@@ -527,6 +647,8 @@ document.addEventListener("DOMContentLoaded", () => {
             showPlaceDetails(button.dataset.place, button);
         });
     });
+
+    if (days[0]) refreshSavedDay(days[0]);
 
     // C: Page-level Details Button (if present in header)
     if (openButton) {
