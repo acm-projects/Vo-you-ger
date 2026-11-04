@@ -1,0 +1,416 @@
+.trip-home {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #fbf4e8;
+  color: #34291f;
+}
+
+/* Match the cream navbar used by the rest of the app. */
+.trip-home > .navbar {
+  flex: 0 0 64px;
+  background: #ebe7d8;
+  border-bottom: 1px solid #e4dccd;
+  color: #34291f;
+}
+
+.trip-home .navbar-logo {
+  color: #34291f;
+}
+
+.trip-home .navbar-links a:hover {
+  color: #6b4d3c;
+}
+
+.trip-home .sign-in-button {
+  border-color: #a69886;
+  background: transparent;
+  color: #34291f;
+}
+
+.trip-home .sign-in-button:hover {
+  background: #6b4d3c;
+  color: #fffaf3;
+}
+
+.trip-home__main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 16px clamp(20px, 3vw, 48px) 28px;
+  overflow: hidden;
+  background-image: url("/home-background.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.trip-home__heading {
+  flex: 0 0 auto;
+}
+
+.trip-home__heading > p {
+  margin: 0 0 8px;
+  color: #000000;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+}
+
+.trip-home__heading h1 {
+  margin: 6px 0;
+  color: #000000;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(30px, 3.2vw, 42px);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.trip-home__heading > span {
+  display: block;
+  margin-top: 8px;
+  color: #000000;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.trip-home__layout {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(300px, 27vw, 400px);
+  gap: 24px;
+}
+
+/* Google retains its starfield inside this frame. The complete map viewport,
+   including attribution and controls, stays separate from the info panel. */
+.trip-home__globe {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid #d8ccbd;
+  border-radius: 24px;
+  background: #03070d;
+  box-shadow: 0 12px 32px rgba(79, 58, 35, 0.1);
+}
+
+.trip-home__globe-viewer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.trip-home__google-map,
+.trip-home__google-map > gmp-map-3d {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.trip-home__panel {
+  min-width: 0;
+  min-height: 0;
+  padding: clamp(20px, 2vw, 28px);
+  display: grid;
+  place-items: center;
+  overflow-y: auto;
+  text-align: center;
+  border: 1px solid #e4d4c1;
+  border-radius: 24px;
+  background: #fffdf8;
+  box-shadow: 0 12px 32px rgba(79, 58, 35, 0.06);
+}
+
+.trip-home__panel > p {
+  margin: 0;
+  color: #807367;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* Map status stays readable against Google's dark canvas. */
+.trip-home__google-status {
+  position: absolute;
+  z-index: 3;
+  bottom: 80px;
+  left: 20px;
+  max-width: min(420px, calc(100% - 104px));
+  padding: 12px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  background: rgba(9, 24, 43, 0.95);
+  color: #ffffff;
+  font-size: 13px;
+  line-height: 1.5;
+  pointer-events: none;
+}
+
+.trip-home__country-name {
+  margin: 0;
+  color: #34291f;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 32px;
+  font-weight: 500;
+}
+.trip-home__panel--country {
+  display: block;
+  text-align: left;
+  overscroll-behavior: contain;
+}
+
+.country-panel {
+  width: 100%;
+  color: #62564b;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.country-panel__heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.country-panel__heading h2 {
+  margin: 0;
+  color: #34291f;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.country-panel__close {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid #e4d4c1;
+  border-radius: 50%;
+  background: transparent;
+  color: #34291f;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.country-panel__close:hover,
+.country-panel__retry:hover {
+  background: #f0e4d3;
+}
+
+.country-panel__close:focus-visible,
+.country-panel__retry:focus-visible,
+.country-panel a:focus-visible {
+  outline: 2px solid #8d634b;
+  outline-offset: 3px;
+}
+
+.country-panel__photo {
+  margin: 0 0 20px;
+}
+
+.country-panel__photo img {
+  display: block;
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.country-panel__photo figcaption,
+.country-panel__attribution,
+.country-panel__footnote {
+  margin: 8px 0 0;
+  color: #807367;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.country-panel a {
+  color: #6b4d3c;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.country-panel__photo-placeholder {
+  min-height: 130px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  background: #f1e7d8;
+  color: #807367;
+}
+
+.country-panel__description {
+  margin: 0 0 20px;
+}
+
+.country-panel__facts {
+  margin: 0;
+}
+
+.country-panel__facts > div {
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr);
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid #eadfce;
+}
+
+.country-panel__facts dt {
+  color: #807367;
+  font-size: 12px;
+}
+
+.country-panel__facts dd {
+  margin: 0;
+  color: #34291f;
+  overflow-wrap: anywhere;
+}
+
+.country-panel__retry {
+  padding: 8px 14px;
+  border: 1px solid #d7c3ab;
+  border-radius: 8px;
+  background: transparent;
+  color: #34291f;
+  font: inherit;
+  cursor: pointer;
+}
+
+.saved-trips {
+  margin-top: 24px;
+  color: #62564b;
+}
+
+.saved-trips h3 {
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.saved-trips ul {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.saved-trips button {
+  width: 100%;
+  padding: 12px;
+  text-align: left;
+  color: #34291f;
+  background: #fffaf3;
+  border: 1px solid #e4d4c1;
+  border-radius: 10px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.saved-trips button:hover,
+.saved-trips button[aria-pressed="true"] {
+  background: #f0e4d3;
+  border-color: #8d634b;
+}
+
+.saved-trips button:focus-visible,
+.saved-trip-panel__open:focus-visible {
+  outline: 2px solid #8d634b;
+  outline-offset: 3px;
+}
+
+.saved-trips small {
+  display: block;
+  margin-top: 5px;
+  color: #807367;
+  font-size: 11px;
+}
+
+.saved-trip-panel__route {
+  color: #6b4d3c;
+  font-size: 13px;
+}
+
+.saved-trip-panel__dates,
+.saved-trips__message {
+  color: #807367;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.saved-trip-panel__open {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #6b4d3c;
+  color: #fffaf3;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.country-panel .saved-trip-panel__open {
+  color: #fffaf3;
+  text-decoration: none;
+}
+
+/* Stack the globe and details on narrow screens without covering map controls. */
+@media (max-width: 850px) {
+  .trip-home {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+
+  .trip-home > .navbar {
+    padding-inline: 20px;
+  }
+
+  .trip-home .navbar-links {
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .trip-home__main {
+    flex: 0 0 auto;
+    padding: 20px 16px 24px;
+    gap: 18px;
+    overflow: visible;
+  }
+
+  .trip-home__heading h1 {
+    font-size: 32px;
+  }
+
+  .trip-home__layout {
+    flex: 0 0 auto;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: max(340px, 55dvh) auto;
+    gap: 18px;
+  }
+
+  .trip-home__panel {
+    min-height: 200px;
+    max-height: 55dvh;
+    padding: 24px;
+  }
+}

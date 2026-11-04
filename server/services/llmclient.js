@@ -28,6 +28,9 @@ const MIN_SERVER_TIMEOUT_MS = 10000;
 
 // model name -> {until, reason}; client/provider timeouts never enter this map.
 const unavailableUntil = new Map();
+// Brief overload cooldowns are scoped to the operation; quota/model failures
+// remain shared. Only one probe may enter an expired transient circuit at once.
+const transientUntil = new Map();
 
 function getStatus(err) {
   const status = err.status ?? err.code ?? err.statusCode;
@@ -72,6 +75,7 @@ function rejectionDetails(err, status) {
 }
 
 function failureReason(error) {
+  if (error.code === 'INVALID_AI_OUTPUT') return 'invalid_response';
   const status=getStatus(error);
   if (status===504 || ['AbortError','TimeoutError'].includes(error.name) || error.code===20 || error.code==='ABORT_ERR') return 'request_timeout';
   if (status===429) return 'rate_limited';
@@ -96,13 +100,19 @@ async function generateWithFallback(contents, config = {}, options = {}) {
   const timeoutMs=Number.isInteger(options.timeoutMs)&&options.timeoutMs>0 ? Math.min(TRIP_POLICY.geminiDeadlineMs,options.timeoutMs) : TRIP_POLICY.geminiDeadlineMs;
   const deadline=Date.now()+timeoutMs;
   const diagnostics=[];
+  const operation = options.operation === 'itinerary' ? 'itinerary'
+    : options.operation === 'recommendations' ? 'recommendations' : 'other';
   // One attempt per distinct model. Split the remaining deadline so the first
   // model cannot consume the time reserved for the second; SDK retries stay off.
   const models=[...new Set(MODELS)].slice(0,3);
   const eligible=[];
   for (const model of models) {
-    const blockedUntil = unavailableUntil.get(model);
-    if (blockedUntil && Date.now() < blockedUntil.until) {
+    const shared = unavailableUntil.get(model);
+    const transient = transientUntil.get(`${operation}:${model}`);
+    const blockedUntil = shared && Date.now() < shared.until ? shared
+      : transient && (Date.now() < transient.until || transient.probing) ? transient : null;
+    if (blockedUntil) {
+      count('geminiCooldownSkips');
       diagnostics.push({model,reason:'cooldown_skipped',previousReason:blockedUntil.reason});
       console.warn(`Gemini model ${model} skipped (cooldown, ${blockedUntil.reason})`);
       continue;
@@ -110,17 +120,28 @@ async function generateWithFallback(contents, config = {}, options = {}) {
     eligible.push(model);
   }
   const selected=eligible.slice(0,maxAttempts);
+  let feedback = null;
   for (const [index,model] of selected.entries()) {
       if (Date.now() >= deadline) break;
       const started=Date.now();
       const remaining=Math.max(1,Math.min(REQUEST_TIMEOUT_MS,Math.floor((deadline-started)/(selected.length-index))));
+      const circuitKey = `${operation}:${model}`;
+      const circuit = transientUntil.get(circuitKey);
+      if (circuit?.probing) {
+        diagnostics.push({model,reason:'cooldown_skipped',previousReason:circuit.reason});
+        count('geminiCooldownSkips');
+        continue;
+      }
+      if (circuit) circuit.probing = true;
       try {
         count('geminiRequests');
+        if (index) count('geminiSecondAttempts');
         const signal=AbortSignal.timeout(remaining);
         const thinkingConfig=model.startsWith('gemini-3') ? {thinkingLevel:model.startsWith('gemini-3.5-flash-lite')?'MINIMAL':'LOW'} : model.startsWith('gemini-2.5-flash') ? {thinkingBudget:0} : undefined;
         const response = await provider.models.generateContent({
           model,
-          contents,
+          contents: feedback && typeof contents === 'string'
+            ? `${contents}\nValidation feedback from the server: ${JSON.stringify(feedback)}. Return a corrected complete response using only the supplied IDs and facts.` : contents,
           config: {
             ...config,
             maxOutputTokens: Math.min(config.maxOutputTokens || TRIP_POLICY.maxGeminiOutputTokens,TRIP_POLICY.maxGeminiOutputTokens),
@@ -133,10 +154,21 @@ async function generateWithFallback(contents, config = {}, options = {}) {
           },
         });
         unavailableUntil.delete(model);
-        return { text: response.text, model, diagnostics };
+        transientUntil.delete(circuitKey);
+        // Parsing and caller validation share the same attempt/time budget as
+        // transport. An HTTP 200 with unusable JSON is not a successful attempt.
+        let data;
+        try { data = options.processResponse ? await options.processResponse(response.text, model) : undefined; }
+        catch (error) {
+          if (error.code !== 'INVALID_AI_OUTPUT') error.internalValidationFailure = true;
+          throw error;
+        }
+        return { text: response.text, model, diagnostics, ...(options.processResponse ? {data} : {}) };
       } catch (err) {
+        if (err.internalValidationFailure) throw err;
         const status = getStatus(err);
         const reason=failureReason(err);
+        count(`geminiFailure_${reason}`);
         const timeoutOrigin=reason==='request_timeout' ? (status===504?'provider':'client') : undefined;
         diagnostics.push({model,reason,status,elapsedMs:Date.now()-started,attemptTimeoutMs:remaining,
           ...(timeoutOrigin?{timeoutOrigin}:{})});
@@ -152,14 +184,18 @@ async function generateWithFallback(contents, config = {}, options = {}) {
         }
         // A caller's timeout is not evidence that a model is unavailable to
         // longer requests. Only explicit quota/model/provider failures cool down.
-        if (reason!=='request_timeout' && status) unavailableUntil.set(model,{until:Date.now()+COOLDOWN_MS,reason});
+        if (reason === 'invalid_response') feedback = {rule: err.validationRule || 'INVALID_STRUCTURED_RESPONSE'};
+        else if (status === 429 || status === 404) unavailableUntil.set(model,{until:Date.now()+COOLDOWN_MS,reason});
+        else if ([500,502,503].includes(status)) transientUntil.set(circuitKey,{until:Date.now()+TRIP_POLICY.geminiTransientCooldownMs,reason,probing:false});
         console.warn(`Gemini model ${model} failed (${reason}, HTTP ${status ?? 'none'}, ${Date.now()-started}ms, budget ${remaining}ms${timeoutOrigin?`, timeout ${timeoutOrigin}`:''})`);
+      } finally {
+        if (circuit) circuit.probing = false;
       }
   }
   const last=diagnostics.findLast(item=>item.reason!=='cooldown_skipped');
   const reason=last?.reason || (diagnostics.length ? 'cooldown_skipped' : 'provider_unavailable');
-  const error=apiError(reason==='request_timeout'?'GEMINI_TIMEOUT':reason==='rate_limited'?'GEMINI_RATE_LIMIT':reason==='cooldown_skipped'?'GEMINI_COOLDOWN':'GEMINI_UNAVAILABLE',
-    'The AI service could not complete this request. Please try again later.',reason==='request_timeout'?504:reason==='rate_limited'?429:503);
+  const error=apiError(reason==='invalid_response'?'INVALID_AI_OUTPUT':reason==='request_timeout'?'GEMINI_TIMEOUT':reason==='rate_limited'?'GEMINI_RATE_LIMIT':reason==='cooldown_skipped'?'GEMINI_COOLDOWN':'GEMINI_UNAVAILABLE',
+    'The AI service could not complete this request. Please try again later.',reason==='invalid_response'?502:reason==='request_timeout'?504:reason==='rate_limited'?429:503);
   error.fallbackReason=reason;error.diagnostics=diagnostics;
   throw error;
 }
@@ -173,7 +209,7 @@ async function generateWithFallback(contents, config = {}, options = {}) {
  * - jsonSchema:     JSON Schema sent to Gemini (tells it the shape)
  * - zodSchema:      zod schema used to double-check the reply
  */
-async function generateStructured({ prompt, systemPrompt, jsonSchema, zodSchema, maxAttempts, timeoutMs, maxOutputTokens }) {
+async function generateStructured({ prompt, systemPrompt, jsonSchema, zodSchema, maxAttempts, timeoutMs, maxOutputTokens, operation, validateResponse, onInvalidResponse }) {
   const config = {
     responseMimeType: "application/json",
     responseJsonSchema: providerJsonSchema(jsonSchema),
@@ -181,28 +217,25 @@ async function generateStructured({ prompt, systemPrompt, jsonSchema, zodSchema,
   };
   if (systemPrompt) config.systemInstruction = systemPrompt;
 
-  const { text, model, diagnostics } = await generateWithFallback(prompt, config,{maxAttempts,timeoutMs});
-
-  let parsed;
-  try {
-    parsed = JSON.parse(text);
-  } catch {
-    const error = new Error(`Model ${model} returned invalid JSON`);
-    error.statusCode = 502;
-    throw error;
-  }
-
-  const result = zodSchema.safeParse(parsed);
-  if (!result.success) {
-    const error = new Error(
-      `Model ${model} returned JSON that did not match the schema: ` +
-        result.error.issues.map((i) => `${i.path.join(".")}: ${i.message}`).join("; ")
-    );
-    error.statusCode = 502;
-    throw error;
-  }
-
-  return { data: result.data, model, diagnostics };
+  return generateWithFallback(prompt, config, {maxAttempts,timeoutMs,operation,
+    processResponse: async (text, model) => {
+      let parsed, rule = 'INVALID_JSON';
+      try { parsed = JSON.parse(text); } catch { /* Sanitized below. */ }
+      if (parsed !== undefined) {
+        const result = zodSchema.safeParse(parsed);
+        rule = 'SCHEMA_MISMATCH';
+        if (result.success) {
+          const accepted = validateResponse ? await validateResponse(result.data) : true;
+          if (accepted === true || accepted === undefined) return result.data;
+          rule = 'CONTENT_MISMATCH';
+        }
+      }
+      if (onInvalidResponse) await onInvalidResponse({data: parsed, model});
+      const error = apiError('INVALID_AI_OUTPUT', 'Model returned JSON that did not match the schema or required content', 502);
+      error.validationRule = rule;
+      throw error;
+    },
+  });
 }
 
 module.exports = { generateWithFallback, generateStructured, fallbackReason, MODELS };

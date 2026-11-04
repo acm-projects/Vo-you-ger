@@ -6,7 +6,7 @@ function timeout(name, fallback, maximum) {
 }
 
 const TRIP_POLICY = Object.freeze({
-  version: "2026-10-25.2",
+  version: "2026-10-31.1",
   minSupportedDays: 1,
   maxSupportedDays: 21,
   minNightsPerBase: 2,
@@ -33,6 +33,9 @@ const TRIP_POLICY = Object.freeze({
   geminiDeadlineMs: timeout('PLANNING_GEMINI_DEADLINE_MS', 90000, 180000),
   explanationTimeoutMs: timeout('PLANNING_EXPLANATION_TIMEOUT_MS', 60000, 120000),
   geminiMaxAttempts: 2,
+  geminiTransientCooldownMs: timeout('PLANNING_GEMINI_TRANSIENT_COOLDOWN_MS', 5000, 60000),
+  narrativeCacheTtlMs: timeout('PLANNING_NARRATIVE_CACHE_TTL_MS', 1800000, 3600000),
+  narrativeCacheEntries: 100,
   maxGeminiOutputTokens: 16384,
   maxPromptBytes: 240000,
 });

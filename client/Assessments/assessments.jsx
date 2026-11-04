@@ -1,3 +1,4 @@
+/*API for Q1 + Q2: */ 
 const questions = [
     {
         id: "preferredCountries",
@@ -1111,6 +1112,7 @@ function selectAnswer(e, index) {
 }
 
 nextButton.addEventListener("click", () => {
+    if (currentQuestionIndex >= questions.length) return;
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
         showQuestion();
@@ -1353,7 +1355,7 @@ function showScore() {
         nextButton.innerHTML = "Saving your preferences...";
 
         try {
-            const response = await fetch("http://localhost:8080/api/quiz", {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:8080/api"}/quiz`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -1370,8 +1372,9 @@ function showScore() {
 
             // Successfully saved to DynamoDB! Cache locally and clear stale recommendations
             localStorage.setItem("quizResponse", JSON.stringify(payload));
-            sessionStorage.removeItem("voyager_recommendations");
-            sessionStorage.removeItem("voyager_trip");
+            clearPlanningSession(sessionStorage);
+            const user = JSON.parse(localStorage.getItem("user") || "null");
+            if (user) localStorage.setItem("user", JSON.stringify({ ...user, firstTime: false }));
 
             // Redirect to loading/recommendations page
             window.location.href = "/?page=loading";
@@ -1386,4 +1389,5 @@ function showScore() {
     };
 }
 
-startQuiz();
+if (localStorage.getItem("token")) startQuiz();
+else window.location.replace(paths.login);

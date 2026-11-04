@@ -41,6 +41,8 @@ it('walks through signup, login, assessment, selection, generation, saving and c
     assert.equal(calls.length, 11);
     assert.equal(calls[0].route, '/auth/register');
     assert.equal(calls.at(-1).route, '/trips/saved');
+    const timings=JSON.parse(fs.readFileSync(path.join(directory,'timings.json')));
+    assert.equal(timings.length,11);assert.ok(timings.every(item=>item.success && item.elapsedMs>=0));
     const display = JSON.parse(fs.readFileSync(path.join(directory, 'day-display.json'))).day.morning[0];
     assert.equal(display.placeName, 'Refreshed name'); assert.equal(display.travelTip, 'Check current hours.');
     const credentials = JSON.parse(fs.readFileSync(path.join(directory, 'credentials.json')));
