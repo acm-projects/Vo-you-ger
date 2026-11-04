@@ -78,7 +78,8 @@ export default function Home() {
             className="trip-home__globe"
             aria-label="Interactive globe"
           >
-            <TravelGlobe onCountrySelect={selectCountry} trips={trips} onTripSelect={selectTrip} selectedTripId={selectedTrip?.tripId} />
+            <TravelGlobe onCountrySelect={selectCountry} trips={trips} onTripSelect={selectTrip}
+              selectedTripId={selectedTrip?.tripId} selectedCountryCode={selectedCountry?.countryCode} />
           </section>
 
           <aside

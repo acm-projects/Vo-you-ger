@@ -45,7 +45,7 @@
   margin: 0;
   padding: 16px clamp(20px, 3vw, 48px) 28px;
   overflow: hidden;
-  background-image: url("/home-background.png");
+  background-image: url("/home-background-panorama.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -53,6 +53,9 @@
 
 .trip-home__heading {
   flex: 0 0 auto;
+  position: relative;
+  align-self: flex-start;
+  max-width: 100%;
 }
 
 .trip-home__heading > p {
@@ -90,8 +93,7 @@
   gap: 24px;
 }
 
-/* Google retains its starfield inside this frame. The complete map viewport,
-   including attribution and controls, stays separate from the info panel. */
+/* Keep the full map viewport and its attribution separate from the info panel. */
 .trip-home__globe {
   position: relative;
   min-width: 0;
@@ -107,6 +109,84 @@
   position: relative;
   width: 100%;
   height: 100%;
+}
+
+.trip-home__globe:has(.trip-home__mapbox-map) {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.trip-home__mapbox-map {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Match the Mapbox demo's Vivid treatment on the globe canvas. */
+.trip-home__mapbox-map .mapboxgl-canvas {
+  filter: saturate(1.6) contrast(1.12);
+}
+
+.trip-home__globe-status {
+  position: absolute;
+  z-index: 3;
+  bottom: 56px;
+  left: 20px;
+  max-width: min(420px, calc(100% - 80px));
+  padding: 12px 16px;
+  border: 1px solid #e4d4c1;
+  border-radius: 10px;
+  background: #fffdf8;
+  color: #34291f;
+  font-size: 13px;
+  line-height: 1.5;
+  pointer-events: none;
+}
+
+.trip-home__mapbox-pin {
+  padding: 8px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.trip-home__mapbox-pin-dot {
+  display: block;
+  width: 22px;
+  height: 22px;
+  border: 3px solid #fffdf8;
+  border-radius: 50% 50% 50% 0;
+  background: #895b3f;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transform: rotate(-45deg);
+}
+
+.trip-home__mapbox-pin[aria-pressed="true"] .trip-home__mapbox-pin-dot,
+.trip-home__mapbox-pin:hover .trip-home__mapbox-pin-dot {
+  background: #34291f;
+}
+
+.trip-home__mapbox-pin:focus-visible {
+  outline: 3px solid #895b3f;
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+.trip-home__mapbox-pin-label {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 9px;
+  border: 1px solid #e4d4c1;
+  border-radius: 6px;
+  background: #fffdf8;
+  color: #34291f;
+  font: 600 12px "DM Sans", sans-serif;
+  white-space: nowrap;
 }
 
 .trip-home__google-map,
@@ -370,6 +450,46 @@
 .country-panel .saved-trip-panel__open {
   color: #fffaf3;
   text-decoration: none;
+}
+
+/* Let the desktop map fill the page below the navbar, behind the text and panel. */
+@media (min-width: 851px) {
+  .trip-home__main:has(.trip-home__mapbox-map) {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .trip-home__main:has(.trip-home__mapbox-map) .trip-home__layout {
+    pointer-events: none;
+  }
+
+  .trip-home__main:has(.trip-home__mapbox-map) .trip-home__heading {
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .trip-home__globe:has(.trip-home__mapbox-map) {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: auto;
+  }
+
+  .trip-home__main:has(.trip-home__mapbox-map) .trip-home__panel {
+    grid-column: 2;
+    position: relative;
+    z-index: 1;
+    pointer-events: auto;
+  }
+
+  .trip-home__mapbox-map .mapboxgl-ctrl-top-right {
+    right: calc(clamp(300px, 27vw, 400px) + clamp(20px, 3vw, 48px) + 24px);
+  }
+
+  .trip-home__mapbox-map:fullscreen .mapboxgl-ctrl-top-right {
+    right: 0;
+  }
 }
 
 /* Stack the globe and details on narrow screens without covering map controls. */
