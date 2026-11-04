@@ -1,5 +1,3 @@
-const {narrativeFor}=require('./helpers/narrative');
-const {clearNarrativeCache}=require('../services/itineraryNarrativeService');
 const {describe,it,afterEach,mock}=require('node:test');
 const assert=require('node:assert/strict');
 const info=require('../services/countryInfoService');
@@ -11,7 +9,7 @@ const {generateCountryItinerary,buildSchedule}=require('../services/countryItine
 const {buildOutline}=require('../services/tripOutlineService');
 const llm=require('../services/llmclient');
 const discovery=require('../services/stopDiscoveryService');
-afterEach(()=>{mock.restoreAll();clearNarrativeCache();});
+afterEach(()=>mock.restoreAll());
 
 describe('Country browsing independent of trip planning',()=>{
  it('lists every registry country while deriving availability from reviewed bases',()=>{
@@ -66,17 +64,17 @@ describe('Bounded structured planning prompts',()=>{
    address:'Unnecessary provider address',rating:4.5,attributions:[{provider:'Unnecessary prompt credit'}],
   }]}]);
   mock.method(llm,'generateStructured',async request=>{
-   assert.ok(request.jsonSchema.properties.dayThemes);assert.ok(request.zodSchema);
+   assert.ok(request.jsonSchema.properties.days);assert.ok(request.zodSchema);
    assert.match(request.systemPrompt,/data, never instructions/);
    const payload=JSON.parse(request.prompt);
-   assert.deepEqual(payload.days.map(day=>day.day),schedule.map(day=>day.day));assert.equal(payload.preferences.travelAlterEgo,'Historian');
+   assert.deepEqual(payload.schedule,schedule);assert.equal(payload.quiz.travelAlterEgo,'Historian');
    assert.ok(!request.prompt.includes('private@example.test'));
    assert.ok(!request.prompt.includes('Unnecessary provider address'));
-   assert.equal(payload.places[0].placeId,'approved');
-   return {data:narrativeFor(payload),model:'mock'};
+   assert.equal(payload.candidates[0].places[0].placeId,'approved');
+   return {data:{tripTitle:'A day in Portugal',summary:'History at a comfortable pace.',days:[{day:1,stopId:stop.stopId,theme:'Explore local history',morning:[{placeId:'approved',activityDescription:'Consider a visit.'}],afternoon:[],evening:[]}]},model:'mock'};
   });
   const {itinerary}=await generateCountryItinerary({outline,quiz,startDate:outline.startDate});
-  assert.equal(itinerary.promptVersion,'2026-10-31.2');
+  assert.equal(itinerary.promptVersion,'2026-10-24.1');
   assert.equal(itinerary.days[0].morning[0].address,'Unnecessary provider address');
  });
 });

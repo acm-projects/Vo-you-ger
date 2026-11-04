@@ -4,7 +4,6 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const assert = require('node:assert/strict');
-const {performance} = require('node:perf_hooks');
 
 const scenarios = {
   foodie: {nights: 6, persona: 'Foodie', pace: 'seeAll', budget: '$$', diet: ['Vegetarian']},
@@ -46,16 +45,8 @@ async function runStep({step, directory, scenario = 'foodie', numberOfNights, ch
   const context = {baseUrl: session.baseUrl, token: session.token || account?.token};
   const call = async (method, route, body, output) => {
     log(`${method} /api${route}`);
-    const started=performance.now();let success=false;
-    try {
-      const data = await request(context, method, route, body);
-      write(output, data);success=true;return data;
-    } finally {
-      const timings=fs.existsSync(file('timings')) ? read('timings') : [];
-      const elapsedMs=Number((performance.now()-started).toFixed(1));
-      timings.push({step,method,route,success,elapsedMs});write('timings',timings);
-      log(`Request time: ${(elapsedMs/1000).toFixed(2)}s`);
-    }
+    const data = await request(context, method, route, body);
+    write(output, data); return data;
   };
   if (step === 'signup') {
     if (fs.existsSync(file('account'))) throw new Error('This state directory already has an account. Continue with login or use a new directory.');
@@ -101,9 +92,7 @@ async function runStep({step, directory, scenario = 'foodie', numberOfNights, ch
     assert.ok(result.itinerary.practicalInfo?.currency?.code, 'Generation must include currency');
     const example = result.itinerary.days.find(item => item.day === day) || result.itinerary.days[0];
     show({tripId: result.trip.tripId, narrativeSource: result.itinerary.narrativeSource,
-      narrativeFallbackReason: result.itinerary.narrativeFallbackReason,
-      narrativeCacheHit:result.itinerary.narrativeCacheHit,narrativeDiagnostics:result.itinerary.narrativeDiagnostics,
-      summary: result.itinerary.tripSummary,
+      narrativeFallbackReason: result.itinerary.narrativeFallbackReason, summary: result.itinerary.tripSummary,
       practicalInfo: result.itinerary.practicalInfo, stays: result.itinerary.stays, exampleDay: example,
       note: 'itinerary contains display-time Google data; trip.itinerary shows the smaller persisted representation.'});
     if(!allowFallback)assert.equal(result.itinerary.narrativeSource,'gemini',`Itinerary used backup descriptions (${result.itinerary.narrativeFallbackReason || 'unknown'}). Response saved; this is not a successful Gemini verification.`);
@@ -126,8 +115,7 @@ async function runStep({step, directory, scenario = 'foodie', numberOfNights, ch
     show({tripId: id, isSaved: true, preserved: ['route', 'practicalInfo and provenance', 'descriptions', 'activity travel tips'],
       placesStoredAs: stored.placesStoredAs, practicalInfo: stored.practicalInfo,
       exampleSavedDay: stored.days.find(item => item.day === day) || stored.days[0],
-      stays:stored.stays,
-      note: 'Sourced editorial stay areas are retained. Names, addresses, hours and Google-derived neighborhood suggestions are refreshed by the day step.'});
+      note: 'Names, addresses, hours and neighborhood suggestions are fetched by the day step.'});
   } else if (step === 'day') {
     const generated = read('itinerary'), id = generated.trip.tripId;
     const itinerary = read('retrieved').trip.itinerary, savedDay = itinerary.days.find(item => item.day === day);

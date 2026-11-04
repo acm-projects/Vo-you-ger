@@ -10,11 +10,9 @@ function scoreDestination(base, quiz={}) {
   const wanted=new Set(personaTags(quiz.travelAlterEgo));
   const imagery=`${quiz.preferredViews||''} ${quiz.photosToPost||''}`.toLowerCase();
   for(const [pattern,tag] of [[/mountain/,'mountains'],[/beach/,'beach'],[/city|street/,'city'],[/histor|cultur/,'history'],[/food/,'food'],[/natural|nature/,'nature']]) if(pattern.test(imagery)) wanted.add(tag);
-  const matchedInterests=[...wanted].filter(tag=>tags.has(tag));
-  const interests=wanted.size ? matchedInterests.length/wanted.size : 0.5;
+  const interests=wanted.size ? [...wanted].filter(tag=>tags.has(tag)).length/wanted.size : 0.5;
   const months=quiz.startDate ? [['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][Number(quiz.startDate.slice(5,7))-1]] : quiz.preferredMonths||[];
-  const matchingMonths=months.filter(month=>base.bestMonths?.some(m=>m.toLowerCase()===month.slice(0,3).toLowerCase()));
-  const seasonal=months.length&&base.bestMonths?.length ? matchingMonths.length/months.length : 0.5;
+  const seasonal=months.length&&base.bestMonths?.length ? months.filter(month=>base.bestMonths.some(m=>m.toLowerCase()===month.slice(0,3).toLowerCase())).length/months.length : 0.5;
   // Budget is a preference: modestly higher tiers lose some points, never eligibility.
   const budget=BUDGET[base.budget]&&BUDGET[quiz.budgetLevel]
     ? Math.max(0,1-Math.max(0,BUDGET[base.budget]-BUDGET[quiz.budgetLevel])/2) : 0.5;
@@ -30,7 +28,6 @@ function scoreDestination(base, quiz={}) {
   if(quiz.walkAmount&&compact(quiz.walkAmount)!=='none') preferenceChecks.push(tags.has('walkable'));
   const preference=preferenceChecks.length?preferenceChecks.filter(Boolean).length/preferenceChecks.length:0.5;
   const parts={interest:interests*weights.interest,season:seasonal*weights.season,budget:budget*weights.budget,safety:safety*weights.safety,preferences:preference*weights.preferences};
-  return { score:Number(Object.values(parts).reduce((a,b)=>a+b,0).toFixed(3)),parts,
-    evidence:{matchedInterests,matchingMonths} };
+  return { score:Number(Object.values(parts).reduce((a,b)=>a+b,0).toFixed(3)),parts };
 }
 module.exports={ scoreDestination,BUDGET,isRelaxed,wantsVariety,compact };

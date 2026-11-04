@@ -1,5 +1,3 @@
-import { clearPlanningSession, loginDestination } from "../src/services/navigation";
-
 const form = document.getElementById("form");
 const firstname_input = document.getElementById("firstname-input");
 const lastname_input = document.getElementById("lastname-input");
@@ -306,8 +304,9 @@ form.addEventListener("submit", async (e) => {
 
   try {
     const isSignup = !!firstname_input;
-    const apiBase = import.meta.env.VITE_API_URL || "http://localhost:8080/api";
-    const endpoint = `${apiBase}/auth/${isSignup ? "register" : "login"}`;
+    const endpoint = isSignup
+      ? "http://localhost:8080/api/auth/register"
+      : "http://localhost:8080/api/auth/login";
 
     let requestBody = {};
 
@@ -392,6 +391,7 @@ function addCountryTag(countryName) {
 
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
     const tag = document.createElement("span");
@@ -523,10 +523,20 @@ if (
     // Cached trips belong to the previous session, not the newly signed-in account.
     clearPlanningSession(sessionStorage);
     localStorage.removeItem("quizResponse");
+=======
+    // 5. Success! Save token and user into localStorage
+>>>>>>> f54f95311ca2dd164bbd2f4a87f5952a0a815cf8
     localStorage.setItem("token", data.token);
     localStorage.setItem("user", JSON.stringify(data.user));
 
-    window.location.href = loginDestination({ isSignup, firstTime: data.user?.firstTime });
+    // 6. Redirect to the main React homepage
+// After signup, start the assessment. After login, return home.
+      // First-time users can complete their assessment before planning a trip.
+      if (isSignup) {
+        window.location.href = "/Assessments/assessments.html";
+      } else {
+        window.location.href = "/";
+      }
   } catch (err) {
     console.error("Network error:", err);
     error_message.innerText =
