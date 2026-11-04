@@ -69,7 +69,6 @@ export default function Home() {
 
       <main className="trip-home__main">
         <header className="trip-home__heading">
-          <p>YOUR TRAVEL JOURNAL</p>
           <h1>The world is your oyster.</h1>
           <span>Explore a new country or view your saved trips</span>
         </header>

@@ -3,65 +3,110 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background: #03070d;
-  color: #f5f7fb;
+  background: #fbf4e8;
+  color: #34291f;
 }
 
-/* Homepage navbar */
+/* Match the cream navbar used by the rest of the app. */
 .trip-home > .navbar {
   flex: 0 0 64px;
-  background: #0b1322;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  color: #e7edf5;
+  background: #ebe7d8;
+  border-bottom: 1px solid #e4dccd;
+  color: #34291f;
 }
 
 .trip-home .navbar-logo {
-  color: #ffffff;
+  color: #34291f;
 }
 
 .trip-home .navbar-links a:hover {
-  color: #9dd9ff;
+  color: #6b4d3c;
 }
 
 .trip-home .sign-in-button {
-  border-color: rgba(255, 255, 255, 0.4);
+  border-color: #a69886;
   background: transparent;
-  color: #ffffff;
+  color: #34291f;
 }
 
 .trip-home .sign-in-button:hover {
-  background: rgba(255, 255, 255, 0.12);
-  color: #ffffff;
+  background: #6b4d3c;
+  color: #fffaf3;
 }
 
-/* Fill the space below the navbar */
 .trip-home__main {
-  position: relative;
   flex: 1;
   min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 0;
+  padding: 16px clamp(20px, 3vw, 48px) 28px;
   overflow: hidden;
+  background-image: url("/home-background.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.trip-home__heading {
+  flex: 0 0 auto;
+}
+
+.trip-home__heading > p {
+  margin: 0 0 8px;
+  color: #000000;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+}
+
+.trip-home__heading h1 {
+  margin: 6px 0;
+  color: #000000;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(30px, 3.2vw, 42px);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.trip-home__heading > span {
+  display: block;
+  margin-top: 8px;
+  color: #000000;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.6;
 }
 
 .trip-home__layout {
-  position: absolute;
-  inset: 0;
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(300px, 27vw, 400px);
+  gap: 24px;
 }
 
-/* Google supplies the globe and its surrounding starfield */
+/* Google retains its starfield inside this frame. The complete map viewport,
+   including attribution and controls, stays separate from the info panel. */
 .trip-home__globe {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid #d8ccbd;
+  border-radius: 24px;
+  background: #03070d;
+  box-shadow: 0 12px 32px rgba(79, 58, 35, 0.1);
 }
 
 .trip-home__globe-viewer {
   position: relative;
   width: 100%;
   height: 100%;
-  aspect-ratio: auto;
 }
 
 .trip-home__google-map,
@@ -73,72 +118,33 @@
   height: 100%;
 }
 
-/* Heading floats above the map */
-.trip-home__heading {
-  position: absolute;
-  z-index: 2;
-  top: 24px;
-  left: 3%;
-  max-width: calc(100% - 460px);
-  pointer-events: none;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
-}
-
-.trip-home__heading > p {
-  margin: 0 0 6px;
-  color: #b8d8f5;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-}
-
-.trip-home__heading h1 {
-  margin: 6px 0;
-  color: #ffffff;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(26px, 3vw, 38px);
-  font-weight: 500;
-}
-
-.trip-home__heading > span {
-  color: #d1dce8;
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-/* Leave room along the right and bottom for Google controls */
 .trip-home__panel {
-  position: absolute;
-  z-index: 1;
-  top: 120px;
-  right: 24px;
-  bottom: 120px;
-  width: clamp(300px, 26vw, 420px);
+  min-width: 0;
   min-height: 0;
-  padding: 28px;
+  padding: clamp(20px, 2vw, 28px);
   display: grid;
   place-items: center;
   overflow-y: auto;
   text-align: center;
-  border: 1px solid rgba(185, 214, 245, 0.2);
-  border-radius: 20px;
-  background: rgba(12, 25, 43, 0.9);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+  border: 1px solid #e4d4c1;
+  border-radius: 24px;
+  background: #fffdf8;
+  box-shadow: 0 12px 32px rgba(79, 58, 35, 0.06);
 }
 
 .trip-home__panel > p {
   margin: 0;
-  color: #d0dcea;
+  color: #807367;
   font-size: 14px;
   line-height: 1.7;
 }
 
-/* Loading and error messages */
+/* Map status stays readable against Google's dark canvas. */
 .trip-home__google-status {
   position: absolute;
   z-index: 3;
   bottom: 80px;
-  left: 24px;
+  left: 20px;
   max-width: min(420px, calc(100% - 104px));
   padding: 12px 16px;
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -150,36 +156,9 @@
   pointer-events: none;
 }
 
-/* Smaller screens */
-@media (max-width: 850px) {
-  .trip-home__heading {
-    top: 20px;
-    left: 20px;
-    max-width: calc(100% - 90px);
-  }
-
-  .trip-home__heading h1 {
-    font-size: 26px;
-  }
-
-  .trip-home__panel {
-    top: auto;
-    right: 80px;
-    bottom: 72px;
-    left: 20px;
-    width: auto;
-    max-height: 30dvh;
-    padding: 20px;
-  }
-}
-@media (min-width: 851px) {
-  .trip-home__globe {
-    right: 48px;
-  }
-}
 .trip-home__country-name {
   margin: 0;
-  color: #ffffff;
+  color: #34291f;
   font-family: "Playfair Display", Georgia, serif;
   font-size: 32px;
   font-weight: 500;
@@ -192,7 +171,7 @@
 
 .country-panel {
   width: 100%;
-  color: #d0dcea;
+  color: #62564b;
   font-size: 14px;
   line-height: 1.6;
 }
@@ -207,7 +186,7 @@
 
 .country-panel__heading h2 {
   margin: 0;
-  color: #ffffff;
+  color: #34291f;
   font-family: "Playfair Display", Georgia, serif;
   font-size: 28px;
   font-weight: 500;
@@ -219,10 +198,10 @@
   width: 32px;
   height: 32px;
   padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid #e4d4c1;
   border-radius: 50%;
   background: transparent;
-  color: #ffffff;
+  color: #34291f;
   font-size: 24px;
   line-height: 1;
   cursor: pointer;
@@ -230,13 +209,13 @@
 
 .country-panel__close:hover,
 .country-panel__retry:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: #f0e4d3;
 }
 
 .country-panel__close:focus-visible,
 .country-panel__retry:focus-visible,
 .country-panel a:focus-visible {
-  outline: 2px solid #9dd9ff;
+  outline: 2px solid #8d634b;
   outline-offset: 3px;
 }
 
@@ -256,13 +235,13 @@
 .country-panel__attribution,
 .country-panel__footnote {
   margin: 8px 0 0;
-  color: #9badc1;
+  color: #807367;
   font-size: 10px;
   line-height: 1.5;
 }
 
 .country-panel a {
-  color: #b8d8f5;
+  color: #6b4d3c;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -273,8 +252,8 @@
   place-items: center;
   margin-bottom: 20px;
   border-radius: 12px;
-  background: #172c43;
-  color: #9badc1;
+  background: #f1e7d8;
+  color: #807367;
 }
 
 .country-panel__description {
@@ -290,33 +269,33 @@
   grid-template-columns: 90px minmax(0, 1fr);
   gap: 12px;
   padding: 12px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid #eadfce;
 }
 
 .country-panel__facts dt {
-  color: #9badc1;
+  color: #807367;
   font-size: 12px;
 }
 
 .country-panel__facts dd {
   margin: 0;
-  color: #f0f5fb;
+  color: #34291f;
   overflow-wrap: anywhere;
 }
 
 .country-panel__retry {
   padding: 8px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid #d7c3ab;
   border-radius: 8px;
   background: transparent;
-  color: #ffffff;
+  color: #34291f;
   font: inherit;
   cursor: pointer;
 }
 
 .saved-trips {
   margin-top: 24px;
-  color: #d0dcea;
+  color: #62564b;
 }
 
 .saved-trips h3 {
@@ -337,9 +316,9 @@
   width: 100%;
   padding: 12px;
   text-align: left;
-  color: #f0f5fb;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(185, 214, 245, 0.2);
+  color: #34291f;
+  background: #fffaf3;
+  border: 1px solid #e4d4c1;
   border-radius: 10px;
   font: inherit;
   cursor: pointer;
@@ -347,31 +326,31 @@
 
 .saved-trips button:hover,
 .saved-trips button[aria-pressed="true"] {
-  background: #1d3954;
-  border-color: #9dd9ff;
+  background: #f0e4d3;
+  border-color: #8d634b;
 }
 
 .saved-trips button:focus-visible,
 .saved-trip-panel__open:focus-visible {
-  outline: 2px solid #9dd9ff;
+  outline: 2px solid #8d634b;
   outline-offset: 3px;
 }
 
 .saved-trips small {
   display: block;
   margin-top: 5px;
-  color: #a7bdd1;
+  color: #807367;
   font-size: 11px;
 }
 
 .saved-trip-panel__route {
-  color: #b8d8f5;
+  color: #6b4d3c;
   font-size: 13px;
 }
 
 .saved-trip-panel__dates,
 .saved-trips__message {
-  color: #a7bdd1;
+  color: #807367;
   font-size: 12px;
   line-height: 1.6;
 }
@@ -381,14 +360,57 @@
   margin-top: 12px;
   padding: 10px 16px;
   border-radius: 8px;
-  background: #b8d8f5;
-  color: #0c192b;
+  background: #6b4d3c;
+  color: #fffaf3;
   font-size: 13px;
   font-weight: 600;
   text-decoration: none;
 }
 
 .country-panel .saved-trip-panel__open {
-  color: #0c192b;
+  color: #fffaf3;
   text-decoration: none;
+}
+
+/* Stack the globe and details on narrow screens without covering map controls. */
+@media (max-width: 850px) {
+  .trip-home {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+
+  .trip-home > .navbar {
+    padding-inline: 20px;
+  }
+
+  .trip-home .navbar-links {
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .trip-home__main {
+    flex: 0 0 auto;
+    padding: 20px 16px 24px;
+    gap: 18px;
+    overflow: visible;
+  }
+
+  .trip-home__heading h1 {
+    font-size: 32px;
+  }
+
+  .trip-home__layout {
+    flex: 0 0 auto;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: max(340px, 55dvh) auto;
+    gap: 18px;
+  }
+
+  .trip-home__panel {
+    min-height: 200px;
+    max-height: 55dvh;
+    padding: 24px;
+  }
 }
