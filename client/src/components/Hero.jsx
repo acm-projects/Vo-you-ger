@@ -1,4 +1,6 @@
 
+import { paths } from "../services/navigation";
+
 function Hero() {
   return (
     <section className="hero-section" id="home">
@@ -16,7 +18,7 @@ function Hero() {
         </p>
 
         <a
-          href="/signUpAndLogin/signup.html"
+          href={localStorage.getItem("token") ? paths.assessment : paths.signup}
           className="primary-button"
         >
           Build My Itinerary

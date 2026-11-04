@@ -11,6 +11,7 @@
   "populationNote": "Source snapshot estimate; reference years vary by country.",
   "countries": {
     "AD": {
+      "description": "Andorra lies high in the Pyrenees between France and Spain. Its mountain valleys are dotted with Romanesque churches, stone villages, and ski slopes.",
       "capital": "Andorra la Vella",
       "continent": "Europe",
       "areaKm2": 468.0,
@@ -30,6 +31,7 @@
       }
     },
     "AE": {
+      "description": "The United Arab Emirates sits on the Arabian Peninsula, where desert dunes and historic trading ports contrast with Dubai’s skyscrapers and Abu Dhabi’s grand mosques.",
       "capital": "Abu Dhabi",
       "continent": "Asia",
       "areaKm2": 82880.0,
@@ -49,6 +51,7 @@
       }
     },
     "AF": {
+      "description": "Afghanistan is a mountainous country in Central and South Asia. Its heritage includes Bamiyan’s Buddhist remains, Silk Road trading cities, and the turquoise lakes of Band-e Amir.",
       "capital": "Kabul",
       "continent": "Asia",
       "areaKm2": 647500.0,
@@ -68,6 +71,7 @@
       }
     },
     "AG": {
+      "description": "Antigua and Barbuda is a Caribbean island country known for sheltered bays, Antigua’s historic English Harbour, and Barbuda’s pink sand beaches and frigatebird colony.",
       "capital": "St. John's",
       "continent": "North America",
       "areaKm2": 443.0,
@@ -87,6 +91,7 @@
       }
     },
     "AI": {
+      "description": "Anguilla is a low-lying island in the eastern Caribbean. It is known for long white sand beaches, turquoise bays, and a musical tradition rooted in island life.",
       "capital": "The Valley",
       "continent": "North America",
       "areaKm2": 102.0,
@@ -106,6 +111,7 @@
       }
     },
     "AL": {
+      "description": "Albania sits on the Adriatic and Ionian seas in southeastern Europe, with Ottoman-era towns such as Berat, rugged mountain valleys, and the archaeological remains of Butrint.",
       "capital": "Tirana",
       "continent": "Europe",
       "areaKm2": 28748.0,
@@ -125,6 +131,7 @@
       }
     },
     "AM": {
+      "description": "Armenia is a mountainous country in the South Caucasus. Its landscape is marked by medieval stone monasteries, carved khachkar crosses, and the high-altitude waters of Lake Sevan.",
       "capital": "Yerevan",
       "continent": "Asia",
       "areaKm2": 29800.0,
@@ -144,6 +151,7 @@
       }
     },
     "AO": {
+      "description": "Angola stretches along southern Africa’s Atlantic coast. It is known for the dramatic Kalandula Falls, the rocky formations of Pedras Negras, and the coastal landscapes near Namibe.",
       "capital": "Luanda",
       "continent": "Africa",
       "areaKm2": 1246700.0,
@@ -163,6 +171,7 @@
       }
     },
     "AQ": {
+      "description": "Antarctica surrounds the South Pole, with vast ice sheets, mountain ranges, and coastal penguin colonies. Research stations support scientific work across this remote continent.",
       "capital": null,
       "continent": "Antarctica",
       "areaKm2": 14000000.0,
@@ -182,6 +191,7 @@
       }
     },
     "AR": {
+      "description": "Argentina extends from subtropical northern forests to Patagonia’s glaciers. It is known for Buenos Aires tango, Mendoza’s vineyards, and the waterfalls of Iguazú.",
       "capital": "Buenos Aires",
       "continent": "South America",
       "areaKm2": 2766890.0,
@@ -201,6 +211,7 @@
       }
     },
     "AS": {
+      "description": "American Samoa is a group of islands in the South Pacific. Volcanic ridges, tropical rainforest, and coral reefs sit alongside Samoan traditions of extended family and village life.",
       "capital": "Pago Pago",
       "continent": "Oceania",
       "areaKm2": 199.0,
@@ -220,6 +231,7 @@
       }
     },
     "AT": {
+      "description": "Austria is a Central European country shaped by the Alps and the Danube. It is known for Vienna’s classical music heritage, Salzburg’s Baroque streets, and Alpine lakes.",
       "capital": "Vienna",
       "continent": "Europe",
       "areaKm2": 83858.0,
@@ -239,6 +251,7 @@
       }
     },
     "AU": {
+      "description": "Australia spans tropical reefs, red desert interiors, and temperate coastlines. Its distinctive features include the Great Barrier Reef, Uluru, and the enduring cultures of Aboriginal and Torres Strait Islander peoples.",
       "capital": "Canberra",
       "continent": "Oceania",
       "areaKm2": 7686850.0,
@@ -258,6 +271,7 @@
       }
     },
     "AW": {
+      "description": "Aruba lies in the southern Caribbean near Venezuela. Its dry landscape features divi-divi trees and cacti, contrasting with white sand beaches and Oranjestad’s colorful buildings.",
       "capital": "Oranjestad",
       "continent": "North America",
       "areaKm2": 193.0,
@@ -277,6 +291,7 @@
       }
     },
     "AX": {
+      "description": "The Åland Islands form a Swedish-speaking archipelago between Sweden and Finland. Red granite shores, sailing traditions, and Mariehamn’s maritime heritage give the islands their character.",
       "capital": "Mariehamn",
       "continent": "Europe",
       "areaKm2": 1580.0,
@@ -296,6 +311,7 @@
       }
     },
     "AZ": {
+      "description": "Azerbaijan lies between the Caucasus Mountains and the Caspian Sea. It is known for Baku’s walled old city, Gobustan’s rock carvings, and landscapes dotted with mud volcanoes.",
       "capital": "Baku",
       "continent": "Asia",
       "areaKm2": 86600.0,
@@ -315,6 +331,7 @@
       }
     },
     "BA": {
+      "description": "Bosnia and Herzegovina is a mountainous Balkan country. Sarajevo’s Ottoman-era bazaar, Mostar’s stone bridge, and clear rivers reflect its layered cultural and architectural heritage.",
       "capital": "Sarajevo",
       "continent": "Europe",
       "areaKm2": 51129.0,
@@ -334,6 +351,7 @@
       }
     },
     "BB": {
+      "description": "Barbados is an eastern Caribbean island known for Bridgetown’s historic buildings, coral limestone caves, and a long rum-making tradition. Its Atlantic coast is shaped by strong surf.",
       "capital": "Bridgetown",
       "continent": "North America",
       "areaKm2": 431.0,
@@ -353,6 +371,7 @@
       }
     },
     "BD": {
+      "description": "Bangladesh occupies much of the Ganges–Brahmaputra delta in South Asia. It is known for the Sundarbans mangrove forest, intricate river networks, and Dhaka’s colorful rickshaw art.",
       "capital": "Dhaka",
       "continent": "Asia",
       "areaKm2": 144000.0,
@@ -372,6 +391,7 @@
       }
     },
     "BE": {
+      "description": "Belgium is a small Western European country known for medieval trading cities, Art Nouveau architecture, and distinctive brewing traditions. Bruges’ canals and Brussels’ Grand-Place are notable landmarks.",
       "capital": "Brussels",
       "continent": "Europe",
       "areaKm2": 30510.0,
@@ -391,6 +411,7 @@
       }
     },
     "BF": {
+      "description": "Burkina Faso is a landlocked West African country with strong traditions of filmmaking, music, and craftsmanship. Bobo-Dioulasso’s earthen mosque and the painted architecture of Tiébélé are distinctive landmarks.",
       "capital": "Ouagadougou",
       "continent": "Africa",
       "areaKm2": 274200.0,
@@ -410,6 +431,7 @@
       }
     },
     "BG": {
+      "description": "Bulgaria stretches from the Balkan Mountains to the Black Sea. It is known for Rila Monastery, Thracian archaeological sites, and the rose-growing valleys around Kazanlak.",
       "capital": "Sofia",
       "continent": "Europe",
       "areaKm2": 110910.0,
@@ -429,6 +451,7 @@
       }
     },
     "BH": {
+      "description": "Bahrain is an island country in the Persian Gulf. Its history centers on the ancient Dilmun civilization, maritime trade, and a pearling heritage preserved in Muharraq.",
       "capital": "Manama",
       "continent": "Asia",
       "areaKm2": 665.0,
@@ -448,6 +471,7 @@
       }
     },
     "BI": {
+      "description": "Burundi lies in East Africa’s Great Lakes region, with hills descending toward Lake Tanganyika. It is known for the ceremonial performances of its royal drumming tradition.",
       "capital": "Gitega",
       "continent": "Africa",
       "areaKm2": 27830.0,
@@ -467,6 +491,7 @@
       }
     },
     "BJ": {
+      "description": "Benin is a West African country known for the royal history of Abomey, the lake village of Ganvié, and Vodun traditions that remain part of its cultural life.",
       "capital": "Porto-Novo",
       "continent": "Africa",
       "areaKm2": 112620.0,
@@ -486,6 +511,7 @@
       }
     },
     "BL": {
+      "description": "Saint Barthélemy is a small island in the northeastern Caribbean. It is known for Gustavia’s harbor, sheltered beaches, and a landscape of dry hills and red-roofed houses.",
       "capital": "Gustavia",
       "continent": "North America",
       "areaKm2": 21.0,
@@ -505,6 +531,7 @@
       }
     },
     "BM": {
+      "description": "Bermuda is an island group in the North Atlantic, known for pink sand beaches, limestone caves, and white-roofed houses designed to collect rainwater.",
       "capital": "Hamilton",
       "continent": "North America",
       "areaKm2": 53.0,
@@ -524,6 +551,7 @@
       }
     },
     "BN": {
+      "description": "Brunei lies on the island of Borneo in Southeast Asia. It is known for ornate mosques, the stilt houses of Kampong Ayer, and the rainforest of Ulu Temburong.",
       "capital": "Bandar Seri Begawan",
       "continent": "Asia",
       "areaKm2": 5770.0,
@@ -543,6 +571,7 @@
       }
     },
     "BO": {
+      "description": "Bolivia spans Andean highlands and Amazonian lowlands. It is known for the Salar de Uyuni salt flat, Lake Titicaca, and the indigenous cultural traditions of the Altiplano.",
       "capital": "Sucre",
       "continent": "South America",
       "areaKm2": 1098580.0,
@@ -562,6 +591,7 @@
       }
     },
     "BQ": {
+      "description": "Bonaire, Saint Eustatius, and Saba are three Caribbean islands with contrasting landscapes: Bonaire’s coral reefs and salt pans, Saint Eustatius’s volcanic crater, and Saba’s steep green slopes.",
       "capital": null,
       "continent": "North America",
       "areaKm2": 328.0,
@@ -581,6 +611,7 @@
       }
     },
     "BR": {
+      "description": "Brazil covers much of South America, from the Amazon rainforest to Atlantic beaches. It is known for samba, Rio de Janeiro’s mountain-framed coastline, and diverse regional cuisines.",
       "capital": "Brasilia",
       "continent": "South America",
       "areaKm2": 8511965.0,
@@ -600,6 +631,7 @@
       }
     },
     "BS": {
+      "description": "The Bahamas is an Atlantic archipelago southeast of Florida. Its islands are known for shallow turquoise banks, blue holes, coral reefs, and the colorful costumes of Junkanoo celebrations.",
       "capital": "Nassau",
       "continent": "North America",
       "areaKm2": 13940.0,
@@ -619,6 +651,7 @@
       }
     },
     "BT": {
+      "description": "Bhutan is a Himalayan country known for cliffside monasteries, fortress-like dzongs, and masked dances at religious festivals. Tiger’s Nest monastery overlooks the forested Paro Valley.",
       "capital": "Thimphu",
       "continent": "Asia",
       "areaKm2": 47000.0,
@@ -638,6 +671,7 @@
       }
     },
     "BV": {
+      "description": "Bouvet Island is a remote volcanic island in the South Atlantic. Ice-covered slopes and rocky shores provide breeding grounds for seals, penguins, and other seabirds.",
       "capital": null,
       "continent": "Antarctica",
       "areaKm2": 49.0,
@@ -654,6 +688,7 @@
       }
     },
     "BW": {
+      "description": "Botswana is a landlocked southern African country known for the seasonal waterways of the Okavango Delta, the Kalahari Desert, and the elephants of the Chobe region.",
       "capital": "Gaborone",
       "continent": "Africa",
       "areaKm2": 600370.0,
@@ -673,6 +708,7 @@
       }
     },
     "BY": {
+      "description": "Belarus lies in Eastern Europe, with extensive forests, lakes, and wetlands. It is known for the castles of Mir and Nesvizh and the ancient woodland of Belovezhskaya Pushcha.",
       "capital": "Minsk",
       "continent": "Europe",
       "areaKm2": 207600.0,
@@ -692,6 +728,7 @@
       }
     },
     "BZ": {
+      "description": "Belize sits on Central America’s Caribbean coast. It is known for its barrier reef and Great Blue Hole, Maya archaeological sites, and Garifuna music and cultural traditions.",
       "capital": "Belmopan",
       "continent": "North America",
       "areaKm2": 22966.0,
@@ -711,6 +748,7 @@
       }
     },
     "CA": {
+      "description": "Canada stretches between the Atlantic, Pacific, and Arctic oceans. Its landscapes include the Rocky Mountains and boreal forests, while Québec’s historic cities preserve a distinctive French-speaking heritage.",
       "capital": "Ottawa",
       "continent": "North America",
       "areaKm2": 9984670.0,
@@ -730,6 +768,7 @@
       }
     },
     "CC": {
+      "description": "The Cocos (Keeling) Islands are coral atolls in the Indian Ocean. Coconut palms, shallow lagoons, and the Cocos Malay community distinguish this remote island group.",
       "capital": "West Island",
       "continent": "Asia",
       "areaKm2": 14.0,
@@ -749,6 +788,7 @@
       }
     },
     "CD": {
+      "description": "The Democratic Republic of the Congo spans much of the Congo Basin in Central Africa. It is known for rainforest wildlife, the Congo River, and influential Congolese rumba music.",
       "capital": "Kinshasa",
       "continent": "Africa",
       "areaKm2": 2345410.0,
@@ -768,6 +808,7 @@
       }
     },
     "CF": {
+      "description": "The Central African Republic lies between tropical forests and savannas. The Dzanga-Sangha region is known for forest elephants gathering in clearings and the cultural traditions of Ba’Aka communities.",
       "capital": "Bangui",
       "continent": "Africa",
       "areaKm2": 622984.0,
@@ -787,6 +828,7 @@
       }
     },
     "CG": {
+      "description": "The Republic of the Congo lies along Central Africa’s Atlantic coast. It is known for the forests of Odzala-Kokoua, western lowland gorillas, and Brazzaville’s riverside setting.",
       "capital": "Brazzaville",
       "continent": "Africa",
       "areaKm2": 342000.0,
@@ -806,6 +848,7 @@
       }
     },
     "CH": {
+      "description": "Switzerland is an Alpine country in Central Europe, known for mountain railways, glacial lakes, and cheese-making traditions. Its German-, French-, Italian-, and Romansh-speaking regions have distinct cultural identities.",
       "capital": "Bern",
       "continent": "Europe",
       "areaKm2": 41290.0,
@@ -825,6 +868,7 @@
       }
     },
     "CI": {
+      "description": "Côte d’Ivoire lies on West Africa’s Gulf of Guinea. It is known for Grand-Bassam’s historic streets, the forests of Taï National Park, and its cocoa-growing landscapes.",
       "capital": "Yamoussoukro",
       "continent": "Africa",
       "areaKm2": 322460.0,
@@ -844,6 +888,7 @@
       }
     },
     "CK": {
+      "description": "The Cook Islands are scattered across the South Pacific. Rarotonga’s volcanic interior and Aitutaki’s lagoon are complemented by Polynesian dance, drumming, and canoe traditions.",
       "capital": "Avarua",
       "continent": "Oceania",
       "areaKm2": 240.0,
@@ -863,6 +908,7 @@
       }
     },
     "CL": {
+      "description": "Chile runs along South America’s Pacific coast between the Andes and the ocean. It is known for the Atacama Desert, Patagonian fjords, and Rapa Nui’s moai statues.",
       "capital": "Santiago",
       "continent": "South America",
       "areaKm2": 756950.0,
@@ -882,6 +928,7 @@
       }
     },
     "CM": {
+      "description": "Cameroon spans Atlantic coast, rainforest, grasslands, and northern savannas. Its distinctive landscapes include volcanic Mount Cameroon, while the western highlands preserve elaborate royal and mask-making traditions.",
       "capital": "Yaounde",
       "continent": "Africa",
       "areaKm2": 475440.0,
@@ -901,6 +948,7 @@
       }
     },
     "CN": {
+      "description": "China stretches from Himalayan peaks to Pacific coastlines. It is known for the Great Wall, the terracotta army at Xi’an, and culinary traditions that vary widely by region.",
       "capital": "Beijing",
       "continent": "Asia",
       "areaKm2": 9596960.0,
@@ -920,6 +968,7 @@
       }
     },
     "CO": {
+      "description": "Colombia connects the Andes, Amazon, and Caribbean coast. It is known for mountain coffee farms, Cartagena’s walled streets, and musical traditions such as cumbia and vallenato.",
       "capital": "Bogota",
       "continent": "South America",
       "areaKm2": 1138910.0,
@@ -939,6 +988,7 @@
       }
     },
     "CR": {
+      "description": "Costa Rica lies between the Caribbean Sea and Pacific Ocean. It is known for cloud forests, volcanic landscapes, and protected habitats home to sloths, toucans, and sea turtles.",
       "capital": "San Jose",
       "continent": "North America",
       "areaKm2": 51100.0,
@@ -958,6 +1008,7 @@
       }
     },
     "CU": {
+      "description": "Cuba is a Caribbean island country known for Havana’s historic architecture, son music, and tobacco-growing traditions. The limestone hills of Viñales rise above its western valleys.",
       "capital": "Havana",
       "continent": "North America",
       "areaKm2": 110860.0,
@@ -977,6 +1028,7 @@
       }
     },
     "CV": {
+      "description": "Cabo Verde is a volcanic Atlantic archipelago off West Africa. It is known for morna music, Fogo’s volcanic landscapes, and the mountain valleys of Santo Antão.",
       "capital": "Praia",
       "continent": "Africa",
       "areaKm2": 4033.0,
@@ -996,6 +1048,7 @@
       }
     },
     "CW": {
+      "description": "Curaçao lies in the southern Caribbean. It is known for Willemstad’s brightly painted waterfront, the island’s sheltered coves, and Papiamentu language and cultural traditions.",
       "capital": " Willemstad",
       "continent": "North America",
       "areaKm2": 444.0,
@@ -1015,6 +1068,7 @@
       }
     },
     "CX": {
+      "description": "Christmas Island lies in the Indian Ocean south of Java. It is known for tropical rainforest, rugged limestone cliffs, and the seasonal migration of red crabs toward the sea.",
       "capital": "Flying Fish Cove",
       "continent": "Oceania",
       "areaKm2": 135.0,
@@ -1034,6 +1088,7 @@
       }
     },
     "CY": {
+      "description": "Cyprus is an eastern Mediterranean island known for ancient mosaics at Paphos, the painted churches of the Troodos Mountains, and a long tradition of halloumi cheese-making.",
       "capital": "Nicosia",
       "continent": "Europe",
       "areaKm2": 9250.0,
@@ -1053,6 +1108,7 @@
       }
     },
     "CZ": {
+      "description": "Czechia is a Central European country known for Prague’s medieval streets, Bohemian castles, and a long brewing tradition. Moravia adds vineyard landscapes and distinctive regional folk culture.",
       "capital": "Prague",
       "continent": "Europe",
       "areaKm2": 78866.0,
@@ -1072,6 +1128,7 @@
       }
     },
     "DE": {
+      "description": "Germany lies in Central Europe, with landscapes ranging from the North Sea to the Alps. It is known for timber-framed towns, influential composers, and the Bauhaus design movement.",
       "capital": "Berlin",
       "continent": "Europe",
       "areaKm2": 357021.0,
@@ -1091,6 +1148,7 @@
       }
     },
     "DJ": {
+      "description": "Djibouti sits where the Red Sea meets the Gulf of Aden. It is known for the salt shores of Lake Assal and the limestone chimneys around Lake Abbe.",
       "capital": "Djibouti",
       "continent": "Africa",
       "areaKm2": 23000.0,
@@ -1110,6 +1168,7 @@
       }
     },
     "DK": {
+      "description": "Denmark links the Jutland peninsula with an archipelago of islands. It is known for Copenhagen’s harbor, Viking history, and a design tradition emphasizing simple, functional forms.",
       "capital": "Copenhagen",
       "continent": "Europe",
       "areaKm2": 43094.0,
@@ -1129,6 +1188,7 @@
       }
     },
     "DM": {
+      "description": "Dominica is a mountainous Caribbean island known for rainforest, waterfalls, and the geothermal Boiling Lake. It is also home to the Kalinago Territory and its indigenous cultural heritage.",
       "capital": "Roseau",
       "continent": "North America",
       "areaKm2": 754.0,
@@ -1148,6 +1208,7 @@
       }
     },
     "DO": {
+      "description": "The Dominican Republic occupies the eastern part of Hispaniola. It is known for merengue and bachata, Santo Domingo’s historic colonial district, and landscapes of beaches and mountain ranges.",
       "capital": "Santo Domingo",
       "continent": "North America",
       "areaKm2": 48730.0,
@@ -1167,6 +1228,7 @@
       }
     },
     "DZ": {
+      "description": "Algeria stretches from the Mediterranean coast deep into the Sahara. It is known for the Roman ruins of Timgad, Algiers’ Casbah, and the rock art of Tassili n’Ajjer.",
       "capital": "Algiers",
       "continent": "Africa",
       "areaKm2": 2381740.0,
@@ -1186,6 +1248,7 @@
       }
     },
     "EC": {
+      "description": "Ecuador straddles the equator in South America, combining Andean highlands, Amazon rainforest, and Pacific coastline. Its Galápagos Islands are known for wildlife found nowhere else.",
       "capital": "Quito",
       "continent": "South America",
       "areaKm2": 283560.0,
@@ -1205,6 +1268,7 @@
       }
     },
     "EE": {
+      "description": "Estonia lies on the Baltic Sea in Northern Europe. It is known for Tallinn’s medieval old town, peat bog landscapes, and a choral tradition celebrated through large song festivals.",
       "capital": "Tallinn",
       "continent": "Europe",
       "areaKm2": 45226.0,
@@ -1224,6 +1288,7 @@
       }
     },
     "EG": {
+      "description": "Egypt centers on the Nile Valley in northeastern Africa. It is known for the pyramids of Giza, ancient temples at Luxor, and the coral reefs of the Red Sea.",
       "capital": "Cairo",
       "continent": "Africa",
       "areaKm2": 1001450.0,
@@ -1243,6 +1308,7 @@
       }
     },
     "EH": {
+      "description": "Western Sahara lies on Africa’s Atlantic coast, with extensive desert plains and dunes. The Dakhla peninsula shelters a large lagoon, while Sahrawi heritage includes poetry and tea ceremonies.",
       "capital": "El-Aaiun",
       "continent": "Africa",
       "areaKm2": 266000.0,
@@ -1262,6 +1328,7 @@
       }
     },
     "ER": {
+      "description": "Eritrea stretches from the Red Sea to the East African highlands. It is known for Asmara’s modernist architecture, the port of Massawa, and the offshore Dahlak Islands.",
       "capital": "Asmara",
       "continent": "Africa",
       "areaKm2": 121320.0,
@@ -1281,6 +1348,7 @@
       }
     },
     "ES": {
+      "description": "Spain occupies much of the Iberian Peninsula. It is known for Andalusian flamenco, Barcelona’s modernist architecture, and regional food traditions ranging from Basque pintxos to Valencian paella.",
       "capital": "Madrid",
       "continent": "Europe",
       "areaKm2": 504782.0,
@@ -1300,6 +1368,7 @@
       }
     },
     "ET": {
+      "description": "Ethiopia lies in the Horn of Africa, with dramatic highland plateaus and Rift Valley landscapes. It is known for Lalibela’s rock-hewn churches, ancient Aksum, and coffee ceremonies.",
       "capital": "Addis Ababa",
       "continent": "Africa",
       "areaKm2": 1127127.0,
@@ -1319,6 +1388,7 @@
       }
     },
     "FI": {
+      "description": "Finland is a Northern European country of forests, lakes, and Baltic islands. Sauna culture, the northern lights of Lapland, and modern Finnish design are distinctive parts of its identity.",
       "capital": "Helsinki",
       "continent": "Europe",
       "areaKm2": 337030.0,
@@ -1338,6 +1408,7 @@
       }
     },
     "FJ": {
+      "description": "Fiji is a South Pacific archipelago known for coral reefs, volcanic highlands, and village traditions. Kava ceremonies and the cultural heritage of iTaukei and Indo-Fijian communities shape island life.",
       "capital": "Suva",
       "continent": "Oceania",
       "areaKm2": 18270.0,
@@ -1357,6 +1428,7 @@
       }
     },
     "FK": {
+      "description": "The Falkland Islands are a South Atlantic archipelago off southern South America. Windswept grasslands, penguin colonies, and offshore islands supporting albatrosses define their landscape.",
       "capital": "Stanley",
       "continent": "South America",
       "areaKm2": 12173.0,
@@ -1376,6 +1448,7 @@
       }
     },
     "FM": {
+      "description": "The Federated States of Micronesia spans island groups in the western Pacific. It is known for Nan Madol’s stone ruins, Yap’s stone money, and longstanding ocean navigation traditions.",
       "capital": "Palikir",
       "continent": "Oceania",
       "areaKm2": 702.0,
@@ -1395,6 +1468,7 @@
       }
     },
     "FO": {
+      "description": "The Faroe Islands lie in the North Atlantic between Iceland and Norway. Steep sea cliffs, grass-roofed houses, and villages beside narrow fjords give the archipelago its distinctive appearance.",
       "capital": "Torshavn",
       "continent": "Europe",
       "areaKm2": 1399.0,
@@ -1414,6 +1488,7 @@
       }
     },
     "FR": {
+      "description": "France stretches from Atlantic and Mediterranean coastlines to the Alps. It is known for Parisian art collections, Gothic cathedrals, and regional food and wine traditions.",
       "capital": "Paris",
       "continent": "Europe",
       "areaKm2": 547030.0,
@@ -1433,6 +1508,7 @@
       }
     },
     "GA": {
+      "description": "Gabon lies on Central Africa’s Atlantic coast, with extensive equatorial rainforest. Loango’s coastal habitats and Lopé’s forest–savanna landscapes support elephants, primates, and other wildlife.",
       "capital": "Libreville",
       "continent": "Africa",
       "areaKm2": 267667.0,
@@ -1452,6 +1528,7 @@
       }
     },
     "GB": {
+      "description": "The United Kingdom includes England, Scotland, Wales, and Northern Ireland. It is known for London’s museums, medieval castles, the Scottish Highlands, and distinct literary and musical traditions.",
       "capital": "London",
       "continent": "Europe",
       "areaKm2": 244820.0,
@@ -1471,6 +1548,7 @@
       }
     },
     "GD": {
+      "description": "Grenada is a Caribbean island country known for nutmeg production, St. George’s colorful harbor, and volcanic scenery. The smaller islands of Carriacou and Petite Martinique preserve boatbuilding traditions.",
       "capital": "St. George's",
       "continent": "North America",
       "areaKm2": 344.0,
@@ -1490,6 +1568,7 @@
       }
     },
     "GE": {
+      "description": "Georgia lies in the South Caucasus, where mountain villages and medieval monasteries overlook deep valleys. It is known for qvevri wine-making and distinctive polyphonic singing.",
       "capital": "Tbilisi",
       "continent": "Asia",
       "areaKm2": 69700.0,
@@ -1509,6 +1588,7 @@
       }
     },
     "GF": {
+      "description": "French Guiana lies on South America’s Atlantic coast. Amazonian forests surround coastal settlements, while the Guiana Space Centre near Kourou connects the region with space exploration.",
       "capital": "Cayenne",
       "continent": "South America",
       "areaKm2": 91000.0,
@@ -1528,6 +1608,7 @@
       }
     },
     "GG": {
+      "description": "Guernsey lies in the Channel Islands near the French coast. It is known for St Peter Port’s harbor, coastal fortifications, and Victor Hugo’s former home at Hauteville House.",
       "capital": "St Peter Port",
       "continent": "Europe",
       "areaKm2": 78.0,
@@ -1547,6 +1628,7 @@
       }
     },
     "GH": {
+      "description": "Ghana lies on West Africa’s Gulf of Guinea. It is known for Asante cultural heritage, woven kente cloth, and coastal forts that bear witness to the Atlantic slave trade.",
       "capital": "Accra",
       "continent": "Africa",
       "areaKm2": 239460.0,
@@ -1566,6 +1648,7 @@
       }
     },
     "GI": {
+      "description": "Gibraltar sits at the southern tip of the Iberian Peninsula. Its limestone Rock contains extensive caves and tunnels and is home to a population of Barbary macaques.",
       "capital": "Gibraltar",
       "continent": "Europe",
       "areaKm2": 6.5,
@@ -1585,6 +1668,7 @@
       }
     },
     "GL": {
+      "description": "Greenland lies between the Arctic and North Atlantic oceans. It is known for its vast ice sheet, iceberg-filled fjords, and Inuit cultural traditions along its inhabited coasts.",
       "capital": "Nuuk",
       "continent": "North America",
       "areaKm2": 2166086.0,
@@ -1604,6 +1688,7 @@
       }
     },
     "GM": {
+      "description": "The Gambia follows the Gambia River inland from West Africa’s Atlantic coast. It is known for mangrove habitats, birdlife, and Mandinka kora music and storytelling traditions.",
       "capital": "Banjul",
       "continent": "Africa",
       "areaKm2": 11300.0,
@@ -1623,6 +1708,7 @@
       }
     },
     "GN": {
+      "description": "Guinea lies in West Africa, with Atlantic coastline and the highlands of Fouta Djallon. It is known for waterfall landscapes and influential traditions of percussion and dance.",
       "capital": "Conakry",
       "continent": "Africa",
       "areaKm2": 245857.0,
@@ -1642,6 +1728,7 @@
       }
     },
     "GP": {
+      "description": "Guadeloupe is a Caribbean archipelago whose main islands resemble a butterfly. Rainforest and the volcano La Soufrière contrast with coral limestone landscapes and Creole cultural traditions.",
       "capital": "Basse-Terre",
       "continent": "North America",
       "areaKm2": 1780.0,
@@ -1661,6 +1748,7 @@
       }
     },
     "GQ": {
+      "description": "Equatorial Guinea combines a mainland region with Gulf of Guinea islands. Bioko’s volcanic highlands and the mainland forests of Monte Alén support distinctive tropical wildlife.",
       "capital": "Ciudad de la Paz",
       "continent": "Africa",
       "areaKm2": 28051.0,
@@ -1680,6 +1768,7 @@
       }
     },
     "GR": {
+      "description": "Greece lies in southeastern Europe, with a mountainous mainland and islands across the Aegean and Ionian seas. It is known for ancient temples, Byzantine monasteries, and regional Mediterranean cuisines.",
       "capital": "Athens",
       "continent": "Europe",
       "areaKm2": 131940.0,
@@ -1699,6 +1788,7 @@
       }
     },
     "GS": {
+      "description": "South Georgia and the South Sandwich Islands lie in the South Atlantic. Glaciated mountains and volcanic islands support large colonies of penguins, seals, and other seabirds.",
       "capital": "Grytviken",
       "continent": "Antarctica",
       "areaKm2": 3903.0,
@@ -1718,6 +1808,7 @@
       }
     },
     "GT": {
+      "description": "Guatemala lies in Central America, where volcanic highlands meet tropical lowlands. It is known for Tikal’s Maya temples, Lake Atitlán, and the living textile traditions of Maya communities.",
       "capital": "Guatemala City",
       "continent": "North America",
       "areaKm2": 108890.0,
@@ -1737,6 +1828,7 @@
       }
     },
     "GU": {
+      "description": "Guam lies in the western Pacific’s Mariana Islands. It is known for CHamoru cultural heritage, limestone landscapes, coral reefs, and remnants of its role in Pacific history.",
       "capital": "Hagatna",
       "continent": "Oceania",
       "areaKm2": 549.0,
@@ -1756,6 +1848,7 @@
       }
     },
     "GW": {
+      "description": "Guinea-Bissau sits on West Africa’s Atlantic coast. The Bijagós Archipelago is known for mangrove-lined islands, marine wildlife, and community traditions closely connected with the sea.",
       "capital": "Bissau",
       "continent": "Africa",
       "areaKm2": 36120.0,
@@ -1775,6 +1868,7 @@
       }
     },
     "GY": {
+      "description": "Guyana lies on South America’s northern coast. It is known for Kaieteur Falls, the savannas of the Rupununi, and extensive rainforest with strong indigenous cultural connections.",
       "capital": "Georgetown",
       "continent": "South America",
       "areaKm2": 214970.0,
@@ -1794,6 +1888,7 @@
       }
     },
     "HK": {
+      "description": "Hong Kong lies on China’s southern coast, where steep green hills rise above dense urban districts. It is known for Victoria Harbour, Cantonese cuisine, and outlying island villages.",
       "capital": "Hong Kong",
       "continent": "Asia",
       "areaKm2": 1092.0,
@@ -1813,6 +1908,7 @@
       }
     },
     "HM": {
+      "description": "Heard Island and McDonald Islands are remote volcanic islands in the southern Indian Ocean. Heard’s glacier-covered Big Ben volcano rises above shores occupied by penguins and seals.",
       "capital": null,
       "continent": "Antarctica",
       "areaKm2": 412.0,
@@ -1829,6 +1925,7 @@
       }
     },
     "HN": {
+      "description": "Honduras lies in Central America, with Caribbean islands and a mountainous interior. It is known for Copán’s Maya stone carvings, the Bay Islands’ coral reefs, and Garifuna cultural heritage.",
       "capital": "Tegucigalpa",
       "continent": "North America",
       "areaKm2": 112090.0,
@@ -1848,6 +1945,7 @@
       }
     },
     "HR": {
+      "description": "Croatia stretches along the Adriatic Sea and into Central Europe. It is known for Dubrovnik’s stone walls, Split’s Roman palace, and the cascading lakes of Plitvice.",
       "capital": "Zagreb",
       "continent": "Europe",
       "areaKm2": 56542.0,
@@ -1867,6 +1965,7 @@
       }
     },
     "HT": {
+      "description": "Haiti occupies western Hispaniola in the Caribbean. It is known for the hilltop Citadelle Laferrière, vibrant painting and metalwork traditions, and a rich heritage of Haitian Creole literature.",
       "capital": "Port-au-Prince",
       "continent": "North America",
       "areaKm2": 27750.0,
@@ -1886,6 +1985,7 @@
       }
     },
     "HU": {
+      "description": "Hungary lies in Central Europe’s Danube Basin. It is known for Budapest’s thermal baths, the vineyard landscapes of Tokaj, and a musical heritage spanning folk traditions and classical composition.",
       "capital": "Budapest",
       "continent": "Europe",
       "areaKm2": 93030.0,
@@ -1905,6 +2005,7 @@
       }
     },
     "ID": {
+      "description": "Indonesia is a vast archipelago between the Indian and Pacific oceans. It is known for volcanic landscapes, Borobudur’s Buddhist reliefs, and diverse traditions of batik, music, and dance.",
       "capital": "Jakarta",
       "continent": "Asia",
       "areaKm2": 1919440.0,
@@ -1924,6 +2025,7 @@
       }
     },
     "IE": {
+      "description": "Ireland sits on the Atlantic edge of Europe. It is known for traditional music sessions, medieval monastic sites, and coastal landscapes such as the Cliffs of Moher.",
       "capital": "Dublin",
       "continent": "Europe",
       "areaKm2": 70280.0,
@@ -1943,6 +2045,7 @@
       }
     },
     "IL": {
+      "description": "Israel lies on the eastern Mediterranean coast. It is known for Tel Aviv’s modernist buildings, archaeological sites such as Masada, and landscapes extending from Mediterranean shores to the Negev Desert.",
       "capital": "Jerusalem",
       "continent": "Asia",
       "areaKm2": 20770.0,
@@ -1962,6 +2065,7 @@
       }
     },
     "IM": {
+      "description": "The Isle of Man lies in the Irish Sea between Britain and Ireland. It is known for the Manx language, ancient stone crosses, and historic steam and electric railways.",
       "capital": "Douglas",
       "continent": "Europe",
       "areaKm2": 572.0,
@@ -1981,6 +2085,7 @@
       }
     },
     "IN": {
+      "description": "India spans Himalayan mountains, tropical coasts, and vast river plains. It is known for the Taj Mahal, diverse religious and artistic traditions, and cuisines shaped by its many regions.",
       "capital": "New Delhi",
       "continent": "Asia",
       "areaKm2": 3287590.0,
@@ -2000,6 +2105,7 @@
       }
     },
     "IO": {
+      "description": "The Chagos Archipelago lies in the central Indian Ocean. Its coral atolls, lagoons, and seabird habitats are part of the ancestral homeland of Chagossian communities.",
       "capital": "Diego Garcia",
       "continent": "Asia",
       "areaKm2": 60.0,
@@ -2016,6 +2122,7 @@
       }
     },
     "IQ": {
+      "description": "Iraq lies in the historic region of Mesopotamia between the Tigris and Euphrates. It is known for ancient Babylon, the ziggurat of Ur, and the southern marshlands.",
       "capital": "Baghdad",
       "continent": "Asia",
       "areaKm2": 437072.0,
@@ -2035,6 +2142,7 @@
       }
     },
     "IR": {
+      "description": "Iran extends from the Caspian Sea to the Persian Gulf. It is known for Isfahan’s tiled architecture, the ruins of Persepolis, and long traditions of Persian poetry and garden design.",
       "capital": "Tehran",
       "continent": "Asia",
       "areaKm2": 1648000.0,
@@ -2054,6 +2162,7 @@
       }
     },
     "IS": {
+      "description": "Iceland sits in the North Atlantic on a volcanic plate boundary. It is known for glaciers, geysers, lava fields, and a literary heritage rooted in medieval sagas.",
       "capital": "Reykjavik",
       "continent": "Europe",
       "areaKm2": 103000.0,
@@ -2073,6 +2182,7 @@
       }
     },
     "IT": {
+      "description": "Italy extends from the Alps into the Mediterranean. It is known for Rome’s ancient monuments, Florence’s Renaissance art, and regional food traditions ranging from Neapolitan pizza to Sicilian pastries.",
       "capital": "Rome",
       "continent": "Europe",
       "areaKm2": 301230.0,
@@ -2092,6 +2202,7 @@
       }
     },
     "JE": {
+      "description": "Jersey is the largest of the Channel Islands, near France’s Normandy coast. It is known for sweeping tidal bays, medieval castles, and a farming heritage associated with Jersey cattle.",
       "capital": "Saint Helier",
       "continent": "Europe",
       "areaKm2": 116.0,
@@ -2111,6 +2222,7 @@
       }
     },
     "JM": {
+      "description": "Jamaica is a mountainous Caribbean island known for reggae music, jerk cooking, and the coffee-growing slopes of the Blue Mountains. Its cultural influence extends far beyond its shores.",
       "capital": "Kingston",
       "continent": "North America",
       "areaKm2": 10991.0,
@@ -2130,6 +2242,7 @@
       }
     },
     "JO": {
+      "description": "Jordan lies in the Middle East, east of the Jordan River. It is known for Petra’s rock-cut architecture, Wadi Rum’s sandstone desert, and the salt-rich waters of the Dead Sea.",
       "capital": "Amman",
       "continent": "Asia",
       "areaKm2": 92300.0,
@@ -2149,6 +2262,7 @@
       }
     },
     "JP": {
+      "description": "Japan is an East Asian archipelago known for Kyoto’s temples, Tokyo’s urban neighborhoods, and volcanic hot springs. Seasonal traditions celebrate cherry blossoms, autumn leaves, and regional foods.",
       "capital": "Tokyo",
       "continent": "Asia",
       "areaKm2": 377835.0,
@@ -2168,6 +2282,7 @@
       }
     },
     "KE": {
+      "description": "Kenya lies in East Africa, with Indian Ocean coastline and Rift Valley highlands. It is known for the Maasai Mara’s wildlife, Mount Kenya, and Swahili heritage around Lamu.",
       "capital": "Nairobi",
       "continent": "Africa",
       "areaKm2": 582650.0,
@@ -2187,6 +2302,7 @@
       }
     },
     "KG": {
+      "description": "Kyrgyzstan is a mountainous Central Asian country dominated by the Tian Shan. It is known for Lake Issyk-Kul, felt-making traditions, and seasonal herding camps with yurts.",
       "capital": "Bishkek",
       "continent": "Asia",
       "areaKm2": 198500.0,
@@ -2206,6 +2322,7 @@
       }
     },
     "KH": {
+      "description": "Cambodia lies in mainland Southeast Asia. It is known for Angkor’s Khmer temples, the seasonal waters of Tonlé Sap, and classical dance traditions preserved across generations.",
       "capital": "Phnom Penh",
       "continent": "Asia",
       "areaKm2": 181040.0,
@@ -2225,6 +2342,7 @@
       }
     },
     "KI": {
+      "description": "Kiribati spans widely scattered island groups in the central Pacific. It is known for coral atolls, ocean navigation traditions, and the seabird and marine habitats of the Phoenix Islands.",
       "capital": "Tarawa",
       "continent": "Oceania",
       "areaKm2": 811.0,
@@ -2244,6 +2362,7 @@
       }
     },
     "KM": {
+      "description": "Comoros is a volcanic archipelago in the Indian Ocean between East Africa and Madagascar. It is known for ylang-ylang cultivation, Swahili-influenced culture, and Mount Karthala’s volcanic landscape.",
       "capital": "Moroni",
       "continent": "Africa",
       "areaKm2": 2170.0,
@@ -2263,6 +2382,7 @@
       }
     },
     "KN": {
+      "description": "Saint Kitts and Nevis is a two-island country in the Caribbean. It is known for volcanic peaks, the hilltop fortress of Brimstone Hill, and landscapes shaped by former sugar estates.",
       "capital": "Basseterre",
       "continent": "North America",
       "areaKm2": 261.0,
@@ -2282,6 +2402,7 @@
       }
     },
     "KP": {
+      "description": "North Korea occupies the northern Korean Peninsula. It is known for the mountain landscapes of Paektu and Kumgang, Pyongyang’s monumental architecture, and historic sites of the Koguryo kingdom.",
       "capital": "Pyongyang",
       "continent": "Asia",
       "areaKm2": 120540.0,
@@ -2301,6 +2422,7 @@
       }
     },
     "KR": {
+      "description": "South Korea occupies the southern Korean Peninsula. It is known for Seoul’s royal palaces, Jeju’s volcanic landscapes, and cultural traditions ranging from kimchi-making to contemporary Korean music.",
       "capital": "Seoul",
       "continent": "Asia",
       "areaKm2": 98480.0,
@@ -2320,6 +2442,7 @@
       }
     },
     "KW": {
+      "description": "Kuwait sits at the northern end of the Persian Gulf. Its maritime heritage includes dhow building and pearling, while Kuwait City is known for its waterfront towers and historic souq.",
       "capital": "Kuwait City",
       "continent": "Asia",
       "areaKm2": 17820.0,
@@ -2339,6 +2462,7 @@
       }
     },
     "KY": {
+      "description": "The Cayman Islands lie in the western Caribbean. They are known for coral reefs, limestone formations, and Little Cayman’s seabird habitats, with deep ocean walls close to shore.",
       "capital": "George Town",
       "continent": "North America",
       "areaKm2": 262.0,
@@ -2358,6 +2482,7 @@
       }
     },
     "KZ": {
+      "description": "Kazakhstan spans Central Asian steppe from the Caspian Sea to the Altai Mountains. It is known for nomadic cultural traditions, Charyn Canyon, and the turquoise lakes of the Tian Shan.",
       "capital": "Nur-Sultan",
       "continent": "Asia",
       "areaKm2": 2717300.0,
@@ -2377,6 +2502,7 @@
       }
     },
     "LA": {
+      "description": "Laos is a landlocked Southeast Asian country shaped by the Mekong River. It is known for Luang Prabang’s Buddhist temples, limestone landscapes, and the archaeological Plain of Jars.",
       "capital": "Vientiane",
       "continent": "Asia",
       "areaKm2": 236800.0,
@@ -2396,6 +2522,7 @@
       }
     },
     "LB": {
+      "description": "Lebanon lies on the eastern Mediterranean, where coastal cities rise toward mountain ranges. It is known for Byblos’ ancient port, Baalbek’s Roman temples, and a distinctive mezze tradition.",
       "capital": "Beirut",
       "continent": "Asia",
       "areaKm2": 10400.0,
@@ -2415,6 +2542,7 @@
       }
     },
     "LC": {
+      "description": "Saint Lucia is a volcanic Caribbean island known for the twin peaks of the Pitons, rainforest slopes, and sulfur springs. Creole language and music are central to island culture.",
       "capital": "Castries",
       "continent": "North America",
       "areaKm2": 616.0,
@@ -2434,6 +2562,7 @@
       }
     },
     "LI": {
+      "description": "Liechtenstein is a small Alpine country between Switzerland and Austria. It is known for Vaduz Castle, villages along the Rhine Valley, and mountain landscapes around Malbun.",
       "capital": "Vaduz",
       "continent": "Europe",
       "areaKm2": 160.0,
@@ -2453,6 +2582,7 @@
       }
     },
     "LK": {
+      "description": "Sri Lanka is an Indian Ocean island off southern India. It is known for Sigiriya’s rock fortress, ancient Buddhist cities, tea-growing highlands, and a long tradition of spice-rich cooking.",
       "capital": "Colombo",
       "continent": "Asia",
       "areaKm2": 65610.0,
@@ -2472,6 +2602,7 @@
       }
     },
     "LR": {
+      "description": "Liberia lies on West Africa’s Atlantic coast. It is known for Sapo’s tropical rainforest, surf along the coast near Robertsport, and distinctive Liberian quilting and storytelling traditions.",
       "capital": "Monrovia",
       "continent": "Africa",
       "areaKm2": 111370.0,
@@ -2491,6 +2622,7 @@
       }
     },
     "LS": {
+      "description": "Lesotho is a mountainous country entirely surrounded by South Africa. It is known for Basotho blankets, mountain pony traditions, and highland landscapes such as Maletsunyane Falls.",
       "capital": "Maseru",
       "continent": "Africa",
       "areaKm2": 30355.0,
@@ -2510,6 +2642,7 @@
       }
     },
     "LT": {
+      "description": "Lithuania lies on the Baltic Sea in northeastern Europe. It is known for Vilnius’ Baroque old town, the dunes of the Curonian Spit, and longstanding folk song traditions.",
       "capital": "Vilnius",
       "continent": "Europe",
       "areaKm2": 65200.0,
@@ -2529,6 +2662,7 @@
       }
     },
     "LU": {
+      "description": "Luxembourg is a small European country between Belgium, France, and Germany. It is known for its capital’s clifftop fortifications, Ardennes castles, and the vineyards of the Moselle Valley.",
       "capital": "Luxembourg",
       "continent": "Europe",
       "areaKm2": 2586.0,
@@ -2548,6 +2682,7 @@
       }
     },
     "LV": {
+      "description": "Latvia lies on the Baltic Sea in Northern Europe. It is known for Riga’s Art Nouveau architecture, forested river valleys, and choral traditions celebrated at large song festivals.",
       "capital": "Riga",
       "continent": "Europe",
       "areaKm2": 64589.0,
@@ -2567,6 +2702,7 @@
       }
     },
     "LY": {
+      "description": "Libya stretches from North Africa’s Mediterranean coast into the Sahara. It is known for the ancient cities of Leptis Magna and Sabratha and the desert landscapes of the Acacus Mountains.",
       "capital": "Tripoli",
       "continent": "Africa",
       "areaKm2": 1759540.0,
@@ -2586,6 +2722,7 @@
       }
     },
     "MA": {
+      "description": "Morocco lies at Africa’s northwestern corner. It is known for the medinas of Fez and Marrakesh, Amazigh cultural heritage, and landscapes spanning the Atlas Mountains and Saharan dunes.",
       "capital": "Rabat",
       "continent": "Africa",
       "areaKm2": 446550.0,
@@ -2605,6 +2742,7 @@
       }
     },
     "MC": {
+      "description": "Monaco is a small city-state on the Mediterranean coast. It is known for its harbor, the Monte Carlo district, and a Grand Prix circuit that winds through its streets.",
       "capital": "Monaco",
       "continent": "Europe",
       "areaKm2": 1.95,
@@ -2624,6 +2762,7 @@
       }
     },
     "MD": {
+      "description": "Moldova lies in Eastern Europe between Romania and Ukraine. It is known for underground wine cellars, the cave monasteries of Orheiul Vechi, and rural traditions of viticulture and hospitality.",
       "capital": "Chisinau",
       "continent": "Europe",
       "areaKm2": 33843.0,
@@ -2643,6 +2782,7 @@
       }
     },
     "ME": {
+      "description": "Montenegro lies on the Adriatic Sea in the Balkans. It is known for the Bay of Kotor’s historic towns, Durmitor’s mountain scenery, and the deep canyon of the Tara River.",
       "capital": "Podgorica",
       "continent": "Europe",
       "areaKm2": 14026.0,
@@ -2662,6 +2802,7 @@
       }
     },
     "MF": {
+      "description": "Saint Martin occupies the northern part of a Caribbean island shared with Sint Maarten. It is known for Marigot’s waterfront, Creole and French culinary traditions, and sheltered bays.",
       "capital": "Marigot",
       "continent": "North America",
       "areaKm2": 53.0,
@@ -2681,6 +2822,7 @@
       }
     },
     "MG": {
+      "description": "Madagascar lies off southeastern Africa in the Indian Ocean. Its long isolation produced distinctive wildlife and landscapes, including lemurs, baobab trees, and the limestone formations called tsingy.",
       "capital": "Antananarivo",
       "continent": "Africa",
       "areaKm2": 587040.0,
@@ -2700,6 +2842,7 @@
       }
     },
     "MH": {
+      "description": "The Marshall Islands are coral atolls and islands in the central Pacific. They are known for lagoon landscapes, traditional stick charts, and a seafaring heritage of ocean navigation.",
       "capital": "Majuro",
       "continent": "Oceania",
       "areaKm2": 181.3,
@@ -2719,6 +2862,7 @@
       }
     },
     "MK": {
+      "description": "North Macedonia is a landlocked Balkan country known for Lake Ohrid’s old churches, Skopje’s Ottoman-era bazaar, and mountain villages with distinctive architectural and folk traditions.",
       "capital": "Skopje",
       "continent": "Europe",
       "areaKm2": 25333.0,
@@ -2738,6 +2882,7 @@
       }
     },
     "ML": {
+      "description": "Mali lies in West Africa, spanning the Niger River and Sahara. It is known for Timbuktu’s manuscript heritage, Djenné’s earthen architecture, and influential traditions of blues and kora music.",
       "capital": "Bamako",
       "continent": "Africa",
       "areaKm2": 1240000.0,
@@ -2757,6 +2902,7 @@
       }
     },
     "MM": {
+      "description": "Myanmar lies in Southeast Asia between the Himalayas and the Andaman Sea. It is known for Bagan’s temple plains, Inle Lake’s waterside communities, and intricate lacquerware traditions.",
       "capital": "Nay Pyi Taw",
       "continent": "Asia",
       "areaKm2": 678500.0,
@@ -2776,6 +2922,7 @@
       }
     },
     "MN": {
+      "description": "Mongolia lies between Russia and China, with vast steppe, mountain ranges, and the Gobi Desert. It is known for mobile herding traditions, ger dwellings, and throat singing.",
       "capital": "Ulaanbaatar",
       "continent": "Asia",
       "areaKm2": 1565000.0,
@@ -2795,6 +2942,7 @@
       }
     },
     "MO": {
+      "description": "Macao sits on China’s southern coast near the Pearl River estuary. It is known for its Chinese and Portuguese architectural heritage, historic temples, and distinctive Macanese cuisine.",
       "capital": "Macao",
       "continent": "Asia",
       "areaKm2": 254.0,
@@ -2814,6 +2962,7 @@
       }
     },
     "MP": {
+      "description": "The Northern Mariana Islands lie in the western Pacific. Volcanic and limestone landscapes, coral lagoons, and CHamoru and Carolinian cultural traditions distinguish this island chain.",
       "capital": "Saipan",
       "continent": "Oceania",
       "areaKm2": 477.0,
@@ -2833,6 +2982,7 @@
       }
     },
     "MQ": {
+      "description": "Martinique is a Caribbean island known for Mount Pelée, tropical gardens, and Creole literary traditions. Its agricultural heritage includes rum made from freshly pressed sugarcane juice.",
       "capital": "Fort-de-France",
       "continent": "North America",
       "areaKm2": 1100.0,
@@ -2852,6 +3002,7 @@
       }
     },
     "MR": {
+      "description": "Mauritania lies where the Sahara meets West Africa’s Atlantic coast. It is known for the ancient trading towns of Chinguetti and Ouadane and the bird habitats of Banc d’Arguin.",
       "capital": "Nouakchott",
       "continent": "Africa",
       "areaKm2": 1030700.0,
@@ -2871,6 +3022,7 @@
       }
     },
     "MS": {
+      "description": "Montserrat is a volcanic Caribbean island known for its Irish and African cultural influences. Soufrière Hills’ eruptions reshaped the landscape and left the former capital of Plymouth abandoned.",
       "capital": "Plymouth",
       "continent": "North America",
       "areaKm2": 102.0,
@@ -2890,6 +3042,7 @@
       }
     },
     "MT": {
+      "description": "Malta is a Mediterranean archipelago south of Sicily. It is known for prehistoric stone temples, Valletta’s fortified harbor, and limestone architecture shaped by centuries of maritime history.",
       "capital": "Valletta",
       "continent": "Europe",
       "areaKm2": 316.0,
@@ -2909,6 +3062,7 @@
       }
     },
     "MU": {
+      "description": "Mauritius is an Indian Ocean island country east of Madagascar. It is known for coral lagoons, the mountain of Le Morne, and culinary traditions reflecting African, Asian, and European influences.",
       "capital": "Port Louis",
       "continent": "Africa",
       "areaKm2": 2040.0,
@@ -2928,6 +3082,7 @@
       }
     },
     "MV": {
+      "description": "The Maldives is an Indian Ocean country formed from coral atolls. Its shallow lagoons, reef ecosystems, and island communities have long been shaped by fishing and seafaring traditions.",
       "capital": "Male",
       "continent": "Asia",
       "areaKm2": 300.0,
@@ -2947,6 +3102,7 @@
       }
     },
     "MW": {
+      "description": "Malawi lies in southeastern Africa along Lake Malawi. It is known for the lake’s colorful cichlid fish, the highlands of Nyika, and the mountain landscapes of Mulanje.",
       "capital": "Lilongwe",
       "continent": "Africa",
       "areaKm2": 118480.0,
@@ -2966,6 +3122,7 @@
       }
     },
     "MX": {
+      "description": "Mexico links North America with Central America. It is known for Maya and Mexica archaeological heritage, regional cuisines, and living artistic traditions celebrated through events such as Día de Muertos.",
       "capital": "Mexico City",
       "continent": "North America",
       "areaKm2": 1972550.0,
@@ -2985,6 +3142,7 @@
       }
     },
     "MY": {
+      "description": "Malaysia spans the Malay Peninsula and northern Borneo. It is known for George Town’s trading heritage, diverse hawker food traditions, and tropical forests around mountains such as Kinabalu.",
       "capital": "Kuala Lumpur",
       "continent": "Asia",
       "areaKm2": 329750.0,
@@ -3004,6 +3162,7 @@
       }
     },
     "MZ": {
+      "description": "Mozambique stretches along southeastern Africa’s Indian Ocean coast. It is known for the coral islands of the Bazaruto Archipelago, historic Ilha de Moçambique, and marrabenta music.",
       "capital": "Maputo",
       "continent": "Africa",
       "areaKm2": 801590.0,
@@ -3023,6 +3182,7 @@
       }
     },
     "NA": {
+      "description": "Namibia lies on southern Africa’s Atlantic coast. It is known for the Namib Desert’s tall dunes, the wildlife of Etosha, and the ancient rock engravings of Twyfelfontein.",
       "capital": "Windhoek",
       "continent": "Africa",
       "areaKm2": 825418.0,
@@ -3042,6 +3202,7 @@
       }
     },
     "NC": {
+      "description": "New Caledonia lies in the southwest Pacific east of Australia. It is known for extensive coral lagoons, distinctive native plants, and the cultural heritage of Kanak communities.",
       "capital": "Noumea",
       "continent": "Oceania",
       "areaKm2": 19060.0,
@@ -3061,6 +3222,7 @@
       }
     },
     "NE": {
+      "description": "Niger lies in West Africa, spanning Saharan desert and Sahelian plains. It is known for Agadez’s earthen architecture, the Aïr Mountains, and the river that gives the country its name.",
       "capital": "Niamey",
       "continent": "Africa",
       "areaKm2": 1267000.0,
@@ -3080,6 +3242,7 @@
       }
     },
     "NF": {
+      "description": "Norfolk Island lies in the Pacific between Australia and New Zealand. It is known for its distinctive pine trees, Kingston’s historic settlement, and Norf’k language and cultural traditions.",
       "capital": "Kingston",
       "continent": "Oceania",
       "areaKm2": 34.6,
@@ -3099,6 +3262,7 @@
       }
     },
     "NG": {
+      "description": "Nigeria lies on West Africa’s Gulf of Guinea. It is known for Lagos’ creative industries, Yoruba artistic heritage, the historic walls of Kano, and musical movements such as Afrobeat.",
       "capital": "Abuja",
       "continent": "Africa",
       "areaKm2": 923768.0,
@@ -3118,6 +3282,7 @@
       }
     },
     "NI": {
+      "description": "Nicaragua lies between the Caribbean Sea and Pacific Ocean in Central America. It is known for volcanic landscapes, the cities of Granada and León, and the islands of Lake Nicaragua.",
       "capital": "Managua",
       "continent": "North America",
       "areaKm2": 129494.0,
@@ -3137,6 +3302,7 @@
       }
     },
     "NL": {
+      "description": "The Netherlands lies on Europe’s North Sea coast. It is known for canal cities, cycling culture, and the dikes, windmills, and polders that reflect centuries of water management.",
       "capital": "Amsterdam",
       "continent": "Europe",
       "areaKm2": 41526.0,
@@ -3156,6 +3322,7 @@
       }
     },
     "NO": {
+      "description": "Norway stretches along Northern Europe’s Atlantic coast into the Arctic. It is known for deeply carved fjords, wooden stave churches, and the cultural heritage of Sámi communities.",
       "capital": "Oslo",
       "continent": "Europe",
       "areaKm2": 324220.0,
@@ -3175,6 +3342,7 @@
       }
     },
     "NP": {
+      "description": "Nepal lies in the Himalayas between India and China. It is known for Everest’s mountain landscapes, the temples of the Kathmandu Valley, and the Buddhist heritage of Lumbini.",
       "capital": "Kathmandu",
       "continent": "Asia",
       "areaKm2": 140800.0,
@@ -3194,6 +3362,7 @@
       }
     },
     "NR": {
+      "description": "Nauru is a small raised coral island in the central Pacific. A narrow coastal belt surrounds an interior shaped by phosphate mining, while Buada Lagoon forms a distinctive inland wetland.",
       "capital": "Yaren",
       "continent": "Oceania",
       "areaKm2": 21.0,
@@ -3213,6 +3382,7 @@
       }
     },
     "NU": {
+      "description": "Niue is a raised coral island in the South Pacific. Its landscape is known for limestone caves, coastal chasms, and clear waters beneath cliffs rather than broad sandy shorelines.",
       "capital": "Alofi",
       "continent": "Oceania",
       "areaKm2": 260.0,
@@ -3232,6 +3402,7 @@
       }
     },
     "NZ": {
+      "description": "New Zealand lies in the southwest Pacific, with landscapes ranging from volcanic plateaus to glacial fjords. It is known for Māori cultural heritage, native birdlife, and dramatic Southern Alps scenery.",
       "capital": "Wellington",
       "continent": "Oceania",
       "areaKm2": 268680.0,
@@ -3251,6 +3422,7 @@
       }
     },
     "OM": {
+      "description": "Oman lies on the southeastern Arabian Peninsula. It is known for mudbrick forts, the mountain terraces of Jebel Akhdar, and the frankincense-growing landscapes of Dhofar.",
       "capital": "Muscat",
       "continent": "Asia",
       "areaKm2": 212460.0,
@@ -3270,6 +3442,7 @@
       }
     },
     "PA": {
+      "description": "Panama connects Central and South America between two oceans. It is known for the Panama Canal, Panama City’s historic quarter, and the island and rainforest cultures of its coastal regions.",
       "capital": "Panama City",
       "continent": "North America",
       "areaKm2": 78200.0,
@@ -3289,6 +3462,7 @@
       }
     },
     "PE": {
+      "description": "Peru stretches from Pacific desert through the Andes into the Amazon. It is known for Machu Picchu, the Nazca Lines, and culinary traditions blending indigenous and international influences.",
       "capital": "Lima",
       "continent": "South America",
       "areaKm2": 1285220.0,
@@ -3308,6 +3482,7 @@
       }
     },
     "PF": {
+      "description": "French Polynesia comprises island groups across the South Pacific. It is known for Tahiti’s volcanic valleys, the lagoons of Bora Bora, and Polynesian traditions of tattooing, dance, and navigation.",
       "capital": "Papeete",
       "continent": "Oceania",
       "areaKm2": 4167.0,
@@ -3327,6 +3502,7 @@
       }
     },
     "PG": {
+      "description": "Papua New Guinea occupies eastern New Guinea and surrounding Pacific islands. It is known for remarkable linguistic diversity, birds-of-paradise, and artistic traditions along the Sepik River.",
       "capital": "Port Moresby",
       "continent": "Oceania",
       "areaKm2": 462840.0,
@@ -3346,6 +3522,7 @@
       }
     },
     "PH": {
+      "description": "The Philippines is a Southeast Asian archipelago known for Palawan’s limestone islands, the rice terraces of the Cordilleras, and musical and culinary traditions shaped by its many regional cultures.",
       "capital": "Manila",
       "continent": "Asia",
       "areaKm2": 300000.0,
@@ -3365,6 +3542,7 @@
       }
     },
     "PK": {
+      "description": "Pakistan stretches from the Arabian Sea to the Karakoram Mountains. It is known for the ancient city of Mohenjo-daro, Lahore’s Mughal architecture, and high mountain valleys around Hunza.",
       "capital": "Islamabad",
       "continent": "Asia",
       "areaKm2": 803940.0,
@@ -3384,6 +3562,7 @@
       }
     },
     "PL": {
+      "description": "Poland lies in Central Europe between the Baltic Sea and the Carpathians. It is known for Kraków’s historic center, Gdańsk’s maritime heritage, and the ancient woodland of Białowieża.",
       "capital": "Warsaw",
       "continent": "Europe",
       "areaKm2": 312685.0,
@@ -3403,6 +3582,7 @@
       }
     },
     "PM": {
+      "description": "Saint Pierre and Miquelon is an archipelago off Newfoundland’s southern coast. It is known for colorful waterfront houses, a French maritime heritage, and landscapes shaped by North Atlantic fishing traditions.",
       "capital": "Saint-Pierre",
       "continent": "North America",
       "areaKm2": 242.0,
@@ -3422,6 +3602,7 @@
       }
     },
     "PN": {
+      "description": "The Pitcairn Islands are a remote group in the South Pacific. Pitcairn is known for its connection to the Bounty mutineers, while Henderson Island preserves distinctive wildlife and raised coral landscapes.",
       "capital": "Adamstown",
       "continent": "Oceania",
       "areaKm2": 47.0,
@@ -3441,6 +3622,7 @@
       }
     },
     "PR": {
+      "description": "Puerto Rico lies in the northeastern Caribbean. It is known for Old San Juan’s fortified streets, El Yunque’s rainforest, and musical traditions such as bomba and plena.",
       "capital": "San Juan",
       "continent": "North America",
       "areaKm2": 9104.0,
@@ -3460,6 +3642,7 @@
       }
     },
     "PS": {
+      "description": "The Palestinian territories include the West Bank and Gaza in the eastern Mediterranean region. Their cultural heritage includes Bethlehem’s historic churches, olive-growing traditions, and distinctive embroidered textiles called tatreez.",
       "capital": "East Jerusalem",
       "continent": "Asia",
       "areaKm2": 5970.0,
@@ -3479,6 +3662,7 @@
       }
     },
     "PT": {
+      "description": "Portugal sits on Europe’s Atlantic coast, known for its decorative azulejo tiles, historic maritime cities, and the terraced vineyards of the Douro Valley.",
       "capital": "Lisbon",
       "continent": "Europe",
       "areaKm2": 92391.0,
@@ -3498,6 +3682,7 @@
       }
     },
     "PW": {
+      "description": "Palau is a western Pacific island country known for the forested limestone formations of the Rock Islands, coral reef ecosystems, and traditional meeting houses decorated with local stories.",
       "capital": "Melekeok",
       "continent": "Oceania",
       "areaKm2": 458.0,
@@ -3517,6 +3702,7 @@
       }
     },
     "PY": {
+      "description": "Paraguay is a landlocked South American country shaped by the Paraguay and Paraná rivers. It is known for Guaraní language and culture, ñandutí lacework, and the grasslands of the Chaco.",
       "capital": "Asuncion",
       "continent": "South America",
       "areaKm2": 406750.0,
@@ -3536,6 +3722,7 @@
       }
     },
     "QA": {
+      "description": "Qatar occupies a peninsula in the Persian Gulf. It is known for Doha’s Museum of Islamic Art, a maritime pearling heritage, and dunes meeting the tidal waters of Khor Al Adaid.",
       "capital": "Doha",
       "continent": "Asia",
       "areaKm2": 11437.0,
@@ -3555,6 +3742,7 @@
       }
     },
     "RE": {
+      "description": "Réunion is a volcanic island in the Indian Ocean. It is known for the active Piton de la Fournaise, steep mountain cirques, and Creole traditions blending multiple cultural influences.",
       "capital": "Saint-Denis",
       "continent": "Africa",
       "areaKm2": 2517.0,
@@ -3574,6 +3762,7 @@
       }
     },
     "RO": {
+      "description": "Romania lies in southeastern Europe around the Carpathian Mountains. It is known for Transylvania’s fortified churches, Maramureș’ wooden architecture, and the wetlands of the Danube Delta.",
       "capital": "Bucharest",
       "continent": "Europe",
       "areaKm2": 237500.0,
@@ -3593,6 +3782,7 @@
       }
     },
     "RS": {
+      "description": "Serbia lies in the central Balkans, where the Danube and Sava meet at Belgrade. It is known for medieval monasteries, distinctive frescoes, and traditions of brass music.",
       "capital": "Belgrade",
       "continent": "Europe",
       "areaKm2": 88361.0,
@@ -3612,6 +3802,7 @@
       }
     },
     "RU": {
+      "description": "Russia spans eastern Europe and northern Asia. It is known for Saint Petersburg’s imperial architecture, Lake Baikal, and the vast forests and landscapes of Siberia.",
       "capital": "Moscow",
       "continent": "Europe",
       "areaKm2": 17100000.0,
@@ -3631,6 +3822,7 @@
       }
     },
     "RW": {
+      "description": "Rwanda lies in East Africa’s Great Lakes region. It is known for mountain gorillas in the Virunga landscape, the montane rainforest of Nyungwe, and intricate basket-weaving traditions.",
       "capital": "Kigali",
       "continent": "Africa",
       "areaKm2": 26338.0,
@@ -3650,6 +3842,7 @@
       }
     },
     "SA": {
+      "description": "Saudi Arabia occupies much of the Arabian Peninsula. It is known for the rock-cut tombs of Hegra, Jeddah’s historic coral-stone buildings, and the desert landscapes of the Empty Quarter.",
       "capital": "Riyadh",
       "continent": "Asia",
       "areaKm2": 1960582.0,
@@ -3669,6 +3862,7 @@
       }
     },
     "SB": {
+      "description": "The Solomon Islands form a Pacific archipelago east of Papua New Guinea. They are known for coral lagoons, traditional shell money, and maritime heritage around islands such as Malaita.",
       "capital": "Honiara",
       "continent": "Oceania",
       "areaKm2": 28450.0,
@@ -3688,6 +3882,7 @@
       }
     },
     "SC": {
+      "description": "Seychelles is an Indian Ocean archipelago off East Africa. It is known for granite-framed beaches, giant tortoises, and the distinctive coco de mer palms of the Vallée de Mai.",
       "capital": "Victoria",
       "continent": "Africa",
       "areaKm2": 455.0,
@@ -3707,6 +3902,7 @@
       }
     },
     "SD": {
+      "description": "Sudan lies along the Nile in northeastern Africa. It is known for the pyramids of Meroë, the archaeological remains of ancient Kush, and desert landscapes dotted with Nubian settlements.",
       "capital": "Khartoum",
       "continent": "Africa",
       "areaKm2": 1861484.0,
@@ -3726,6 +3922,7 @@
       }
     },
     "SE": {
+      "description": "Sweden stretches from Baltic archipelagos to Arctic Lapland. It is known for Stockholm’s island setting, forests and lakes, and a design tradition combining craftsmanship with practical simplicity.",
       "capital": "Stockholm",
       "continent": "Europe",
       "areaKm2": 449964.0,
@@ -3745,6 +3942,7 @@
       }
     },
     "SG": {
+      "description": "Singapore is an island city-state at the southern tip of the Malay Peninsula. It is known for hawker food culture, historic shophouses, and gardens woven into its dense urban landscape.",
       "capital": "Singapore",
       "continent": "Asia",
       "areaKm2": 692.7,
@@ -3764,6 +3962,7 @@
       }
     },
     "SH": {
+      "description": "Saint Helena, Ascension, and Tristan da Cunha are remote South Atlantic islands. Saint Helena’s volcanic valleys, Ascension’s seabirds, and Tristan’s isolated settlement give the group contrasting identities.",
       "capital": "Jamestown",
       "continent": "Africa",
       "areaKm2": 410.0,
@@ -3783,6 +3982,7 @@
       }
     },
     "SI": {
+      "description": "Slovenia lies between the Alps and the Adriatic. It is known for Lake Bled, the limestone caves of the Karst region, and the emerald waters of the Soča River.",
       "capital": "Ljubljana",
       "continent": "Europe",
       "areaKm2": 20273.0,
@@ -3802,6 +4002,7 @@
       }
     },
     "SJ": {
+      "description": "Svalbard and Jan Mayen are Arctic island territories. Svalbard is known for glaciers and polar wildlife, while Jan Mayen is dominated by the volcanic peak of Beerenberg.",
       "capital": "Longyearbyen",
       "continent": "Europe",
       "areaKm2": 62049.0,
@@ -3821,6 +4022,7 @@
       }
     },
     "SK": {
+      "description": "Slovakia is a Central European country known for the High Tatras, medieval castles such as Spiš, and traditional wooden churches in its Carpathian mountain villages.",
       "capital": "Bratislava",
       "continent": "Europe",
       "areaKm2": 48845.0,
@@ -3840,6 +4042,7 @@
       }
     },
     "SL": {
+      "description": "Sierra Leone lies on West Africa’s Atlantic coast. It is known for the beaches of the Freetown Peninsula, the history of Bunce Island, and rainforest habitats in the Gola region.",
       "capital": "Freetown",
       "continent": "Africa",
       "areaKm2": 71740.0,
@@ -3859,6 +4062,7 @@
       }
     },
     "SM": {
+      "description": "San Marino is a small country surrounded by Italy. Its medieval center rises on Mount Titano, where three hilltop towers overlook the surrounding countryside.",
       "capital": "San Marino",
       "continent": "Europe",
       "areaKm2": 61.2,
@@ -3878,6 +4082,7 @@
       }
     },
     "SN": {
+      "description": "Senegal lies on West Africa’s Atlantic coast. It is known for mbalax music, Saint-Louis’ historic island district, and Gorée Island’s role in remembering the Atlantic slave trade.",
       "capital": "Dakar",
       "continent": "Africa",
       "areaKm2": 196190.0,
@@ -3897,6 +4102,7 @@
       }
     },
     "SO": {
+      "description": "Somalia occupies much of the Horn of Africa, with long Indian Ocean and Gulf of Aden coastlines. It is known for poetry, nomadic pastoral traditions, and historic maritime trading towns.",
       "capital": "Mogadishu",
       "continent": "Africa",
       "areaKm2": 637657.0,
@@ -3916,6 +4122,7 @@
       }
     },
     "SR": {
+      "description": "Suriname lies on South America’s northern coast. It is known for Paramaribo’s wooden architecture, extensive tropical rainforest, and cultural traditions reflecting indigenous, Maroon, Asian, and European heritage.",
       "capital": "Paramaribo",
       "continent": "South America",
       "areaKm2": 163270.0,
@@ -3935,6 +4142,7 @@
       }
     },
     "SS": {
+      "description": "South Sudan lies in East-Central Africa along the White Nile. It is known for the vast Sudd wetlands, seasonal wildlife migrations, and the pastoral traditions of its diverse communities.",
       "capital": "Juba",
       "continent": "Africa",
       "areaKm2": 644329.0,
@@ -3954,6 +4162,7 @@
       }
     },
     "ST": {
+      "description": "São Tomé and Príncipe is an island country in the Gulf of Guinea. It is known for volcanic rainforest landscapes, former cocoa estates, and the dramatic rock tower of Pico Cão Grande.",
       "capital": "Sao Tome",
       "continent": "Africa",
       "areaKm2": 1001.0,
@@ -3973,6 +4182,7 @@
       }
     },
     "SV": {
+      "description": "El Salvador lies on Central America’s Pacific coast. It is known for volcanic lakes, the archaeological site of Joya de Cerén, and pupusas, thick stuffed corn tortillas central to local cuisine.",
       "capital": "San Salvador",
       "continent": "North America",
       "areaKm2": 21040.0,
@@ -3992,6 +4202,7 @@
       }
     },
     "SX": {
+      "description": "Sint Maarten occupies the southern part of a Caribbean island shared with Saint Martin. It is known for Philipsburg’s waterfront, Simpson Bay’s lagoon, and a lively blend of island cultures.",
       "capital": "Philipsburg",
       "continent": "North America",
       "areaKm2": 21.0,
@@ -4011,6 +4222,7 @@
       }
     },
     "SY": {
+      "description": "Syria lies in the eastern Mediterranean region. Its heritage includes the ancient city of Damascus, Aleppo’s citadel, and Palmyra’s desert ruins, reflecting centuries of trade and cultural exchange.",
       "capital": "Damascus",
       "continent": "Asia",
       "areaKm2": 185180.0,
@@ -4030,6 +4242,7 @@
       }
     },
     "SZ": {
+      "description": "Eswatini is a southern African country between South Africa and Mozambique. It is known for the Umhlanga reed dance, the landscapes of the Ezulwini Valley, and skilled weaving traditions.",
       "capital": "Mbabane",
       "continent": "Africa",
       "areaKm2": 17363.0,
@@ -4049,6 +4262,7 @@
       }
     },
     "TC": {
+      "description": "The Turks and Caicos Islands lie southeast of the Bahamas in the Atlantic. They are known for long coral sand beaches, shallow turquoise banks, and salt-trading heritage on smaller islands.",
       "capital": "Cockburn Town",
       "continent": "North America",
       "areaKm2": 430.0,
@@ -4068,6 +4282,7 @@
       }
     },
     "TD": {
+      "description": "Chad stretches from the Sahara into Central African savannas. It is known for the sandstone formations of the Ennedi Plateau, the Lakes of Ounianga, and wildlife in the Zakouma region.",
       "capital": "N'Djamena",
       "continent": "Africa",
       "areaKm2": 1284000.0,
@@ -4087,6 +4302,7 @@
       }
     },
     "TF": {
+      "description": "The French Southern Territories include remote Indian Ocean islands such as Kerguelen and Crozet. Their volcanic landscapes support scientific research and large breeding colonies of seabirds and marine mammals.",
       "capital": "Port-aux-Francais",
       "continent": "Antarctica",
       "areaKm2": 7829.0,
@@ -4106,6 +4322,7 @@
       }
     },
     "TG": {
+      "description": "Togo is a narrow West African country extending inland from the Gulf of Guinea. It is known for the earthen tower houses of Koutammakou and Lomé’s markets and textile traditions.",
       "capital": "Lome",
       "continent": "Africa",
       "areaKm2": 56785.0,
@@ -4125,6 +4342,7 @@
       }
     },
     "TH": {
+      "description": "Thailand lies in Southeast Asia, with forested northern mountains and tropical southern coastlines. It is known for Buddhist temple architecture, regional street food, and the historic cities of Ayutthaya and Sukhothai.",
       "capital": "Bangkok",
       "continent": "Asia",
       "areaKm2": 514000.0,
@@ -4144,6 +4362,7 @@
       }
     },
     "TJ": {
+      "description": "Tajikistan is a mountainous Central Asian country dominated by the Pamir and Fann ranges. It is known for high-altitude lakes, Persian-speaking cultural heritage, and settlements along former Silk Road routes.",
       "capital": "Dushanbe",
       "continent": "Asia",
       "areaKm2": 143100.0,
@@ -4163,6 +4382,7 @@
       }
     },
     "TK": {
+      "description": "Tokelau consists of three remote coral atolls in the South Pacific. Lagoon fishing, woven crafts, and strong community traditions shape life across Atafu, Nukunonu, and Fakaofo.",
       "capital": null,
       "continent": "Oceania",
       "areaKm2": 10.0,
@@ -4182,6 +4402,7 @@
       }
     },
     "TL": {
+      "description": "Timor-Leste occupies eastern Timor and nearby islands in Southeast Asia. It is known for Mount Ramelau, the coral habitats around Atauro, and handwoven textiles called tais.",
       "capital": "Dili",
       "continent": "Oceania",
       "areaKm2": 15007.0,
@@ -4201,6 +4422,7 @@
       }
     },
     "TM": {
+      "description": "Turkmenistan lies in Central Asia between the Caspian Sea and the Karakum Desert. It is known for ancient Merv, intricate carpet-weaving traditions, and the archaeological remains of Nisa.",
       "capital": "Ashgabat",
       "continent": "Asia",
       "areaKm2": 488100.0,
@@ -4220,6 +4442,7 @@
       }
     },
     "TN": {
+      "description": "Tunisia lies on North Africa’s Mediterranean coast. It is known for ancient Carthage, Kairouan’s religious architecture, and southern landscapes of desert oases and fortified granaries.",
       "capital": "Tunis",
       "continent": "Africa",
       "areaKm2": 163610.0,
@@ -4239,6 +4462,7 @@
       }
     },
     "TO": {
+      "description": "Tonga is a Polynesian island country in the South Pacific. It is known for the Haʻamonga ʻa Maui stone monument, tapa cloth traditions, and humpback whales in its surrounding waters.",
       "capital": "Nuku'alofa",
       "continent": "Oceania",
       "areaKm2": 748.0,
@@ -4258,6 +4482,7 @@
       }
     },
     "TR": {
+      "description": "Turkey spans southeastern Europe and western Asia. It is known for Istanbul’s layered architectural heritage, Cappadocia’s rock formations, and regional traditions of ceramics, carpets, and cuisine.",
       "capital": "Ankara",
       "continent": "Asia",
       "areaKm2": 780580.0,
@@ -4277,6 +4502,7 @@
       }
     },
     "TT": {
+      "description": "Trinidad and Tobago lies near Venezuela in the southern Caribbean. It is known for Carnival, the invention of steelpan, and Tobago’s forested hills and coral reefs.",
       "capital": "Port of Spain",
       "continent": "North America",
       "areaKm2": 5128.0,
@@ -4296,6 +4522,7 @@
       }
     },
     "TV": {
+      "description": "Tuvalu is a Pacific island country made up of low coral islands and atolls. It is known for Funafuti’s lagoon and fatele performances combining song, rhythmic clapping, and dance.",
       "capital": "Funafuti",
       "continent": "Oceania",
       "areaKm2": 26.0,
@@ -4315,6 +4542,7 @@
       }
     },
     "TW": {
+      "description": "Taiwan is a mountainous island in the western Pacific. It is known for lively night markets, tea-growing hills, and cultural traditions shaped by indigenous communities and successive waves of migration.",
       "capital": "Taipei",
       "continent": "Asia",
       "areaKm2": 35980.0,
@@ -4334,6 +4562,7 @@
       }
     },
     "TZ": {
+      "description": "Tanzania lies in East Africa along the Indian Ocean. It is known for Serengeti wildlife migrations, Mount Kilimanjaro, and the Swahili trading heritage of Zanzibar’s Stone Town.",
       "capital": "Dodoma",
       "continent": "Africa",
       "areaKm2": 945087.0,
@@ -4353,6 +4582,7 @@
       }
     },
     "UA": {
+      "description": "Ukraine lies in Eastern Europe between the Carpathians and the Black Sea. It is known for Kyiv’s historic churches, Lviv’s architectural heritage, and traditional embroidered textiles called vyshyvanka.",
       "capital": "Kyiv",
       "continent": "Europe",
       "areaKm2": 603700.0,
@@ -4372,6 +4602,7 @@
       }
     },
     "UG": {
+      "description": "Uganda lies in East Africa’s Great Lakes region. It is known for Bwindi’s mountain gorillas, the Rwenzori Mountains, and the Nile’s powerful passage through Murchison Falls.",
       "capital": "Kampala",
       "continent": "Africa",
       "areaKm2": 236040.0,
@@ -4391,6 +4622,7 @@
       }
     },
     "UM": {
+      "description": "The United States Minor Outlying Islands are scattered across the Pacific and Caribbean. They include remote coral islands and atolls such as Midway, known for extensive seabird colonies.",
       "capital": null,
       "continent": "Oceania",
       "areaKm2": 0.0,
@@ -4407,6 +4639,7 @@
       }
     },
     "US": {
+      "description": "The United States spans much of North America and extends into the Pacific. It is known for national park landscapes, diverse regional cultures, and musical traditions including jazz and blues.",
       "capital": "Washington",
       "continent": "North America",
       "areaKm2": 9629091.0,
@@ -4426,6 +4659,7 @@
       }
     },
     "UY": {
+      "description": "Uruguay lies on South America’s Atlantic coast beside the Río de la Plata. It is known for Montevideo’s waterfront, Colonia del Sacramento’s historic streets, and candombe drumming traditions.",
       "capital": "Montevideo",
       "continent": "South America",
       "areaKm2": 176220.0,
@@ -4445,6 +4679,7 @@
       }
     },
     "UZ": {
+      "description": "Uzbekistan lies in Central Asia along historic Silk Road routes. It is known for Samarkand’s tiled monuments, Bukhara’s trading domes, and the walled old city of Khiva.",
       "capital": "Tashkent",
       "continent": "Asia",
       "areaKm2": 447400.0,
@@ -4464,6 +4699,7 @@
       }
     },
     "VA": {
+      "description": "Vatican City is a small city-state enclosed by Rome. It is known for St. Peter’s Basilica, the Vatican Museums, and the Renaissance frescoes of the Sistine Chapel.",
       "capital": "Vatican City",
       "continent": "Europe",
       "areaKm2": 0.44,
@@ -4483,6 +4719,7 @@
       }
     },
     "VC": {
+      "description": "Saint Vincent and the Grenadines stretches across volcanic and coral islands in the Caribbean. It is known for La Soufrière’s mountain landscape and the reef-fringed waters of the Tobago Cays.",
       "capital": "Kingstown",
       "continent": "North America",
       "areaKm2": 389.0,
@@ -4502,6 +4739,7 @@
       }
     },
     "VE": {
+      "description": "Venezuela lies on South America’s northern coast. It is known for Angel Falls, the table mountains of Canaima, and the plains of the Orinoco Basin.",
       "capital": "Caracas",
       "continent": "South America",
       "areaKm2": 912050.0,
@@ -4521,6 +4759,7 @@
       }
     },
     "VG": {
+      "description": "The British Virgin Islands lie in the northeastern Caribbean. They are known for sheltered sailing waters, the granite boulders of Virgin Gorda’s Baths, and coral-fringed island coastlines.",
       "capital": "Road Town",
       "continent": "North America",
       "areaKm2": 153.0,
@@ -4540,6 +4779,7 @@
       }
     },
     "VI": {
+      "description": "The U.S. Virgin Islands lie in the northeastern Caribbean. They are known for St. John’s protected coastal landscapes, Charlotte Amalie’s historic harbor, and Crucian cultural traditions on St. Croix.",
       "capital": "Charlotte Amalie",
       "continent": "North America",
       "areaKm2": 352.0,
@@ -4559,6 +4799,7 @@
       }
     },
     "VN": {
+      "description": "Vietnam stretches along Southeast Asia’s eastern coast. It is known for Hạ Long Bay’s limestone islands, Hội An’s historic trading streets, and regional food traditions shaped by rice and fresh herbs.",
       "capital": "Hanoi",
       "continent": "Asia",
       "areaKm2": 329560.0,
@@ -4578,6 +4819,7 @@
       }
     },
     "VU": {
+      "description": "Vanuatu is a volcanic South Pacific archipelago known for Tanna’s Mount Yasur, diverse island languages, and sand drawing traditions. Customary community life is an important part of its cultural identity.",
       "capital": "Port Vila",
       "continent": "Oceania",
       "areaKm2": 12200.0,
@@ -4597,6 +4839,7 @@
       }
     },
     "WF": {
+      "description": "Wallis and Futuna is a South Pacific island group. It is known for the fortified archaeological site of Talietumu, volcanic lake landscapes, and Polynesian traditions of ceremony and craftsmanship.",
       "capital": "Mata Utu",
       "continent": "Oceania",
       "areaKm2": 274.0,
@@ -4616,6 +4859,7 @@
       }
     },
     "WS": {
+      "description": "Samoa is a Polynesian country in the South Pacific. It is known for open-sided fale houses, intricate tatau tattooing, and the village and family traditions of fa’a Samoa.",
       "capital": "Apia",
       "continent": "Oceania",
       "areaKm2": 2944.0,
@@ -4635,6 +4879,7 @@
       }
     },
     "YE": {
+      "description": "Yemen lies at the southwestern end of the Arabian Peninsula. It is known for Sana’a’s decorated tower houses, Shibam’s earthen architecture, and Socotra’s distinctive dragon’s blood trees.",
       "capital": "Sanaa",
       "continent": "Asia",
       "areaKm2": 527970.0,
@@ -4654,6 +4899,7 @@
       }
     },
     "YT": {
+      "description": "Mayotte lies in the Mozambique Channel between Madagascar and East Africa. It is known for a broad coral lagoon, volcanic hills, and cultural traditions connected with the Comorian archipelago.",
       "capital": "Mamoudzou",
       "continent": "Africa",
       "areaKm2": 374.0,
@@ -4673,6 +4919,7 @@
       }
     },
     "ZA": {
+      "description": "South Africa lies at Africa’s southern tip. It is known for Table Mountain, the wildlife landscapes of Kruger, and cultural traditions spanning many languages, communities, and musical styles.",
       "capital": "Pretoria",
       "continent": "Africa",
       "areaKm2": 1219912.0,
@@ -4692,6 +4939,7 @@
       }
     },
     "ZM": {
+      "description": "Zambia lies in southern Africa along the Zambezi River. It is known for Victoria Falls, shared with Zimbabwe, and the floodplain and woodland wildlife habitats of the Luangwa Valley.",
       "capital": "Lusaka",
       "continent": "Africa",
       "areaKm2": 752614.0,
@@ -4711,6 +4959,7 @@
       }
     },
     "ZW": {
+      "description": "Zimbabwe is a landlocked southern African country known for the stone ruins of Great Zimbabwe, the granite landscapes of Matobo, and Victoria Falls on the Zambezi River.",
       "capital": "Harare",
       "continent": "Africa",
       "areaKm2": 390580.0,

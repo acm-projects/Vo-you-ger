@@ -1,6 +1,9 @@
 const catalog = require('./planningDataService');
 const display = require('../data/countryInfo.json');
+const countryPhotos = require('../data/countryPhotos.json');
+const {createPhotoCatalogReader} = require('./countryPhotoCatalogService');
 const {apiError} = require('./apiError');
+const readCountryPhoto = createPhotoCatalogReader(require.resolve('../data/countryPhotos.json'), countryPhotos);
 
 function findCountry(code) {
   if(typeof code!=='string'||!/^[a-z]{2}$/i.test(code)) throw apiError('INVALID_COUNTRY_CODE','Use an ISO alpha-2 country code');
@@ -20,8 +23,12 @@ function countrySummary(country) {
 
 function countryDetails(code) {
   const country=findCountry(code),info=display.countries[country.countryCode]||{};
+  const selectedPhoto=readCountryPhoto(country.countryCode);
   return {...countrySummary(country),officialName:country.officialName,
-    description:`${country.name}${info.continent?` is in ${info.continent}`:''}.${info.capital?` Its capital is ${info.capital}.`:''}`,
+    photo:selectedPhoto||info.photo||null,
+    fallbackPhoto:selectedPhoto?info.photo||null:null,
+    imageUrl:selectedPhoto?.url||info.photo?.url||null,
+    description:info.description||`${country.name}${info.continent?` is in ${info.continent}`:''}.${info.capital?` Its capital is ${info.capital}.`:''}`,
     facts:{capital:info.capital||null,continent:info.continent||null,currencyCode:country.currencyCode||null,
       languages:country.languages||[],areaKm2:info.areaKm2??null,population:info.population??null},
     source:{name:'GeoNames',url:display.source,license:display.license,snapshotDate:display.snapshotDate,populationNote:display.populationNote,currency:country.currencyProvenance||null},

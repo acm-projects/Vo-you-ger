@@ -16,7 +16,7 @@ function savedTrip(tripId, countryCode = "FR") {
 }
 
 describe("Saved trips for the globe", () => {
-  it("groups multiple trips under one country pin and omits activities", () => {
+  it("groups trip summaries by country and omits activities", () => {
     const data = globeResponse([savedTrip("t-1"), savedTrip("t-2"), savedTrip("t-3", "JP")]);
     assert.equal(data.countries.length, 2);
     assert.equal(data.tripCount, 3);
@@ -27,6 +27,44 @@ describe("Saved trips for the globe", () => {
     assert.equal(france.trips[0].endDate, "2027-06-11");
     assert.equal(france.trips[0].numberOfNights, 6);
     assert.equal(france.trips[0].itinerary, undefined);
+  });
+  it("pins each trip at its own first base and reuses its saved description", () => {
+    const trips = ['porto-pt', 'lisbon-pt'].map((destinationId, index) => ({
+      tripId: `t-${index}`,
+      itinerary: {
+        countryCode: 'PT', summary: 'A saved trip description.',
+        outline: {countryCode: 'PT', stops: [{destinationId}]},
+        tripSummary: {countryCode: 'PT', country: 'Portugal', baseNames: []},
+        days: [{morning: [{private: 'not included'}]}],
+      },
+    }));
+    const result = globeResponse(trips).countries[0];
+    assert.deepEqual(result.trips.map(trip => trip.startCity), ['Porto', 'Lisbon']);
+    const catalog = require('../services/planningDataService');
+    for (const [index, trip] of result.trips.entries()) {
+      const base = catalog.baseById.get(index ? 'lisbon-pt' : 'porto-pt');
+      assert.deepEqual(trip.pin, {lat: base.lat, lng: base.lng});
+      assert.equal(trip.pinSource, 'starting_city');
+      assert.equal(trip.description, 'A saved trip description.');
+      assert.equal(trip.days, undefined);
+    }
+    assert.notDeepEqual(result.trips[0].pin, result.trips[1].pin);
+  });
+  it("resolves legacy city names and labels country-only fallback pins honestly", () => {
+    const city = globeResponse([{tripId: 'old', itinerary: {destination: 'Tokyo, Japan'}}]).countries[0].trips[0];
+    assert.equal(city.startCity, 'Tokyo');
+    assert.equal(city.pinSource, 'starting_city');
+    const country = globeResponse([{tripId: 'country-only', itinerary: {countryCode: 'PT'}}]).countries[0].trips[0];
+    assert.equal(country.startCity, null);
+    assert.equal(country.pinSource, 'country');
+    assert.ok(country.pin);
+  });
+  it("does not resolve a first-base ID from a different country", () => {
+    const item = globeResponse([{tripId: 'mismatched', itinerary: {
+      countryCode: 'FR', outline: {countryCode: 'FR', stops: [{destinationId: 'tokyo-jp'}]},
+    }}]).countries[0].trips[0];
+    assert.equal(item.pinSource, 'country');
+    assert.notEqual(item.startCity, 'Tokyo');
   });
   it("handles projected legacy records without inventing their duration", () => {
     const result = globeResponse([{ tripId: "old", itinerary: { destination: "Tokyo, Japan", days: [{ date: "2027-03-01" }] } }]);
@@ -45,6 +83,8 @@ describe("Saved trips for the globe", () => {
       assert.equal(command.input.ExpressionAttributeValues[":saved"], true);
       assert.ok(command.input.FilterExpression);
       assert.ok(command.input.ProjectionExpression.includes("#i.#summary"));
+      assert.ok(command.input.ProjectionExpression.includes("#i.#description"));
+      assert.equal(command.input.ExpressionAttributeNames['#description'], 'summary');
       assert.ok(!command.input.ProjectionExpression.includes("candidatePlaces"));
       calls++;
       if (calls === 1) return { Items: [], LastEvaluatedKey: cursor };

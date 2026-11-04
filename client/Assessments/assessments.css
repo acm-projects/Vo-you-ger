@@ -649,6 +649,26 @@ body {
 /* VINTAGE FLIGHT PATH PROGRESS */
 /* ================================= */
 
+.progress-section {
+    margin-bottom: 18px;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+#progress-percent {
+    flex-shrink: 0;
+    font-weight: 600;
+}
+
 .progress-track {
     position: relative;
     width: calc(100% - 24px);

@@ -19,7 +19,9 @@ before(async()=>{
  port=server.address().port;
 });
 after(async()=>{if(server?.listening)await new Promise(resolve=>server.close(resolve));});
-afterEach(()=>mock.restoreAll());
+const {narrativeFor}=require('./helpers/narrative');
+const {clearNarrativeCache}=require('../services/itineraryNarrativeService');
+afterEach(()=>{mock.restoreAll();clearNarrativeCache();});
 
 function request(method,path,body,token) {
  return new Promise((resolve,reject)=>{
@@ -125,7 +127,7 @@ describe('Planning HTTP contract',()=>{
   const unchanged=await request('GET',`/api/trips/${id}`,undefined,token);
   assert.equal(unchanged.body.trip.isSaved,true);assert.equal(JSON.stringify(unchanged.body.trip.itinerary),original);
  });
- for(const failure of ['valid','empty','overpacked','malformed-json','configuration-rejected','provider-unavailable'])it(`generates, saves and retrieves a real seven-day pipeline with ${failure} Gemini output`,async()=>{
+ for(const failure of ['valid','empty','invented-id','malformed-json','configuration-rejected','provider-unavailable'])it(`generates, saves and retrieves a real seven-day pipeline with ${failure} Gemini output`,async()=>{
   const owner=`http-real-pipeline-${failure}`,token=generateToken({id:owner});
   const quiz={visaWillingness:true,minNights:6,maxNights:6,startDate:'2027-06-05',budgetLevel:'$$',seeAllOrDeeply:'seeAll',travelAlterEgo:'Foodie',dietaryRestrictions:['Vegetarian']};
   const row={PK:`USER#${owner}`,SK:'TRIP#draft',tripId:'draft',userId:owner,schemaVersion:2,isSaved:false,generatedBy:'old-model',quizSnapshot:quiz,recommendations:[{type:'country',destinationId:'country-pl'}]};
@@ -160,20 +162,20 @@ describe('Planning HTTP contract',()=>{
    assert.equal(host,'generativelanguage.googleapis.com');geminiCalls++;
    if(failure==='provider-unavailable')return new Response(JSON.stringify({error:{code:503,message:'Unavailable',status:'UNAVAILABLE'}}),{status:503,headers:{'Content-Type':'application/json'}});
    if(failure==='configuration-rejected')return new Response(JSON.stringify({error:{code:400,message:'Mock rejected configuration',status:'INVALID_ARGUMENT'}}),{status:400,headers:{'Content-Type':'application/json'}});
-   const body=JSON.parse(init.body),payload=JSON.parse(body.contents[0].parts[0].text),copy=payload.plan;
-   if(failure==='empty')for(const slot of ['morning','afternoon','evening'])copy.days[1][slot]=[];
-   else if(failure==='overpacked')copy.days[1].morning.push({placeId:'extra-1',activityDescription:'Extra'},{placeId:'extra-2',activityDescription:'Extra'});
+   const body=JSON.parse(init.body),payload=JSON.parse(body.contents[0].parts[0].text.split('\nValidation feedback')[0]),copy=narrativeFor(payload);
+   if(failure==='empty')copy.activityDescriptions=[];
+   else if(failure==='invented-id')copy.activityDescriptions.push({placeId:'invented',description:'Extra'});
    return new Response(JSON.stringify({candidates:[{content:{role:'model',parts:[{text:failure==='malformed-json'?'{"days":':JSON.stringify(copy)}]},finishReason:'STOP'}]}),{status:200,headers:{'Content-Type':'application/json'}});
   });
   try{
    const generated=await request('POST','/api/itinerary/draft',{countryId:'country-pl'},token);
    assert.equal(generated.status,200,JSON.stringify(generated.body));
    assert.equal(generated.body.itinerary.days.length,7);assert.equal(generated.body.itinerary.outline.stops.length,2);
-   const source=failure==='valid'?'gemini':'deterministic_fallback';
+   const source=failure==='valid'?'gemini':['empty','invented-id'].includes(failure)?'partial':'deterministic_fallback';
    assert.equal(generated.body.itinerary.narrativeSource,source);
-   if(failure==='valid')assert.ok(row.generatedBy);
+   if(source!=='deterministic_fallback')assert.ok(row.generatedBy);
    else assert.equal(row.generatedBy,null,'Old Gemini attribution must be cleared');
-   assert.equal(googleCalls,6);assert.equal(geminiCalls,failure==='provider-unavailable'?2:1);
+   assert.equal(googleCalls,6);assert.equal(geminiCalls,['valid','configuration-rejected'].includes(failure)?1:2);
    const saved=await request('PUT','/api/trips/draft/save',{},token);assert.equal(saved.status,200);
    const reopened=await request('GET','/api/trips/draft',undefined,token);assert.equal(reopened.status,200);
    assert.equal(reopened.body.trip.isSaved,true);assert.equal(reopened.body.trip.itinerary.days.length,7);

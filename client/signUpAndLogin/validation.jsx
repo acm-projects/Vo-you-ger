@@ -1,3 +1,5 @@
+import { clearPlanningSession, loginDestination } from "../src/services/navigation.js";
+
 const form = document.getElementById("form");
 const firstname_input = document.getElementById("firstname-input");
 const lastname_input = document.getElementById("lastname-input");
@@ -253,98 +255,6 @@ if (countriesList) {
 
         countriesList.appendChild(option);
 
-<<<<<<< HEAD
-=======
-  const removeBtn = document.createElement("button");
-  removeBtn.type = "button";
-  removeBtn.innerText = "×";
-  removeBtn.onclick = () => tag.remove();
-
-  tag.appendChild(hiddenInput);
-  tag.appendChild(removeBtn);
-  selectedCountriesContainer.appendChild(tag);
-}
-
-// Reset the error message and any red highlighting from a previous attempt
-function clearErrors() {
-  error_message.innerText = "";
-  document
-    .querySelectorAll(".incorrect")
-    .forEach((el) => el.classList.remove("incorrect"));
-}
-
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  clearErrors();
-
-  let errors = [];
-
-  if (firstname_input) {
-    errors = getSignupFormErrors(
-      firstname_input.value,
-      lastname_input ? lastname_input.value : "",
-      email_input.value,
-      password_input.value,
-      repeat_password_input.value,
-    );
-  } else {
-    errors = getLoginFormErrors(email_input.value, password_input.value);
-  }
-
-  if (errors.length > 0) {
-    error_message.innerText = errors.join(". ");
-    return;
-  }
-
-  // Disable the submit button so user doesn't double-click
-  const submitBtn = form.querySelector('button[type="submit"]');
-  const originalBtnText = submitBtn.innerText;
-  submitBtn.disabled = true;
-  submitBtn.innerText = "Please wait...";
-
-  try {
-    const isSignup = !!firstname_input;
-    const endpoint = isSignup
-      ? "http://localhost:8080/api/auth/register"
-      : "http://localhost:8080/api/auth/login";
-
-    let requestBody = {};
-
-    if (isSignup) {
-      const fName = firstname_input.value.trim();
-      const lName = lastname_input ? lastname_input.value.trim() : "";
-
-      // Collect nationalities selected from the tags
-      const countryInputs = selectedCountriesContainer.querySelectorAll(
-        'input[name="countries[]"]',
-      );
-      const nationalities = Array.from(countryInputs).map(
-        (input) => input.value,
-      );
-
-      requestBody = {
-        fName,
-        lName,
-        email: email_input.value.trim(),
-        password: password_input.value,
-        nationalities,
-      };
-    } else {
-      // Login body
-      requestBody = {
-        email: email_input.value.trim(),
-        password: password_input.value,
-      };
-    }
-
-    // 3. Make the network request to Express
-    const response = await fetch(endpoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestBody),
->>>>>>> ba63806838fb080ced83827872dcd789cf01482c
     });
 
 }
@@ -391,8 +301,6 @@ function addCountryTag(countryName) {
 
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
     const tag = document.createElement("span");
 
@@ -519,34 +427,6 @@ if (
 // =====================================
 // SIGNUP FORM VALIDATION
 // =====================================
-=======
-    // Cached trips belong to the previous session, not the newly signed-in account.
-    clearPlanningSession(sessionStorage);
-    localStorage.removeItem("quizResponse");
-=======
-    // 5. Success! Save token and user into localStorage
->>>>>>> f54f95311ca2dd164bbd2f4a87f5952a0a815cf8
-    localStorage.setItem("token", data.token);
-    localStorage.setItem("user", JSON.stringify(data.user));
-
-    // 6. Redirect to the main React homepage
-// After signup, start the assessment. After login, return home.
-      // First-time users can complete their assessment before planning a trip.
-      if (isSignup) {
-        window.location.href = "/Assessments/assessments.html";
-      } else {
-        window.location.href = "/";
-      }
-  } catch (err) {
-    console.error("Network error:", err);
-    error_message.innerText =
-      "Unable to connect to server. Is the backend running?";
-    submitBtn.disabled = false;
-    submitBtn.innerText = originalBtnText;
-  }
-});
->>>>>>> ba63806838fb080ced83827872dcd789cf01482c
-
 function getSignupFormErrors(
     firstname,
     lastname,
@@ -737,9 +617,8 @@ form.addEventListener("submit", async (e) => {
         // API ENDPOINT
         // =====================================
 
-        const endpoint = isSignup
-            ? "http://localhost:8080/api/auth/register"
-            : "http://localhost:8080/api/auth/login";
+        const apiBase = import.meta.env.VITE_API_URL || "http://localhost:8080/api";
+        const endpoint = `${apiBase}/auth/${isSignup ? "register" : "login"}`;
 
 
         let requestBody = {};
@@ -844,6 +723,8 @@ form.addEventListener("submit", async (e) => {
         // SAVE USER INFORMATION
         // =====================================
 
+        clearPlanningSession(sessionStorage);
+        localStorage.removeItem("quizResponse");
         localStorage.setItem(
             "token",
             data.token
@@ -859,17 +740,7 @@ form.addEventListener("submit", async (e) => {
         // REDIRECT AFTER SUCCESS
         // =====================================
 
-        if (isSignup) {
-
-            // First-time users go to assessment
-            window.location.href = "/Assessments/assessments.html";
-
-        } else {
-
-            // Existing users go to homepage
-            window.location.href = "/";
-
-        }
+        window.location.href = loginDestination({ isSignup, firstTime: data.user?.firstTime });
 
 
     } catch (err) {

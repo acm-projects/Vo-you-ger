@@ -1,4 +1,12 @@
-/*API for Q1 + Q2: */ 
+import { clearPlanningSession, paths } from "../src/services/navigation.js";
+
+if (!localStorage.getItem("token")) window.location.replace(paths.login);
+
+const assessmentImages = import.meta.glob('./*.{png,jpg,jpeg,webp}', {
+    eager: true, query: '?url', import: 'default'
+});
+
+/*API for Q1 + Q2: */
 const questions = [
     {
         id: "preferredCountries",
@@ -84,14 +92,14 @@ const questions = [
         questions: "Are you willing to get a visa for traveling?",
         type: "image-choice",
         answers: [
-        { 
-            text: "Yes", 
-            image: "visa.jpg", 
+        {
+            text: "Yes",
+            image: "visa.jpg",
             caption: "Yes! I'm willing to get a travel visa"
         },
-        { 
-            text: "No", 
-            image: "NoVisa.png", 
+        {
+            text: "No",
+            image: "noVisa.png",
             caption: "No! I'm not willing to get a travel visa"
         }
     ]
@@ -101,24 +109,24 @@ const questions = [
         questions: "What is your travel alter ego?",
         type: "image-choice",
         answers: [
-        { 
-            text: "The Explorer", 
-            image: "theAdventurer.jpg", 
+        {
+            text: "The Explorer",
+            image: "theAdventurer.jpg",
             caption: "Always searching for an adventure"
         },
-        { 
-            text: "The Historian", 
-            image: "theHistorian.jpg", 
+        {
+            text: "The Historian",
+            image: "theHistorian.jpg",
             caption: "Facinated by local culture museums"
         },
-        { 
-            text: "The Foodie", 
-            image: "TheFoodie.png", 
+        {
+            text: "The Foodie",
+            image: "TheFoodie.png",
             caption: "Planning my trip around good food"
         },
-        { 
-            text: "The Spa Lover", 
-            image: "spaLover.jpg", 
+        {
+            text: "The Spa Lover",
+            image: "spaLover.jpg",
             caption: "Prioritizing ultimate relaxation"
         }
     ]
@@ -128,19 +136,19 @@ const questions = [
         questions: "Which view would make you stop and take a picture?",
         type: "image-choice",
         answers: [
-        { 
-            text: "Sunset by the beach", 
-            image: "sunsetByBeach.jpg", 
+        {
+            text: "Sunset by the beach",
+            image: "sunsetByBeach.jpg",
             caption: "Coastal golden hour"
         },
-        { 
-            text: "City skyline at night", 
-            image: "citySkylineNight.jpg", 
+        {
+            text: "City skyline at night",
+            image: "citySkylineNight.jpg",
             caption: "Bright lights & high rises"
         },
-        { 
-            text: "Mountains above the clouds", 
-            image: "mountainsAboveCloud.jpg", 
+        {
+            text: "Mountains above the clouds",
+            image: "mountainsAboveCloud.jpg",
             caption: "Top-of-the-world views"
         },
     ]
@@ -150,24 +158,24 @@ const questions = [
         questions: "What kind of trip pics would you post after you get back home?",
         type: "image-choice",
         answers: [
-        { 
-            text: "Unique historical and cultural experiences", 
-            image: "uniqueExperiences.jpg", 
+        {
+            text: "Unique historical and cultural experiences",
+            image: "uniqueExperiences.jpg",
             caption: "Local heritage & hidden history"
         },
-        { 
-            text: "Food dumps", 
-            image: "foodDumps.jpg", 
+        {
+            text: "Food dumps",
+            image: "foodDumps.jpg",
             caption: "Mouthwatering meals & street eats"
         },
-        { 
-            text: "The streets", 
-            image: "streetsInNY.jpg", 
+        {
+            text: "The streets",
+            image: "streetsInNY.jpg",
             caption: "City vibes & candid street shots"
         },
-        { 
-            text: "Good natural scenery", 
-            image: "southAmericaNature.jpg", 
+        {
+            text: "Good natural scenery",
+            image: "southAmericaNature.jpg",
             caption: "No filter needed"
         }
     ]
@@ -177,15 +185,15 @@ const questions = [
         questions: "Would you rather... Enjoy the nightlife and sleep in or sleep early but catch the sunrise?",
         type: "image-choice",
         answers: [
-        { 
-            text: "Enjoy the nightlife and sleep in", 
-            image: "sydney.jpg", 
-            caption: "Sydney Opera House" 
+        {
+            text: "Enjoy the nightlife and sleep in",
+            image: "sydney.jpg",
+            caption: "Sydney Opera House"
         },
-        { 
-            text: "Sleep early but catch the sunrise", 
-            image: "barossa.jpg", 
-            caption: "Barossa Valley" 
+        {
+            text: "Sleep early but catch the sunrise",
+            image: "barossa.jpg",
+            caption: "Barossa Valley"
         }
     ]
     },
@@ -194,15 +202,15 @@ const questions = [
         questions: "Would you rather... Visit a famous location or discover a hidden gem",
         type: "image-choice",
         answers: [
-        { 
-            text: "Visit a famous location", 
-            image: "rome.jpg", 
-            caption: "Rome, Italy" 
+        {
+            text: "Visit a famous location",
+            image: "rome.jpg",
+            caption: "Rome, Italy"
         },
-        { 
-            text: "Discover a hidden gem", 
-            image: "Matera.jpg", 
-            caption: "Matera, Italy" 
+        {
+            text: "Discover a hidden gem",
+            image: "Matera.jpg",
+            caption: "Matera, Italy"
         }
     ]
     },
@@ -211,15 +219,15 @@ const questions = [
         questions: "Would you rather... Enjoy the bustle of the locals, or enjoy space to yourself?",
         type: "image-choice",
         answers: [
-        { 
-            text: "Enjoy the bustle of the locals", 
-            image: "Shibuya.jpg", 
-            caption: "Shibuya Scramble Crossing" 
+        {
+            text: "Enjoy the bustle of the locals",
+            image: "Shibuya.jpg",
+            caption: "Shibuya Scramble Crossing"
         },
-        { 
-            text: "Enjoy space to yourself" , 
-            image: "Nachi.jpg", 
-            caption: "Nachi Waterfall" 
+        {
+            text: "Enjoy space to yourself" ,
+            image: "Nachi.jpg",
+            caption: "Nachi Waterfall"
         }
     ]
     },
@@ -249,7 +257,7 @@ const questions = [
         questions: "What is your budget per person, per day for food and activities?",
         answers: [
             { text: "$" },
-            { text: "$$" }, 
+            { text: "$$" },
             { text: "$$$" }
         ]
     },
@@ -366,7 +374,7 @@ function updateProgress() {
         (answeredQuestions / totalQuestions) * 100
     );
 
-    
+
     progressText.textContent =
         `${answeredQuestions} of ${totalQuestions} questions answered`;
 
@@ -441,7 +449,7 @@ function showQuestion() {
     }
 
     // Check if it's a text input question
-    
+
     if (currentQuestion.type === "multiple-places") {
 
         const container = document.createElement("div");
@@ -482,7 +490,7 @@ function showQuestion() {
         notSureBtn.innerHTML = "Not sure / Open to anything";
 
         // Restore previous selections
-        if (!Array.isArray(selectedAnswers[qId])) {
+        if (!Array.isArray(selectedAnswers[qId]) && !selectedAnswers[qId]?.isNotSure) {
             selectedAnswers[qId] = [];
         }
 
@@ -491,7 +499,8 @@ function showQuestion() {
 
             selectedContainer.innerHTML = "";
 
-            selectedAnswers[qId].forEach((place, index) => {
+            const places = Array.isArray(selectedAnswers[qId]) ? selectedAnswers[qId] : [];
+            places.forEach((place, index) => {
 
                 const tag = document.createElement("button");
 
@@ -706,7 +715,7 @@ function showQuestion() {
             }
 
             card.innerHTML = `
-                <img src="${answer.image}" alt="${answer.text}">
+                <img src="${assessmentImages[`./${answer.image}`] || answer.image}" alt="${answer.text}">
                 <div class="image-card-text">${answer.text}</div>
                 <div class="image-card-caption">${answer.caption}</div>
             `;
@@ -820,7 +829,7 @@ function showQuestion() {
 
     updateDropdown();
         ///////
-        
+
     } else if (currentQuestion.type === "select") {
         // Multi-select month grid buttons
         const container = document.createElement("div");
@@ -829,10 +838,10 @@ function showQuestion() {
         container.style.gap = "10px";
 
         const months = [
-            "January", "February", "March", 
-            "April", "May", "June", 
-            "July", "August", "September", 
-            "October", "November", "December", 
+            "January", "February", "March",
+            "April", "May", "June",
+            "July", "August", "September",
+            "October", "November", "December",
             "Not sure / Any"
         ];
 
@@ -958,7 +967,7 @@ function showQuestion() {
      /*===================================================================*/
       /*===================================================================*/
        /*===================================================================*/
-    
+
     } else if (currentQuestion.type === "dropdown") {
 
         const container = document.createElement("div");
@@ -1083,7 +1092,7 @@ function showQuestion() {
             const button = document.createElement("button");
             button.innerHTML = answer.text;
             button.classList.add("btn");
-            
+
             if (selectedAnswers[qId] === index) {
                 button.classList.add("selected");
                 nextButton.style.display = "block";
@@ -1180,11 +1189,12 @@ function formatFinalQuizPayload(answers) {
     const q4Idx = answers["tripDuration"];
     if (q4Idx !== undefined) {
         const durationMap = {
-            0: [1, 3],
-            1: [4, 6],
-            2: [7, 9],
-            3: [10, 14],
-            4: [15, 20]
+            0: [0, 0],
+            1: [1, 3],
+            2: [4, 6],
+            3: [7, 9],
+            4: [10, 14],
+            5: [15, 20]
         };
         if (durationMap[q4Idx]) {
             [minNights, maxNights] = durationMap[q4Idx];
@@ -1354,7 +1364,8 @@ function showScore() {
         nextButton.innerHTML = "Saving your preferences...";
 
         try {
-            const response = await fetch("http://localhost:8080/api/quiz", {
+            const apiBase = import.meta.env.VITE_API_URL || "http://localhost:8080/api";
+            const response = await fetch(`${apiBase}/quiz`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -1371,8 +1382,7 @@ function showScore() {
 
             // Successfully saved to DynamoDB! Cache locally and clear stale recommendations
             localStorage.setItem("quizResponse", JSON.stringify(payload));
-            sessionStorage.removeItem("voyager_recommendations");
-            sessionStorage.removeItem("voyager_trip");
+            clearPlanningSession(sessionStorage);
 
             // Redirect to loading/recommendations page
             window.location.href = "/?page=loading";
