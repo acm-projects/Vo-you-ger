@@ -308,11 +308,10 @@ async function getSavedTripSummaries(userId) {
       TableName: TABLE_NAME,
       KeyConditionExpression: "PK = :pk AND begins_with(SK, :sk)",
       FilterExpression: "#saved = :saved",
-      ProjectionExpression: "tripId, #title, savedAt, #i.#summary, #i.#description, #i.#tripTitle, #i.#outline, #i.#destination, #i.#countryCode, #i.#info.#countryCode, #i.#days[0].#date",
+      ProjectionExpression: "tripId, #title, savedAt, #i.#summary, #i.#tripTitle, #i.#outline, #i.#destination, #i.#countryCode, #i.#info.#countryCode, #i.#days[0].#date",
       ExpressionAttributeNames: {
         "#saved": "isSaved", "#title": "title", "#i": "itinerary", "#summary": "tripSummary",
         "#tripTitle": "tripTitle", "#outline": "outline", "#destination": "destination",
-        "#description": "summary",
         "#countryCode": "countryCode", "#info": "practicalInfo", "#days": "days", "#date": "date",
       },
       ExpressionAttributeValues: { ":pk": `USER#${userId}`, ":sk": "TRIP#", ":saved": true },

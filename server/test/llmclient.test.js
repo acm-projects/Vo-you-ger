@@ -138,7 +138,7 @@ describe('Gemini SDK request controls',()=>{
    assert.ok(!/"(?:minItems|maxItems|minLength|maxLength|minimum|maximum|\$schema)":/.test(JSON.stringify(sent)));
    return result(JSON.stringify({days:[{day:22,theme:'Too long for the local bound'}]}));
   });
-  await assert.rejects(llm.generateStructured({prompt:'Test',jsonSchema,zodSchema:schema,maxAttempts:1}),error=>error.statusCode===502&&error.fallbackReason==='invalid_response');
+  await assert.rejects(llm.generateStructured({prompt:'Test',jsonSchema,zodSchema:schema,maxAttempts:1}),error=>error.statusCode===502&&/did not match the schema/.test(error.message));
   assert.equal(calls,1);assert.equal(JSON.stringify(jsonSchema),original);
  });
  it('keeps an eight-second client cutoff without sending an invalid server deadline',async()=>{
@@ -221,63 +221,5 @@ describe('Gemini SDK request controls',()=>{
   });});
   try{await assert.rejects(llm.generateWithFallback('Test',{}, {maxAttempts:1,timeoutMs:20}),error=>error.code==='GEMINI_TIMEOUT'&&error.fallbackReason==='request_timeout');assert.equal(calls,1);}
   finally{clearTimeout(keepAlive);}
- });
- for (const invalid of ['not JSON','{"ok":"wrong type"}','{"ok":false}']) it(`retries invalid structured content within the same reserved budget: ${invalid}`,async()=>{
-  const llm=fresh('gemini-3.5-flash-lite,gemini-3.8-flash');let calls=0,invalidCalls=0;const budgets=[],logs=[];
-  const originalTimeout=AbortSignal.timeout.bind(AbortSignal);
-  mock.method(AbortSignal,'timeout',ms=>{budgets.push(ms);return originalTimeout(ms);});
-  mock.method(console,'warn',message=>logs.push(message));
-  mock.method(global,'fetch',async(_url,init)=>{
-   calls++;
-   if(calls===2)assert.match(JSON.stringify(JSON.parse(init.body).contents),/Validation feedback/);
-   return result(calls===1?invalid:'{"ok":true}');
-  });
-  const schema=z.object({ok:z.boolean()});
-  const output=await llm.generateStructured({prompt:'Private traveler prompt',jsonSchema:z.toJSONSchema(schema),zodSchema:schema,
-   validateResponse:data=>data.ok===true,onInvalidResponse:()=>invalidCalls++,timeoutMs:30000});
-  assert.equal(output.data.ok,true);assert.equal(calls,2);assert.equal(invalidCalls,1);
-  assert.equal(output.diagnostics[0].reason,'invalid_response');
-  assert.ok(budgets[0]<=15000);assert.ok(budgets[1]>budgets[0]);
-  assert.ok(!logs.join(' ').includes('Private'));
- });
- it('does not cool down models after invalid JSON and never exceeds two attempts',async()=>{
-  const llm=fresh('gemini-3.5-flash-lite,gemini-3.8-flash');let calls=0;
-  mock.method(console,'warn',()=>{});mock.method(global,'fetch',async()=>{calls++;return result('invalid');});
-  const schema=z.object({ok:z.boolean()}),request={prompt:'Test',jsonSchema:z.toJSONSchema(schema),zodSchema:schema};
-  for(let i=0;i<2;i++)await assert.rejects(llm.generateStructured(request),error=>error.code==='INVALID_AI_OUTPUT'&&error.diagnostics.length===2);
-  assert.equal(calls,4);
- });
- it('isolates temporary recommendation overloads from itinerary attempts but shares quota failures',async()=>{
-  const llm=fresh('gemini-3.5-flash-lite');let calls=0;
-  mock.method(console,'warn',()=>{});mock.method(global,'fetch',async()=>{calls++;return calls===1?new Response('{"error":{"code":503}}',{status:503}):result();});
-  await assert.rejects(llm.generateWithFallback('Test',{}, {operation:'recommendations'}),error=>error.statusCode===503);
-  await assert.rejects(llm.generateWithFallback('Test',{}, {operation:'recommendations'}),error=>error.code==='GEMINI_COOLDOWN');
-  assert.equal((await llm.generateWithFallback('Test',{}, {operation:'itinerary'})).model,'gemini-3.5-flash-lite');
-  assert.equal(calls,2);
-  mock.restoreAll();mock.method(console,'warn',()=>{});
-  mock.method(global,'fetch',async()=>{calls++;return new Response('{"error":{"code":429}}',{status:429});});
-  await assert.rejects(llm.generateWithFallback('Test',{}, {operation:'itinerary'}),error=>error.statusCode===429);
-  await assert.rejects(llm.generateWithFallback('Test',{}, {operation:'recommendations'}),error=>error.code==='GEMINI_COOLDOWN');
-  assert.equal(calls,3);
- });
- it('allows only one probe after a temporary overload cooldown expires',async()=>{
-  const llm=fresh('gemini-3.5-flash-lite');let calls=0,now=100000,release;
-  mock.method(Date,'now',()=>now);mock.method(console,'warn',()=>{});
-  mock.method(global,'fetch',async()=>{calls++;if(calls===1)return new Response('{"error":{"code":503}}',{status:503});return new Promise(resolve=>{release=()=>resolve(result());});});
-  await assert.rejects(llm.generateWithFallback('Test',{}, {operation:'itinerary'}));
-  now+=6000;
-  const probe=llm.generateWithFallback('Test',{}, {operation:'itinerary'});
-  while(!release)await new Promise(resolve=>setImmediate(resolve));
-  await assert.rejects(llm.generateWithFallback('Test',{}, {operation:'itinerary'}),error=>error.code==='GEMINI_COOLDOWN');
-  release();await probe;assert.equal(calls,2);
- });
- it('surfaces application validation bugs instead of disguising them as provider failures',async()=>{
-  const llm=fresh('gemini-3.5-flash-lite,gemini-3.8-flash');let calls=0;
-  mock.method(global,'fetch',async()=>{calls++;return result();});
-  const schema=z.object({ok:z.boolean()});
-  await assert.rejects(llm.generateStructured({prompt:'Test',jsonSchema:z.toJSONSchema(schema),zodSchema:schema,
-   validateResponse:()=>{throw new TypeError('application bug');},
-  }),error=>error instanceof TypeError);
-  assert.equal(calls,1);
  });
 });

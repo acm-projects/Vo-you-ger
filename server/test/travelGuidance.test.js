@@ -1,5 +1,3 @@
-const {narrativeFor}=require('./helpers/narrative');
-const {clearNarrativeCache}=require('../services/itineraryNarrativeService');
 const {describe, it, afterEach, mock} = require('node:test');
 const assert = require('node:assert/strict');
 const {practicalInfoForOutline, activityTravelTip, withTravelGuidance} = require('../services/travelGuidanceService');
@@ -10,7 +8,7 @@ const catalog = require('../services/planningDataService');
 const reviewed = require('../data/practicalGuidance.json');
 const discovery = require('../services/stopDiscoveryService');
 const llm = require('../services/llmclient');
-afterEach(() => {mock.restoreAll();clearNarrativeCache();});
+afterEach(() => mock.restoreAll());
 const slots = ['morning', 'afternoon', 'evening'];
 const outline = code => buildOutline({countryId: `country-${code}`, numberOfDays: 1, startDate: '2027-06-05', quiz: {}});
 
@@ -109,15 +107,19 @@ describe('Activity travel tips and persistence', () => {
     }]}]);
     mock.method(llm, 'generateStructured', async request => {
       if (mode === 'provider-error') throw Object.assign(new Error('Private provider error'), {statusCode: 503});
-      const data = narrativeFor(JSON.parse(request.prompt));
-      for (const activity of data.activityDescriptions) activity.description = 'Take time to explore this museum.';
-      if (mode === 'schedule-changed') data.activityDescriptions[0].placeId = 'invented';
+      const data = JSON.parse(request.prompt).plan;
+      data.practicalInfo = {currency: {code: 'FAKE'}};
+      for (const day of data.days) for (const activity of slots.flatMap(slot => day[slot])) {
+        activity.travelTip = 'Guaranteed free entry at 8 AM';
+        activity.activityDescription = 'Take time to explore this museum.';
+      }
+      if (mode === 'schedule-changed') data.days[0].morning[0].placeId = 'invented';
       return {data, model: 'mock'};
     });
     const {itinerary} = await generateCountryItinerary({outline: route, quiz: {}, startDate: route.startDate});
     assert.equal(itinerary.practicalInfo.currency.code, 'EUR');
-    assert.equal(itinerary.narrativeSource, mode === 'gemini' ? 'gemini' : mode === 'schedule-changed' ? 'partial' : 'deterministic_fallback');
-    assert.equal(itinerary.narrativeFallbackReason, mode === 'gemini' ? null : mode === 'schedule-changed' ? 'invalid_response' : 'provider_unavailable');
+    assert.equal(itinerary.narrativeSource, mode === 'gemini' ? 'gemini' : 'deterministic_fallback');
+    assert.equal(itinerary.narrativeFallbackReason, mode === 'gemini' ? null : mode === 'schedule-changed' ? 'schedule_changed' : 'provider_unavailable');
     const activity = slots.flatMap(slot => itinerary.days[0][slot])[0];
     assert.match(activity.travelTip, /could not be verified/);
     assert.ok(!activity.travelTip.includes('Guaranteed'));

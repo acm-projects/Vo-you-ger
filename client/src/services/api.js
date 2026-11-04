@@ -41,12 +41,12 @@ export const getDestinationPlaces = (tripId, selection) =>
 export const saveTrip = (tripId) => API.put(`/trips/${tripId}/save`);
 export const unsaveTrip = (tripId) => API.delete(`/trips/${tripId}/save`);
 export const getSavedTrips = () => API.get("/trips/saved");
-export const getTripGlobe = (config) => API.get("/trips/globe", config);
+export const getTripGlobe = () => API.get("/trips/globe");
 export const getTrip = (tripId) => API.get(`/trips/${tripId}`);
 export const getTripDayPlaces = (tripId, day) => API.get(`/trips/${tripId}/days/${day}/places`);
 export const getCountryPlanning = (countryCode) => API.get(`/countries/${countryCode}/planning`);
 export const getCountries = () => API.get('/countries');
-export const getCountryInfo = (countryCode, config) => API.get(`/countries/${countryCode}`, config);
+export const getCountryInfo = (countryCode) => API.get(`/countries/${countryCode}`);
 export const generateCountryTrip = (countryCode, input) => API.post(`/countries/${countryCode}/itinerary`, input);
 
 export const generateItinerary = ({ tripId, countryId, destinationId, destination, candidatePlaces, numberOfDays, numberOfNights, startDate, quiz }) =>

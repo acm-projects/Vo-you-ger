@@ -1,15 +1,16 @@
 const {TRIP_POLICY}=require('../config/tripPolicy');
 const {instrument,measured,count}=require('./telemetryService');
+const llm = require("./llmclient");
 const discovery = require("./stopDiscoveryService");
 const { computeItinerarySchedule } = require("./itineraryPromptBuilder");
 const { validateOutline, planningError } = require("./tripOutlineService");
-const { countryItinerarySchema } = require("../schemas/countryItinerarySchema");
-const { stayForStop } = require('./stayAreaService');
+const { countryItinerarySchema, getCountryItineraryJsonSchema } = require("../schemas/countryItinerarySchema");
+const { recommendNeighborhoods } = require("./neighborhoodRecommendationService");
 const { distanceKm } = require("./placeGroupingService");
 const { validateStartDate } = require("./tripTimingService");
 const { tripSummary } = require("./tripSummaryService");
 const { checkHours } = require('./venueHoursService');
-const { buildDailyPlan, mealLimit } = require('./dailyPlanService');
+const { buildDailyPlan } = require('./dailyPlanService');
 const { practicalInfoForOutline, activityTravelTip } = require('./travelGuidanceService');
 
 function buildSchedule(outline, startDate) {
@@ -68,9 +69,7 @@ function validateAndEnrich(data, outline, schedule, discovered, quiz) {
           ...hours,
         };
       });
-      if (day[slot].filter(activity=>activity.category==='food').length > 1) throw planningError('Multiple restaurants in the same time block',502);
     }
-    if (selected.filter(place=>place.category==='food').length > mealLimit(quiz)) throw planningError('Too many meals for the selected pace',502);
     const max = ["full", "visit"].includes(expected.type) && require("./destinationScoringService").isRelaxed(quiz) ? TRIP_POLICY.maxActivitiesPerRelaxedDay : expected.maxActivities;
     if (selected.length > max || (["full", "visit", "excursion"].includes(expected.type) && selected.length < 1)) {
       throw planningError("AI returned an overpacked or empty sightseeing day", 502);
@@ -103,9 +102,15 @@ function validateAndEnrich(data, outline, schedule, discovered, quiz) {
   result.stays = outline.stops.filter(stop=>stop.nights>0).map((stop) => {
     const places = selectedByStop.get(stop.stopId);
     const grouped = Object.fromEntries(["attractions", "food", "experiences"].map((category) => [category, places.filter((place) => place.category === category)]));
-    const stay = stayForStop(stop,grouped);
-    if (!stay.recommendedStayArea) count('missingStayAreas');
-    return stay;
+    const neighborhoods = recommendNeighborhoods(grouped);
+    return {
+      stopId: stop.stopId, destinationId: stop.destinationId, name: stop.name, nights: stop.nights,
+      recommendedStayArea: neighborhoods[0]?.name || null,
+      stayAreaRationale: neighborhoods.length
+        ? "This area ranks well for straight-line proximity to the scheduled activities. Actual travel times and accommodation availability are unverified."
+        : "Google Places did not supply enough neighborhood data to recommend an area reliably.",
+      alternatives: neighborhoods.slice(1),
+    };
   });
   result.planningNotes = [
     outline.durationBasis,
@@ -117,6 +122,14 @@ function validateAndEnrich(data, outline, schedule, discovered, quiz) {
   result.tripSummary = tripSummary(result);
   result.catalogAttribution = {provider:'GeoNames',url:'https://www.geonames.org/',license:'CC-BY-4.0'};
   return result;
+}
+
+function matchesFixedPlan(data,plan) {
+  return data.days.length===plan.days.length && data.days.every((day,index)=>{
+    const fixed=plan.days[index];
+    return day.day===fixed.day && day.stopId===fixed.stopId && ['morning','afternoon','evening'].every(slot=>
+      day[slot].length===fixed[slot].length && day[slot].every((activity,i)=>activity.placeId===fixed[slot][i].placeId));
+  });
 }
 
 /**
@@ -298,9 +311,55 @@ async function generate({ outline, quiz, startDate }) {
   const plan = buildDailyPlan({outline,schedule,discovered,quiz});
   const itinerary = validateAndEnrich(plan,outline,schedule,discovered,quiz);
   itinerary.startDate = effectiveStartDate;
-  const {model} = await require('./itineraryNarrativeService').writeNarrative({itinerary,discovered,quiz});
   const template = require('../prompts/itineraryPrompt');
-  itinerary.schedulerVersion='2026-10-31.1';
+  const selectedIds = new Set(plan.days.flatMap(day => ['morning','afternoon','evening'].flatMap(slot => day[slot].map(activity => activity.placeId))));
+  const payload = {
+    quiz:require('../prompts/travelerPreferences').travelerPreferences(quiz),
+    outline:{country:outline.country,numberOfDays:outline.numberOfDays,numberOfNights:outline.numberOfNights,
+      stops:outline.stops.map(({stopId,name,nights})=>({stopId,name,nights}))},
+    schedule,plan,
+    candidates:discovered.map(stop=>({stopId:stop.stopId,locationId:stop.locationId||stop.stopId,
+      places:stop.candidatePlaces.filter(place=>selectedIds.has(place.placeId))
+        .map(({placeId,name,category,types})=>({placeId,name,category,types}))})),
+  };
+  let model=null, narrativeSource='deterministic_fallback', narrativeFallbackReason='prompt_too_large';
+  const prompt=JSON.stringify(payload);
+  if(Buffer.byteLength(prompt)<=TRIP_POLICY.maxPromptBytes) {
+    try {
+      count('geminiStructuredCalls');
+      const response=await measured('geminiNarrative',()=>llm.generateStructured({
+        systemPrompt:template.systemPrompt,prompt,
+        jsonSchema:getCountryItineraryJsonSchema(),zodSchema:countryItinerarySchema,
+        maxAttempts:TRIP_POLICY.geminiMaxAttempts,timeoutMs:TRIP_POLICY.geminiDeadlineMs,
+      }));
+      const parsed=countryItinerarySchema.safeParse(response.data);
+      narrativeFallbackReason=parsed.success ? 'schedule_changed' : 'invalid_response';
+      // Treat the response strictly as copy for the fixed plan. Empty/extra days,
+      // invented IDs, changed slots, repeats, and rescheduling use neutral copy.
+      if(parsed.success && matchesFixedPlan(parsed.data,plan)) {
+        itinerary.tripTitle=parsed.data.tripTitle;
+        itinerary.summary=parsed.data.summary;
+        for(const [index,day] of itinerary.days.entries()) {
+          day.theme=parsed.data.days[index].theme;
+          for(const slot of ['morning','afternoon','evening']) {
+            for(const [activityIndex,activity] of day[slot].entries()) {
+              activity.activityDescription=parsed.data.days[index][slot][activityIndex].activityDescription;
+            }
+          }
+        }
+        narrativeSource='gemini';model=response.model||null;narrativeFallbackReason=null;
+      }
+    } catch(error) {
+      // The validated plan remains usable during provider/configuration outages.
+      // Unexpected application failures still surface rather than being hidden.
+      if(![429,502,503,504].includes(error.statusCode)) throw error;
+      narrativeFallbackReason=llm.fallbackReason(error);
+    }
+  }
+  if(narrativeSource==='deterministic_fallback')count('narrativeFallbacks');
+  itinerary.narrativeSource=narrativeSource;
+  itinerary.narrativeFallbackReason=narrativeFallbackReason;
+  itinerary.schedulerVersion='2026-10-23.1';
   itinerary.promptVersion=template.version;
   itinerary.tripSummary=tripSummary(itinerary);
   itinerary.placesAttribution={provider:'Google Maps',requiresDisplay:true};

@@ -11,9 +11,7 @@ const discovery=require('../services/stopDiscoveryService');
 const llm=require('../services/llmclient');
 const slots=['morning','afternoon','evening'];
 const weekdays=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-const {narrativeFor}=require('./helpers/narrative');
-const {clearNarrativeCache}=require('../services/itineraryNarrativeService');
-afterEach(()=>{mock.restoreAll();clearNarrativeCache();});
+afterEach(()=>mock.restoreAll());
 
 const cases=[
  {name:'Portugal: one-day visit with no accommodation',countryId:'country-pt',days:1,bases:1},
@@ -103,17 +101,17 @@ async function exercise(scenario,seed,mode='valid'){
   calls++;assert.equal(request.maxAttempts,2);
   if(mode==='provider-error')throw Object.assign(new Error('Provider unavailable'),{statusCode:503});
   if(mode==='schema-error')throw Object.assign(new Error('Invalid JSON'),{statusCode:502});
-  const payload=JSON.parse(request.prompt),data=narrativeFor(payload);
-  assert.deepEqual(payload.preferences.dietaryRestrictions,f.quiz.dietaryRestrictions);
-  if(mode==='empty')data.activityDescriptions=[];
-  if(mode==='invented-id')data.activityDescriptions.push({placeId:'invented',description:'Extra'});
+  const payload=JSON.parse(request.prompt),data=payload.plan;
+  assert.deepEqual(payload.quiz.dietaryRestrictions,f.quiz.dietaryRestrictions);
+  if(mode==='empty'){const day=data.days.find(day=>slots.flatMap(slot=>day[slot]).length);for(const slot of slots)day[slot]=[];}
+  if(mode==='overpacked')data.days[0].morning=[{placeId:'invented',activityDescription:'Extra'}];
   return {data,model:'mock-narrative'};
  });
  const {itinerary}=await generateCountryItinerary(f);
  verify(itinerary,f);assert.equal(calls,1);
  if(scenario.bases!==undefined)assert.equal(itinerary.outline.stops.length,scenario.bases);
  if(scenario.excursion)assert.ok(itinerary.days.some(day=>day.type==='excursion'));
- assert.equal(itinerary.narrativeSource,mode==='valid'?'gemini':['empty','invented-id'].includes(mode)?'partial':'deterministic_fallback');
+ assert.equal(itinerary.narrativeSource,mode==='valid'?'gemini':'deterministic_fallback');
  return {itinerary,f};
 }
 
@@ -121,7 +119,7 @@ describe('Named travel scenarios with production planning services',()=>{
  for(const [index,scenario] of cases.entries())it(scenario.name,()=>exercise(scenario,index+1));
 });
 describe('Repeatable stress scenarios with closures, unknown hours and scattered venues',()=>{
- const modes=['valid','empty','invented-id','schema-error','provider-error'];
+ const modes=['valid','empty','overpacked','schema-error','provider-error'];
  for(let seed=1;seed<=64;seed++){
   const scenario=cases[(seed-1)%cases.length],mode=modes[Math.floor((seed-1)/cases.length)%modes.length];
   it(`seed ${seed}: ${scenario.countryId}, ${scenario.days} days, ${mode}`,()=>exercise(scenario,seed*7919,mode));

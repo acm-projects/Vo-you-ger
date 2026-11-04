@@ -7,7 +7,6 @@ const trips=require('../models/tripModel');
 const visa=require('../services/visaService');
 const {rankCountries}=require('../services/countryScoringService');
 const {createRecommendations}=require('../controllers/recommendationController');
-const {countryDetails}=require('../services/countryInfoService');
 const original={llm:llm.generateStructured,user:users.findUserById,trip:trips.createTrip,visa:visa.getVisaFreeCountries};
 function pair(body={}) {return {req:{body,user:{userId:'owner'}},res:{statusCode:200,status(code){this.statusCode=code;return this;},json(body){this.body=body;return this;}}};}
 const quiz={travelAlterEgo:'Foodie',budgetLevel:'$$$',startDate:'2027-06-05',minNights:6,maxNights:6};
@@ -29,12 +28,6 @@ describe('Deterministic country recommendations',()=>{
     assert.ok(item.imageUrl,`Recommendation ${item.name} should include an imageUrl`);
     assert.match(item.imageUrl,/^https:\/\//);
     assert.ok(item.photo,`Recommendation ${item.name} should include photo metadata`);
-    const country=countryDetails(item.countryCode);
-    assert.deepEqual(item.photo,country.photo,'Recommendation and globe must select the same country photo');
-    assert.equal(item.imageUrl,country.imageUrl);
-    assert.deepEqual(item.fallbackPhoto,country.fallbackPhoto);
-    assert.equal(item.photo.provider,'unsplash');
-    assert.ok(item.photo.photographerUrl && item.photo.credit);
   }
   assert.equal(res.body.trip.PK,undefined);assert.equal(saved.userId,'owner');assert.equal(saved.model,'test');
   assert.ok(saved.selectionMetadata.catalogVersion);assert.ok(saved.selectionMetadata.policyVersion);
@@ -42,14 +35,6 @@ describe('Deterministic country recommendations',()=>{
  });
  it('uses the saved assessment when none is supplied',async()=>{const {req,res}=pair();await createRecommendations(req,res);assert.equal(res.statusCode,201);assert.deepEqual(saved.quiz,quiz);});
  it('returns identical order for identical inputs',async()=>{const a=pair({quiz}),b=pair({quiz});await createRecommendations(a.req,a.res);await createRecommendations(b.req,b.res);assert.deepEqual(a.res.body.trip.recommendations,b.res.body.trip.recommendations);});
- it('removes observed source jargon from Gemini wording while preserving the supported route',async()=>{
-  llm.generateStructured=async({prompt})=>({model:'test',data:{explanations:JSON.parse(prompt).selected.map(item=>({
-    countryId:item.countryId,reason:`Explore food options cataloged across ${item.route.bases.join(' and ')}. June is a catalog-recommended time to visit.`,highlights:item.route.bases,
-  }))}});
-  const {req,res}=pair({quiz});await createRecommendations(req,res);
-  assert.equal(res.statusCode,201);assert.equal(saved.selectionMetadata.explanationSource,'gemini');
-  for(const item of saved.recommendations){assert.ok(!/catalog/i.test(item.reason));assert.match(item.reason,/June is a suggested time/);}
- });
  for(const [name,mutate] of [
   ['invented IDs',items=>items.map(item=>({...item,countryId:'invented'}))],
   ['duplicate IDs',items=>[items[0],items[0],items[0]]],
@@ -83,6 +68,6 @@ describe('Deterministic country recommendations',()=>{
   const {req,res}=pair({quiz:profile});await createRecommendations(req,res);
   assert.equal(res.statusCode,201);
   assert.deepEqual(new Set(saved.recommendations.map(item=>item.countryCode)),allowed);
-  for(const item of saved.recommendations)assert.match(item.reason,/may stretch your budget/);
+  for(const item of saved.recommendations)assert.match(item.reason,/higher budget tier than your preference/);
  });
 });

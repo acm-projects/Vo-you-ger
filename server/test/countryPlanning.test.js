@@ -15,14 +15,11 @@ const { previewCountryRoute } = require("../controllers/countryTripController");
 const catalog = require("../services/planningDataService");
 const destinations = require("../data/destinations.json");
 
-const {narrativeFor}=require('./helpers/narrative');
-const {clearNarrativeCache}=require('../services/itineraryNarrativeService');
 const originals = {
   queries: queries.buildPlacesQueries, search: google.searchPlacesForQueries,
   llm: llm.generateStructured, find: trips.findTripById, update: trips.updateTripItinerary, create: trips.createTrip,
 };
 afterEach(() => {
-  clearNarrativeCache();
   queries.buildPlacesQueries = originals.queries;
   google.searchPlacesForQueries = originals.search;
   llm.generateStructured = originals.llm;
@@ -272,8 +269,7 @@ describe("Country itinerary consistency", () => {
     const f = fixture();
     for (const stop of f.discovered) for (const place of stop.candidatePlaces) place.neighborhood = null;
     const itinerary = validateAndEnrich(f.data, f.outline, f.schedule, f.discovered, {});
-    assert.ok(itinerary.stays[0].recommendedStayArea);
-    assert.equal(itinerary.stays[0].stayAreaSource, 'reviewed_catalog');
+    assert.equal(itinerary.stays[0].recommendedStayArea, null);
   });
 });
 
@@ -321,7 +317,17 @@ describe("Server-owned country pipeline", () => {
         assert.equal(tripId, scenario.saved ? "new-draft" : savedTrip.tripId);
         return { ...savedTrip, tripId, isSaved: false, itinerary };
       };
-      llm.generateStructured = async ({prompt}) => ({model:'test',data:narrativeFor(JSON.parse(prompt))});
+      llm.generateStructured = async ({ prompt }) => {
+        const { schedule, candidates } = JSON.parse(prompt);
+        const counts = new Map();
+        return { model: "test", data: { tripTitle: "Trip", summary: "A focused route", days: schedule.map((day) => {
+          const count = counts.get(day.locationId) || 0;
+          counts.set(day.locationId, count + 1);
+          const place = candidates.find((candidate) => candidate.locationId === day.locationId).places[count];
+          return { day: day.day, stopId: day.stopId, theme: "Discover locally", morning: [], afternoon: [], evening: [],
+            [day.allowedSlots[0]]: [{ placeId: place.placeId, activityDescription: "Consider a visit." }] };
+        }) } };
+      };
       const res = response();
       await createItinerary({ user: { userId: "owner" }, params: { tripId: savedTrip.tripId }, body: {
         countryId: scenario.countryId, numberOfNights: scenario.nights, startDate: "2027-06-05",
@@ -376,10 +382,17 @@ describe("Server-owned country pipeline", () => {
       persisted = { userId, tripId, itinerary };
       return { PK: "internal", SK: "internal", ...trip, itinerary };
     };
-    llm.generateStructured = async ({prompt}) => {
-      const payload=JSON.parse(prompt);
-      assert.deepEqual(payload.preferences,trip.quizSnapshot);
-      return {model:'test-model',data:narrativeFor(payload)};
+    llm.generateStructured = async ({ prompt }) => {
+      const { schedule, candidates, quiz } = JSON.parse(prompt);
+      assert.deepEqual(quiz, trip.quizSnapshot);
+      const counts = new Map();
+      return { model: "test-model", data: {
+        tripTitle: "Portugal", summary: "A focused trip", days: schedule.map((day) => {
+          const index = counts.get(day.stopId) || 0; counts.set(day.stopId, index + 1);
+          return { day: day.day, stopId: day.stopId, theme: "Local discoveries", morning: [], afternoon: [], evening: [],
+            [day.allowedSlots[0]]: [{ placeId: candidates.find((stop) => stop.stopId === day.stopId).places[index].placeId, activityDescription: "Consider a visit." }] };
+        }),
+      } };
     };
     const req = { user: { userId: "owner" }, params: { tripId: trip.tripId }, body: {
       countryId: "country-pt", startDate: "2026-10-24", quiz: { minNights: 100 }, candidatePlaces: [{ placeId: "forged" }],
@@ -391,7 +404,6 @@ describe("Server-owned country pipeline", () => {
     assert.equal(res.body.trip.PK, undefined);
     assert.equal(res.body.itinerary.stays.length, 2);
     // Invalid narrative cannot replace the backend-owned plan or block saving it.
-    clearNarrativeCache();
     llm.generateStructured = async () => ({ model: "test", data: { days: [] } });
     const fallback = response(); await createItinerary(req, fallback); assert.equal(fallback.statusCode, 200);
     assert.equal(fallback.body.itinerary.narrativeSource,'deterministic_fallback');
@@ -404,7 +416,16 @@ describe("Server-owned country pipeline", () => {
       persisted = { userId, tripId, itinerary };
       return { PK: "internal", SK: "internal", ...trip, itinerary };
     };
-    llm.generateStructured = async ({prompt}) => ({model:'test-model',data:narrativeFor(JSON.parse(prompt))});
+    llm.generateStructured = async ({ prompt }) => {
+      const { schedule } = JSON.parse(prompt);
+      return { model: "test-model", data: {
+        tripTitle: "Portugal Optimal", summary: "A trip with opening hours respected",
+        days: schedule.map((day) => ({
+          day: day.day, stopId: day.stopId, theme: "Explore Portugal",
+          morning: [], afternoon: [], evening: [],
+        })),
+      } };
+    };
     // Send request with NO startDate - as submitted from the quiz assessment flow
     const req = { user: { userId: "owner" }, params: { tripId: trip.tripId }, body: {
       countryId: "country-pt"

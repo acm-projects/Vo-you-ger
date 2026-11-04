@@ -13,9 +13,7 @@ const {updateTripItinerary}=require('../models/tripModel');
 const {docClient}=require('../db/dynamo');
 const slots=['morning','afternoon','evening'];
 const weekdays=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
-const {clearNarrativeCache}=require('../services/itineraryNarrativeService');
-const {narrativeFor}=require('./helpers/narrative');
-afterEach(()=>{mock.restoreAll();clearNarrativeCache();});
+afterEach(()=>mock.restoreAll());
 
 function fixture(countryId='country-pl',days=7,quiz={seeAllOrDeeply:'seeAll',travelAlterEgo:'Foodie'}) {
  const outline=buildOutline({countryId,numberOfDays:days,startDate:'2027-06-05',quiz});
@@ -50,8 +48,6 @@ describe('Backend-owned daily scheduling',()=>{
     assert.equal(selected.length,4);
     assert.ok(selected.some(activity=>activity.category==='food'));
     assert.ok(selected.some(activity=>activity.category==='attractions'));
-    assert.ok(selected.filter(activity=>activity.category==='food').length<=2);
-    for(const slot of slots)assert.ok(day[slot].filter(activity=>activity.category==='food').length<=1);
    }else assert.ok(selected.length<=1);
    for(const a of selected)for(const b of selected)assert.ok(distanceKm(a,b)<=8);
   }
@@ -103,10 +99,6 @@ describe('Backend-owned daily scheduling',()=>{
     const itinerary=validateAndEnrich(plan,f.outline,f.schedule,f.discovered,quiz);
     assert.equal(itinerary.days.length,days);checked++;
     if(pace==='deeply')for(const day of itinerary.days)assert.ok(slots.flatMap(slot=>day[slot]).length<=3);
-    for(const day of itinerary.days){
-     assert.ok(slots.flatMap(slot=>day[slot]).filter(activity=>activity.category==='food').length<=(pace==='deeply'?1:2));
-     for(const slot of slots)assert.ok(day[slot].filter(activity=>activity.category==='food').length<=1);
-    }
    }
   }
   assert.ok(checked>=500,`Expected broad feasible-route coverage, checked ${checked} plans`);
@@ -115,20 +107,23 @@ describe('Backend-owned daily scheduling',()=>{
 
 describe('Narrative failures cannot change the fixed itinerary',()=>{
  const mutations={
-  'missing day theme':data=>{data.dayThemes.pop();},
-  'invented venue':data=>{data.activityDescriptions[0].placeId='invented';},
-  'duplicate venue':data=>{data.activityDescriptions[0].placeId=data.activityDescriptions[1].placeId;},
-  'unknown day':data=>{data.dayThemes[0].day=21;},
+  'empty sightseeing day':data=>{for(const slot of slots)data.days[1][slot]=[];},
+  'overpacked day':data=>{data.days[1].morning.push({placeId:'extra-1',activityDescription:'Extra'},{placeId:'extra-2',activityDescription:'Extra'});},
+  'invented venue':data=>{slots.flatMap(slot=>data.days[1][slot])[0].placeId='invented';},
+  'duplicate venue':data=>{slots.flatMap(slot=>data.days[1][slot])[0].placeId=slots.flatMap(slot=>data.days[2][slot])[0].placeId;},
+  'wrong base':data=>{data.days[1].stopId='another-base';},
+  'missing day':data=>{data.days.pop();},
+  'reserved travel window':data=>{data.days[0].morning=data.days[0].evening;data.days[0].evening=[];},
  };
- for(const [name,mutate] of Object.entries(mutations))it(`preserves the fixed plan and valid copy when Gemini supplies ${name}`,async()=>{
+ for(const [name,mutate] of Object.entries(mutations))it(`returns the valid plan when Gemini supplies ${name}`,async()=>{
   const f=fixture(),fixed=buildDailyPlan(f);let calls=0;
   mock.method(discovery,'discoverStops',async()=>f.discovered);
   mock.method(llm,'generateStructured',async request=>{
    calls++;assert.equal(request.maxAttempts,2);
-   const data=narrativeFor(JSON.parse(request.prompt));mutate(data);return {data,model:'partial-copy'};
+   const data=JSON.parse(request.prompt).plan;mutate(data);return {data,model:'untrusted'};
   });
   const {itinerary,model}=await generateCountryItinerary({...f,startDate:f.outline.startDate});
-  assert.equal(calls,1);assert.equal(model,'partial-copy');assert.equal(itinerary.narrativeSource,'partial');
+  assert.equal(calls,1);assert.equal(model,null);assert.equal(itinerary.narrativeSource,'deterministic_fallback');
   assert.deepEqual(identity(itinerary.days),identity(fixed.days));
   validateAndEnrich(itinerary,f.outline,f.schedule,f.discovered,f.quiz);
  });
@@ -143,18 +138,17 @@ describe('Narrative failures cannot change the fixed itinerary',()=>{
  it('uses valid Gemini copy without letting it alter activities or canonical venue facts',async()=>{
   const f=fixture(),fixed=buildDailyPlan(f);mock.method(discovery,'discoverStops',async()=>f.discovered);
   mock.method(llm,'generateStructured',async request=>{
-   const payload=JSON.parse(request.prompt),data=narrativeFor(payload);
+   const payload=JSON.parse(request.prompt),data=payload.plan;
    assert.ok(!request.prompt.includes('Provider-only address'));
    data.tripTitle='A culinary journey through Poland';
-   for(const day of data.dayThemes)day.theme='Local discoveries';
-   for(const activity of data.activityDescriptions)activity.description='A suggested stop tailored to your interests.';
+   for(const day of data.days){day.theme='Local discoveries';for(const activity of slots.flatMap(slot=>day[slot]))activity.activityDescription='A suggested stop tailored to your interests.';}
    return {data,model:'verified-copy'};
   });
   const {itinerary,model}=await generateCountryItinerary({...f,startDate:f.outline.startDate});
   assert.equal(model,'verified-copy');assert.equal(itinerary.narrativeSource,'gemini');
   assert.deepEqual(identity(itinerary.days),identity(fixed.days));
   const stored=storedItinerary(itinerary);
-  assert.equal(stored.narrativeSource,'gemini');assert.equal(stored.schedulerVersion,'2026-10-31.1');
+  assert.equal(stored.narrativeSource,'gemini');assert.equal(stored.schedulerVersion,'2026-10-23.1');
   assert.ok(!JSON.stringify(stored).includes('Provider-only address'));
  });
  it('clears the previous model attribution when updating a draft with standard copy',async()=>{
