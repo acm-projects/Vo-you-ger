@@ -3,58 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Signup</title>
+
     <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="validation.jsx" defer></script>
+    <script type="module" src="validation.jsx"></script>
 </head>
+
 <body>
-    <div class="wrapper">
-        <h1>SignUp</h1>
-        <p id="error-message"></p>
-        <form id="form">
-            <div>
-                <label for="firstname-input">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M367-527q-47-47-47-113t47-113q47-47 113-47t113 47q47 47 47 113t-47 113q-47 47-113 47t-113-47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Z"/></svg>
-                </label>
-                <input required type="text" name="firstname" id="firstname-input" placeholder="First Name">
-            </div>
-            <div>
-                <label for="lastname-input">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M367-527q-47-47-47-113t47-113q47-47 113-47t113 47q47 47 47 113t-47 113q-47 47-113 47t-113-47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Z"/></svg>
-                </label>
-                <input required type="text" name="lastname" id="lastname-input" placeholder="Last Name">
-            </div>
-            <div>
-                <label for="email-input">
-                    <span>@</span>
-                </label>
-                <input required type="email" name="email" id="email-input" placeholder="Email">
-            </div>
-            <div>
-                <label for="password-input">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm296.5-223.5Q560-327 560-360t-23.5-56.5Q513-440 480-440t-56.5 23.5Q400-393 400-360t23.5 56.5Q447-280 480-280t56.5-23.5ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80Z"/></svg>
-                </label>
-                <input required type="password" name="password" id="password-input" placeholder="Password">
-            </div>
-            <div>
-                <label for="repeat-password-input">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm296.5-223.5Q560-327 560-360t-23.5-56.5Q513-440 480-440t-56.5 23.5Q400-393 400-360t23.5 56.5Q447-280 480-280t56.5-23.5ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80Z"/></svg>
-                </label>
-                <input required type="password" name="repeat-password" id="repeat-password-input" placeholder="Repeat Password">
-            </div>
-            <div>
-                <label for="country-input">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q146 0 255.5 91.5T872-559h-82q-19-73-68.5-130.5T600-776v16q0 33-23.5 56.5T520-680h-80v80q0 17-11.5 28.5T400-560h-80v80h80v120h-40L168-552q-3 18-5.5 36t-2.5 36q0 131 92 225t228 95v80Zm364-20L716-228q-21 12-45 20t-51 8q-75 0-127.5-52.5T440-380q0-75 52.5-127.5T620-560q75 0 127.5 52.5T800-380q0 27-8 51t-20 45l128 128-56 56ZM691-309q29-29 29-71t-29-71q-29-29-71-29t-71 29q-29 29-29 71t29 71q29 29 71 29t71-29Z"/></svg>
-                </label>
-                <div class="country-wrapper">
-                    <div id="selected-countries-container"></div>
-                    <input type="text" id="country-input" class="country-field" name="country" list="countries-list" placeholder="Countries of Citizenship:">
-                    <datalist id="countries-list"></datalist>
+
+    <main class="postcard">
+
+        <!-- LEFT SIDE: AIRPLANE WINDOW -->
+        <section class="postcard-art">
+
+
+            <img
+                src="postcardImageOnSide.png"
+                alt="picture in left"
+                class="airplane-window"
+            >
+
+        </section>
+
+
+        <section class="postcard-form">
+
+            <h1>Sign up</h1>
+
+
+            <p id="error-message" role="alert"></p>
+
+
+            <form id="form">
+                <div class="name-row">
+
+                    <div class="field-row">
+                        <label for="firstname-input">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24">
+                                <path d="M12 12a4.2 4.2 0 1 0 0-8.4
+                                4.2 4.2 0 0 0 0 8.4Zm0 2c-4.1 0-7.5
+                                2.1-7.5 4.7V21h15v-2.3
+                                c0-2.6-3.4-4.7-7.5-4.7Z"/>
+                            </svg>
+                        </label>
+
+                        <input
+                            required
+                            type="text"
+                            name="firstname"
+                            id="firstname-input"
+                            placeholder="First name"
+                            autocomplete="given-name"
+                        >
+                    </div>
+
+
+                    <div class="field-row">
+                        <label for="lastname-input">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24">
+                                <path d="M12 12a4.2 4.2 0 1 0 0-8.4
+                                4.2 4.2 0 0 0 0 8.4Zm0 2c-4.1 0-7.5
+                                2.1-7.5 4.7V21h15v-2.3
+                                c0-2.6-3.4-4.7-7.5-4.7Z"/>
+                            </svg>
+                        </label>
+
+                        <input
+                            required
+                            type="text"
+                            name="lastname"
+                            id="lastname-input"
+                            placeholder="Last name"
+                            autocomplete="family-name"
+                        >
+                    </div>
                 </div>
-            </div>
-            <button type="submit">Signup</button>
-        </form>
-        <p>Already have an account? <a href="login.html">Login</a></p>
-    </div>
+
+                <div class="field-row">
+                    <label for="email-input">
+                        @
+                    </label>
+
+                    <input
+                        required
+                        type="email"
+                        name="email"
+                        id="email-input"
+                        placeholder="Email address"
+                        autocomplete="email"
+                    >
+                </div>
+
+
+                <div class="field-row">
+                    <label for="password-input">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24">
+                            <path d="M17 9h-1V7a4 4 0 0 0-8 0v2H7
+                            a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h10
+                            a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2ZM10 7
+                            a2 2 0 1 1 4 0v2h-4V7Zm2 11
+                            a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"/>
+                        </svg>
+                    </label>
+
+                    <input
+                        required
+                        type="password"
+                        name="password"
+                        id="password-input"
+                        placeholder="Password"
+                        autocomplete="new-password"
+                    >
+                </div>
+
+
+                <div class="field-row">
+                    <label for="repeat-password-input">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24">
+                            <path d="M17 9h-1V7a4 4 0 0 0-8 0v2H7
+                            a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h10
+                            a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2ZM10 7
+                            a2 2 0 1 1 4 0v2h-4V7Zm2 11
+                            a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"/>
+                        </svg>
+                    </label>
+
+                    <input
+                        required
+                        type="password"
+                        name="repeat-password"
+                        id="repeat-password-input"
+                        placeholder="Repeat password"
+                        autocomplete="new-password"
+                    >
+                </div>
+
+
+                <div class="field-row country-row">
+
+                    <label for="country-input">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#1f1f1f"><path d="M12,22q-2.07,0-3.9-0.79q-1.82-0.79-3.17-2.14Q3.58,17.73 2.79,15.9T2,12Q2,9.92 2.79,8.1Q3.58,6.27 4.93,4.93Q6.28,3.57 8.1,2.79Q9.93,2 12,2t3.9,0.79t3.17,2.14q1.35,1.35 2.14,3.17Q22,9.92 22,12t-0.79,3.9t-2.14,3.17q-1.35,1.35-3.17,2.14T12,22Zm0-2q3.35,0 5.68-2.32T20,12q0-0.18-0.01-0.36t-0.01-0.31q-0.13,0.72-0.68,1.2T18,13H16q-0.82,0-1.41-0.59T14,11V10H10V8q0-0.82 0.59-1.41T12,6h1q0-0.57 0.31-1.01t0.76-0.71q-0.5-0.13-1.01-0.2T12,4Q8.65,4 6.33,6.32T4,12H9q1.65,0 2.83,1.17T13,16v1H10v2.75q0.5,0.13 0.99,0.19T12,20Z"/></svg>
+                    </label>
+
+                    <div class="country-wrapper">
+
+                        <div id="selected-countries-container"></div>
+
+                        <input
+                            type="text"
+                            id="country-input"
+                            class="country-field"
+                            name="country"
+                            list="countries-list"
+                            placeholder="Countries of citizenship:"
+                        >
+
+                        <datalist id="countries-list"></datalist>
+
+                    </div>
+
+                </div>
+
+
+                <button type="submit">
+                    Create my account <span>→</span>
+                </button>
+
+            </form>
+
+
+            <p class="login-text">
+                Already have an account?
+                <a href="login.html">Log in</a>
+            </p>
+
+        </section>
+
+    </main>
+
 </body>
 </html>

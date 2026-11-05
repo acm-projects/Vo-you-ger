@@ -1,13 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Assessments</title>
     <link rel="stylesheet" href="assessments.css">
-    <script type="text/javascript" src="assessments.jsx" defer></script>
+    <script type="module" src="assessments.jsx"></script>
 </head>
 <body>
     <div class="app">
         <h1>Your Assessment</h1>
+
+        <!-- PROGRESS BAR -->
+        <div class="progress-section">
+            <div class="progress-label">
+                <span id="progress-text">0 of 18 questions answered</span>
+                <span id="progress-percent">0%</span>
+            </div>
+
+            <div class="progress-track"
+                role="progressbar"
+                aria-label="Assessment progress"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0">
+
+                <!-- Dotted flight path -->
+                <div id="progress-fill"></div>
+
+                <!-- Milestone markers -->
+                <span class="route-marker marker-25"></span>
+                <span class="route-marker marker-50"></span>
+                <span class="route-marker marker-75"></span>
+                <span class="route-marker marker-100"></span>
+
+                <span id="progress-plane" aria-hidden="true">&#9992;</span>
+
+            </div>
+        </div>
+
+
         <div class="quiz">
             <h2 id="question">Question goes here</h2>
             <div id="answer-buttons"></div>
