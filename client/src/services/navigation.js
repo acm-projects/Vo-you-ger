@@ -28,5 +28,5 @@ export function loginDestination({ isSignup, firstTime }) {
 
 export function itineraryUrl(tripId) {
   if (!tripId) throw new Error("No trip was returned. Please try generating your itinerary again.");
-  return `/ItineraryNew/itenNew.html?tripId=${encodeURIComponent(tripId)}`;
+  return `/ItineraryFinal/itenF.html?tripId=${encodeURIComponent(tripId)}`;
 }

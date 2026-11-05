@@ -29,7 +29,7 @@ test('switching accounts and logging out remove old planning data without cleari
 test('itinerary links carry the exact returned trip identifier and reject a missing one', () => {
   const id='trip/with spaces&another=value';
   const url=new URL(itineraryUrl(id),'http://localhost');
-  assert.equal(url.pathname,'/ItineraryNew/itenNew.html');
+  assert.equal(url.pathname,'/ItineraryFinal/itenF.html');
   assert.equal(url.searchParams.get('tripId'),id);
   assert.equal(url.searchParams.has('another'),false);
   assert.throws(()=>itineraryUrl(null),/No trip was returned/);

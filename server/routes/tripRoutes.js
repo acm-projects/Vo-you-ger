@@ -25,7 +25,7 @@ router.post("/:tripId/route", previewCountryRoute);
 // Retrieve the authenticated user's saved trips.
 router.get("/saved", getSavedTripsController);
 router.get("/globe", getTripGlobeController);
-router.get('/:tripId/days/:day/places',require('../middleware/generationLimiter').generationLimiter,getTripDayPlacesController);
+router.get('/:tripId/days/:day/places',require('../middleware/venueRefreshLimiter').venueRefreshLimiter,getTripDayPlacesController);
 
 // PUT /api/trips/:tripId/save
 // Save an existing generated itinerary.

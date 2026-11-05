@@ -32,7 +32,8 @@ async function refreshDay(trip,dayNumber) {
       catch {throw apiError('VENUE_NO_LONGER_ELIGIBLE','A venue no longer has compatible regular hours. Generate a new itinerary to replace it.',502);}
     }
     const line=place.openingHours?.find(text=>text.toLowerCase().startsWith(`${day.dayOfWeek?.toLowerCase()}:`));
-    return {...place,placeName:place.name,hoursToday:line?line.slice(line.indexOf(':')+1).trim():null,attributions:raw.attributions||[]};
+    return {...place,placeName:place.name,hoursToday:line?line.slice(line.indexOf(':')+1).trim():null,
+      photo:require('./activityPhotoService').activityPhoto(place),attributions:raw.attributions||[]};
   });
   if(places.some(a=>places.some(b=>distanceKm(a,b)>TRIP_POLICY.maxDailyActivitySpreadKm))) throw apiError('VENUE_NO_LONGER_ELIGIBLE','The refreshed venues are too far apart for this day. Generate a new itinerary.',502);
   const grouped=Object.fromEntries(['attractions','food','experiences'].map(category=>[category,places.filter(place=>place.category===category)]));
