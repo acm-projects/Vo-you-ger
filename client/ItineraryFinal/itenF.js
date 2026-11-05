@@ -1,3 +1,4 @@
+
 /* =========================================
    PENANG TRAVEL ITINERARY
 ========================================= */
@@ -410,14 +411,17 @@ function createDestinationCard(place) {
    CREATE A PAGE
 ========================================= */
 
-function createPageHTML(day, places, side) {
+// dayIndex is zero-based and identifies the day
+// being displayed, including during page animations.
+
+function createPageHTML(day, places, side, dayIndex) {
   const wrapper = document.createElement("div");
   wrapper.className = "page-content";
 
   const heading = document.createElement("div");
   heading.className = "day-heading";
 
-  const dayNumber = activeDayIndex + 1;
+  const dayNumber = dayIndex + 1;
 
   heading.innerHTML = `
     <p class="eyebrow">PENANG, MALAYSIA</p>
@@ -468,11 +472,11 @@ function renderDay(index) {
   rightPageContent.innerHTML = "";
 
   leftPageContent.appendChild(
-    createPageHTML(day, leftPlaces, "left", index + 1)
+    createPageHTML(day, leftPlaces, "left", index)
   );
 
   rightPageContent.appendChild(
-    createPageHTML(day, rightPlaces, "right", index + 1)
+    createPageHTML(day, rightPlaces, "right", index)
   );
 
   // Page numbering.
@@ -549,54 +553,78 @@ function flipToDay(targetIndex) {
     return;
   }
 
+  const direction =
+    targetIndex > activeDayIndex ? "forward" : "backward";
+
   const oldDay = itinerary[activeDayIndex];
   const newDay = itinerary[targetIndex];
 
   const oldSplit = Math.ceil(oldDay.places.length / 2);
   const newSplit = Math.ceil(newDay.places.length / 2);
 
-  const oldRight = oldDay.places.slice(oldSplit);
-  const newLeft = newDay.places.slice(0, newSplit);
+  // Forward: right page turns over to reveal the next day's left page.
+  // Backward: left page turns over to reveal the previous day's right page.
+  const oldPlaces = direction === "forward"
+    ? oldDay.places.slice(oldSplit)
+    : oldDay.places.slice(0, oldSplit);
 
-  // Build the two faces of the turning sheet.
+  const newPlaces = direction === "forward"
+    ? newDay.places.slice(0, newSplit)
+    : newDay.places.slice(newSplit);
+
+  const oldSide = direction === "forward" ? "right" : "left";
+  const newSide = direction === "forward" ? "left" : "right";
+
+  // Prepare the two sides of the turning paper.
   turningFront.innerHTML = "";
   turningBack.innerHTML = "";
 
   turningFront.appendChild(
-    createPageHTML(oldDay, oldRight, "right", activeDayIndex + 1)
+    createPageHTML(oldDay, oldPlaces, oldSide, activeDayIndex)
   );
 
   turningBack.appendChild(
-    createPageHTML(newDay, newLeft, "left", targetIndex + 1)
+    createPageHTML(newDay, newPlaces, newSide, targetIndex)
   );
 
-  turningSheet.classList.remove("hidden", "flipping");
+  // Reset previous animation and direction.
+  turningSheet.classList.remove(
+    "hidden",
+    "flipping",
+    "flip-forward",
+    "flip-backward"
+  );
+
+  turningSheet.classList.add(
+    direction === "forward" ? "flip-forward" : "flip-backward"
+  );
 
   // Force the browser to restart the animation.
   void turningSheet.offsetWidth;
 
   isFlipping = true;
+
   turningSheet.classList.add("flipping");
 
   const finishFlip = () => {
+    turningSheet.removeEventListener("animationend", finishFlip);
+
+    turningSheet.classList.remove(
+      "flipping",
+      "flip-forward",
+      "flip-backward"
+    );
+
     turningSheet.classList.add("hidden");
-    turningSheet.classList.remove("flipping");
 
     activeDayIndex = targetIndex;
+
     renderDay(activeDayIndex);
 
     isFlipping = false;
-
-    turningSheet.removeEventListener(
-      "animationend",
-      finishFlip
-    );
   };
 
-  turningSheet.addEventListener(
-    "animationend",
-    finishFlip
-  );
+  turningSheet.addEventListener("animationend", finishFlip);
 }
 
 
