@@ -10,10 +10,12 @@ const { globeResponse } = require("../services/tripSummaryService");
 const {apiError,sendError}=require('../services/apiError');
 function publicTrip(trip) {
   const {PK,SK,...result}=trip;
-  if (result.itinerary) result.itinerary=require('../services/travelGuidanceService').withTravelGuidance(result.itinerary);
+  if (result.itinerary) result.itinerary=require('../services/activityPhotoService').withActivityPhotos(
+    require('../services/travelGuidanceService').withTravelGuidance(result.itinerary));
   return result;
 }
 async function getTripDayPlacesController(req,res) {
+  res.set('Cache-Control','no-store');
   try {
     const trip=await findTripById(req.user.userId,req.params.tripId);
     if(!trip) throw apiError('TRIP_NOT_FOUND','Trip not found',404);

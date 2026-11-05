@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import API from "../services/api";
+import { itineraryUrl } from "../services/navigation";
 
 function displayDate(date) {
   if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date) || Number.isNaN(Date.parse(date))) return null;
@@ -56,7 +57,7 @@ export default function TripPanel({ trip, onClose }) {
       </p>
       <p>{trip.description || trip.title || "Open your saved itinerary to see the full plan."}</p>
       {trip.pinSource === "country" && <p className="country-panel__footnote">This older trip is shown at the country location because its starting-city coordinates are unavailable.</p>}
-      <a className="saved-trip-panel__open" href={`/ItineraryNew/itenNew.html?tripId=${encodeURIComponent(trip.tripId)}`}>View itinerary</a>
+      <a className="saved-trip-panel__open" href={itineraryUrl(trip.tripId)}>View itinerary</a>
     </article>
   );
 }

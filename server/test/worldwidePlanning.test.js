@@ -279,7 +279,8 @@ describe('Operational safeguards',()=>{
     mock.method(docClient,'send',async command=>{assert.equal(command.input.Key.PK,'USER#other-user');return {};});
     mock.method(google,'getPlaceDetails',()=>assert.fail('Foreign trip cannot cause provider requests'));
     const {getTripDayPlacesController}=require('../controllers/tripController');
-    const res=response();await getTripDayPlacesController({user:{userId:'other-user'},params:{tripId:'foreign-trip',day:'1'}},res);assert.equal(res.statusCode,404);
+    const res=response();res.set=(name,value)=>{assert.equal(name,'Cache-Control');assert.equal(value,'no-store');return res;};
+    await getTripDayPlacesController({user:{userId:'other-user'},params:{tripId:'foreign-trip',day:'1'}},res);assert.equal(res.statusCode,404);
   });
   it('logs only bounded stage metrics and counts, including nested operations',async()=>{
     const old=process.env.PLANNING_METRICS;process.env.PLANNING_METRICS='1';const logged=[];mock.method(console,'info',text=>logged.push(JSON.parse(text)));

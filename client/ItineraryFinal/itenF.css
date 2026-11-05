@@ -49,6 +49,84 @@ button:focus-visible {
   justify-content: center;
 }
 
+.journal-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  max-width: 1400px;
+  margin-bottom: 16px;
+}
+
+.journal-toolbar a,
+.journal-toolbar button,
+.journal-status button,
+.journal-status a {
+  color: var(--ink);
+  font-size: .85rem;
+}
+
+.journal-toolbar button,
+.journal-status button {
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper);
+  cursor: pointer;
+}
+
+.journal-toolbar button:disabled { opacity: .5; cursor: default; }
+.journal-status button:disabled { opacity: .5; cursor: wait; }
+.journal-cover:disabled { cursor: wait; }
+
+.journal-status {
+  max-width: 700px;
+  padding: 12px 18px;
+  margin-bottom: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+}
+
+.journal-status p { margin: 0 0 8px; }
+.journal-status a { margin-left: 12px; }
+.cover-details { white-space: pre-line; line-height: 1.6; }
+.cover-destination { overflow-wrap: anywhere; }
+
+.day-logistics {
+  margin: 8px 10px 14px;
+  font-size: .75rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.photo-placeholder {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  padding: 16px;
+  color: var(--muted);
+  font-family: 'Playfair Display', serif;
+}
+
+.photo-placeholder button { font: inherit; padding: 3px 8px; cursor: pointer; }
+.photo-credit {
+  margin: 6px 3px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #5e5e5e;
+  overflow-wrap: anywhere;
+}
+.photo-credit a { color: inherit; }
+.google-maps-attribution {
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: normal;
+  white-space: nowrap;
+}
+
 /* =================================
    JOURNAL COVER
 ================================= */
@@ -309,6 +387,9 @@ button:focus-visible {
   height: 100%;
   min-height: 0;
   padding: 0 7px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
 }
 
 .printed-page-number {
@@ -443,7 +524,7 @@ button:focus-visible {
   flex-direction: column;
 
   width: 100%;
-  height: 210px;
+  height: auto;
   min-width: 0;
   min-height: 210px;
   box-sizing: border-box;
@@ -521,7 +602,7 @@ button:focus-visible {
 .scrap-card h3 {
   flex-shrink: 0;
 
-  height: 36px;
+  height: auto;
   min-height: 36px;
 
   margin: 6px 3px 4px;
@@ -967,6 +1048,7 @@ button:focus-visible {
   font-size: .76rem;
   line-height: 1.5;
   overflow-wrap: anywhere;
+  white-space: pre-line;
 }
 
 .modal-close {
@@ -1048,7 +1130,7 @@ button:focus-visible {
   }
 
   .scrap-card {
-    height: 210px;
+    height: auto;
     min-height: 210px;
   }
 
@@ -1120,7 +1202,7 @@ button:focus-visible {
   }
 
   .scrap-card {
-    height: 210px;
+    height: auto;
     min-height: 210px;
   }
 

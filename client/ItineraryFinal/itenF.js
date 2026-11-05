@@ -1,298 +1,13 @@
+import { getTrip, getTripDayPlaces } from "../src/services/api.js";
+import { journalTrip, journalDay, dayNotes, detailText, venueRefreshIssue } from "../src/services/journalItinerary.js";
 
-/* =========================================
-   PENANG TRAVEL ITINERARY
-========================================= */
-
-const itinerary = [
-  {
-    date: "Saturday, October 24, 2026",
-    theme: "Peranakan Heritage | Clan Jetties",
-    places: [
-      {
-        placeName: "Pinang Peranakan Mansion",
-        time: "9:30 AM",
-        activityDescription: "Explore a beautifully restored mansion showcasing Peranakan culture, antique furnishings, and traditional architecture.",
-        estimatedCost: "$10",
-        openingHours: "9:30 AM – 5:00 PM",
-        rating: 4.5,
-        address: "29 Church Street, George Town, Penang",
-        travelTip: "Allow around one hour to explore the exhibits and interiors.",
-        image: "PinangPeranakanMansion.jpg"
-      },
-      {
-        placeName: "Leong San Tong Khoo Kongsi",
-        time: "11:00 AM",
-        activityDescription: "Visit one of Penang's most impressive Chinese clan houses, known for its ornate carvings and historic courtyard.",
-        estimatedCost: "$5",
-        openingHours: "9:00 AM – 5:00 PM",
-        rating: 4.4,
-        address: "18 Cannon Square, George Town, Penang",
-        travelTip: "Look closely at the roof decorations and carved details.",
-        image: "LeongSanTong.jpg"
-      },
-      {
-        placeName: "Clan Jetties of Penang",
-        time: "1:00 PM",
-        activityDescription: "Walk along traditional waterfront settlements built on stilts and discover the history of Penang's clan communities.",
-        estimatedCost: "Free",
-        openingHours: "Approximately 9:00 AM – 9:00 PM",
-        rating: 4.2,
-        address: "Weld Quay, George Town, Penang",
-        travelTip: "Be respectful because people still live in these waterfront communities.",
-        image: "ClanJettiesPenang.jpg"
-      },
-      {
-        placeName: "Queen Victoria Memorial Clock Tower",
-        time: "2:30 PM",
-        activityDescription: "See the historic white clock tower near the waterfront, built to commemorate Queen Victoria's Diamond Jubilee.",
-        estimatedCost: "Free",
-        openingHours: "Outdoor landmark; visible at all hours",
-        rating: 4.2,
-        address: "Junction of Light Street and King Edward Place, George Town",
-        travelTip: "A quick photo stop while exploring the surrounding historic area.",
-        image: "Queen-Victoria-Memorial-Clock-Tower-1.jpg"
-      },
-      {
-        placeName: "Chulia Street Hawker Food",
-        time: "6:00 PM",
-        activityDescription: "Sample local street food and hawker favorites along one of George Town's well-known food streets.",
-        estimatedCost: "5–10",
-        openingHours: "Many stalls operate from late afternoon into the night",
-        rating: 4.1,
-        address: "Chulia Street, George Town, Penang",
-        travelTip: "Bring cash and try several small dishes instead of ordering one large meal.",
-        image: "chulia-street-night-market-loklok.jpg"
-      },
-      {
-        placeName: "Love Lane",
-        time: "8:00 PM",
-        activityDescription: "Finish the day exploring a lively historic lane known for its cafés, bars, and atmospheric old-town streets.",
-        estimatedCost: "15–25",
-        openingHours: "Many venues open into the night",
-        rating: 4.2,
-        address: "Love Lane, George Town, Penang",
-        travelTip: "Enjoy the street atmosphere and check individual venues for current opening times.",
-        image: "LoveLane.jpg"
-      }
-    ]
-  },
-
-  {
-    date: "Sunday, October 25, 2026",
-    theme: "Colonial Forts | Hillside Vistas",
-    places: [
-      {
-        placeName: "Fort Cornwallis",
-        time: "9:00 AM",
-        activityDescription: "Visit Penang's historic coastal fort and learn about the island's colonial-era history.",
-        estimatedCost: "$5",
-        openingHours: "9:00 AM – 6:00 PM",
-        rating: 3.5,
-        address: "Jalan Tun Syed Sheh Barakbah, George Town, Penang",
-        travelTip: "Check the entrance fee and exhibits before visiting.",
-        image: "FortCornwallis.jpg"
-      },
-      {
-        placeName: "Market Street",
-        time: "11:00 AM",
-        activityDescription: "Explore the historic Market Street area and its surrounding shops, old buildings, and local businesses.",
-        estimatedCost: "Free to explore",
-        openingHours: "Varies by shop and business",
-        rating: 4.6,
-        address: "Market Street, George Town, Penang",
-        travelTip: "Explore nearby streets on foot and stop at local shops along the way.",
-        image: "MarketStreet.jpg"
-      },
-      {
-        placeName: "Penang Hill",
-        time: "2:00 PM",
-        activityDescription: "Head uphill for cooler air, forest scenery, and panoramic views over George Town and the island.",
-        estimatedCost: "$15",
-        openingHours: "Check the official funicular operating schedule",
-        rating: 4.4,
-        address: "Penang Hill, Air Itam, Penang",
-        travelTip: "Allow extra time for queues and changing weather conditions.",
-        image: "penang-hill.jpg"
-      },
-      {
-        placeName: "Gurney Drive Hawker Center",
-        time: "6:00 PM",
-        activityDescription: "Enjoy a variety of Penang street-food dishes at a popular seaside food destination.",
-        estimatedCost: "10–15",
-        openingHours: "Typically afternoon into late evening",
-        rating: 3.8,
-        address: "Gurney Drive, George Town, Penang",
-        travelTip: "Walk around the stalls before deciding what to eat.",
-        image: "GurneyDriveHawkerCenter.jpg"
-      },
-      {
-        placeName: "Pasar Malam Batu Ferringhi",
-        time: "8:00 PM",
-        activityDescription: "Browse the night-market stalls for souvenirs, clothing, snacks, and local finds.",
-        estimatedCost: "Varies",
-        openingHours: "Typically evening hours",
-        rating: 3.8,
-        address: "Batu Ferringhi, Penang",
-        travelTip: "Compare prices at several stalls before buying souvenirs.",
-        image: "PasarMalamBatuFeringghi.jpg"
-      }
-    ]
-  },
-
-  {
-    date: "Monday, October 26, 2026",
-    theme: "Historic Quarters | Culinary Trails",
-    places: [
-      {
-        placeName: "Georgetown UNESCO Historic Site",
-        time: "9:00 AM",
-        activityDescription: "Walk through George Town's UNESCO-listed historic core, with heritage shophouses, temples, and colonial architecture.",
-        estimatedCost: "Free to explore",
-        openingHours: "Outdoor historic district; individual sites vary",
-        rating: 4.4,
-        address: "Historic core of George Town, Penang",
-        travelTip: "Wear comfortable walking shoes and bring water.",
-        image: "GeorgetownUNESCO.jpg"
-      },
-      {
-        placeName: "George Town World Heritage Incorporated",
-        time: "11:00 AM",
-        activityDescription: "Learn more about heritage conservation and the work to preserve George Town's historic character.",
-        estimatedCost: "Free to explore the surrounding area",
-        openingHours: "Check current office and visitor access hours",
-        rating: 4.5,
-        address: "George Town, Penang",
-        travelTip: "Check in advance whether visitor information or exhibitions are available.",
-        image: "GTWHI_office_in_George_Town,_Penang.jpg"
-      },
-      {
-        placeName: "Kimberley Street Duck Kway Chap",
-        time: "1:00 PM",
-        activityDescription: "Try a local hawker favorite featuring braised ingredients served with rice sheets and savory broth.",
-        estimatedCost: "5–8",
-        openingHours: "Vendor-dependent; commonly afternoon into evening",
-        rating: 3.9,
-        address: "Kimberley Street, George Town, Penang",
-        travelTip: "Check the individual stall's hours before making a special trip.",
-        image: "Kimberley-Street-Duck-Kway-Chap-1.jpg.webp"
-      },
-      {
-        placeName: "Kimberley Street Food Night Market",
-        time: "6:00 PM",
-        activityDescription: "Spend the evening sampling hawker dishes and exploring the food stalls around Kimberley Street.",
-        estimatedCost: "5–10",
-        openingHours: "Typically evening hours",
-        rating: 4.0,
-        address: "Kimberley Street, George Town, Penang",
-        travelTip: "Go hungry and share dishes so you can sample more options.",
-        image: "KimberleyStreetFoodNightMarket.jpg"
-      }
-    ]
-  },
-
-  {
-    date: "Tuesday, October 27, 2026",
-    theme: "Local Flavors | Neighborhood Markets",
-    places: [
-      {
-        placeName: "Georgetown Heritage Site",
-        time: "9:00 AM",
-        activityDescription: "Discover more of George Town's heritage streets, traditional buildings, and local cultural landmarks.",
-        estimatedCost: "Varies by attraction",
-        openingHours: "Public streets are accessible; attractions vary",
-        rating: 4.8,
-        address: "George Town, Penang",
-        travelTip: "Leave time for unexpected discoveries along the heritage streets.",
-        image: "malaysia-penang-kek-lok-shadows.jpg"
-      },
-      {
-        placeName: "Muar Chee (Cecil Street)",
-        time: "11:00 AM",
-        activityDescription: "Try muar chee, a chewy local snack commonly coated with ground peanuts and sugar.",
-        estimatedCost: "$3",
-        openingHours: "Check the individual vendor's hours",
-        rating: 4.1,
-        address: "Cecil Street area, George Town, Penang",
-        travelTip: "Bring small cash for hawker snacks.",
-        image: "(Cecil Street).jpg"
-      },
-      {
-        placeName: "Pulau Tikus Hawker Center",
-        time: "5:00 PM",
-        activityDescription: "Explore a neighborhood hawker center offering a range of local meals and snacks.",
-        estimatedCost: "8–12",
-        openingHours: "Typically evening hours; stall schedules vary",
-        rating: 4.0,
-        address: "Pulau Tikus, Penang",
-        travelTip: "Look around first to see which stalls are busiest.",
-        image: "PulauTikus.jpg"
-      },
-      {
-        placeName: "New Lane Street Foodstalls",
-        time: "7:00 PM",
-        activityDescription: "Enjoy an evening food crawl at New Lane, a well-known George Town street-food destination.",
-        estimatedCost: "10–15",
-        openingHours: "Typically late afternoon into evening",
-        rating: 3.8,
-        address: "New Lane, George Town, Penang",
-        travelTip: "Expect a busy atmosphere during popular dinner hours.",
-        image: "NewLaneFoodstalls.jpg"
-      }
-    ]
-  },
-
-  {
-    date: "Wednesday, October 28, 2026",
-    theme: "Night Markets | Local Treats",
-    places: [
-      {
-        placeName: "Chew Jetty",
-        time: "9:00 AM",
-        activityDescription: "Visit another historic waterfront settlement and enjoy views of traditional houses over the water.",
-        estimatedCost: "Free",
-        openingHours: "Generally accessible during daytime visiting hours",
-        rating: 4.1,
-        address: "Weld Quay, George Town, Penang",
-        travelTip: "Keep pathways clear and respect residents' privacy.",
-        image: "ChewJetty.jpg"
-      },
-      {
-        placeName: "Kompleks Makanan Padang Brown",
-        time: "12:00 PM",
-        activityDescription: "Sample local food at a food complex known for its range of hawker options.",
-        estimatedCost: "5–10",
-        openingHours: "Stall hours vary; check locally",
-        rating: 4.0,
-        address: "Padang Brown, George Town, Penang",
-        travelTip: "Choose dishes from different stalls to experience more local flavors.",
-        image: "padang-brown-food-court.jpg"
-      },
-      {
-        placeName: "Presgrave Street Hawker Centre",
-        time: "5:00 PM",
-        activityDescription: "Enjoy a relaxed food stop featuring local hawker dishes and casual outdoor dining.",
-        estimatedCost: "10–15",
-        openingHours: "Typically late afternoon into evening",
-        rating: 4.2,
-        address: "Presgrave Street, George Town, Penang",
-        travelTip: "Bring cash and check which stalls are operating that day.",
-        image: "PresgraveStreetHawkerCentre.jpg"
-      },
-      {
-        placeName: "Farlim Wednesday Night Market",
-        time: "7:00 PM",
-        activityDescription: "Finish the trip browsing a neighborhood night market with street food, snacks, and everyday goods.",
-        estimatedCost: "5–15",
-        openingHours: "Typically Wednesday evening; confirm locally",
-        rating: 4.0,
-        address: "Farlim, Air Itam, Penang",
-        travelTip: "Allow time for travel to Farlim and bring small notes for purchases.",
-        image: "FarlimWednesdayNightMarket.jpg"
-      }
-    ]
-  }
-];
-
+let itinerary = [];
+let trip = null;
+let journal = null;
+const tripId = new URLSearchParams(window.location.search).get("tripId");
+const refreshedDays = new Set();
+const loadingDays = new Map();
+const refreshIssues = new Map();
 
 /* =========================================
    HTML ELEMENT REFERENCES
@@ -300,6 +15,8 @@ const itinerary = [
 
 const journalCover = document.getElementById("journalCover");
 const journalOpen = document.getElementById("journalOpen");
+const journalStatus = document.getElementById("journalStatus");
+const tripDetailsButton = document.getElementById("tripDetails");
 
 const leftPageContent = document.getElementById("leftPageContent");
 const rightPageContent = document.getElementById("rightPageContent");
@@ -355,8 +72,164 @@ function escapeHTML(value = "") {
   });
 }
 
-function imagePath(filename) {
-  return `./${filename || ""}`;
+function webURL(value) {
+  try {
+    const url = new URL(typeof value === 'string' && value.startsWith('//') ? `https:${value}` : value);
+    return ['https:', 'http:'].includes(url.protocol) ? url.href : '';
+  } catch { return ''; }
+}
+
+function photoCredit(card, place) {
+  let credit = card.querySelector('.photo-credit');
+  if (!credit) { credit = document.createElement('div'); credit.className = 'photo-credit'; card.querySelector('.scrap-photo').after(credit); }
+  credit.replaceChildren();
+  function link(label, url) {
+    const anchor = document.createElement('a');
+    anchor.textContent = label; anchor.href = webURL(url);
+    anchor.target = '_blank'; anchor.rel = 'noopener noreferrer';
+    return anchor;
+  }
+  if (place.placeId) {
+    const source = link('Google Maps', `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.placeName)}&query_place_id=${encodeURIComponent(place.placeId)}`);
+    source.className = 'google-maps-attribution'; source.setAttribute('translate','no');
+    credit.append(source);
+  }
+  if (!place.image || place.photo?.provider !== 'unsplash') return;
+  if (credit.childNodes.length) credit.append(document.createElement('br'));
+  const caption = document.createElement('span');
+  caption.className = 'photo-illustration'; caption.textContent = 'Illustrative photo';
+  credit.append(caption, document.createElement('br'), document.createTextNode('Photo by '),
+    link(place.photo.credit, place.photo.photographerUrl), document.createTextNode(' on '),
+    link('Unsplash', place.photo.providerUrl));
+}
+
+function showCardPhoto(card, place) {
+  const url = webURL(place.image || place.photo?.url);
+  if (!url) return;
+  place.image = url;
+  const frame = card.querySelector('.scrap-photo');
+  const image = document.createElement('img');
+  image.alt = place.photo?.alt || place.placeName;
+  image.loading = 'lazy'; image.decoding = 'async';
+  if (place.photo?.srcSet) { image.srcset = place.photo.srcSet; image.sizes = '(max-width: 600px) 40vw, 22vw'; }
+  image.addEventListener('error', () => photoFailed(card, place), {once:true});
+  frame.querySelector('img')?.remove();
+  frame.querySelector('.photo-placeholder')?.remove();
+  frame.prepend(image);
+  photoCredit(card, place);
+  image.src = url;
+}
+
+function photoFailed(card, place) {
+  place.image = '';
+  const frame = card.querySelector('.scrap-photo');
+  frame.querySelector('img')?.remove();
+  frame.querySelector('.photo-placeholder')?.remove();
+  const placeholder = document.createElement('span');
+  placeholder.className = 'photo-placeholder';
+  placeholder.textContent = 'Photo unavailable';
+  if (place.photo?.url) {
+    const retry = document.createElement('button');
+    retry.type = 'button'; retry.textContent = 'Retry photo';
+    retry.addEventListener('click', () => { retry.disabled = true; showCardPhoto(card, place); });
+    placeholder.appendChild(retry);
+  }
+  frame.prepend(placeholder);
+  photoCredit(card, place);
+}
+
+function showStatus(message, retry) {
+  journalStatus.replaceChildren();
+  journalStatus.hidden = !message;
+  if (!message) return;
+  const text = document.createElement('p');
+  text.textContent = message;
+  journalStatus.appendChild(text);
+  if (retry) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = 'Try again';
+    button.addEventListener('click', retry);
+    journalStatus.appendChild(button);
+  }
+}
+
+async function loadJournal() {
+  try {
+    if (!tripId) throw new Error('Choose a trip from your globe or generate an itinerary first.');
+    const {data} = await getTrip(tripId);
+    journal = journalTrip(data.trip);
+    trip = data.trip;
+    itinerary = journal.days;
+    document.title = journal.title;
+    document.querySelector('.cover-destination').textContent = journal.country || journal.title;
+    document.querySelector('.cover-country').textContent = journal.bases.join(' → ');
+    document.querySelector('.cover-details').textContent =
+      [...new Set(journal.dates)].join(' – ') +
+      `\n${journal.numberOfDays} days · ${journal.numberOfNights} nights`;
+    document.getElementById('coverPrompt').textContent = 'Open my journal';
+    journalCover.disabled = false;
+    tripDetailsButton.disabled = false;
+    showStatus('');
+  } catch (error) {
+    journalCover.classList.add('hidden');
+    const unauthorized = [401,403].includes(error.response?.status);
+    const message = unauthorized ? 'Sign in to view this trip.'
+      : error.response?.status === 404 ? 'This trip was not found in your account.'
+        : error.response ? "Couldn't load this itinerary. Please try again."
+          : error.message || "Couldn't load this itinerary. Please try again.";
+    showStatus(message, tripId ? () => window.location.reload() : null);
+    if (unauthorized) {
+      const link = document.createElement('a');
+      link.href = '/signUpAndLogin/login.html';
+      link.textContent = 'Sign in';
+      journalStatus.appendChild(link);
+    }
+  }
+}
+
+async function refreshDay(index) {
+  const rawDay = trip.itinerary.days[index];
+  if (trip.itinerary.placesStoredAs !== 'ids_only' || refreshedDays.has(rawDay.day) || loadingDays.has(rawDay.day)) return;
+  if (!itinerary[index].places.length) { refreshedDays.add(rawDay.day); return; }
+  if (activeDayIndex === index) showStatus('Loading current venue details…');
+  const request = getTripDayPlaces(tripId, rawDay.day);
+  loadingDays.set(rawDay.day, request);
+  try {
+    const {data} = await request;
+    itinerary[index] = journalDay(rawDay, index, data.places || []);
+    refreshedDays.add(rawDay.day);
+    if (activeDayIndex === index) {
+      showStatus('');
+      if (!isFlipping) renderDay(index);
+    }
+  } catch (error) {
+    // Retain the saved schedule and descriptions without fabricating venue facts.
+    itinerary[index] = journalDay(rawDay, index);
+    const issue=venueRefreshIssue(error);
+    issue.retryAt=Date.now()+(issue.retrySeconds||0)*1000;
+    refreshIssues.set(rawDay.day,issue);
+    if (activeDayIndex === index) {
+      if (!isFlipping) renderDay(index);
+      else showVenueRefreshIssue(index);
+    }
+  } finally {
+    loadingDays.delete(rawDay.day);
+  }
+}
+
+function showVenueRefreshIssue(index) {
+  const day=itinerary[index],issue=refreshIssues.get(day.day);
+  showStatus(issue.message,issue.retryable?()=>{
+    refreshIssues.delete(day.day);
+    refreshDay(index);
+  }:null);
+  const button=journalStatus.querySelector('button');
+  const remaining=issue.retryAt-Date.now();
+  if(button&&remaining>0) {
+    button.disabled=true;
+    setTimeout(()=>{button.disabled=false;},remaining);
+  }
 }
 
 
@@ -370,11 +243,7 @@ function createDestinationCard(place) {
 
   card.innerHTML = `
     <div class="scrap-photo">
-      <img
-        src="${escapeHTML(imagePath(place.image))}"
-        alt="${escapeHTML(place.placeName)}"
-        loading="lazy"
-      />
+      <span class="photo-placeholder">${place.category === 'food' ? 'Meal suggestion' : 'Explore'}</span>
 
       <span class="scrap-time">
         ${escapeHTML(place.time)}
@@ -384,7 +253,7 @@ function createDestinationCard(place) {
     <h3>${escapeHTML(place.placeName)}</h3>
 
     <p class="card-cost">
-      ${escapeHTML(place.estimatedCost)}
+      ${escapeHTML(place.estimatedCost || 'Cost not available')}
       ${place.rating ? ` · ★ ${escapeHTML(place.rating)}` : ""}
     </p>
 
@@ -393,11 +262,8 @@ function createDestinationCard(place) {
     </button>
   `;
 
-  const image = card.querySelector("img");
-
-  image.addEventListener("error", () => {
-    image.style.visibility = "hidden";
-  });
+  photoCredit(card, place);
+  if (place.image) showCardPhoto(card, place);
 
   card.querySelector(".read-more").addEventListener("click", () => {
     openDetails(place);
@@ -424,18 +290,32 @@ function createPageHTML(day, places, side, dayIndex) {
   const dayNumber = dayIndex + 1;
 
   heading.innerHTML = `
-    <p class="eyebrow">PENANG, MALAYSIA</p>
+    <p class="eyebrow">${escapeHTML([day.city, journal.country].filter(Boolean).join(', '))}</p>
 
-    <h2>Penang Trip | Day ${dayNumber}</h2>
+    <h2>Day ${dayNumber} · ${escapeHTML(day.city || journal.country || 'Your trip')}</h2>
 
     <p class="heading-subtext">
-      ${side === "left"
-        ? "A little collection of today's adventures and discoveries."
-        : "More places, little moments, and memories from the day."}
+      ${escapeHTML(day.theme)}
     </p>
   `;
 
   wrapper.appendChild(heading);
+
+  if (side === 'left') {
+    for (const note of dayNotes(day, trip.itinerary)) {
+      const paragraph = document.createElement('p');
+      paragraph.className = 'day-logistics';
+      paragraph.textContent = note;
+      wrapper.appendChild(paragraph);
+    }
+    const stay = trip.itinerary.stays?.find(stay => stay.stopId === day.stopId);
+    if (stay?.recommendedStayArea) {
+      const paragraph = document.createElement('p');
+      paragraph.className = 'day-logistics';
+      paragraph.textContent = `Where to stay: ${stay.recommendedStayArea}. ${stay.stayAreaRationale || ''}`;
+      wrapper.appendChild(paragraph);
+    }
+  }
 
   const grid = document.createElement("div");
   grid.className = `page-destinations cards-${places.length}`;
@@ -445,6 +325,13 @@ function createPageHTML(day, places, side, dayIndex) {
   });
 
   wrapper.appendChild(grid);
+
+  if (!places.length) {
+    const paragraph = document.createElement('p');
+    paragraph.className = 'day-logistics';
+    paragraph.textContent = side === 'right' ? 'No additional activities scheduled.' : 'No activities scheduled during this part of the day.';
+    wrapper.appendChild(paragraph);
+  }
 
   return wrapper;
 }
@@ -495,6 +382,8 @@ function renderDay(index) {
   nextDayButton.disabled = index === itinerary.length - 1;
 
   renderDayTabs();
+  if (refreshIssues.has(day.day)) showVenueRefreshIssue(index);
+  else { showStatus(''); refreshDay(index); }
 }
 
 
@@ -606,15 +495,11 @@ function flipToDay(targetIndex) {
 
   turningSheet.classList.add("flipping");
 
-  const finishFlip = () => {
+  const finishFlip = (event) => {
+    if (event && event.target !== turningSheet) return;
+    clearTimeout(flipTimer);
     turningSheet.removeEventListener("animationend", finishFlip);
-
-    turningSheet.classList.remove(
-      "flipping",
-      "flip-forward",
-      "flip-backward"
-    );
-
+    turningSheet.classList.remove("flipping", "flip-forward", "flip-backward");
     turningSheet.classList.add("hidden");
 
     activeDayIndex = targetIndex;
@@ -624,7 +509,11 @@ function flipToDay(targetIndex) {
     isFlipping = false;
   };
 
-  turningSheet.addEventListener("animationend", finishFlip);
+  turningSheet.addEventListener(
+    "animationend",
+    finishFlip
+  );
+  const flipTimer = setTimeout(finishFlip, 1200);
 }
 
 
@@ -671,10 +560,60 @@ function openDetails(place) {
   addMetaItem("Location", place.address);
   addMetaItem("Travel tip", place.travelTip);
 
+  if (place.placeId) {
+    const link = document.createElement('a');
+    link.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.placeName)}&query_place_id=${encodeURIComponent(place.placeId)}`;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = 'View on Google Maps';
+    detailsMeta.appendChild(link);
+  }
+  for (const attribution of place.attributions || []) {
+    addMetaItem('Attribution', attribution.provider || attribution.displayName || attribution);
+  }
+
   detailsModal.classList.remove("hidden");
 
   document.body.style.overflow = "hidden";
 
+  closeDetails.focus();
+}
+
+function openTripDetails() {
+  if (!trip) return;
+  lastFocusedElement = document.activeElement;
+  detailsTitle.textContent = journal.title;
+  detailsDescription.textContent = journal.summary;
+  detailsMeta.replaceChildren();
+  const plan = trip.itinerary, info = plan.practicalInfo || {};
+  addMetaItem('Places to visit', journal.bases.join(' → '));
+  addMetaItem('Trip length', `${journal.numberOfDays} days · ${journal.numberOfNights} nights`);
+  addMetaItem('Currency', typeof info.currency === 'string' ? info.currency
+    : [info.currency?.name, info.currency?.code, info.currency?.symbol].filter(Boolean).join(' · '));
+  addMetaItem('Languages', detailText(info.languages));
+  function addPayments(payments) {
+    if (!payments) return;
+    addMetaItem('Accepted cards (general guidance)', detailText(payments.cardsAccepted));
+    if (payments.cardsLimited?.length) addMetaItem('Cards with limited acceptance', detailText(payments.cardsLimited));
+    if (payments.popularEWallets?.length) addMetaItem('E-wallets', detailText(payments.popularEWallets));
+    if (payments.cashAdvice) addMetaItem('Cash guidance', payments.cashAdvice);
+    if (payments.acceptanceNote) addMetaItem('Payment guidance', payments.acceptanceNote);
+  }
+  addPayments(info.paymentMethods);
+  if (info.culturalTips?.length) addMetaItem('Travel tips', detailText(info.culturalTips));
+  for (const stop of info.byStop || []) {
+    addMetaItem('Local guidance', stop.name);
+    addPayments(stop.paymentMethods);
+    if (stop.culturalTips?.length) addMetaItem('Local travel tips', detailText(stop.culturalTips));
+  }
+  for (const stay of plan.stays || []) {
+    addMetaItem(`Where to stay · ${stay.name || 'Overnight base'}`,
+      [stay.recommendedStayArea, stay.stayAreaRationale].filter(Boolean).join('\n'));
+  }
+  if (plan.planningNotes?.length) addMetaItem('Planning notes', detailText(plan.planningNotes));
+  if (info.notes?.length) addMetaItem('About this guidance', detailText(info.notes));
+  detailsModal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
   closeDetails.focus();
 }
 
@@ -708,10 +647,13 @@ function openJournal() {
 ========================================= */
 
 journalCover.addEventListener("click", openJournal);
+tripDetailsButton.addEventListener('click', openTripDetails);
 
 previousDayButton.addEventListener("click", () => {
   flipToDay(activeDayIndex - 1);
 });
+
+loadJournal();
 
 nextDayButton.addEventListener("click", () => {
   flipToDay(activeDayIndex + 1);

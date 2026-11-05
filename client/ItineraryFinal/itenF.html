@@ -3,33 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Penang Travel Journal</title>
+  <title>Your Travel Journal</title>
   <link rel="stylesheet" href="./itenF.css">
-  <script src="./itenF.js" defer></script>
+  <script type="module" src="./itenF.js"></script>
 </head>
 
 <body>
   <main class="app">
+    <nav class="journal-toolbar" aria-label="Trip navigation">
+      <a href="/?page=trips">Back to your globe</a>
+      <button id="tripDetails" type="button" disabled>Trip details</button>
+    </nav>
+    <section id="journalStatus" class="journal-status" role="status">Loading your itinerary…</section>
 
     <!-- JOURNAL COVER -->
-    <button id="journalCover" class="journal-cover" type="button">
+    <button id="journalCover" class="journal-cover" type="button" disabled>
       <span class="cover-top">YOUR NEW ADVENTURE BOOK</span>
 
       <span class="cover-title">
         <span class="cover-small">THE TRAVEL JOURNAL</span>
-        <span class="cover-destination">Penang</span>
-        <span class="cover-country">MALAYSIA</span>
+        <span class="cover-destination">Your trip</span>
+        <span class="cover-country"></span>
       </span>
 
       <span class="cover-decoration">✦ ✧ ✦</span>
 
       <span class="cover-details">
-        24 — 28 OCTOBER 2026
       </span>
 
       <span class="cover-prompt">
         <span class="prompt-sparkle">✧</span>
-        <span>Open my journal</span>
+        <span id="coverPrompt">Loading your trip…</span>
         <span class="prompt-arrow">→</span>
       </span>
     </button>
