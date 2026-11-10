@@ -76,7 +76,7 @@ describe('Bounded structured planning prompts',()=>{
    return {data:narrativeFor(payload),model:'mock'};
   });
   const {itinerary}=await generateCountryItinerary({outline,quiz,startDate:outline.startDate});
-  assert.equal(itinerary.promptVersion,'2026-10-31.2');
+  assert.equal(itinerary.promptVersion,'2026-11-10.2');
   assert.equal(itinerary.days[0].morning[0].address,'Unnecessary provider address');
  });
 });

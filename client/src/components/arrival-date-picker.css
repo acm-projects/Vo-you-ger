@@ -1,0 +1,59 @@
+.arrival-date-picker { position: relative; min-width: 0; }
+.arrival-date-picker > label { display: block; margin-bottom: 8px; }
+.arrival-date-picker .arrival-date-picker__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.arrival-date-picker__trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 47px;
+  padding: 12px 14px;
+  border: 1px solid #ccb79f;
+  border-radius: 8px;
+  background: #fff;
+  color: #493629;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: left;
+  cursor: pointer;
+}
+.arrival-date-picker__trigger svg { flex-shrink: 0; color: #8d634b; }
+.arrival-date-picker__empty { color: #938373; }
+.arrival-date-picker__trigger[aria-expanded="true"] { border-color: #8d634b; box-shadow: 0 0 0 3px #8d634b14; }
+.arrival-date-picker__calendar {
+  width: 100%;
+  margin-top: 12px;
+  padding: 16px;
+  border: 1px solid #e2d3c0;
+  border-radius: 16px;
+  background: #fffdf8;
+  box-shadow: 0 8px 24px #49362912;
+}
+.arrival-date-picker__heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 14px; }
+.arrival-date-picker__heading h2 { margin: 0; color: #493629; font: 600 16px 'DM Sans', sans-serif; text-align: center; }
+.arrival-date-picker__heading button { width: 30px; height: 30px; padding: 0; border: 0; border-radius: 8px; background: #f3eadf; color: #6b4d3c; font-size: 24px; line-height: 1; cursor: pointer; }
+.arrival-date-picker__week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 2px; }
+.arrival-date-picker__week [role="columnheader"] { padding: 4px 0 10px; color: #8c7a69; font-size: 11px; font-weight: 500; text-align: center; }
+.arrival-date-picker__week [role="gridcell"] { min-width: 0; }
+.arrival-date-picker__week button { display: block; width: 100%; aspect-ratio: 1; min-height: 28px; padding: 0; border: 1px solid transparent; border-radius: 50%; background: transparent; color: #493629; font: 500 13px 'DM Sans', sans-serif; cursor: pointer; }
+.arrival-date-picker__week button[data-outside="true"] { color: #ab9a88; }
+.arrival-date-picker__week button[aria-current="date"] { border-color: #bda68a; }
+.arrival-date-picker__week button:hover:not(:disabled) { background: #f0e3d2; }
+.arrival-date-picker__week button[data-selected="true"],
+.arrival-date-picker__week button[data-selected="true"]:hover { background: #6b4d3c; border-color: #6b4d3c; color: #fffaf3; }
+.arrival-date-picker button:disabled { color: #c7beb3; background: transparent; cursor: default; }
+.arrival-date-picker__footer { display: flex; justify-content: space-between; margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee2d3; }
+.arrival-date-picker__footer button { padding: 4px; border: 0; background: transparent; color: #79583f; font: 500 12px 'DM Sans', sans-serif; cursor: pointer; }
+.arrival-date-picker__error { display: block; margin-top: 8px; color: #983d2c; font-size: 12px; line-height: 1.4; }

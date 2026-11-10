@@ -71,6 +71,21 @@ function inspectNarrative(data, payload) {
   return result;
 }
 
+function correctionFeedback(candidate, payload) {
+  // Send only server-validated copy and canonical IDs, never rejected model text.
+  // A fallback can preserve good fields and concentrate on the missing ones.
+  return {
+    rule:'CONTENT_MISMATCH',
+    instruction:'Preserve acceptedText verbatim. Fill every repair field, remove unknown IDs and extra fields, and return the complete original JSON structure. For food descriptions, suggest a meal break without describing dishes, menus or dietary suitability.',
+    acceptedText:{tripTitle:candidate.tripTitle,summary:candidate.summary,
+      dayThemes:[...candidate.dayThemes].map(([day,theme])=>({day,theme})),
+      activityDescriptions:[...candidate.activityDescriptions].map(([placeId,description])=>({placeId,description}))},
+    repair:{tripTitle:!candidate.tripTitle,summary:!candidate.summary,
+      days:payload.days.filter(day=>!candidate.dayThemes.has(day.day)).map(day=>day.day),
+      placeIds:payload.places.filter(place=>!candidate.activityDescriptions.has(place.placeId)).map(place=>place.placeId)},
+  };
+}
+
 function applyNarrative(itinerary, candidate) {
   if (candidate?.tripTitle) itinerary.tripTitle = candidate.tripTitle;
   if (candidate?.summary) itinerary.summary = candidate.summary;
@@ -104,10 +119,12 @@ async function writeNarrative({itinerary, discovered, quiz}) {
         const response = await measured('geminiNarrative',()=>llm.generateStructured({
           systemPrompt:template.systemPrompt, prompt, jsonSchema, zodSchema:narrativeSchema,
           operation:'itinerary', maxAttempts:TRIP_POLICY.geminiMaxAttempts, timeoutMs:TRIP_POLICY.geminiDeadlineMs,
+          maxOutputTokens:Math.min(TRIP_POLICY.maxGeminiOutputTokens,512+payload.days.length*48+payload.places.length*160),
           validateResponse:data=>inspectNarrative(data,payload).complete,
           onInvalidResponse:({data,model:attemptModel})=>{
             const partial = inspectNarrative(data,payload);
             if (!candidate || partial.accepted > candidate.accepted) {candidate=partial;model=attemptModel;}
+            return correctionFeedback(candidate,payload);
           },
         }));
         // Adapters/test doubles cannot bypass the known-ID/content checks.

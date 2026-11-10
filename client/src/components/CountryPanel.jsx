@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import API from "../services/api";
+import { countryPlanningUrl } from "../services/navigation";
 
 function displayName(code, type) {
   try {
@@ -178,6 +179,12 @@ export default function CountryPanel({ country, onClose }) {
           <p className="country-panel__description">
             {details.description}
           </p>
+
+          {details.planningAvailable === true && details.countryCode === countryCode && (
+            <a className="saved-trip-panel__open country-panel__plan" href={countryPlanningUrl(details.countryCode)}>
+              Plan a trip here
+            </a>
+          )}
 
           <dl className="country-panel__facts">
             <div>

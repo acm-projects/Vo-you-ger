@@ -47,6 +47,7 @@ export function journalDay(day, index, venues = [], needsRefresh = false) {
       const photo = venue.photo || activity.photo || null;
       return {...activity, ...venue,
         photo,
+        fallbackPhoto: venue.fallbackPhoto || (activity.photo?.provider === 'unsplash' ? activity.photo : null),
         placeName: venue.placeName || venue.name || activity.placeName || activity.name ||
           (needsRefresh ? 'Loading venue details…' : 'Venue details unavailable'),
         time: activity.time || activity.timeSlot || label,

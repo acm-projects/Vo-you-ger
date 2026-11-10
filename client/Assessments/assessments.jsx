@@ -1,6 +1,7 @@
-import { clearPlanningSession, paths } from "../src/services/navigation.js";
+import { clearPlanningSession, paths, safePlanningReturn, withPlanningReturn } from "../src/services/navigation.js";
 
-if (!localStorage.getItem("token")) window.location.replace(paths.login);
+const planningReturn = safePlanningReturn(new URLSearchParams(window.location.search).get("returnTo"));
+if (!localStorage.getItem("token")) window.location.replace(withPlanningReturn(paths.login, planningReturn));
 
 const assessmentImages = import.meta.glob('./*.{png,jpg,jpeg,webp}', {
     eager: true, query: '?url', import: 'default'
@@ -1345,11 +1346,11 @@ function showScore() {
     questionElement.innerHTML = "Assessment Complete!";
     answerButton.innerHTML = `
         <p style='font-size: 16px; color: #001e4d; margin-top: 10px;'>
-            Thank you for sharing your preferences! We are building your customized travel plan.
+            ${planningReturn ? "Your preferences are ready. Continue to finish planning your selected country." : "Thank you for sharing your preferences! We are building your customized travel plan."}
         </p>
         <div id='quiz-error-msg' style='color: #b2533e; margin-top: 15px; font-weight: bold;'></div>
     `;
-    nextButton.innerHTML = "See my Recommendations!";
+    nextButton.innerHTML = planningReturn ? "Continue planning my trip" : "See my Recommendations!";
     nextButton.classList.add("recommendations-btn");
     nextButton.style.display = "block";
 
@@ -1384,12 +1385,12 @@ function showScore() {
             localStorage.setItem("quizResponse", JSON.stringify(payload));
             clearPlanningSession(sessionStorage);
 
-            // Redirect to loading/recommendations page
-            window.location.href = "/?page=loading";
+            // Resume the selected country, or load recommendations for the usual assessment flow.
+            window.location.href = planningReturn || "/?page=loading";
         } catch (err) {
             console.error("Error saving quiz responses:", err);
             nextButton.disabled = false;
-            nextButton.innerHTML = "See my Recommendations!";
+            nextButton.innerHTML = planningReturn ? "Continue planning my trip" : "See my Recommendations!";
             if (errorContainer) {
                 errorContainer.innerText = `Error: ${err.message || "Failed to save quiz"}. Please try again.`;
             }

@@ -100,7 +100,7 @@ async function exercise(scenario,seed,mode='valid'){
  mock.method(discovery,'discoverStops',async()=>f.discovered);
  let calls=0;
  mock.method(llm,'generateStructured',async request=>{
-  calls++;assert.equal(request.maxAttempts,2);
+  calls++;assert.equal(request.maxAttempts,require('../config/tripPolicy').TRIP_POLICY.geminiMaxAttempts);
   if(mode==='provider-error')throw Object.assign(new Error('Provider unavailable'),{statusCode:503});
   if(mode==='schema-error')throw Object.assign(new Error('Invalid JSON'),{statusCode:502});
   const payload=JSON.parse(request.prompt),data=narrativeFor(payload);

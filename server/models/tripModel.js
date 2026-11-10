@@ -306,6 +306,8 @@ async function getSavedTripSummaries(userId) {
   do {
     const result = await docClient.send(new QueryCommand({
       TableName: TABLE_NAME,
+      // A trip just saved from the journal must be visible on the next globe load.
+      ConsistentRead: true,
       KeyConditionExpression: "PK = :pk AND begins_with(SK, :sk)",
       FilterExpression: "#saved = :saved",
       ProjectionExpression: "tripId, #title, savedAt, #i.#summary, #i.#description, #i.#tripTitle, #i.#outline, #i.#destination, #i.#countryCode, #i.#info.#countryCode, #i.#days[0].#date",

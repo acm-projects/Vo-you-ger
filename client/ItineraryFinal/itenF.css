@@ -50,14 +50,54 @@ button:focus-visible {
 }
 
 .journal-toolbar {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  column-gap: 16px;
+  row-gap: 4px;
   width: 100%;
   max-width: 1400px;
   margin-bottom: 16px;
 }
+
+.journal-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 20px;
+  font-size: .75rem;
+  line-height: 20px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.journal-toolbar__actions { display: flex; align-items: center; gap: 8px; }
+.journal-toolbar .journal-save { color: var(--paper); background: var(--accent-dark); border-color: var(--accent-dark); }
+.journal-save-status {
+  grid-column: 1 / -1;
+  min-height: 36px;
+  margin: 0;
+  font-size: .8rem;
+  line-height: 18px;
+  color: var(--green);
+}
+.journal-save-status a { margin-left: 8px; font-size: inherit; }
+.journal-save-status[data-error="true"] { color: #a13726; }
+
+.journal-loading.is-loading::before {
+  content: '';
+  flex: 0 0 12px;
+  height: 12px;
+  border: 2px solid var(--line);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: venueLoading .8s linear infinite;
+}
+
+@keyframes venueLoading { to { transform: rotate(360deg); } }
 
 .journal-toolbar a,
 .journal-toolbar button,
@@ -842,6 +882,7 @@ button:focus-visible {
 
 /* Respect reduced-motion preferences. */
 @media (prefers-reduced-motion: reduce) {
+  .journal-loading.is-loading::before { animation: none; }
   .turning-sheet.flip-forward.flipping,
   .turning-sheet.flip-backward.flipping {
     animation-duration: .01ms;
@@ -1147,7 +1188,23 @@ button:focus-visible {
   }
 }
 
+@media (max-width: 850px) {
+  .journal-toolbar {
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: 4px;
+  }
+
+  .journal-loading {
+    grid-row: 2;
+    grid-column: 1 / -1;
+  }
+}
+
 @media (max-width: 600px) {
+  .journal-toolbar { column-gap: 8px; }
+  .journal-toolbar__actions { gap: 4px; }
+  .journal-toolbar a, .journal-toolbar button { font-size: .75rem; }
+  .journal-toolbar button { padding: 8px; }
   .app {
     padding: 25px 12px;
   }

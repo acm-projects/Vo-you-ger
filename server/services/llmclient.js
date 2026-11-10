@@ -9,14 +9,17 @@ let ai, configuredKey;
 function client() {
   const key=process.env.GEMINI_API_KEY;
   if(!key)throw apiError('GEMINI_NOT_CONFIGURED','The AI service is not configured',503);
-  if(!ai || configuredKey!==key){ai=new GoogleGenAI({apiKey:key});configuredKey=key;}
+  if(!ai || configuredKey!==key){
+    ai=new GoogleGenAI({apiKey:key});configuredKey=key;
+    unavailableUntil.clear();transientUntil.clear();preferredModels.clear();
+  }
   return ai;
 }
 
 // Prefer the low-latency model for bounded travel planning. Override in .env.
 const MODELS = (
   process.env.LLM_MODELS ||
-  "gemini-3.5-flash-lite,gemini-3.8-flash"
+  "gemini-3.1-flash-lite,gemini-3.5-flash-lite,gemini-3.5-flash,gemini-3.6-flash,gemini-3.7-flash,gemini-3.8-flash"
 )
   .split(",")
   .map((name) => name.trim())
@@ -31,6 +34,9 @@ const unavailableUntil = new Map();
 // Brief overload cooldowns are scoped to the operation; quota/model failures
 // remain shared. Only one probe may enter an expired transient circuit at once.
 const transientUntil = new Map();
+// A validated winner is preferred only for the same operation and API key.
+// No extra health-check or model-list requests are made during trip generation.
+const preferredModels = new Map();
 
 function getStatus(err) {
   const status = err.status ?? err.code ?? err.statusCode;
@@ -67,6 +73,7 @@ function rejectionDetails(err, status) {
   if (/api[ _-]?key.*(?:not valid|invalid)|invalid api[ _-]?key/i.test(message)) return { category:'AUTHENTICATION', reason:'API_KEY_INVALID' };
   if (/api[ _-]?key.*(?:blocked|leaked)/i.test(message)) return { category:'AUTHENTICATION', reason:'API_KEY_BLOCKED' };
   if (/deadline.*too short|minimum allowed deadline/i.test(message)) return { category:'TIMEOUT_CONFIG', reason:'DEADLINE_TOO_SHORT' };
+  if (status===403 && /(?:permission|access|authorized).*(?:model|resource)|model.*(?:permission|access|authorized)/i.test(message)) return {category:'MODEL_ACCESS',reason:'MODEL_ACCESS_DENIED'};
   const category = status===401||status===403 ? 'AUTHENTICATION'
     : /thinking/i.test(message) ? 'THINKING_CONFIG'
     : /schema/i.test(message) ? 'SCHEMA_CONFIG'
@@ -96,15 +103,19 @@ function fallbackReason(error) {
  */
 async function generateWithFallback(contents, config = {}, options = {}) {
   const provider=client();
-  const maxAttempts=Number.isInteger(options.maxAttempts)&&options.maxAttempts>0 ? Math.min(2,options.maxAttempts) : TRIP_POLICY.geminiMaxAttempts;
+  const maxAttempts=Number.isInteger(options.maxAttempts)&&options.maxAttempts>0 ? Math.min(TRIP_POLICY.geminiMaxAttempts,options.maxAttempts) : TRIP_POLICY.geminiMaxAttempts;
   const timeoutMs=Number.isInteger(options.timeoutMs)&&options.timeoutMs>0 ? Math.min(TRIP_POLICY.geminiDeadlineMs,options.timeoutMs) : TRIP_POLICY.geminiDeadlineMs;
   const deadline=Date.now()+timeoutMs;
   const diagnostics=[];
   const operation = options.operation === 'itinerary' ? 'itinerary'
     : options.operation === 'recommendations' ? 'recommendations' : 'other';
-  // One attempt per distinct model. Split the remaining deadline so the first
-  // model cannot consume the time reserved for the second; SDK retries stay off.
-  const models=[...new Set(MODELS)].slice(0,3);
+  // One attempt per distinct model, stopping at the first validated response.
+  // Reserve time for every selected fallback; SDK retries stay off.
+  const models=[...new Set(MODELS)].slice(0,12);
+  const preferred=preferredModels.get(operation);
+  if(preferred && preferred.until>Date.now() && models.includes(preferred.model)) {
+    models.splice(models.indexOf(preferred.model),1);models.unshift(preferred.model);
+  }
   const eligible=[];
   for (const model of models) {
     const shared = unavailableUntil.get(model);
@@ -137,7 +148,8 @@ async function generateWithFallback(contents, config = {}, options = {}) {
         count('geminiRequests');
         if (index) count('geminiSecondAttempts');
         const signal=AbortSignal.timeout(remaining);
-        const thinkingConfig=model.startsWith('gemini-3') ? {thinkingLevel:model.startsWith('gemini-3.5-flash-lite')?'MINIMAL':'LOW'} : model.startsWith('gemini-2.5-flash') ? {thinkingBudget:0} : undefined;
+        const minimal=/^gemini-(?:3\.1-flash-lite|3\.5-flash|3\.6-flash|3-flash)/.test(model);
+        const thinkingConfig=model.startsWith('gemini-3') ? {thinkingLevel:minimal?'MINIMAL':'LOW'} : model.startsWith('gemini-2.5-flash') ? {thinkingBudget:0} : undefined;
         const response = await provider.models.generateContent({
           model,
           contents: feedback && typeof contents === 'string'
@@ -163,20 +175,29 @@ async function generateWithFallback(contents, config = {}, options = {}) {
           if (error.code !== 'INVALID_AI_OUTPUT') error.internalValidationFailure = true;
           throw error;
         }
+        preferredModels.set(operation,{model,until:Date.now()+TRIP_POLICY.narrativeCacheTtlMs});
         return { text: response.text, model, diagnostics, ...(options.processResponse ? {data} : {}) };
       } catch (err) {
         if (err.internalValidationFailure) throw err;
         const status = getStatus(err);
         const reason=failureReason(err);
+        if(preferredModels.get(operation)?.model===model) preferredModels.delete(operation);
         count(`geminiFailure_${reason}`);
         const timeoutOrigin=reason==='request_timeout' ? (status===504?'provider':'client') : undefined;
         diagnostics.push({model,reason,status,elapsedMs:Date.now()-started,attemptTimeoutMs:remaining,
           ...(timeoutOrigin?{timeoutOrigin}:{})});
 
-        // Do not spend fallback attempts on rejected credentials/configuration.
+        // Shared credential/request failures stop immediately. A model-specific
+        // access or capability mismatch may still succeed on a different model.
         if (status === 400 || status === 401 || status === 403) {
           const {category,reason}=rejectionDetails(err,status);
           console.warn(`Gemini rejected a request (${status}, ${category}, ${reason})`);
+          if(['MODEL_ACCESS','MODEL_CONFIG','THINKING_CONFIG','SCHEMA_CONFIG'].includes(category)) {
+            diagnostics.at(-1).reason=category==='MODEL_ACCESS'?'model_access_denied':'model_incompatible';
+            diagnostics.at(-1).category=category;
+            unavailableUntil.set(model,{until:Date.now()+COOLDOWN_MS,reason:diagnostics.at(-1).reason});
+            continue;
+          }
           const error=apiError('GEMINI_CONFIGURATION','The trip generation service is temporarily unavailable. Please try again later.',503);
           error.providerStatus=status;error.providerCategory=category;error.providerReason=reason;
           error.fallbackReason='provider_configuration';error.diagnostics=diagnostics;
@@ -184,7 +205,7 @@ async function generateWithFallback(contents, config = {}, options = {}) {
         }
         // A caller's timeout is not evidence that a model is unavailable to
         // longer requests. Only explicit quota/model/provider failures cool down.
-        if (reason === 'invalid_response') feedback = {rule: err.validationRule || 'INVALID_STRUCTURED_RESPONSE'};
+        if (reason === 'invalid_response') feedback = err.validationFeedback || {rule: err.validationRule || 'INVALID_STRUCTURED_RESPONSE'};
         else if (status === 429 || status === 404) unavailableUntil.set(model,{until:Date.now()+COOLDOWN_MS,reason});
         else if ([500,502,503].includes(status)) transientUntil.set(circuitKey,{until:Date.now()+TRIP_POLICY.geminiTransientCooldownMs,reason,probing:false});
         console.warn(`Gemini model ${model} failed (${reason}, HTTP ${status ?? 'none'}, ${Date.now()-started}ms, budget ${remaining}ms${timeoutOrigin?`, timeout ${timeoutOrigin}`:''})`);
@@ -194,7 +215,7 @@ async function generateWithFallback(contents, config = {}, options = {}) {
   }
   const last=diagnostics.findLast(item=>item.reason!=='cooldown_skipped');
   const reason=last?.reason || (diagnostics.length ? 'cooldown_skipped' : 'provider_unavailable');
-  const error=apiError(reason==='invalid_response'?'INVALID_AI_OUTPUT':reason==='request_timeout'?'GEMINI_TIMEOUT':reason==='rate_limited'?'GEMINI_RATE_LIMIT':reason==='cooldown_skipped'?'GEMINI_COOLDOWN':'GEMINI_UNAVAILABLE',
+  const error=apiError(reason==='invalid_response'?'INVALID_AI_OUTPUT':reason==='request_timeout'?'GEMINI_TIMEOUT':reason==='rate_limited'?'GEMINI_RATE_LIMIT':reason==='cooldown_skipped'?'GEMINI_COOLDOWN':reason==='model_access_denied'?'GEMINI_MODEL_ACCESS':reason==='model_incompatible'?'GEMINI_MODEL_INCOMPATIBLE':'GEMINI_UNAVAILABLE',
     'The AI service could not complete this request. Please try again later.',reason==='invalid_response'?502:reason==='request_timeout'?504:reason==='rate_limited'?429:503);
   error.fallbackReason=reason;error.diagnostics=diagnostics;
   throw error;
@@ -230,9 +251,10 @@ async function generateStructured({ prompt, systemPrompt, jsonSchema, zodSchema,
           rule = 'CONTENT_MISMATCH';
         }
       }
-      if (onInvalidResponse) await onInvalidResponse({data: parsed, model});
+      const feedback = onInvalidResponse ? await onInvalidResponse({data: parsed, model}) : null;
       const error = apiError('INVALID_AI_OUTPUT', 'Model returned JSON that did not match the schema or required content', 502);
       error.validationRule = rule;
+      if(feedback && typeof feedback==='object' && !Array.isArray(feedback)) error.validationFeedback=feedback;
       throw error;
     },
   });

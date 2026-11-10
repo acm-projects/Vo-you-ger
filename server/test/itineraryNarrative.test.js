@@ -31,6 +31,7 @@ it('requests only text mapped to known IDs and preserves canonical data through 
     const payload=JSON.parse(request.prompt);
     assert.ok(!request.prompt.includes('private@example.test'));assert.ok(!request.prompt.includes('Private provider street'));
     assert.ok(!payload.plan && !payload.schedule);assert.equal(request.operation,'itinerary');
+    assert.ok(request.maxOutputTokens>128&&request.maxOutputTokens<16384);
     const data=narrativeFor(payload);assert.equal(request.validateResponse(data),true);
     return {data,model:'model-a',diagnostics:[]};
   });
@@ -53,7 +54,11 @@ it('keeps validated fields from the best partial response when the second model 
     data.activityDescriptions[0].description='Go inside and enjoy free admission for $10.';
     data.activityDescriptions.push({placeId:'invented',description:'An invented venue.'});
     assert.equal(request.validateResponse(data),false);
-    request.onInvalidResponse({data,model:'model-a'});
+    const feedback=request.onInvalidResponse({data,model:'model-a'});
+    assert.deepEqual(feedback.repair.placeIds,[data.activityDescriptions[0].placeId]);
+    assert.equal(feedback.acceptedText.activityDescriptions.length,JSON.parse(request.prompt).places.length-1);
+    assert.ok(!JSON.stringify(feedback).includes('Go inside'));
+    assert.ok(!JSON.stringify(feedback).includes('invented'));
     throw Object.assign(new Error('Private upstream details'),{statusCode:503,diagnostics:[{model:'model-b',reason:'provider_unavailable',status:503}]});
   });
   await narrative.writeNarrative(f);

@@ -1,4 +1,11 @@
-import { clearPlanningSession, loginDestination } from "../src/services/navigation.js";
+import { clearPlanningSession, loginDestination, safePlanningReturn, withPlanningReturn } from "../src/services/navigation.js";
+
+const planningReturn = safePlanningReturn(new URLSearchParams(window.location.search).get("returnTo"));
+if (planningReturn) {
+    for (const link of document.querySelectorAll('a[href="signup.html"], a[href="login.html"]')) {
+        link.href = withPlanningReturn(`/signUpAndLogin/${link.getAttribute("href")}`, planningReturn);
+    }
+}
 
 const form = document.getElementById("form");
 const firstname_input = document.getElementById("firstname-input");
@@ -740,7 +747,7 @@ form.addEventListener("submit", async (e) => {
         // REDIRECT AFTER SUCCESS
         // =====================================
 
-        window.location.href = loginDestination({ isSignup, firstTime: data.user?.firstTime });
+        window.location.href = loginDestination({ isSignup, firstTime: data.user?.firstTime, returnTo: planningReturn });
 
 
     } catch (err) {

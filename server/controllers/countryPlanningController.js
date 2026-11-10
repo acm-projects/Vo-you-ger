@@ -3,7 +3,7 @@ const users=require('../models/userModel');
 const { quizSchema }=require('../schemas/recommendationSchema');
 const { visaEligibility }=require('../services/travelEligibilityService');
 const { apiError,sendError }=require('../services/apiError');
-const { buildOutline }=require('../services/tripOutlineService');
+const { buildOutline,resolveDuration }=require('../services/tripOutlineService');
 const { createCountryItinerary }=require('./countryTripController');
 
 function countryForCode(value) {
@@ -31,7 +31,18 @@ async function directContext(req) {
   if(!parsed.success) throw apiError('INVALID_ASSESSMENT','Assessment does not match the supported schema');
   const allowed=await visaEligibility(user,parsed.data);
   if(allowed&&!allowed.has(country.countryCode)) throw apiError('VISA_INELIGIBLE','This country is not confirmed visa-free for your supplied citizenships',422);
-  const trip={quizSnapshot:parsed.data,recommendations:[{destinationId:country.id,type:'country',name:country.name,country:country.name,countryCode:country.countryCode}],selectionMetadata:{source:'direct_country',catalogVersion:data.version}};
+  // A direct-country request starts a new trip. Its explicit dates and duration
+  // replace the old assessment's timing, without changing the user's profile.
+  // Validate the requested duration independently before replacing the range;
+  // the shared planner still enforces route, pace and transport constraints.
+  const quizSnapshot={...parsed.data};
+  if(req.body.numberOfDays!=null||req.body.numberOfNights!=null) {
+    const nights=resolveDuration({},req.body.numberOfDays,req.body.numberOfNights)-1;
+    quizSnapshot.minNights=nights;
+    quizSnapshot.maxNights=nights;
+  }
+  if(req.body.startDate!=null) quizSnapshot.startDate=req.body.startDate;
+  const trip={quizSnapshot,recommendations:[{destinationId:country.id,type:'country',name:country.name,country:country.name,countryCode:country.countryCode}],selectionMetadata:{source:'direct_country',catalogVersion:data.version}};
   return {country,trip,body:{...req.body,countryId:country.id}};
 }
 async function directRoute(req,res) {
