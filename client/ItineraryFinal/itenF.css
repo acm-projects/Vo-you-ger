@@ -50,14 +50,38 @@ button:focus-visible {
 }
 
 .journal-toolbar {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
   gap: 16px;
   width: 100%;
   max-width: 1400px;
   margin-bottom: 16px;
 }
+
+.journal-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 20px;
+  font-size: .75rem;
+  line-height: 20px;
+  color: var(--muted);
+}
+
+.journal-loading.is-loading::before {
+  content: '';
+  flex: 0 0 12px;
+  height: 12px;
+  border: 2px solid var(--line);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: venueLoading .8s linear infinite;
+}
+
+@keyframes venueLoading { to { transform: rotate(360deg); } }
 
 .journal-toolbar a,
 .journal-toolbar button,
@@ -842,6 +866,7 @@ button:focus-visible {
 
 /* Respect reduced-motion preferences. */
 @media (prefers-reduced-motion: reduce) {
+  .journal-loading.is-loading::before { animation: none; }
   .turning-sheet.flip-forward.flipping,
   .turning-sheet.flip-backward.flipping {
     animation-duration: .01ms;
@@ -1148,6 +1173,16 @@ button:focus-visible {
 }
 
 @media (max-width: 600px) {
+  .journal-toolbar {
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: 4px;
+  }
+
+  .journal-loading {
+    grid-row: 2;
+    grid-column: 1 / -1;
+  }
+
   .app {
     padding: 25px 12px;
   }

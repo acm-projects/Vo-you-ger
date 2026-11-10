@@ -1,0 +1,56 @@
+.country-planning {
+  min-height: 100vh;
+  background: #fbf4e8 url('/home-background-panorama.png') center / cover fixed;
+}
+
+.country-planning__main {
+  min-height: calc(100vh - 64px);
+  padding: 48px 20px;
+  display: grid;
+  place-items: start center;
+}
+
+.country-planning__card {
+  width: min(100%, 680px);
+  padding: clamp(24px, 5vw, 44px);
+  border: 1px solid #dfceb7;
+  border-radius: 22px;
+  background: #fffaf3;
+  box-shadow: 0 12px 35px rgba(70, 50, 30, .09);
+  color: #493629;
+}
+
+.country-planning__card h1 {
+  margin: 24px 0 16px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(28px, 4vw, 36px);
+  line-height: 1.25;
+}
+
+.country-planning__card p { line-height: 1.6; }
+.country-planning__back { text-decoration: underline; font-size: 14px; }
+.country-planning__fields { display: grid; grid-template-columns: 1.3fr 1fr; align-items: start; gap: 20px; margin: 28px 0 12px; }
+.country-planning__fields .arrival-date-picker > label { font-size: 14px; font-weight: 600; }
+.country-planning__fields label { display: grid; gap: 8px; font-size: 14px; font-weight: 600; }
+.country-planning__fields input {
+  min-width: 0;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccb79f;
+  border-radius: 8px;
+  background: #fff;
+  color: #34291f;
+  font: inherit;
+  font-size: 16px;
+}
+.country-planning__hint { color: #746557; font-size: 13px; }
+.country-planning__actions { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; margin-top: 28px; }
+.country-planning__card .primary-button { font: inherit; font-size: 14px; padding: 12px 20px; }
+.country-planning__secondary { padding: 8px 14px; border: 1px solid #ccb79f; border-radius: 8px; background: transparent; color: inherit; cursor: pointer; font: inherit; }
+.country-planning__error { color: #983d2c; }
+.country-planning__card :is(a, button, input):focus-visible { outline: 2px solid #8d634b; outline-offset: 3px; }
+
+@media (max-width: 480px) {
+  .country-planning__fields { grid-template-columns: 1fr; }
+  .country-planning__main { padding: 24px 12px; }
+}

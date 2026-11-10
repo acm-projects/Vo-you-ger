@@ -340,6 +340,10 @@
   margin: 0 0 20px;
 }
 
+.country-panel .country-panel__plan {
+  margin: 0 0 24px;
+}
+
 .country-panel__facts {
   margin: 0;
 }

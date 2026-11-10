@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { clearPlanningSession, itineraryUrl, loginDestination, paths, readRoute } from '../src/services/navigation.js';
+import { clearPlanningSession, countryPlanningUrl, itineraryUrl, loginDestination, paths, readRoute, safePlanningReturn, withPlanningReturn } from '../src/services/navigation.js';
 
 test('signup and unfinished assessments lead to the assessment; returning users reach the globe', () => {
   assert.equal(loginDestination({isSignup:true,firstTime:false}),paths.assessment);
@@ -33,4 +33,26 @@ test('itinerary links carry the exact returned trip identifier and reject a miss
   assert.equal(url.searchParams.get('tripId'),id);
   assert.equal(url.searchParams.has('another'),false);
   assert.throws(()=>itineraryUrl(null),/No trip was returned/);
+});
+
+test('country planning routes retain the selected country and validate its identifier', () => {
+  assert.equal(countryPlanningUrl('pt'),'/?page=plan&country=PT');
+  assert.deepEqual(readRoute('?page=plan&country=pt'),{page:'plan',mode:'recommendations',countryCode:'PT'});
+  for(const code of [null,'Portugal','PT&country=ES','']) assert.throws(()=>countryPlanningUrl(code));
+  assert.equal(readRoute('?page=plan&country=invalid').countryCode,null);
+});
+
+test('country selection survives sign-in and required assessment without permitting external redirects', () => {
+  const selected=countryPlanningUrl('ES');
+  assert.equal(loginDestination({isSignup:false,firstTime:false,returnTo:selected}),selected);
+  const assessment=loginDestination({isSignup:false,firstTime:true,returnTo:selected});
+  assert.equal(new URL(assessment,'http://localhost').pathname,paths.assessment);
+  assert.equal(new URL(assessment,'http://localhost').searchParams.get('returnTo'),selected);
+  assert.equal(loginDestination({isSignup:true,firstTime:false,returnTo:selected}),assessment);
+  assert.equal(new URL(withPlanningReturn(paths.login,selected),'http://localhost').searchParams.get('returnTo'),selected);
+  assert.equal(safePlanningReturn('/?country=es&page=plan&extra=value'),selected);
+  for(const target of ['https://evil.example/?page=plan&country=PT','//evil.example','javascript:alert(1)','/?page=loading&mode=itinerary','/?page=plan&country=PT%26other%3D1']) {
+    assert.equal(safePlanningReturn(target),null);
+    assert.equal(loginDestination({isSignup:false,firstTime:false,returnTo:target}),paths.globe);
+  }
 });

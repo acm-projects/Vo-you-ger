@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Home from "./pages/Home";
+import CountryPlanning from "./pages/CountryPlanning";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -123,6 +124,8 @@ function App() {
   }
 
   if (route.page === "trips") return <Home />;
+
+  if (route.page === "plan") return <CountryPlanning key={route.countryCode} countryCode={route.countryCode} />;
 
   if (route.page === "loading") {
     const isItinerary = route.mode === "itinerary";

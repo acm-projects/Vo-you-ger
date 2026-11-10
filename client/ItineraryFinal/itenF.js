@@ -16,6 +16,7 @@ const refreshIssues = new Map();
 const journalCover = document.getElementById("journalCover");
 const journalOpen = document.getElementById("journalOpen");
 const journalStatus = document.getElementById("journalStatus");
+const journalLoading = document.getElementById("journalLoading");
 const tripDetailsButton = document.getElementById("tripDetails");
 
 const leftPageContent = document.getElementById("leftPageContent");
@@ -139,6 +140,8 @@ function photoFailed(card, place) {
 }
 
 function showStatus(message, retry) {
+  journalLoading.textContent = '';
+  journalLoading.classList.remove('is-loading');
   journalStatus.replaceChildren();
   journalStatus.hidden = !message;
   if (!message) return;
@@ -190,9 +193,14 @@ async function loadJournal() {
 
 async function refreshDay(index) {
   const rawDay = trip.itinerary.days[index];
-  if (trip.itinerary.placesStoredAs !== 'ids_only' || refreshedDays.has(rawDay.day) || loadingDays.has(rawDay.day)) return;
+  if (trip.itinerary.placesStoredAs !== 'ids_only' || refreshedDays.has(rawDay.day)) return;
   if (!itinerary[index].places.length) { refreshedDays.add(rawDay.day); return; }
-  if (activeDayIndex === index) showStatus('Loading current venue details…');
+  if (activeDayIndex === index) {
+    showStatus('');
+    journalLoading.textContent = 'Loading venue details…';
+    journalLoading.classList.add('is-loading');
+  }
+  if (loadingDays.has(rawDay.day)) return;
   const request = getTripDayPlaces(tripId, rawDay.day);
   loadingDays.set(rawDay.day, request);
   try {

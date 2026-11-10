@@ -28,7 +28,7 @@ function response() {
   return { statusCode: 200, headers: {}, status(code) { this.statusCode = code; return this; }, json(body) { this.body = body; return this; }, setHeader(key,value) { this.headers[key]=value; } };
 }
 function fixture(days = 7, countryId = 'country-pt', quiz = {}) {
-  const outline = outlines.buildOutline({ countryId, numberOfDays: days, startDate: '2027-06-05', quiz });
+  const outline = outlines.buildOutline({ countryId, numberOfDays: days, startDate: quiz.startDate ?? '2027-06-05', quiz });
   const schedule = itineraries.buildSchedule(outline, outline.startDate);
   const discovered = outline.stops.map(stop => {
     const base = catalog.baseById.get(stop.destinationId);
@@ -161,6 +161,80 @@ describe('Direct-country endpoints',()=>{
     mock.method(trips,'createTrip',()=>assert.fail('Preview cannot write'));
     const req=request(),res=response();await direct.directRoute(req,res);
     assert.equal(res.statusCode,200);assert.deepEqual(res.body.outline,outlines.buildOutline({countryId:'country-pt',quiz,startDate:'2027-06-05',numberOfNights:6}));
+  });
+  it('uses the new trip length and arrival date instead of the saved assessment range',async()=>{
+    const quiz={minNights:6,maxNights:6,startDate:'2027-06-05',visaWillingness:true,travelAlterEgo:'Foodie',seeAllOrDeeply:'seeAll',intercityTransportModes:['train','car','bus','plane','ferry']};
+    const original=structuredClone(quiz);
+    mock.method(users,'findUserById',async()=>({quizResponse:quiz}));
+    mock.method(trips,'createTrip',()=>assert.fail('Preview cannot write'));
+    const cases=[['AR',{numberOfNights:4},5],['PT',{numberOfNights:9},10],['PT',{numberOfDays:5},5],['PT',{numberOfNights:0},1]];
+    for(const [countryCode,duration,days] of cases) {
+      const req={user:{userId:'owner'},params:{countryCode},body:{startDate:'2027-03-10',...duration}};
+      const res=response();await direct.directRoute(req,res);
+      assert.equal(res.statusCode,200,JSON.stringify(res.body));
+      const outline=res.body.outline;
+      assert.equal(outline.numberOfDays,days);assert.equal(outline.numberOfNights,days-1);
+      assert.equal(outline.startDate,'2027-03-10');assert.equal(outline.countryCode,countryCode);
+      assert.equal(outline.stops.reduce((sum,stop)=>sum+stop.nights,0),days-1);
+      assert.equal(outlines.validateOutline(outline,{...quiz,minNights:days-1,maxNights:days-1,startDate:'2027-03-10'}),outline);
+    }
+    assert.deepEqual(quiz,original,'Planning a new trip must not change the saved assessment');
+    const res=response();await direct.directRoute({user:{userId:'owner'},params:{countryCode:'PT'},body:{}},res);
+    assert.equal(res.statusCode,200);assert.equal(res.body.outline.numberOfNights,6);assert.equal(res.body.outline.startDate,original.startDate);
+  });
+  it('generates and persists the same overridden timing and preferences used by preview',async()=>{
+    const quiz={minNights:9,maxNights:12,startDate:'2027-06-05',visaWillingness:true,travelAlterEgo:'Historian',dietaryRestrictions:['Vegetarian'],seeAllOrDeeply:'deeply'};
+    const original=structuredClone(quiz);
+    const effective={...quiz,minNights:4,maxNights:4,startDate:'2027-03-10'};
+    mock.method(users,'findUserById',async()=>({quizResponse:quiz}));
+    const req={user:{userId:'owner'},params:{countryCode:'AR'},body:{startDate:effective.startDate,numberOfNights:4}};
+    const preview=response();await direct.directRoute(req,preview);assert.equal(preview.statusCode,200);
+    const f=fixture(5,'country-ar',effective);
+    const generated=itineraries.validateAndEnrich(f.data,f.outline,f.schedule,f.discovered,effective);
+    let generations=0,writes=0;
+    mock.method(itineraries,'generateCountryItinerary',async({outline,quiz:received,startDate})=>{
+      generations++;assert.deepEqual(outline,preview.body.outline);assert.deepEqual(received,effective);assert.equal(startDate,effective.startDate);
+      assert.deepEqual(generated.outline,outline);
+      return {itinerary:generated,model:'mock'};
+    });
+    mock.method(trips,'createTrip',async(id,input)=>{
+      writes++;assert.equal(id,'owner');assert.deepEqual(input.quiz,effective);
+      assert.deepEqual(input.itinerary.outline,preview.body.outline);
+      return {tripId:'new-trip',quizSnapshot:input.quiz,itinerary:input.itinerary};
+    });
+    const res=response();await direct.directItinerary(req,res);
+    assert.equal(res.statusCode,200,JSON.stringify(res.body));assert.equal(generations,1);assert.equal(writes,1);
+    assert.equal(res.body.trip.tripId,'new-trip');assert.equal(res.body.itinerary.days.length,5);
+    assert.deepEqual(quiz,original);
+  });
+  it('rejects invalid explicit timing before generation or writes and retains route restrictions',async()=>{
+    const quiz={minNights:6,maxNights:6,visaWillingness:true,seeAllOrDeeply:'seeAll'};
+    mock.method(users,'findUserById',async()=>({quizResponse:quiz}));
+    mock.method(itineraries,'generateCountryItinerary',()=>assert.fail('Invalid requests cannot generate'));
+    mock.method(trips,'createTrip',()=>assert.fail('Invalid requests cannot write'));
+    for(const duration of [{numberOfNights:-1},{numberOfNights:21},{numberOfNights:4.5},{numberOfNights:'4'},{numberOfDays:0},{numberOfDays:22},{numberOfDays:5,numberOfNights:5}]) {
+      for(const handler of [direct.directRoute,direct.directItinerary]) {
+        const req=request();req.body={startDate:'2027-03-10',...duration};
+        const res=response();await handler(req,res);
+        assert.equal(res.statusCode,400);assert.equal(res.body.code,'INVALID_DURATION');
+      }
+    }
+    const req=request();req.body={startDate:'2027-02-30',numberOfNights:4};
+    const invalid=response();await direct.directItinerary(req,invalid);assert.equal(invalid.statusCode,400);
+    // Latvia has one reviewed base: a longer variety trip still cannot pass.
+    req.params.countryCode='LV';req.body={startDate:'2027-03-10',numberOfNights:13};
+    const infeasible=response();await direct.directItinerary(req,infeasible);assert.equal(infeasible.statusCode,422);assert.equal(infeasible.body.code,'NO_FEASIBLE_ROUTE');
+    // Recommendation-based drafts continue to enforce the assessment's range.
+    const {outlineForTrip}=require('../controllers/countryTripController');
+    assert.throws(()=>outlineForTrip({quizSnapshot:quiz,recommendations:[{type:'country',destinationId:'country-ar'}]},{countryId:'country-ar',numberOfNights:4,startDate:'2027-03-10'}),error=>error.code==='INVALID_DURATION');
+  });
+  it('still rejects a country that is not visa-free when overriding the duration',async()=>{
+    mock.method(users,'findUserById',async()=>({nationalities:['US'],quizResponse:{minNights:9,maxNights:9,visaWillingness:false}}));
+    mock.method(visa,'getVisaFreeCountries',async()=>new Set(['PT']));
+    mock.method(itineraries,'generateCountryItinerary',()=>assert.fail('Visa restrictions cannot be bypassed'));
+    mock.method(trips,'createTrip',()=>assert.fail('Visa-ineligible requests cannot write'));
+    const req=request();req.params.countryCode='AR';req.body.numberOfNights=4;
+    const res=response();await direct.directItinerary(req,res);assert.equal(res.statusCode,422);assert.equal(res.body.code,'VISA_INELIGIBLE');
   });
   it('rejects missing assessments, invalid duration, unavailable countries and visa uncertainty',async()=>{
     mock.method(users,'findUserById',async()=>({}));
