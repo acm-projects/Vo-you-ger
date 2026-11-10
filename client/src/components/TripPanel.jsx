@@ -57,7 +57,7 @@ export default function TripPanel({ trip, onClose }) {
       </p>
       <p>{trip.description || trip.title || "Open your saved itinerary to see the full plan."}</p>
       {trip.pinSource === "country" && <p className="country-panel__footnote">This older trip is shown at the country location because its starting-city coordinates are unavailable.</p>}
-      <a className="saved-trip-panel__open" href={itineraryUrl(trip.tripId)}>View itinerary</a>
+      <a className="saved-trip-panel__open" href={itineraryUrl(trip.tripId)}>View my itinerary</a>
     </article>
   );
 }

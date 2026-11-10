@@ -98,6 +98,11 @@ describe('Planning HTTP contract',()=>{
   mock.method(docClient,'send',async command=>{
    const input=command.input,name=command.constructor.name;
    if(name==='PutCommand') {rows.set(`${input.Item.PK}/${input.Item.SK}`,structuredClone(input.Item));return {};}
+   if(name==='QueryCommand') {
+    assert.equal(input.ConsistentRead,true);
+    assert.equal(input.ExpressionAttributeValues[':saved'],true);
+    return {Items:[...rows.values()].filter(row=>row.PK===input.ExpressionAttributeValues[':pk']&&row.isSaved===true).map(row=>structuredClone(row))};
+   }
    const key=`${input.Key.PK}/${input.Key.SK}`,row=rows.get(key);
    if(name==='GetCommand')return {Item:row&&structuredClone(row)};
    if(name==='UpdateCommand') {
@@ -111,8 +116,24 @@ describe('Planning HTTP contract',()=>{
   assert.equal(generated.status,200);assert.equal(generated.body.itinerary.days[0].morning[0].placeName,'Fresh provider name');
   const id=generated.body.trip.tripId;assert.equal(generated.body.trip.PK,undefined);
   assert.equal(generated.body.trip.itinerary.placesStoredAs,'ids_only');assert.equal(rows.size,1);
+  const beforeSave=await request('GET','/api/trips/globe',undefined,token);
+  assert.equal(beforeSave.status,200);assert.equal(beforeSave.body.tripCount,0);
   const saved=await request('PUT',`/api/trips/${id}/save`,{},token);
   assert.equal(saved.status,200);assert.equal(saved.body.trip.isSaved,true);
+  const globe=await request('GET','/api/trips/globe',undefined,token);
+  assert.equal(globe.status,200);assert.equal(globe.body.tripCount,1);
+  const pin=globe.body.countries[0].trips[0];
+  assert.equal(pin.tripId,id);assert.equal(pin.countryCode,'PT');
+  assert.equal(pin.startCity,generated.body.itinerary.outline.stops[0].name);
+  const firstBase=data.baseById.get(generated.body.itinerary.outline.stops[0].destinationId);
+  assert.deepEqual(pin.pin,{lat:firstBase.lat,lng:firstBase.lng});
+  assert.equal(pin.PK,undefined);
+  const savedAgain=await request('PUT',`/api/trips/${id}/save`,{},token);
+  assert.equal(savedAgain.status,200);assert.equal(savedAgain.body.trip.savedAt,saved.body.trip.savedAt);assert.equal(rows.size,1);
+  const other=generateToken({id:'other-account'});
+  assert.equal((await request('GET','/api/trips/globe',undefined,other)).body.tripCount,0);
+  assert.equal((await request('PUT',`/api/trips/${id}/save`,{},other)).status,404);
+  assert.equal((await request('GET',`/api/trips/${id}`,undefined,other)).status,404);
   const original=JSON.stringify(saved.body.trip.itinerary);
   const reopened=await request('GET',`/api/trips/${id}`,undefined,token);
   assert.equal(reopened.status,200);assert.equal(reopened.body.trip.itinerary.days[0].morning[0].placeName,undefined);
@@ -175,7 +196,7 @@ describe('Planning HTTP contract',()=>{
    assert.equal(generated.body.itinerary.narrativeSource,source);
    if(source!=='deterministic_fallback')assert.ok(row.generatedBy);
    else assert.equal(row.generatedBy,null,'Old Gemini attribution must be cleared');
-   assert.equal(googleCalls,6);assert.equal(geminiCalls,['valid','configuration-rejected'].includes(failure)?1:2);
+   assert.equal(googleCalls,6);assert.equal(geminiCalls,['valid','configuration-rejected'].includes(failure)?1:Math.min(new Set(require('../services/llmclient').MODELS).size,require('../config/tripPolicy').TRIP_POLICY.geminiMaxAttempts));
    const saved=await request('PUT','/api/trips/draft/save',{},token);assert.equal(saved.status,200);
    const reopened=await request('GET','/api/trips/draft',undefined,token);assert.equal(reopened.status,200);
    assert.equal(reopened.body.trip.isSaved,true);assert.equal(reopened.body.trip.itinerary.days.length,7);

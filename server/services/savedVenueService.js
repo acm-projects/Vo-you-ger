@@ -33,9 +33,13 @@ async function refreshDay(trip,dayNumber) {
     }
     const line=place.openingHours?.find(text=>text.toLowerCase().startsWith(`${day.dayOfWeek?.toLowerCase()}:`));
     return {...place,placeName:place.name,hoursToday:line?line.slice(line.indexOf(':')+1).trim():null,
-      photo:require('./activityPhotoService').activityPhoto(place),attributions:raw.attributions||[]};
+      photo:null,fallbackPhoto:require('./activityPhotoService').activityPhoto(place),attributions:raw.attributions||[],photoDetails:raw};
   });
   if(places.some(a=>places.some(b=>distanceKm(a,b)>TRIP_POLICY.maxDailyActivitySpreadKm))) throw apiError('VENUE_NO_LONGER_ELIGIBLE','The refreshed venues are too far apart for this day. Generate a new itinerary.',502);
+  await mapLimit(places,TRIP_POLICY.placesConcurrency,async place=>{
+    place.photo=await google.getPlacePhoto(place.photoDetails)||place.fallbackPhoto;
+    delete place.photoDetails;
+  });
   const grouped=Object.fromEntries(['attractions','food','experiences'].map(category=>[category,places.filter(place=>place.category===category)]));
   return {day:dayNumber,places,recommendedNeighborhoods:excursion?[]:recommendStayAreas(locationId,grouped),attribution:{provider:'Google Maps',requiresDisplay:true},persisted:false};
 }

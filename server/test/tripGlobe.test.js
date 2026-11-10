@@ -79,6 +79,7 @@ describe("Saved trips for the globe", () => {
     let calls = 0;
     docClient.send = async (command) => {
       assert.equal(command.constructor.name, "QueryCommand");
+      assert.equal(command.input.ConsistentRead,true);
       assert.equal(command.input.ExpressionAttributeValues[":pk"], "USER#owner");
       assert.equal(command.input.ExpressionAttributeValues[":saved"], true);
       assert.ok(command.input.FilterExpression);

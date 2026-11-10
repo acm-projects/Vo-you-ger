@@ -1,5 +1,6 @@
-import { getTrip, getTripDayPlaces } from "../src/services/api.js";
+import { getTrip, getTripDayPlaces, saveTrip } from "../src/services/api.js";
 import { journalTrip, journalDay, dayNotes, detailText, venueRefreshIssue } from "../src/services/journalItinerary.js";
+import { paths } from "../src/services/navigation.js";
 
 let itinerary = [];
 let trip = null;
@@ -18,6 +19,8 @@ const journalOpen = document.getElementById("journalOpen");
 const journalStatus = document.getElementById("journalStatus");
 const journalLoading = document.getElementById("journalLoading");
 const tripDetailsButton = document.getElementById("tripDetails");
+const saveTripButton = document.getElementById("saveTrip");
+const journalSaveStatus = document.getElementById("journalSaveStatus");
 
 const leftPageContent = document.getElementById("leftPageContent");
 const rightPageContent = document.getElementById("rightPageContent");
@@ -53,6 +56,7 @@ const detailsDone = document.getElementById("detailsDone");
 let activeDayIndex = 0;
 let isFlipping = false;
 let lastFocusedElement = null;
+let savingTrip = false;
 
 
 /* =========================================
@@ -95,7 +99,16 @@ function photoCredit(card, place) {
     source.className = 'google-maps-attribution'; source.setAttribute('translate','no');
     credit.append(source);
   }
-  if (!place.image || place.photo?.provider !== 'unsplash') return;
+  if (!place.image) return;
+  if (place.photo?.provider === 'google_places') {
+    for (const author of place.photo.authorAttributions || []) {
+      if (!author.displayName) continue;
+      credit.append(document.createElement('br'), document.createTextNode('Photo by '),
+        webURL(author.uri) ? link(author.displayName, author.uri) : document.createTextNode(author.displayName));
+    }
+    return;
+  }
+  if (place.photo?.provider !== 'unsplash') return;
   if (credit.childNodes.length) credit.append(document.createElement('br'));
   const caption = document.createElement('span');
   caption.className = 'photo-illustration'; caption.textContent = 'Illustrative photo';
@@ -122,6 +135,12 @@ function showCardPhoto(card, place) {
 }
 
 function photoFailed(card, place) {
+  if (place.photo?.provider === 'google_places' && webURL(place.fallbackPhoto?.url)) {
+    place.photo = place.fallbackPhoto;
+    place.image = place.photo.url;
+    showCardPhoto(card, place);
+    return;
+  }
   place.image = '';
   const frame = card.querySelector('.scrap-photo');
   frame.querySelector('img')?.remove();
@@ -137,6 +156,42 @@ function photoFailed(card, place) {
   }
   frame.prepend(placeholder);
   photoCredit(card, place);
+}
+
+function renderSaveButton() {
+  const saved = trip?.isSaved === true;
+  saveTripButton.disabled = !trip?.itinerary || savingTrip || saved;
+  saveTripButton.textContent = savingTrip ? 'Saving…' : saved ? 'Saved to globe' : 'Save trip';
+  saveTripButton.setAttribute('aria-busy', String(savingTrip));
+}
+
+function saveNotice(message, {error = false, link, label} = {}) {
+  journalSaveStatus.textContent = message;
+  journalSaveStatus.dataset.error = String(error);
+  if (link) {
+    const anchor = document.createElement('a');
+    anchor.href = link; anchor.textContent = label;
+    journalSaveStatus.appendChild(anchor);
+  }
+}
+
+async function saveCurrentTrip() {
+  if (!trip?.itinerary || !tripId || savingTrip || trip.isSaved === true) return;
+  savingTrip = true; renderSaveButton(); saveNotice('');
+  try {
+    const {data} = await saveTrip(tripId);
+    if (data.trip?.tripId !== tripId || data.trip.isSaved !== true) throw new Error('Save was not confirmed');
+    // Keep the currently displayed itinerary and refreshed venue facts intact.
+    trip.isSaved = true; trip.savedAt = data.trip.savedAt;
+    saveNotice('Saved to your account.', {link: paths.globe, label: 'View my globe'});
+  } catch (error) {
+    const status = error.response?.status;
+    if (status === 401 || status === 403) {
+      saveNotice('Sign in again to save this trip.', {error: true, link: paths.login, label: 'Sign in'});
+    } else {
+      saveNotice(status === 404 ? 'This trip was not found in your account.' : "Couldn't save this trip. Please try again.", {error: true});
+    }
+  } finally { savingTrip = false; renderSaveButton(); }
 }
 
 function showStatus(message, retry) {
@@ -173,6 +228,8 @@ async function loadJournal() {
     document.getElementById('coverPrompt').textContent = 'Open my journal';
     journalCover.disabled = false;
     tripDetailsButton.disabled = false;
+    renderSaveButton();
+    if (trip.isSaved === true) saveNotice('Saved to your account.', {link: paths.globe, label: 'View my globe'});
     showStatus('');
   } catch (error) {
     journalCover.classList.add('hidden');
@@ -656,6 +713,7 @@ function openJournal() {
 
 journalCover.addEventListener("click", openJournal);
 tripDetailsButton.addEventListener('click', openTripDetails);
+saveTripButton.addEventListener('click', saveCurrentTrip);
 
 previousDayButton.addEventListener("click", () => {
   flipToDay(activeDayIndex - 1);

@@ -82,6 +82,30 @@ describe('Shared Unsplash activity illustrations',()=>{
     assert.equal(res.body.trip.PK,undefined);
     assert.equal(res.body.trip.itinerary.days[0].morning[0].photo.illustrative,true);
   });
+  it('prefers a fresh Google photo and keeps the Unsplash fallback without changing saved records',async()=>{
+    const {buildOutline}=require('../services/tripOutlineService');
+    const data=require('../services/planningDataService');
+    const outline=buildOutline({countryId:'country-pt',numberOfDays:1,startDate:'2027-06-05',quiz:{}});
+    const stop=outline.stops[0],base=data.baseById.get(stop.destinationId);
+    const trip={itinerary:{schemaVersion:2,outline,days:[{day:1,stopId:stop.stopId,morning:[{placeId:'saved-park',category:'attractions'}],afternoon:[],evening:[]}]}};
+    const original=structuredClone(trip);
+    mock.method(docClient,'send',()=>assert.fail('Photo refresh cannot write saved records'));
+    mock.method(google,'getPlaceDetails',async id=>({id,displayName:{text:'Verified park'},types:['park'],
+      location:{latitude:base.lat,longitude:base.lng},addressComponents:[{types:['country'],shortText:'PT'}],
+      photos:[{name:`places/${id}/photos/fresh`,authorAttributions:[{displayName:'Photographer'}]}]}));
+    const image={provider:'google_places',url:'https://lh3.googleusercontent.com/park',illustrative:false,authorAttributions:[{displayName:'Photographer'}]};
+    const photo=mock.method(google,'getPlacePhoto',async raw=>{assert.equal(raw.id,'saved-park');return image;});
+    const {refreshDay}=require('../services/savedVenueService');
+    const result=await refreshDay(trip,1);
+    assert.equal(photo.mock.callCount(),1);assert.deepEqual(result.places[0].photo,image);
+    assert.equal(result.places[0].fallbackPhoto.provider,'unsplash');
+    assert.equal(result.places[0].fallbackPhoto.subject,'Park');
+    assert.equal(result.places[0].photoDetails,undefined);assert.deepEqual(trip,original);
+    photo.mock.mockImplementation(async()=>null);
+    const fallback=await refreshDay(trip,1);
+    assert.equal(fallback.places[0].placeName,'Verified park');
+    assert.equal(fallback.places[0].photo.provider,'unsplash');assert.equal(fallback.places[0].photo.illustrative,true);
+  });
   it('keeps illustrations out of stored itinerary records',()=>{
     const {buildOutline}=require('../services/tripOutlineService');
     const {buildSchedule}=require('../services/countryItineraryService');

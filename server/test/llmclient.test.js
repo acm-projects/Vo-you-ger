@@ -17,6 +17,82 @@ function result(text='{"ok":true}') {
 }
 
 describe('Gemini SDK request controls',()=>{
+ it('tries four distinct models and stops at the first fully valid structured response',async()=>{
+  const llm=fresh('gemini-3.1-flash-lite,gemini-2.5-flash-lite,gemini-2.5-flash,gemini-3.5-flash-lite,gemini-3.8-flash'),seen=[];
+  mock.method(console,'warn',()=>{});
+  mock.method(global,'fetch',async url=>{
+   seen.push(String(url));
+   if(seen.length===1)return new Response('{"error":{"code":503}}',{status:503});
+   if(seen.length===2)return new Response('{"error":{"code":404}}',{status:404});
+   if(seen.length===3)return new Response('{"error":{"code":403,"message":"You do not have access to this model"}}',{status:403});
+   return result();
+  });
+  const schema=z.object({ok:z.literal(true)});
+  const output=await llm.generateStructured({prompt:'Test',jsonSchema:z.toJSONSchema(schema),zodSchema:schema,operation:'itinerary'});
+  assert.equal(output.model,'gemini-3.5-flash-lite');assert.equal(output.data.ok,true);assert.equal(seen.length,4);
+  assert.deepEqual(output.diagnostics.map(d=>d.reason),['provider_unavailable','model_unavailable','model_access_denied']);
+  assert.equal(new Set(seen).size,4);
+ });
+ it('bounds four timeouts by one shared deadline and a per-model ceiling',async()=>{
+  const llm=fresh('model-a,model-b,model-c,model-d,model-e');
+  const budgets=[];let now=100000,calls=0;
+  mock.method(Date,'now',()=>now);mock.method(console,'warn',()=>{});
+  const originalTimeout=AbortSignal.timeout.bind(AbortSignal);
+  mock.method(AbortSignal,'timeout',ms=>{budgets.push(ms);return originalTimeout(ms);});
+  mock.method(global,'fetch',async()=>{calls++;now+=budgets.at(-1);throw new DOMException('Timeout','AbortError');});
+  await assert.rejects(llm.generateWithFallback('Test',{}, {timeoutMs:60000,maxAttempts:100}),error=>error.code==='GEMINI_TIMEOUT'&&error.diagnostics.length===4);
+  assert.equal(calls,4);assert.deepEqual(budgets,[15000,15000,15000,15000]);assert.equal(now,160000);
+ });
+ it('reuses a validated winner without replaying failing models or accepting invalid HTTP 200 content',async()=>{
+  const llm=fresh('model-a,model-b,model-c'),seen=[];
+  mock.method(console,'warn',()=>{});
+  mock.method(global,'fetch',async url=>{seen.push(String(url));return result(String(url).includes('model-a')?'not JSON':'{"ok":true}');});
+  const schema=z.object({ok:z.literal(true)}),request={prompt:'Test',jsonSchema:z.toJSONSchema(schema),zodSchema:schema,operation:'itinerary'};
+  assert.equal((await llm.generateStructured(request)).model,'model-b');
+  assert.equal((await llm.generateStructured(request)).model,'model-b');
+  assert.equal(seen.length,3);assert.ok(seen[2].includes('model-b'));
+ });
+ it('keeps winner preference scoped to the operation and clears model health when the key changes',async()=>{
+  const llm=fresh('model-a,model-b'),seen=[];
+  mock.method(console,'warn',()=>{});
+  mock.method(global,'fetch',async url=>{seen.push(String(url));return seen.length===1?new Response('{"error":{"code":503}}',{status:503}):result();});
+  assert.equal((await llm.generateWithFallback('Test',{}, {operation:'itinerary'})).model,'model-b');
+  assert.equal((await llm.generateWithFallback('Test',{}, {operation:'itinerary'})).model,'model-b');
+  assert.equal((await llm.generateWithFallback('Test',{}, {operation:'recommendations'})).model,'model-a');
+  process.env.GEMINI_API_KEY='different-mock-key';
+  assert.equal((await llm.generateWithFallback('Test',{}, {operation:'itinerary'})).model,'model-a');
+  assert.equal(seen.length,5);
+ });
+ it('falls back from a model-specific schema capability error while enforcing local validation',async()=>{
+  const llm=fresh('model-a,model-b');let calls=0;
+  mock.method(console,'warn',()=>{});
+  mock.method(global,'fetch',async()=>++calls===1?new Response('{"error":{"code":400,"message":"Response schema not supported by this model"}}',{status:400}):result());
+  const schema=z.object({ok:z.literal(true)});
+  const output=await llm.generateStructured({prompt:'Test',jsonSchema:z.toJSONSchema(schema),zodSchema:schema});
+  assert.equal(output.model,'model-b');assert.equal(output.diagnostics[0].reason,'model_incompatible');assert.equal(calls,2);
+ });
+ it('passes caller-supplied correction feedback to the next model within the same request budget',async()=>{
+  const llm=fresh('model-a,model-b');let calls=0;
+  mock.method(console,'warn',()=>{});
+  mock.method(global,'fetch',async(_url,init)=>{
+   calls++;
+   if(calls===2)assert.match(JSON.stringify(JSON.parse(init.body).contents),/repair.*ok/);
+   return result(calls===1?'{"ok":false}':'{"ok":true}');
+  });
+  const schema=z.object({ok:z.boolean()});
+  const output=await llm.generateStructured({prompt:'Test',jsonSchema:z.toJSONSchema(schema),zodSchema:schema,
+   validateResponse:data=>data.ok===true,onInvalidResponse:()=>({rule:'CONTENT_MISMATCH',repair:['ok']})});
+  assert.equal(output.data.ok,true);assert.equal(calls,2);
+ });
+ for(const model of ['gemini-3.1-flash-lite','gemini-2.5-flash-lite','gemini-2.5-flash'])it(`uses low-latency thinking compatible with ${model}`,async()=>{
+  const llm=fresh(model);
+  mock.method(global,'fetch',async(_url,init)=>{
+   const thinking=JSON.parse(init.body).generationConfig.thinkingConfig;
+   assert.deepEqual(thinking,model.startsWith('gemini-3')?{thinkingLevel:'MINIMAL'}:{thinkingBudget:0});
+   return result();
+  });
+  assert.equal((await llm.generateWithFallback('Test')).model,model);
+ });
  it('reserves fallback time and switches models after an abort without SDK retries',async()=>{
   const llm=fresh('gemini-3.5-flash-lite,gemini-3.8-flash'),timeouts=[],urls=[];
   const originalTimeout=AbortSignal.timeout.bind(AbortSignal);
@@ -33,7 +109,7 @@ describe('Gemini SDK request controls',()=>{
   assert.ok(timeouts[0]<=15000);assert.ok(timeouts[1]>timeouts[0],'The second attempt has its own reserved time');
   assert.equal(response.diagnostics[0].reason,'request_timeout');
  });
- it('gives the fallback unused time after the observed fast 503 within the same 90-second deadline',async()=>{
+ it('switches after the observed fast 503 without giving the fallback another 87-second wait',async()=>{
   const llm=fresh('gemini-3.5-flash-lite,gemini-3.8-flash'),budgets=[],messages=[];
   let now=1000000,calls=0;
   mock.method(Date,'now',()=>now);
@@ -46,21 +122,19 @@ describe('Gemini SDK request controls',()=>{
     now+=2353;
     return new Response(JSON.stringify({error:{code:503,message:'Private provider detail'}}),{status:503});
    }
-   assert.ok(Number(new Headers(init.headers).get('x-server-timeout'))>=87);
-   // A response taking 50 seconds would miss the old 45-second cutoff.
-   assert.ok(budgets[1]>50000);
-   now+=50000;
+   assert.equal(Number(new Headers(init.headers).get('x-server-timeout')),20);
+   now+=18000;
    return result();
   });
   const response=await llm.generateWithFallback('Private traveler prompt',{}, {timeoutMs:90000});
   assert.equal(response.model,'gemini-3.8-flash');assert.equal(calls,2);
-  assert.deepEqual(budgets,[45000,87647]);
-  assert.equal(response.diagnostics[0].attemptTimeoutMs,45000);
+  assert.deepEqual(budgets,[20000,20000]);
+  assert.equal(response.diagnostics[0].attemptTimeoutMs,20000);
   assert.equal(response.diagnostics[0].elapsedMs,2353);
-  assert.equal(now,1052353);
+  assert.equal(now,1020353);
   assert.ok(!messages.join(' ').includes('Private'));
  });
- it('keeps the total deadline and two-attempt limit when both model attempts time out',async()=>{
+ it('keeps the shared deadline when both configured models time out',async()=>{
   const llm=fresh('gemini-3.5-flash-lite,gemini-3.8-flash'),budgets=[],messages=[];
   let now=1000000,calls=0;
   mock.method(Date,'now',()=>now);
@@ -68,19 +142,19 @@ describe('Gemini SDK request controls',()=>{
   const originalTimeout=AbortSignal.timeout.bind(AbortSignal);
   mock.method(AbortSignal,'timeout',ms=>{budgets.push(ms);return originalTimeout(ms);});
   mock.method(global,'fetch',async()=>{
-   calls++;now+=45000;
+   calls++;now+=15000;
    if(calls===1)throw new DOMException('Private aborted request','AbortError');
    return new Response(JSON.stringify({error:{code:504,message:'Private deadline exceeded'}}),{status:504});
   });
-  await assert.rejects(llm.generateWithFallback('Private prompt',{}, {timeoutMs:90000}),error=>{
+  await assert.rejects(llm.generateWithFallback('Private prompt',{}, {timeoutMs:30000}),error=>{
    assert.equal(error.fallbackReason,'request_timeout');
    assert.deepEqual(error.diagnostics.map(item=>item.timeoutOrigin),['client','provider']);
-   assert.deepEqual(error.diagnostics.map(item=>item.attemptTimeoutMs),[45000,45000]);
+   assert.deepEqual(error.diagnostics.map(item=>item.attemptTimeoutMs),[15000,15000]);
    return true;
   });
-  assert.equal(calls,2);assert.deepEqual(budgets,[45000,45000]);assert.equal(now,1090000);
-  assert.match(messages[0],/budget 45000ms, timeout client/);
-  assert.match(messages[1],/budget 45000ms, timeout provider/);
+  assert.equal(calls,2);assert.deepEqual(budgets,[15000,15000]);assert.equal(now,1030000);
+  assert.match(messages[0],/budget 15000ms, timeout client/);
+  assert.match(messages[1],/budget 15000ms, timeout provider/);
   assert.ok(!messages.join(' ').includes('Private'));
  });
  for(const mode of ['abort','504'])it(`does not let a short ${mode} timeout suppress the next longer request`,async()=>{
@@ -104,7 +178,7 @@ describe('Gemini SDK request controls',()=>{
   await assert.rejects(llm.generateWithFallback('Private prompt'),error=>error.code==='GEMINI_COOLDOWN'&&error.fallbackReason==='cooldown_skipped'&&error.diagnostics[0].previousReason==='rate_limited');
   assert.equal(calls,1);assert.ok(!messages.join(' ').includes('Private'));
  });
- it('tries a different model immediately after overload within the two-attempt cap',async()=>{
+ it('tries the second configured model immediately after overload',async()=>{
   const llm=fresh('gemini-3.5-flash-lite,gemini-3.8-flash'),urls=[];
   mock.method(console,'warn',()=>{});
   mock.method(global,'fetch',async url=>{urls.push(String(url));return urls.length===1?new Response(JSON.stringify({error:{code:503,message:'Unavailable'}}),{status:503}):result();});
@@ -182,7 +256,7 @@ describe('Gemini SDK request controls',()=>{
   const llm=fresh();const messages=[];
   mock.method(console,'warn',message=>messages.push(message));
   mock.method(global,'fetch',async()=>new Response(JSON.stringify({error:{code:400,message:'Invalid response schema, private@example.test',status:'INVALID_ARGUMENT'}}),{status:400}));
-  await assert.rejects(llm.generateWithFallback('Test',{}, {maxAttempts:1}),error=>error.code==='GEMINI_CONFIGURATION'&&error.providerStatus===400&&error.providerCategory==='SCHEMA_CONFIG');
+  await assert.rejects(llm.generateWithFallback('Test',{}, {maxAttempts:1}),error=>error.code==='GEMINI_MODEL_INCOMPATIBLE'&&error.diagnostics[0].category==='SCHEMA_CONFIG');
   assert.match(messages.join(' '),/SCHEMA_CONFIG/);assert.ok(!messages.join(' ').includes('private@example.test'));
  });
  for (const fixture of [
@@ -240,7 +314,7 @@ describe('Gemini SDK request controls',()=>{
   assert.ok(budgets[0]<=15000);assert.ok(budgets[1]>budgets[0]);
   assert.ok(!logs.join(' ').includes('Private'));
  });
- it('does not cool down models after invalid JSON and never exceeds two attempts',async()=>{
+ it('does not cool down invalid JSON and attempts each of the two configured models once',async()=>{
   const llm=fresh('gemini-3.5-flash-lite,gemini-3.8-flash');let calls=0;
   mock.method(console,'warn',()=>{});mock.method(global,'fetch',async()=>{calls++;return result('invalid');});
   const schema=z.object({ok:z.boolean()}),request={prompt:'Test',jsonSchema:z.toJSONSchema(schema),zodSchema:schema};

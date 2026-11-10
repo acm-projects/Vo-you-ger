@@ -13,7 +13,11 @@
     <nav class="journal-toolbar" aria-label="Trip navigation">
       <a href="/?page=trips">Back to your globe</a>
       <span id="journalLoading" class="journal-loading" role="status"></span>
-      <button id="tripDetails" type="button" disabled>Trip details</button>
+      <div class="journal-toolbar__actions">
+        <button id="saveTrip" class="journal-save" type="button" disabled>Save trip</button>
+        <button id="tripDetails" type="button" disabled>Trip details</button>
+      </div>
+      <p id="journalSaveStatus" class="journal-save-status" role="status" aria-live="polite" aria-atomic="true"></p>
     </nav>
     <section id="journalStatus" class="journal-status" role="status">Loading your itinerary…</section>
 

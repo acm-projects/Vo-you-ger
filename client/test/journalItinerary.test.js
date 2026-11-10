@@ -83,6 +83,17 @@ test('arrival, transfer, departure and day-trip notes preserve reserved time and
   assert.equal(journalDay({day:4,type:'departure',morning:[]},3).places.length,0);
 });
 
+test('fresh Google photos replace illustrations while retaining an Unsplash fallback and saved text',()=>{
+  const fallback={provider:'unsplash',url:'https://images.unsplash.com/illustration',illustrative:true};
+  const photo={provider:'google_places',url:'https://lh3.googleusercontent.com/actual-venue',illustrative:false,authorAttributions:[{displayName:'Photographer'}]};
+  const raw={morning:[{placeId:'venue',photo:fallback,activityDescription:'Saved visit',travelTip:'Saved tip'}]};
+  const result=journalDay(raw,0,[{placeId:'venue',placeName:'Verified venue',photo,fallbackPhoto:fallback}]).places[0];
+  assert.deepEqual(result.photo,photo);assert.equal(result.image,photo.url);
+  assert.deepEqual(result.fallbackPhoto,fallback);
+  assert.equal(result.activityDescription,'Saved visit');assert.equal(result.travelTip,'Saved tip');
+  assert.equal(raw.morning[0].photo,fallback);
+});
+
 test('legacy activity lists remain readable and invalid dates do not crash the page', () => {
   const day = journalDay({city:'Rome',activities:[{name:'A recorded visit',description:'Original description'}]},0);
   assert.equal(day.city,'Rome');
