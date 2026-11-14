@@ -1,4 +1,6 @@
 
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
 :root {
     /* Backgrounds & Surfaces */
     --bg-paper: #f4f1ea;
@@ -32,12 +34,13 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+    font-family: 'DM Sans', sans-serif;
     box-sizing: border-box;
 }
 
 html {
     min-height: 100%;
+    font-family: 'DM Sans', sans-serif;
 }
 
 body {
@@ -91,6 +94,7 @@ body {
 /* ============================= */
 
 .app h1 {
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: 24px;
     letter-spacing: 2px;
     color: var(--text-h1);
@@ -118,14 +122,15 @@ body {
 }
 
 .quiz h2 {
-    font-size: 15px;
-    letter-spacing: 1px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 23px;
+    letter-spacing: 0;
     color: var(--text-h2);
     font-weight: 600;
-    text-transform: uppercase;
+    text-transform: none;
 
     margin-bottom: 22px;
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
 /* ============================= */
@@ -148,6 +153,7 @@ body {
 /* ============================= */
 
 .btn {
+    font-family: 'DM Sans', sans-serif;
     background-color: var(--card-bg);
     color: var(--text-main);
 
@@ -207,6 +213,7 @@ body {
 }
 
 .image-card-text {
+    font-family: 'DM Sans', sans-serif;
     font-size: 16px;
     font-weight: 600;
 
@@ -217,6 +224,7 @@ body {
 }
 
 .image-card-caption {
+    font-family: 'DM Sans', sans-serif;
     font-size: 13px;
     color: var(--text-muted);
 }
@@ -242,6 +250,7 @@ body {
 /* ============================= */
 
 .text-input-field {
+    font-family: 'DM Sans', sans-serif;
     background-color: var(--card-bg);
     color: var(--text-main);
 
@@ -280,6 +289,7 @@ body {
 }
 
 #back-btn {
+    font-family: 'DM Sans', sans-serif;
     background: transparent;
     color: var(--primary);
 
@@ -303,6 +313,7 @@ body {
 }
 
 #next-btn {
+    font-family: 'DM Sans', sans-serif;
     background: var(--primary);
     color: var(--text-white);
 
@@ -350,6 +361,7 @@ body {
 /* ============================= */
 
 .not-sure-divider {
+    font-family: 'DM Sans', sans-serif;
     text-align: center;
     margin: 15px 0 10px;
 
@@ -361,6 +373,7 @@ body {
 }
 
 .not-sure-btn {
+    font-family: 'DM Sans', sans-serif;
     background-color: var(--card-bg);
     color: var(--primary);
 
@@ -414,7 +427,9 @@ body {
 }
 
 /* Individual country tags */
+
 .country-tag {
+    font-family: 'DM Sans', sans-serif;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -576,6 +591,7 @@ body {
 /* Dropdown header */
 
 .dropdown-trigger {
+    font-family: 'DM Sans', sans-serif;
     width: 100%;
 
     background: var(--card-bg);
@@ -619,6 +635,7 @@ body {
 /* Individual options */
 
 .dropdown-option {
+    font-family: 'DM Sans', sans-serif;
     background: var(--card-bg);
     color: var(--text-main);
 
@@ -643,8 +660,6 @@ body {
     font-weight: 600;
 }
 
-
-
 /* ================================= */
 /* VINTAGE FLIGHT PATH PROGRESS */
 /* ================================= */
@@ -654,6 +669,7 @@ body {
 }
 
 .progress-label {
+    font-family: 'DM Sans', sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: baseline;
@@ -678,6 +694,7 @@ body {
 }
 
 /* Background dotted flight path */
+
 .progress-track::before {
     content: "";
     position: absolute;
@@ -688,6 +705,7 @@ body {
 }
 
 /* Completed flight path */
+
 #progress-fill {
     position: absolute;
     left: 0;
@@ -699,6 +717,7 @@ body {
 }
 
 /* Airplane */
+
 #progress-plane {
     position: absolute;
     left: 0%;
@@ -712,6 +731,7 @@ body {
 }
 
 /* Milestone markers */
+
 .route-marker {
     position: absolute;
     top: 10px;
@@ -741,12 +761,12 @@ body {
     left: 100%;
 }
 
-/* Completed milestones */
 .route-marker.completed {
     background: var(--primary);
 }
 
 /* Airplane milestone colors */
+
 #progress-plane.milestone-25 {
     color: #80604a;
 }
@@ -762,75 +782,6 @@ body {
 #progress-plane.milestone-100 {
     color: #432e24;
 }
-
-
-/* Milestone markers */
-
-.route-marker {
-    position: absolute;
-
-    top: 10px;
-
-    width: 9px;
-    height: 9px;
-
-    border-radius: 50%;
-
-    background: #c9bba8;
-    border: 2px solid var(--card-bg);
-
-    transform: translateX(-50%);
-
-    z-index: 1;
-
-    transition: background 0.3s ease;
-}
-
-.marker-25 {
-    left: 25%;
-}
-
-.marker-50 {
-    left: 50%;
-}
-
-.marker-75 {
-    left: 75%;
-}
-
-.marker-100 {
-    left: 100%;
-}
-
-/* Completed milestones */
-
-.route-marker.completed {
-    background: var(--primary);
-}
-
-/* Airplane default color */
-#progress-plane {
-    color: #c9bba8;
-    transition: left 0.7s ease, color 0.3s ease;
-}
-
-/* Airplane changes color after crossing a milestone */
-#progress-plane.milestone-25 {
-    color: #80604a;
-}
-
-#progress-plane.milestone-50 {
-    color: #70513d;
-}
-
-#progress-plane.milestone-75 {
-    color: #5c4033;
-}
-
-#progress-plane.milestone-100 {
-    color: #432e24;
-}
-
 
 /* ================================= */
 /* MONTH SELECTION DROPDOWN */
@@ -846,6 +797,7 @@ body {
 /* Dropdown header */
 
 .months-dropdown-header {
+    font-family: 'DM Sans', sans-serif;
     width: 100%;
     background: var(--card-bg);
     color: var(--text-main);
@@ -856,7 +808,6 @@ body {
     border-radius: 6px;
 
     font-size: 16px;
-    font-family: inherit;
     text-align: left;
 
     cursor: pointer;
@@ -895,6 +846,7 @@ body {
 /* Individual month rectangle */
 
 .month-option {
+    font-family: 'DM Sans', sans-serif;
     min-height: 51px;
 
     display: flex;
@@ -914,13 +866,9 @@ body {
     transition: background 0.2s ease;
 }
 
-/* Remove unnecessary right borders */
-
 .month-option:nth-child(3n) {
     border-right: none;
 }
-
-/* Hover effect */
 
 .month-option:hover {
     background: var(--hover-bg);
@@ -965,10 +913,38 @@ body {
         width: 15px;
         height: 15px;
     }
-
 }
 
 .image-card-caption {
     position: relative;
     top: -5px;
+}
+
+/* =========================================
+   Keeps headings serif and UI text sans-serif
+========================================= */
+
+.app h1,
+.quiz h2,
+.quiz h2 *,
+.app h1 * {
+    font-family: 'Playfair Display', Georgia, serif !important;
+}
+
+.app button,
+.app input,
+.app select,
+.app textarea,
+.app label,
+.app .btn,
+.app .image-card-text,
+.app .image-card-caption,
+.app .country-tag,
+.app .dropdown-trigger,
+.app .dropdown-option,
+.app .months-dropdown-header,
+.app .month-option,
+.app .progress-label,
+.app .not-sure-divider {
+    font-family: 'DM Sans', sans-serif !important;
 }

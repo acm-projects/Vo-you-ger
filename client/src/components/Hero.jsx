@@ -48,7 +48,7 @@ function Hero() {
             alt="Colorful Italian coastal village"
           />
         </div>
-
+        
         <div className="polaroid polaroid-front">
           <img
             className="travel-photo"

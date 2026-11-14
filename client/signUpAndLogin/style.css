@@ -660,3 +660,51 @@ body::before {
     color: white;
     transform: none;
 }
+
+
+/* =========================================
+   Fonts - Playfair Display + Georgia + DM Sans
+========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700;800&family=Caveat:wght@500;600;700&display=swap');
+
+/* Default font */
+html,
+body {
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* Main decorative heading */
+.travel-note,
+.postcard-form h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Secondary decorative text */
+.form-subtitle {
+    font-family: Georgia, serif;
+}
+
+/* General UI typography */
+.eyebrow,
+.art-caption,
+.postmark,
+#error-message,
+#form,
+#form label,
+#form input,
+#country-input,
+.country-tag,
+.country-tag button,
+#form button,
+.login-text,
+.login-text a {
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* Ensure form controls inherit the correct font */
+#form input,
+#country-input,
+#form button {
+    font-family: 'DM Sans', sans-serif;
+}

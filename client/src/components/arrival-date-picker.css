@@ -57,3 +57,4 @@
 .arrival-date-picker__footer { display: flex; justify-content: space-between; margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee2d3; }
 .arrival-date-picker__footer button { padding: 4px; border: 0; background: transparent; color: #79583f; font: 500 12px 'DM Sans', sans-serif; cursor: pointer; }
 .arrival-date-picker__error { display: block; margin-top: 8px; color: #983d2c; font-size: 12px; line-height: 1.4; }
+
