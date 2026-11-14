@@ -53,38 +53,28 @@ function HowItWorks() {
   ];
 
   return (
-    <section className="how-section" id="how-it-works">
-      <div className="section-heading">
-        <span className="section-eyebrow">HOW IT WORKS</span>
-        <h2>Your dream trip, made simple.</h2>
-        <p>
-          Answer a few quick questions, and let our AI craft a personalized
-          itinerary just for you.
-        </p>
-      </div>
+  <section className="how-section" id="how-it-works">
+    <div className="section-heading">
+      <span className="section-eyebrow">HOW IT WORKS</span>
+      <h2>Your dream trip, made simple.</h2>
+      <p>
+        Answer a few quick questions, and let our AI craft a personalized
+        itinerary just for you.
+      </p>
+    </div>
 
-      <div className="steps">
-        {steps.map((step, index) => (
-          <React.Fragment key={step.number}>
-            <article className={`step ${step.className}`}>
-              <div className="step-number">{step.number}</div>
-              <div className="step-icon">{step.icon}</div>
-              <h3>{step.title}</h3>
-              <p>{step.description}</p>
-            </article>
-            {index < steps.length - 1 && (
-              <div
-                className={`step-arrow step-arrow-${index === 0 ? "one" : "two"}`}
-                aria-hidden="true"
-              >
-                <span>→</span>
-              </div>
-            )}
-          </React.Fragment>
-        ))}
-      </div>
-    </section>
-  );
+    <div className="steps">
+      {steps.map((step) => (
+        <article className={`step ${step.className}`} key={step.number}>
+          <div className="step-number">{step.number}</div>
+          <div className="step-icon">{step.icon}</div>
+          <h3>{step.title}</h3>
+          <p>{step.description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+);
 }
 
 export default HowItWorks;

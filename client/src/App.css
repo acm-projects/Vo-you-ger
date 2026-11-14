@@ -1,5 +1,5 @@
-
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap");
 
 /* =========================
    GLOBAL
@@ -903,7 +903,7 @@ main {
   border-radius: 18px;
   background: #fffdf7;
   box-shadow: 0 12px 30px rgba(70, 55, 47, 0.12);
-  transform: rotate(-0.5deg);
+  transform: none;
   isolation: isolate;
 }
 
@@ -914,7 +914,7 @@ main {
   background: #e9dfcd;
   border: 1px solid #d8cbb5;
   border-radius: 18px;
-  transform: rotate(2deg);
+  transform: rotate(1.5deg);
   z-index: -1;
 }
 
@@ -924,7 +924,7 @@ main {
   overflow: hidden;
   background: #e5e4da;
   border-radius: 16px;
-  transform: rotate(2.5deg) translateY(-6px);
+  transform: rotate(1.5deg) translateY(-6px);
   margin: 1px;
 }
 
@@ -2082,4 +2082,1194 @@ main {
   stroke-width: 1.7;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+
+/* ==========================================
+   VOYAGER LANDING PAGE - FINAL DESIGN UPDATE
+========================================== */
+
+/* NAVBAR */
+.navbar {
+  min-height: 78px;
+  height: auto;
+  padding: 12px 7%;
+}
+
+.navbar-logo {
+  font-size: 27px;
+}
+
+.navbar-links {
+  gap: 38px;
+  font-size: 14px;
+}
+
+.sign-in-button {
+  padding: 11px 25px;
+  font-size: 14px;
+}
+
+/* HERO */
+.hero-section {
+  min-height: 0;
+  padding: 55px 8% 65px;
+  grid-template-columns: 1fr 1fr;
+  gap: 65px;
+}
+
+.hero-content {
+  max-width: 650px;
+}
+
+.hero-content h1 {
+  font-size: clamp(58px, 5.5vw, 78px);
+  line-height: 1.04;
+  letter-spacing: -2px;
+}
+
+.hero-content p {
+  max-width: 510px;
+  margin: 25px 0 30px;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.primary-button {
+  padding: 17px 32px;
+  border-radius: 35px;
+  font-size: 15px;
+  gap: 0;
+}
+
+.hero-photos {
+  height: 410px;
+}
+
+.polaroid {
+  width: 250px;
+  padding: 9px 9px 32px;
+}
+
+.travel-photo {
+  height: 285px;
+}
+
+.polaroid-back {
+  left: 32%;
+  top: 0;
+}
+
+.polaroid-front {
+  left: 4%;
+  top: 105px;
+}
+
+/* SECTION SPACING */
+.how-section {
+  padding: 55px 8% 65px;
+}
+
+.section-heading {
+  max-width: 750px;
+  margin-bottom: 38px;
+}
+
+.section-heading h2 {
+  font-size: clamp(44px, 4.5vw, 60px);
+  line-height: 1.1;
+}
+
+.section-heading p {
+  max-width: 560px;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* HOW IT WORKS - THREE LARGER CARDS */
+.how-section .steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  align-items: stretch;
+}
+
+.how-section .steps > .step {
+  grid-column: auto;
+  grid-row: auto;
+  min-height: 0;
+  padding: 30px 28px;
+  border-radius: 20px;
+  background: rgba(255, 248, 237, 0.75);
+  border: 1px solid rgba(128, 80, 46, 0.12);
+  box-shadow: 0 8px 24px rgba(92, 64, 51, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.how-section .steps > .step:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 30px rgba(92, 64, 51, 0.11);
+}
+
+.how-section .step-number {
+  width: 40px;
+  height: 40px;
+  margin: 0 0 20px;
+  font-size: 16px;
+}
+
+.how-section .step-icon {
+  width: 92px;
+  height: 92px;
+  margin: 0 0 22px;
+  border-radius: 50%;
+  background: #f0dfc4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #80502e;
+}
+
+.how-section .step-icon::before {
+  display: none;
+}
+
+.how-section .step-icon svg {
+  width: 60px;
+  height: 60px;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+
+.how-section .step h3 {
+  margin: 0 0 12px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 22px;
+  line-height: 1.3;
+}
+
+.how-section .step p {
+  max-width: 100%;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+/* ABOUT SECTION */
+.about-section {
+  min-height: 0;
+  padding: 65px 8% 75px;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 75px;
+}
+
+.about-image {
+  min-height: 430px;
+}
+
+.mountain-photo-frame {
+  width: min(100%, 380px);
+  height: 430px;
+}
+
+.about-content h2 {
+  font-size: clamp(48px, 4.5vw, 64px);
+  line-height: 1.05;
+}
+
+.about-content > p {
+  max-width: 600px;
+  margin-bottom: 35px;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* BIGGER BENEFIT ICONS */
+.benefits {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 35px;
+}
+
+.benefit {
+  gap: 9px;
+}
+
+.benefit > span.benefit-icon {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 3px;
+}
+
+.benefit-icon svg {
+  width: 48px;
+  height: 48px;
+}
+
+.benefit strong {
+  font-size: 14px;
+}
+
+.benefit small {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* TABLET */
+@media (max-width: 900px) {
+  .hero-section {
+    gap: 30px;
+    padding: 55px 6%;
+  }
+
+  .hero-content h1 {
+    font-size: 55px;
+  }
+
+  .polaroid {
+    width: 205px;
+  }
+
+  .travel-photo {
+    height: 240px;
+  }
+
+  .how-section .steps {
+    gap: 18px;
+  }
+
+  .how-section .steps > .step {
+    padding: 24px 18px;
+  }
+
+  .how-section .step h3 {
+    font-size: 19px;
+  }
+
+  .about-section {
+    gap: 35px;
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 650px) {
+  .navbar {
+    padding: 14px 5%;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .navbar-links {
+    gap: 12px;
+    flex-wrap: wrap;
+    font-size: 12px;
+  }
+
+  .navbar-logo {
+    font-size: 23px;
+  }
+
+  .hero-section {
+    grid-template-columns: 1fr;
+    padding: 45px 7% 35px;
+    gap: 15px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(46px, 11vw, 60px);
+  }
+
+  .hero-content p {
+    font-size: 16px;
+  }
+
+  .hero-photos {
+    height: 350px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .polaroid {
+    width: 195px;
+  }
+
+  .travel-photo {
+    height: 220px;
+  }
+
+  .how-section {
+    padding: 45px 7%;
+  }
+
+  .section-heading {
+    margin-bottom: 28px;
+  }
+
+  .how-section .steps {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .how-section .steps > .step {
+    padding: 25px;
+  }
+
+  .how-section .step-icon {
+    width: 82px;
+    height: 82px;
+  }
+
+  .how-section .step-icon svg {
+    width: 54px;
+    height: 54px;
+  }
+
+  .about-section {
+    grid-template-columns: 1fr;
+    padding: 45px 7% 60px;
+    gap: 30px;
+  }
+
+  .about-image {
+    min-height: 340px;
+  }
+
+  .mountain-photo-frame {
+    width: min(280px, 85vw);
+    height: 340px;
+  }
+
+  .about-content h2 {
+    font-size: 46px;
+  }
+
+  .benefits {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+}
+
+
+/* VOYAGER - POLISH EXISTING LANDING PAGE */
+
+.hero-section {
+  padding-top: 35px;
+  padding-bottom: 45px;
+  gap: 35px;
+}
+
+.hero-content h1 {
+  font-size: clamp(64px, 5.8vw, 82px);
+}
+
+.hero-content p {
+  font-size: 17px;
+  max-width: 500px;
+  line-height: 1.75;
+}
+
+.hero-photos {
+  height: 430px;
+}
+
+.polaroid {
+  width: 270px;
+  padding: 10px 10px 34px;
+}
+
+.travel-photo {
+  height: 300px;
+}
+
+/* HOW IT WORKS */
+.how-section {
+  padding-top: 45px;
+  padding-bottom: 55px;
+}
+
+.section-heading {
+  max-width: 750px;
+  margin-bottom: 32px;
+}
+
+.how-section .steps {
+  gap: 24px;
+}
+
+.how-section .steps > .step {
+  padding: 32px 30px;
+  background: rgba(255, 248, 237, 0.85);
+  border: 1px solid rgba(128, 80, 46, 0.16);
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(92, 64, 51, 0.07);
+}
+
+.how-section .step-icon {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 22px;
+}
+
+.how-section .step-icon svg {
+  width: 65px;
+  height: 65px;
+}
+
+.how-section .step h3 {
+  font-size: 21px;
+}
+
+.how-section .step p {
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* ABOUT */
+.about-section {
+  padding-top: 50px;
+  padding-bottom: 60px;
+  gap: 55px;
+}
+
+.mountain-photo-frame {
+  width: 370px;
+  height: 440px;
+}
+
+.about-content h2 {
+  font-size: 64px;
+}
+
+.about-content > p {
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.benefits {
+  gap: 25px 30px;
+}
+
+.benefit-icon {
+  width: 55px;
+  height: 55px;
+}
+
+.benefit-icon svg {
+  width: 48px;
+  height: 48px;
+}
+
+.benefit strong {
+  font-size: 13px;
+}
+
+.benefit small {
+  font-size: 12px;
+}
+
+
+/* ==========================================
+   VOYAGER - CUTE VINTAGE DETAILS
+========================================== */
+
+/* HERO - BIGGER POLAROIDS */
+.hero-section {
+  padding-top: 40px;
+  padding-bottom: 55px;
+  gap: 30px;
+}
+
+.hero-photos {
+  height: 470px;
+  isolation: isolate;
+}
+
+/* Soft decorative shape behind the photos */
+.hero-photos::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 370px;
+  height: 370px;
+  top: 35px;
+  left: 17%;
+  border-radius: 48% 52% 62% 38% / 45% 42% 58% 55%;
+  background: #ead6b9;
+  opacity: 0.65;
+}
+
+.polaroid {
+  width: 285px;
+  padding: 11px 11px 36px;
+  box-shadow:
+    0 15px 30px rgba(75, 49, 31, 0.14),
+    0 3px 8px rgba(75, 49, 31, 0.08);
+}
+
+.travel-photo {
+  height: 315px;
+}
+
+.polaroid-back {
+  top: 5px;
+  left: 32%;
+  transform: rotate(8deg);
+}
+
+.polaroid-front {
+  top: 125px;
+  left: 2%;
+  transform: rotate(-8deg);
+}
+
+/* HOW IT WORKS - CUTE ICON BACKGROUNDS */
+.how-section .steps > .step {
+  border-radius: 22px;
+  background: rgba(255, 250, 240, 0.88);
+  border: 1px solid #eadbc7;
+  box-shadow: 0 7px 22px rgba(92, 64, 51, 0.06);
+}
+
+.how-section .step-icon {
+  width: 105px;
+  height: 105px;
+  margin-bottom: 22px;
+  border-radius: 50%;
+  background: #f1dfc4;
+  box-shadow: 0 5px 14px rgba(128, 80, 46, 0.08);
+}
+
+.how-section .step:nth-child(2) .step-icon {
+  background: #f3e4d6;
+}
+
+.how-section .step:nth-child(3) .step-icon {
+  background: #e9dfcb;
+}
+
+.how-section .step-icon svg {
+  width: 65px;
+  height: 65px;
+}
+
+/* ABOUT - DECORATIVE IMAGE BACKGROUND */
+.about-image {
+  position: relative;
+  isolation: isolate;
+}
+
+.about-image::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 330px;
+  height: 390px;
+  border-radius: 48% 52% 43% 57% / 52% 43% 57% 48%;
+  background: #ead6b9;
+  transform: rotate(9deg);
+}
+
+.mountain-photo-frame {
+  width: 370px;
+  height: 440px;
+  border-radius: 3px;
+  box-shadow: 0 16px 35px rgba(75, 49, 31, 0.15);
+}
+
+/* ABOUT - BIGGER CUTE BENEFIT ICONS */
+.benefits {
+  gap: 30px 25px;
+}
+
+.benefit {
+  position: relative;
+  gap: 8px;
+}
+
+.benefit > span.benefit-icon {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px 35px 27px 35px;
+  background: #f0dfc4;
+  color: #80502e;
+  box-shadow: 0 5px 13px rgba(92, 64, 51, 0.07);
+  transition: transform 0.25s ease;
+}
+
+/* Slightly different warm tones for each benefit */
+.benefit:nth-child(2) .benefit-icon {
+  background: #f3e4d6;
+}
+
+.benefit:nth-child(3) .benefit-icon {
+  background: #e9dfcb;
+}
+
+.benefit:nth-child(4) .benefit-icon {
+  background: #eee0d0;
+}
+
+.benefit:hover .benefit-icon {
+  transform: translateY(-4px) rotate(-4deg);
+}
+
+.benefit-icon svg {
+  width: 49px;
+  height: 49px;
+  stroke: currentColor;
+  stroke-width: 1.7;
+}
+
+.benefit strong {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.benefit small {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* SUBTLE DECORATIVE SECTION DETAILS */
+.section-heading {
+  position: relative;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  margin-bottom: 13px;
+  padding: 7px 13px;
+  border-radius: 30px;
+  background: #f0dfc4;
+  color: #80502e;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+/* MOBILE ADJUSTMENTS */
+@media (max-width: 900px) {
+  .polaroid {
+    width: 230px;
+  }
+
+  .travel-photo {
+    height: 260px;
+  }
+
+  .hero-photos::before {
+    width: 290px;
+    height: 290px;
+  }
+
+  .about-image::before {
+    width: 280px;
+    height: 340px;
+  }
+}
+
+@media (max-width: 650px) {
+  .hero-photos {
+    height: 390px;
+  }
+
+  .hero-photos::before {
+    width: 270px;
+    height: 270px;
+    left: 10%;
+    top: 40px;
+  }
+
+  .polaroid {
+    width: min(225px, 65vw);
+  }
+
+  .travel-photo {
+    height: 245px;
+  }
+
+  .polaroid-front {
+    top: 100px;
+    left: 0;
+  }
+
+  .polaroid-back {
+    left: 30%;
+  }
+
+  .about-image::before {
+    width: 250px;
+    height: 310px;
+  }
+
+  .benefit > span.benefit-icon {
+    width: 68px;
+    height: 68px;
+  }
+
+  .benefit-icon svg {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+
+/* ==========================================
+   POLAROID LOCATION LABELS
+========================================== */
+
+.photo-location {
+  position: absolute;
+  left: 50%;
+  bottom: 7px;
+  transform: translateX(-50%) rotate(-2deg);
+  width: max-content;
+  max-width: 95%;
+  padding: 8px 15px;
+  background: #fff9ec;
+  color: #80502e;
+  border: 1px solid #e9d9c3;
+  border-radius: 4px;
+  box-shadow: 2px 4px 9px rgba(58, 39, 27, 0.17);
+  font-family: "Caveat", cursive;
+  font-size: 21px;
+  font-weight: 600;
+  white-space: nowrap;
+  z-index: 3;
+}
+
+.photo-location span {
+  font-size: 15px;
+  margin-right: 4px;
+  color: #b58a5b;
+}
+
+/* Small scrapbook quote */
+.hero-photo-note {
+  position: absolute;
+  right: -12px;
+  bottom: 5px;
+  padding: 13px 17px;
+  background: #f4e5ce;
+  color: #76543b;
+  border-radius: 5px;
+  box-shadow: 3px 5px 12px rgba(58, 39, 27, 0.12);
+  font-family: "Caveat", cursive;
+  font-size: 20px;
+  transform: rotate(4deg);
+  z-index: 5;
+}
+
+.hero-photo-note span {
+  color: #ad795f;
+  margin-right: 5px;
+}
+
+/* Make sure the location labels stay inside the photos */
+.polaroid {
+  position: absolute;
+}
+
+/* Mobile */
+@media (max-width: 650px) {
+  .hero-photo-note {
+    right: 0;
+    bottom: -5px;
+    font-size: 17px;
+    padding: 10px 12px;
+  }
+
+  .photo-location {
+    font-size: 18px;
+    padding: 7px 10px;
+  }
+}
+
+
+/* =========================================
+   VO(YOU)GER — CUTE DECORATIVE DETAILS
+========================================= */
+
+/* Hero decorative sparkles */
+.hero-content::after {
+  content: "✳";
+  position: absolute;
+  top: -35px;
+  right: 5px;
+  color: #bd9870;
+  font-size: 35px;
+  transform: rotate(12deg);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+/* Small decorative star near the photos */
+.hero-photos::after {
+  content: "✧";
+  position: absolute;
+  top: 15px;
+  right: 8%;
+  color: #a77b50;
+  font-size: 42px;
+  transform: rotate(15deg);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* About section decorative accent */
+.about-content {
+  position: relative;
+}
+
+.about-content::after {
+  content: "✳";
+  position: absolute;
+  top: -35px;
+  right: 12%;
+  color: #bd9870;
+  font-size: 34px;
+  transform: rotate(-15deg);
+  pointer-events: none;
+}
+
+/* Small decorative dots */
+.about-image::after {
+  content: "·  ·  ·";
+  position: absolute;
+  bottom: 15px;
+  left: 5%;
+  color: #a77b50;
+  font-size: 35px;
+  letter-spacing: 7px;
+  transform: rotate(-15deg);
+  pointer-events: none;
+}
+
+
+/* =========================================
+   ABOUT BENEFIT ICON DECORATIONS
+========================================= */
+
+.benefit {
+  position: relative;
+  padding: 15px 10px 14px;
+  border-radius: 16px;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.benefit:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 248, 237, 0.75);
+}
+
+.benefit > span.benefit-icon {
+  width: 55px;
+  height: 55px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #efe0c9;
+  color: #80502e;
+  box-shadow: 0 4px 10px rgba(92, 64, 51, 0.08);
+}
+
+.benefit-icon svg {
+  width: 34px;
+  height: 34px;
+  stroke-width: 1.7;
+}
+
+.benefit strong {
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.benefit small {
+  font-size: 10px;
+  color: #8a725c;
+}
+
+
+/* =========================================
+   SCRAPBOOK PHOTO EFFECTS
+========================================= */
+
+.polaroid {
+  border: 1px solid rgba(120, 88, 58, 0.08);
+  box-shadow:
+    0 18px 30px rgba(70, 48, 30, 0.13),
+    0 5px 10px rgba(70, 48, 30, 0.07),
+    0 0 0 5px rgba(255, 253, 248, 0.5);
+}
+
+.mountain-photo-frame {
+  border: 1px solid rgba(120, 88, 58, 0.08);
+  box-shadow:
+    0 18px 30px rgba(70, 48, 30, 0.13),
+    0 5px 10px rgba(70, 48, 30, 0.07);
+}
+
+/* Slight photo hover effect */
+.polaroid img,
+.mountain-photo-frame img {
+  transition: filter 0.3s ease;
+}
+
+.polaroid:hover img,
+.mountain-photo-frame:hover img {
+  filter: saturate(1.08) contrast(1.02);
+}
+
+/* Soft decorative photo backing */
+.hero-photos::before {
+  content: "";
+  position: absolute;
+  width: 240px;
+  height: 300px;
+  top: 35px;
+  left: 25%;
+  background: #e9d7bc;
+  border-radius: 5px;
+  transform: rotate(9deg);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.about-image::before {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 350px;
+  background: #e9d7bc;
+  border-radius: 5px;
+  transform: rotate(5deg);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+
+/* =========================================
+   CUTE BUTTON DETAILS
+========================================= */
+
+.primary-button {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.12);
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.primary-button:hover {
+  transform: translateY(-3px);
+}
+
+.button-arrow-icon {
+  transition: transform 0.25s ease;
+}
+
+.primary-button:hover .button-arrow-icon {
+  transform: translateX(4px);
+}
+
+/* Small decorative accent on the button */
+.primary-button::after {
+  content: "✧";
+  position: absolute;
+  right: 9px;
+  top: 2px;
+  font-size: 10px;
+  color: rgba(255,255,255,0.55);
+}
+
+
+/* =========================================
+   HOW IT WORKS DECORATIONS
+========================================= */
+
+.how-section {
+  position: relative;
+}
+
+.how-section .section-heading {
+  position: relative;
+}
+
+.how-section .section-heading::after {
+  content: "✧";
+  position: absolute;
+  top: 0;
+  right: 12%;
+  font-size: 34px;
+  color: #b9956d;
+  transform: rotate(15deg);
+}
+
+.how-section .step-number {
+  box-shadow: 0 3px 8px rgba(92, 64, 51, 0.12);
+}
+
+.how-section .step-icon {
+  transition: transform 0.25s ease;
+}
+
+.how-section .step:hover .step-icon {
+  transform: translateY(-4px) rotate(-4deg);
+}
+
+.how-section .steps > .step-arrow {
+  opacity: 0.8;
+}
+
+
+/* =========================================
+   MOBILE DECORATION ADJUSTMENTS
+========================================= */
+
+@media (max-width: 650px) {
+  .hero-content::after {
+    right: 0;
+    top: -25px;
+    font-size: 26px;
+  }
+
+  .hero-photos::after {
+    right: 2%;
+    font-size: 30px;
+  }
+
+  .hero-photos::before {
+    width: 190px;
+    height: 250px;
+    left: 20%;
+  }
+
+  .about-content::after {
+    right: 2%;
+    top: -25px;
+    font-size: 27px;
+  }
+
+  .about-image::before {
+    width: 250px;
+    height: 300px;
+  }
+
+  .about-image::after {
+    display: none;
+  }
+
+  .benefits {
+    gap: 12px;
+  }
+
+  .benefit {
+    padding: 12px 8px;
+  }
+
+  .how-section .section-heading::after {
+    display: none;
+  }
+}
+
+
+/* =========================================
+   ABOUT SECTION — CENTERED BENEFIT ICONS
+========================================= */
+
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 35px;
+}
+
+.benefit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  padding: 12px 6px;
+  border-radius: 18px;
+  transition: transform 0.25s ease;
+}
+
+.benefit:hover {
+  transform: translateY(-5px);
+}
+
+/* Larger decorative icon background */
+.benefit > span.benefit-icon {
+  width: 76px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  border-radius: 50%;
+  background: #efe0c9;
+  color: #80502e;
+  box-shadow: 0 5px 14px rgba(92, 64, 51, 0.09);
+}
+
+/* Larger icons */
+.benefit-icon svg {
+  width: 46px;
+  height: 46px;
+  display: block;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Centered benefit titles */
+.benefit strong {
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #30251f;
+}
+
+/* Supporting text */
+.benefit small {
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #806c58;
+}
+
+/* Mobile adjustments */
+@media (max-width: 900px) {
+  .benefits {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+  }
+}
+
+@media (max-width: 650px) {
+  .benefits {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .benefit > span.benefit-icon {
+    width: 68px;
+    height: 68px;
+  }
+
+  .benefit-icon svg {
+    width: 40px;
+    height: 40px;
+  }
 }
