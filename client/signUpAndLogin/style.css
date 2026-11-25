@@ -79,7 +79,7 @@ body::before {
 
     gap: clamp(28px, 5vw, 72px);
 
-    background: url("NewPostcardImage.png") center / 80% 80% no-repeat;
+    background: url("myPostcard.png") center / 80% 80% no-repeat;
 
     filter: drop-shadow(0 16px 22px rgba(64, 43, 25, 0.22));
 }
@@ -118,15 +118,13 @@ body::before {
 
 .airplane-window {
     display: block;
-
     width: min(100%, 400px);
     max-height: 550px;
     height: auto;
-
     object-fit: contain;
-
     margin: 0 auto;
-    transform: translateX(40px);
+
+    transform: translateX(65px);
 }
 
 .art-caption {
@@ -150,6 +148,7 @@ body::before {
     justify-self: end;
     padding: 8px 0 0;
     text-align: center;
+    transform: translateX(25px);
 }
 
 /* Postage stamp */
@@ -521,8 +520,7 @@ body::before {
     }
 
     .airplane-window {
-        width: 155px;
-        max-height: 205px;
+        transform: none;
     }
 
     .art-caption {
@@ -530,9 +528,7 @@ body::before {
     }
 
     .postcard-form {
-        max-width: 510px;
-        justify-self: center;
-        padding-top: 15px;
+        transform: none;
     }
 
     .postmark {
