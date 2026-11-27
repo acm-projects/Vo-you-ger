@@ -36,11 +36,17 @@ async function refreshDay(trip,dayNumber) {
       photo:null,fallbackPhoto:require('./activityPhotoService').activityPhoto(place),attributions:raw.attributions||[],photoDetails:raw};
   });
   if(places.some(a=>places.some(b=>distanceKm(a,b)>TRIP_POLICY.maxDailyActivitySpreadKm))) throw apiError('VENUE_NO_LONGER_ELIGIBLE','The refreshed venues are too far apart for this day. Generate a new itinerary.',502);
+  const photoDiagnostics={googlePhotos:0,defaultPhotos:0,fallbackReasons:{}};
   await mapLimit(places,TRIP_POLICY.placesConcurrency,async place=>{
-    place.photo=await google.getPlacePhoto(place.photoDetails)||place.fallbackPhoto;
+    const photo=await google.getPlacePhoto(place.photoDetails,{onFallback:({reason})=>{
+      photoDiagnostics.fallbackReasons[reason]=(photoDiagnostics.fallbackReasons[reason]||0)+1;
+    }});
+    place.photo=photo||place.fallbackPhoto;
+    photoDiagnostics[photo?'googlePhotos':'defaultPhotos']++;
     delete place.photoDetails;
   });
+  if(places.length) console.info(JSON.stringify({placePhotos:photoDiagnostics}));
   const grouped=Object.fromEntries(['attractions','food','experiences'].map(category=>[category,places.filter(place=>place.category===category)]));
-  return {day:dayNumber,places,recommendedNeighborhoods:excursion?[]:recommendStayAreas(locationId,grouped),attribution:{provider:'Google Maps',requiresDisplay:true},persisted:false};
+  return {day:dayNumber,places,recommendedNeighborhoods:excursion?[]:recommendStayAreas(locationId,grouped),attribution:{provider:'Google Maps',requiresDisplay:true},photoDiagnostics,persisted:false};
 }
 module.exports={refreshDay};

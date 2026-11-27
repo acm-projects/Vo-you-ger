@@ -74,10 +74,14 @@ test('illustrations display on saved trips and remain labeled after live venue f
 
 test('arrival, transfer, departure and day-trip notes preserve reserved time and overnight bases', () => {
   const plan={outline:{stops:[{stopId:'one',name:'Lisbon'},{stopId:'two',name:'Porto'}],
-    transfers:[{day:3,fromStopId:'one',toStopId:'two',mode:'train',planningMinutes:180}],
+    transfers:[{day:3,fromStopId:'one',toStopId:'two',mode:'train',planningMinutes:210,
+      note:'Planning allowance including local access and changing accommodation; not a timetable or booking.'}],
     excursions:[{day:2,name:'Sintra'}]}};
   assert.match(dayNotes({day:1,type:'arrival'},plan).join(' '),/arrival and settling in/);
-  assert.match(dayNotes({day:3,type:'transfer'},plan).join(' '),/Lisbon → Porto.*train.*180 minutes/);
+  const transferNotes=dayNotes({day:3,type:'transfer'},plan);
+  assert.equal(transferNotes.length,2);
+  assert.match(transferNotes.join(' '),/Lisbon → Porto.*train.*3 hr 30 min including local travel and changing stays/);
+  assert.ok(dayNotes({day:3,type:'transfer',transfer:{mode:'ferry',estimatedHours:1.5,note:'Confirm seasonal ferry service.'}},plan).includes('Confirm seasonal ferry service.'));
   assert.match(dayNotes({day:2,type:'excursion'},plan).join(' '),/Sintra.*overnight base/);
   assert.match(dayNotes({day:4,type:'departure'},plan).join(' '),/free for departure/);
   assert.equal(journalDay({day:4,type:'departure',morning:[]},3).places.length,0);
