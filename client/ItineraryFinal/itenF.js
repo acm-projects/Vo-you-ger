@@ -1,5 +1,5 @@
 import { getTrip, getTripDayPlaces, saveTrip } from "../src/services/api.js";
-import { journalTrip, journalDay, dayNotes, detailText, venueRefreshIssue } from "../src/services/journalItinerary.js";
+import { journalTrip, journalDay, dayNotes, dayIllustration, detailText, venueRefreshIssue } from "../src/services/journalItinerary.js";
 import { paths } from "../src/services/navigation.js";
 
 let itinerary = [];
@@ -377,25 +377,37 @@ function createPageHTML(day, places, side, dayIndex) {
     if (stay?.recommendedStayArea) {
       const paragraph = document.createElement('p');
       paragraph.className = 'day-logistics';
-      paragraph.textContent = `Where to stay: ${stay.recommendedStayArea}. ${stay.stayAreaRationale || ''}`;
+      paragraph.textContent = `Where to stay: ${stay.recommendedStayArea}. Check location, prices and transport before booking.`;
       wrapper.appendChild(paragraph);
     }
   }
 
-  const grid = document.createElement("div");
-  grid.className = `page-destinations cards-${places.length}`;
-
-  places.forEach(place => {
-    grid.appendChild(createDestinationCard(place));
-  });
-
-  wrapper.appendChild(grid);
-
-  if (!places.length) {
-    const paragraph = document.createElement('p');
-    paragraph.className = 'day-logistics';
-    paragraph.textContent = side === 'right' ? 'No additional activities scheduled.' : 'No activities scheduled during this part of the day.';
-    wrapper.appendChild(paragraph);
+  if (places.length) {
+    const grid = document.createElement('div');
+    grid.className = `page-destinations cards-${places.length}`;
+    places.forEach(place => grid.appendChild(createDestinationCard(place)));
+    wrapper.appendChild(grid);
+  } else {
+    const artwork = dayIllustration(day, trip.itinerary);
+    wrapper.classList.add('page-content--illustrated');
+    const figure = document.createElement('figure');
+    figure.className = 'day-illustration';
+    const image = document.createElement('img');
+    image.src = artwork.image;
+    image.alt = ''; // Decorative: the caption and travel notes describe the day.
+    image.width = 300;
+    image.height = 300;
+    image.decoding = 'async';
+    const caption = document.createElement('figcaption');
+    const title = document.createElement('p');
+    title.className = 'day-illustration__title';
+    title.textContent = artwork.title;
+    const note = document.createElement('p');
+    note.className = 'day-illustration__caption';
+    note.textContent = artwork.caption;
+    caption.append(title, note);
+    figure.append(image, caption);
+    wrapper.appendChild(figure);
   }
 
   return wrapper;

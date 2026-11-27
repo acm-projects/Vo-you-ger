@@ -66,9 +66,9 @@ button:focus-visible {
   justify-content: center;
   gap: 8px;
   min-width: 0;
-  min-height: 20px;
-  font-size: .75rem;
-  line-height: 20px;
+  min-height: 24px;
+  font-size: .85rem;
+  line-height: 24px;
   color: var(--muted);
   white-space: nowrap;
   overflow: hidden;
@@ -80,8 +80,8 @@ button:focus-visible {
   grid-column: 1 / -1;
   min-height: 36px;
   margin: 0;
-  font-size: .8rem;
-  line-height: 18px;
+  font-size: .9rem;
+  line-height: 1.5;
   color: var(--green);
 }
 .journal-save-status a { margin-left: 8px; font-size: inherit; }
@@ -104,7 +104,7 @@ button:focus-visible {
 .journal-status button,
 .journal-status a {
   color: var(--ink);
-  font-size: .85rem;
+  font-size: .95rem;
 }
 
 .journal-toolbar button,
@@ -136,9 +136,50 @@ button:focus-visible {
 
 .day-logistics {
   margin: 8px 10px 14px;
-  font-size: .75rem;
-  line-height: 1.5;
-  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #6b5b4d;
+}
+
+.page-content--illustrated {
+  display: flex;
+  flex-direction: column;
+}
+
+.day-illustration {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 12px 0 20px;
+  padding: 8px 12px;
+  text-align: center;
+}
+
+.day-illustration img {
+  display: block;
+  width: min(100%, 300px);
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.day-illustration__title {
+  margin: 0;
+  color: var(--ink);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.day-illustration__caption {
+  margin: 6px 0 0;
+  color: #6b5b4d;
+  font-size: .95rem;
+  line-height: 1.6;
 }
 
 .photo-placeholder {
@@ -153,7 +194,7 @@ button:focus-visible {
 .photo-placeholder button { font: inherit; padding: 3px 8px; cursor: pointer; }
 .photo-credit {
   margin: 6px 3px;
-  font-size: 12px;
+  font-size: .8rem;
   line-height: 1.4;
   color: #5e5e5e;
   overflow-wrap: anywhere;
@@ -257,8 +298,8 @@ button:focus-visible {
 }
 
 .cover-details {
-  font-size: .7rem;
-  letter-spacing: .15em;
+  font-size: .85rem;
+  letter-spacing: .08em;
 }
 
 /* Move cover sparkles and date details higher */
@@ -482,9 +523,9 @@ button:focus-visible {
   margin: 0 0 7px;
 
   color: var(--accent);
-  font-size: .62rem;
+  font-size: .8rem;
   font-weight: 700;
-  letter-spacing: .17em;
+  letter-spacing: .12em;
 }
 
 .day-heading h2 {
@@ -492,18 +533,18 @@ button:focus-visible {
 
   color: #493629;
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.3rem, 2vw, 1.75rem);
+  font-size: clamp(1.6rem, 2.4vw, 2rem);
   font-weight: 600;
   line-height: 1.25;
 }
 
 .heading-subtext {
-  max-width: 340px;
+  max-width: 100%;
   margin: 8px 0 0;
 
-  color: #897966;
+  color: #6b5b4d;
   font-family: 'Playfair Display', serif;
-  font-size: .78rem;
+  font-size: 1rem;
   font-style: italic;
   line-height: 1.5;
 }
@@ -635,7 +676,7 @@ button:focus-visible {
   background: rgba(58,44,33,.8);
   border-radius: 3px;
 
-  font-size: .62rem;
+  font-size: .8rem;
 }
 
 /* Consistent title space for short and long names. */
@@ -649,8 +690,9 @@ button:focus-visible {
 
   color: #493629;
   font-family: 'Playfair Display', serif;
-  font-size: clamp(.72rem, .95vw, .85rem);
-  line-height: 1.25;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
 
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -665,7 +707,7 @@ button:focus-visible {
   margin: 0 3px 9px;
 
   color: var(--green);
-  font-size: .67rem;
+  font-size: .85rem;
   font-weight: 700;
 }
 
@@ -675,7 +717,7 @@ button:focus-visible {
   flex-shrink: 0;
 
   width: 100%;
-  min-height: 26px;
+  min-height: 36px;
   box-sizing: border-box;
 
   margin-top: auto;
@@ -690,7 +732,7 @@ button:focus-visible {
   cursor: pointer;
 
   font-family: 'Playfair Display', serif;
-  font-size: .68rem;
+  font-size: .9rem;
   font-style: italic;
 }
 
@@ -730,7 +772,7 @@ button:focus-visible {
   cursor: pointer;
   writing-mode: vertical-rl;
 
-  font-size: clamp(.48rem, .8vw, .7rem);
+  font-size: clamp(.65rem, .9vw, .8rem);
   font-weight: 700;
 }
 
@@ -958,7 +1000,7 @@ button:focus-visible {
 
   color: #806b55;
   font-family: 'Playfair Display', serif;
-  font-size: .8rem;
+  font-size: .95rem;
   font-style: italic;
 }
 
@@ -1033,7 +1075,7 @@ button:focus-visible {
 
 .postcard-label {
   color: #a46b50;
-  font-size: .65rem;
+  font-size: .75rem;
   font-weight: 700;
   letter-spacing: .15em;
 }
@@ -1052,7 +1094,7 @@ button:focus-visible {
 
 .postcard-content > p {
   color: #7d6d5c;
-  font-size: .9rem;
+  font-size: 1.05rem;
   line-height: 1.8;
 }
 
@@ -1078,7 +1120,7 @@ button:focus-visible {
   margin-bottom: 4px;
 
   color: #a46b50;
-  font-size: .62rem;
+  font-size: .75rem;
   font-weight: 700;
   letter-spacing: .08em;
   text-transform: uppercase;
@@ -1086,8 +1128,8 @@ button:focus-visible {
 
 .meta-value {
   color: #5b4a3b;
-  font-size: .76rem;
-  line-height: 1.5;
+  font-size: .95rem;
+  line-height: 1.6;
   overflow-wrap: anywhere;
   white-space: pre-line;
 }
@@ -1131,7 +1173,7 @@ button:focus-visible {
   cursor: pointer;
 
   font-family: 'Playfair Display', serif;
-  font-size: .9rem;
+  font-size: 1rem;
 }
 
 .done-button:hover {
@@ -1203,7 +1245,7 @@ button:focus-visible {
 @media (max-width: 600px) {
   .journal-toolbar { column-gap: 8px; }
   .journal-toolbar__actions { gap: 4px; }
-  .journal-toolbar a, .journal-toolbar button { font-size: .75rem; }
+  .journal-toolbar a, .journal-toolbar button { font-size: .85rem; }
   .journal-toolbar button { padding: 8px; }
   .app {
     padding: 25px 12px;

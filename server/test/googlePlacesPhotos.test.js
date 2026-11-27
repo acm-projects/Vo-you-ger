@@ -21,6 +21,8 @@ describe('Google Places photos with optional fallback',()=>{
     assert.ok(fetch.mock.calls[0].arguments[1].headers['X-Goog-FieldMask'].split(',').includes('photos'));
     await google.searchPlaces('museum');
     assert.ok(!fetch.mock.calls[1].arguments[1].headers['X-Goog-FieldMask'].includes('photos'));
+    await google.getPlaceDetails('verified-place',{photoOnly:true});
+    assert.equal(fetch.mock.calls[2].arguments[1].headers['X-Goog-FieldMask'],'id,displayName,photos');
   });
   it('resolves a single photo using server-side credentials and keeps author credits',async()=>{
     process.env.GOOGLE_PLACES_API_KEY='mock-secret';
@@ -49,6 +51,38 @@ describe('Google Places photos with optional fallback',()=>{
     for(const photos of [undefined,[],{},[null],[{name:'places/other-place/photos/id'}],[{name:'places/verified-place/photos/../../other'}],[{name:'https://example.com/image'}]]) {
       assert.equal(await google.getPlacePhoto({...details(),photos}),null);
     }
+  });
+  it('selects a large landscape photo without extra calls or mutating the provider metadata',async()=>{
+    process.env.GOOGLE_PLACES_API_KEY='mock-secret';
+    const place=details();place.photos=[
+      {...place.photos[0],name:'places/verified-place/photos/tiny',widthPx:100,heightPx:80},
+      {...place.photos[0],name:'places/verified-place/photos/portrait',widthPx:3000,heightPx:5000},
+      {...place.photos[0],name:'places/verified-place/photos/landscape',widthPx:1800,heightPx:1100},
+    ];
+    const before=structuredClone(place);
+    const fetch=mock.method(global,'fetch',async url=>{
+      assert.ok(String(url).includes('/landscape/media?'));
+      return Response.json({photoUri:'//lh3.googleusercontent.com/landscape'});
+    });
+    const photo=await google.getPlacePhoto(place);
+    assert.equal(photo.url,'https://lh3.googleusercontent.com/landscape');
+    assert.equal(fetch.mock.callCount(),1);assert.deepEqual(place,before);
+  });
+  it('reports safe fallback reasons without returning keys, resource names or provider messages',async()=>{
+    process.env.GOOGLE_PLACES_API_KEY='mock-secret';
+    const events=[];const options={onFallback:event=>events.push(event)};
+    const fetch=mock.method(global,'fetch',async()=>Response.json({error:{message:'private-key and provider detail'}},{status:403}));
+    assert.equal(await google.getPlacePhoto({...details(),photos:[]},options),null);
+    assert.equal(await google.getPlacePhoto(details(),options),null);
+    fetch.mock.mockImplementation(async()=>Response.json({},{status:429}));
+    assert.equal(await google.getPlacePhoto(details(),options),null);
+    fetch.mock.mockImplementation(async()=>{throw new DOMException('private-key','AbortError');});
+    assert.equal(await google.getPlacePhoto(details(),options),null);
+    delete process.env.GOOGLE_PLACES_API_KEY;
+    assert.equal(await google.getPlacePhoto(details(),options),null);
+    assert.deepEqual(events,[{reason:'no_photo_metadata'},{reason:'request_denied',providerStatus:403},
+      {reason:'rate_limited',providerStatus:429},{reason:'timeout'},{reason:'not_configured'}]);
+    assert.ok(!JSON.stringify(events).includes('private'));assert.ok(!JSON.stringify(events).includes('places/'));
   });
   it('treats missing credentials, photo errors and timeouts as optional, without retries',async()=>{
     delete process.env.GOOGLE_PLACES_API_KEY;

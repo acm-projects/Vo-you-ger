@@ -27,6 +27,7 @@ function fixture() {
 
 it('requests only text mapped to known IDs and preserves canonical data through saving',async()=>{
   const f=fixture(),before=structuredClone(f.itinerary);
+  const logs=[];mock.method(console,'info',line=>logs.push(JSON.parse(line)));
   mock.method(llm,'generateStructured',async request=>{
     const payload=JSON.parse(request.prompt);
     assert.ok(!request.prompt.includes('private@example.test'));assert.ok(!request.prompt.includes('Private provider street'));
@@ -37,6 +38,10 @@ it('requests only text mapped to known IDs and preserves canonical data through 
   });
   const result=await narrative.writeNarrative(f);
   assert.equal(result.model,'model-a');assert.equal(f.itinerary.narrativeSource,'gemini');
+  const status=logs.find(line=>line.itineraryText)?.itineraryText;
+  assert.equal(status.source,'gemini');assert.equal(status.model,'model-a');
+  assert.equal(status.acceptedFields,status.expectedFields);
+  assert.ok(!JSON.stringify(logs).includes('private@example.test'));assert.ok(!JSON.stringify(logs).includes('Private provider street'));
   assert.equal(f.itinerary.narrativeCacheHit,false);
   for(let i=0;i<f.itinerary.days.length;i++)for(const slot of SLOTS){
     assert.deepEqual(f.itinerary.days[i][slot].map(p=>[p.placeId,p.address,p.lat,p.lng]),before.days[i][slot].map(p=>[p.placeId,p.address,p.lat,p.lng]));

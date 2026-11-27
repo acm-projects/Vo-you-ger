@@ -83,18 +83,48 @@ export function dayNotes(day, plan) {
   const notes = [];
   if (day.type === 'arrival') notes.push('Morning and afternoon are reserved for arrival and settling in.');
   if (day.type === 'departure') notes.push('Keep the rest of the day free for departure.');
-  if (day.type === 'transfer') notes.push('Morning and afternoon are reserved for travel between bases.');
+  if (day.type === 'transfer') notes.push('Morning and afternoon set aside for travel.');
   const transfer = day.transfer || plan.outline?.transfers?.find(item => item.day === day.day);
   if (transfer) {
     const stops = plan.outline?.stops || [];
     const from = stops.find(stop => stop.stopId === transfer.fromStopId)?.name;
     const to = stops.find(stop => stop.stopId === transfer.toStopId)?.name;
+    const minutes = transfer.planningMinutes;
+    const hours = minutes != null ? Math.floor(minutes / 60) : null;
+    const remainder = minutes != null ? minutes % 60 : null;
+    const duration = minutes != null
+      ? [hours ? `${hours} hr` : '', remainder || !hours ? `${remainder} min` : ''].filter(Boolean).join(' ')
+      : transfer.estimatedHours != null ? `${transfer.estimatedHours} hr` : '';
     notes.push([from && to ? `${from} → ${to}` : '', transfer.mode,
-      transfer.planningMinutes != null ? `Allow about ${transfer.planningMinutes} minutes for travel and changing accommodation`
-        : transfer.estimatedHours != null ? `About ${transfer.estimatedHours} hours (estimate)` : ''].filter(Boolean).join(' · '));
-    if (transfer.note) notes.push(transfer.note);
+      duration ? `About ${duration}${minutes != null ? ' including local travel and changing stays' : ' (estimate)'}` : ''].filter(Boolean).join(' · '));
+    // This allowance is already explained beside the duration. Keep custom notes.
+    if (transfer.note && transfer.note !== 'Planning allowance including local access and changing accommodation; not a timetable or booking.') notes.push(transfer.note);
   }
   const excursion = day.excursion || plan.outline?.excursions?.find(item => item.day === day.day);
   if (excursion) notes.push(`Day trip: ${excursion.name || day.city}. Return to your overnight base.`);
   return notes.filter(Boolean);
+}
+
+// Decorative artwork uses the planned transport mode, never an inferred booking.
+export function dayIllustration(day, plan) {
+  const transfer = day.transfer || plan.outline?.transfers?.find(item => item.day === day.day);
+  const isTransfer = day.type === 'transfer' || Boolean(transfer);
+  const isTrain = isTransfer && transfer?.mode === 'train';
+  const stops = plan.outline?.stops || [];
+  const from = stops.find(stop => stop.stopId === transfer?.fromStopId)?.name;
+  const to = stops.find(stop => stop.stopId === transfer?.toStopId)?.name;
+  const title = isTransfer ? (from && to ? `${from} → ${to}` : 'On to your next stop')
+    : day.type === 'arrival' ? 'Let the journey begin'
+      : day.type === 'departure' ? 'Until next time'
+        : 'A little room to wander';
+  const caption = isTransfer ? 'Time set aside for the journey.'
+    : day.type === 'arrival' ? 'Time to arrive and settle in.'
+      : day.type === 'departure' ? 'Time set aside for your departure.'
+        : 'Enjoy a moment at your own pace.';
+  return {
+    image: isTrain
+      ? new URL('../assets/itinerary/watercolor-train.png', import.meta.url).href
+      : new URL('../assets/itinerary/watercolor-luggage.png', import.meta.url).href,
+    title, caption,
+  };
 }

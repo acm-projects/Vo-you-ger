@@ -150,6 +150,9 @@ async function writeNarrative({itinerary, discovered, quiz}) {
   itinerary.narrativeDiagnostics = {expectedFields:2+payload.days.length+payload.places.length,acceptedFields:accepted,
     invalidFields:candidate?.invalid || 0,unknownIds:candidate?.unknown || 0,duplicateIds:candidate?.duplicates || 0,
     attempts:diagnostics};
+  console.info(JSON.stringify({itineraryText:{source:itinerary.narrativeSource,model:accepted?model:null,
+    acceptedFields:accepted,expectedFields:itinerary.narrativeDiagnostics.expectedFields,
+    fallbackReason:itinerary.narrativeFallbackReason,cacheHit}}));
   count('narrativeAcceptedFields',accepted);
   if (itinerary.narrativeSource !== 'gemini') count('narrativeFallbacks');
   if (itinerary.narrativeSource === 'partial') count('narrativePartialResponses');

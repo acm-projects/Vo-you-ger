@@ -69,6 +69,7 @@ describe('Shared Unsplash activity illustrations',()=>{
     assert.equal(details.mock.callCount(),1);
     assert.equal(result.places[0].placeName,'Verified park');
     assert.equal(result.places[0].photo.subject,'Park');
+    assert.deepEqual(result.photoDiagnostics,{googlePhotos:0,defaultPhotos:1,fallbackReasons:{no_photo_metadata:1}});
     assert.equal(result.attribution.provider,'Google Maps');
     assert.equal(result.persisted,false);
   });
@@ -98,6 +99,7 @@ describe('Shared Unsplash activity illustrations',()=>{
     const {refreshDay}=require('../services/savedVenueService');
     const result=await refreshDay(trip,1);
     assert.equal(photo.mock.callCount(),1);assert.deepEqual(result.places[0].photo,image);
+    assert.equal(result.photoDiagnostics.googlePhotos,1);assert.equal(result.photoDiagnostics.defaultPhotos,0);
     assert.equal(result.places[0].fallbackPhoto.provider,'unsplash');
     assert.equal(result.places[0].fallbackPhoto.subject,'Park');
     assert.equal(result.places[0].photoDetails,undefined);assert.deepEqual(trip,original);

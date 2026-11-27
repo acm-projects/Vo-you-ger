@@ -10,10 +10,50 @@ const option=name=>process.argv.find(arg=>arg.startsWith(`--${name}=`))?.slice(n
 
 function providerFor(url) {
   const host=new URL(typeof url==='string'||url instanceof URL?url:url.url).hostname;
-  if(host==='places.googleapis.com')return 'google';
+  if(host==='places.googleapis.com'||/(^|\.)(googleusercontent\.com|ggpht\.com)$/.test(host))return 'google';
   if(host==='generativelanguage.googleapis.com')return 'gemini';
   if(host==='visa-requirement.p.rapidapi.com')return 'visa';
   throw Object.assign(new Error('Unexpected network destination'),{code:'UNEXPECTED_PROVIDER'});
+}
+
+async function verifyGooglePhoto({placeId,query='Eiffel Tower Paris France'}={}) {
+  const google=require('../services/googlePlacesService');
+  if(!placeId) {
+    const places=await google.searchPlaces(query,{pageSize:1});
+    placeId=places[0]?.id;
+  }
+  if(!placeId)throw Object.assign(new Error('No matching venue'),{code:'PHOTO_PLACE_NOT_FOUND'});
+  const details=await google.getPlaceDetails(placeId,{photoOnly:true});
+  if(details.id!==placeId)throw Object.assign(new Error('Different venue returned'),{code:'PHOTO_PLACE_MISMATCH'});
+  let fallback;
+  const photo=await google.getPlacePhoto(details,{onFallback:event=>{fallback=event;}});
+  if(!photo)throw Object.assign(new Error('Google did not supply a usable photo'),{
+    code:fallback?.reason==='no_photo_metadata'?'NO_PHOTO_METADATA':'PHOTO_REQUEST_FAILED',
+    fallbackReason:fallback?.reason||'photo_unavailable',...(fallback?.providerStatus?{providerStatus:fallback.providerStatus}:{})});
+  const image=await fetch(photo.url,{redirect:'error',signal:AbortSignal.timeout(8000)});
+  const contentType=image.headers.get('content-type')||'';
+  if(!image.ok||!contentType.startsWith('image/')) {
+    await image.body?.cancel();
+    throw Object.assign(new Error('Photo did not return an image'),{code:'PHOTO_IMAGE_FAILED'});
+  }
+  const reader=image.body?.getReader();
+  if(!reader)throw Object.assign(new Error('Photo has no image body'),{code:'PHOTO_IMAGE_FAILED'});
+  let head=Buffer.alloc(0);
+  try {
+    while(head.length<16) {
+      const {done,value}=await reader.read();if(done)break;
+      head=Buffer.concat([head,Buffer.from(value).subarray(0,32-head.length)]);
+    }
+  } finally {await reader.cancel();}
+  const png=head.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]));
+  const jpeg=head[0]===255&&head[1]===216&&head[2]===255;
+  const gif=/^GIF8[79]a/.test(head.toString('ascii',0,6));
+  const webp=head.toString('ascii',0,4)==='RIFF'&&head.toString('ascii',8,12)==='WEBP';
+  const avif=head.toString('ascii',4,8)==='ftyp'&&/^avi[fs]$/.test(head.toString('ascii',8,12));
+  if(!png&&!jpeg&&!gif&&!webp&&!avif)throw Object.assign(new Error('Photo bytes are not a recognized image'),{code:'PHOTO_INVALID_IMAGE'});
+  // Never write Google photo names, temporary URLs, image bytes or keys to reports.
+  return {photoMetadataVerified:true,imageVerified:true,contentType,
+    attributionCount:photo.authorAttributions?.length||0,provider:photo.provider,persisted:false};
 }
 
 function budgetFetch(original,counts,save=()=>{},limits=LIMITS,onResult=()=>{}) {
@@ -58,7 +98,7 @@ async function main() {
     fs.writeFileSync(reportFile,JSON.stringify(report,null,2)+'\n');
   });
   const only=option('only');
-  if(only&&!['dynamodb','visa','recommendations','itinerary','google-details','gemini'].includes(only))throw new Error('Unknown check');
+  if(only&&!['dynamodb','visa','recommendations','itinerary','google-details','google-photos','gemini'].includes(only))throw new Error('Unknown check');
   async function check(name,work) {
     const start=performance.now();
     try {report.checks[name]={status:'passed',...await work(),elapsedMs:Number((performance.now()-start).toFixed(1))};}
@@ -66,6 +106,7 @@ async function main() {
     fs.writeFileSync(reportFile,JSON.stringify(report,null,2)+'\n');
   }
   try {
+    if(only==='google-photos')await check('googlePhotos',()=>verifyGooglePhoto({placeId:option('place-id'),query:option('query')}));
     // Explicit diagnostic only: one tiny structured request, no traveler data,
     // Places discovery, database access, or model/SDK retry attempts.
     if(only==='gemini')await check('gemini',async()=>{
@@ -125,4 +166,4 @@ async function main() {
 }
 
 if(require.main===module)main().catch(()=>{console.error('Integration check could not start. Credentials and upstream messages are not printed.');process.exitCode=1;});
-module.exports={budgetFetch,providerFor,LIMITS};
+module.exports={budgetFetch,providerFor,LIMITS,verifyGooglePhoto};
